@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Xohri Farmer</string>
+    <string name="forgtpass">Please enter your mobile number so that we can </string>
+    <string name="thankpage">Please enter the OTP below for registration.</string>
+    <string name="enterotp">Please enter the OTP below for registration.</string>
+    <string name="logout">Are you sure you want to Exit?</string>
+
+</resources>
