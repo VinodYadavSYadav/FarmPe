@@ -55,6 +55,7 @@ static Fragment myloadingfragment;
         menu=view.findViewById(R.id.menu);
         home=view.findViewById(R.id.home);
         shop_cat=view.findViewById(R.id.shop_cat);
+        account = view.findViewById(R.id.account);
        /* shop_cat=view.findViewById(R.id.shop_cat);
         todaysdeal=view.findViewById(R.id.todaydeal);
         my_orders=view.findViewById(R.id.my_orders);
@@ -101,6 +102,19 @@ static Fragment myloadingfragment;
                         transaction.replace(R.id.frame_layout_home, selectedFragment);
                         transaction.commit();
                         drawer.closeDrawers();
+                    }
+                });
+
+
+                account.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        selectedFragment = My_Account_Fragment.newInstance();
+                        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                        transaction.replace(R.id.frame_layout_home, selectedFragment);
+                        transaction.commit();
+                        drawer.closeDrawers();
+
                     }
                 });
 

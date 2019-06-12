@@ -40,6 +40,30 @@ public class Urls {
 
     public static final String PayuGetPaytmCheckSum="http://35.154.22.127:8585/api/Paytm/GetPaytmCheckSum";
     public static final String Get_New_Address = "http://3.17.6.57:8080/api/MasterTable/GetUserAddress";
+    // Wallet
+    public static final String GetWalletBalance = ROOT_URL +"MasterTable/GetWalletDetails";
+
+    //My Account
+
+    public static final String Edit_Profile_Details = ROOT_URL + "Auth/GetUserDetails";
+    public static final String Update_Profile_Details = ROOT_URL + "Auth/UpdateUserProfile";
+
+
+    public static final String Bank_Name_List= ROOT_URL + "MasterTable/GetBankLists";
+
+
+    // Refer n Earn
+    public static final String Refferal_Code = ROOT_URL +"Auth/GetUserDetails";
+    public static final String ValidateRefferalCode = ROOT_URL +"Auth/ValidateRefferalCode";
+
+
+    // Address
+
+    public static final String Delete_Address_Details = ROOT_URL + "MasterTable/DeleteUserAddress";
+    public static final String Default_Address = ROOT_URL + "MasterTable/UpdateUserDefaultAddress";
+
+
+
 
 
     public static final String Districts=ROOT_URL2+"MasterTable/GetDistricts";
