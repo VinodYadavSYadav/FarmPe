@@ -11,6 +11,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v4.widget.NestedScrollView;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -40,7 +41,7 @@ Fragment selectedFragment;
 static boolean fragloaded;
 
 static Fragment myloadingfragment;
-public static ScrollView scrollView;
+public static NestedScrollView scrollView;
     boolean doubleBackToExitPressedOnce = false;
 
 
@@ -56,7 +57,7 @@ public static ScrollView scrollView;
         final View view = inflater.inflate(R.layout.activity_navigation_menu_home, container, false);
 
         menu=view.findViewById(R.id.menu);
-       // scrollView=view.findViewById(R.id.scroll_view);
+       //scrollView=view.findViewById(R.id.scroll);
         home=view.findViewById(R.id.home);
         shop_cat=view.findViewById(R.id.shop_cat);
         map=view.findViewById(R.id.map);
