@@ -10,7 +10,7 @@
     android:layout_centerInParent="true"
     android:orientation="vertical"
     android:weightSum="100"
-    android:background="#ffffff">
+    android:background="#000">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,27 +18,47 @@
         android:orientation="vertical"
         android:weightSum="100"
         android:gravity="center"
-        android:layout_weight="25"
+        android:layout_weight="20"
         >
 
 
 
-        <TextView
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:minHeight="?attr/actionBarSize"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="50dp"
-            android:text="Xohri"
-            android:fontFamily="@font/segoeui"
-            android:gravity="center"
-            android:textSize="50dp"
-            android:textStyle="bold"
-            android:textColor="#161823"
-            />
+            app:titleTextColor="@android:color/white"
+            >
+
+
+            <LinearLayout
+                android:id="@+id/back_feed"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:gravity="left">
+
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/ic_go_back_left_arrow_"
+
+                    />
+
+            </LinearLayout>
+
+
+
+        </android.support.v7.widget.Toolbar>
+
 
     </LinearLayout>
 
 
 
+<!--
     <TextView
         android:id="@+id/create_account"
         android:layout_width="match_parent"
@@ -49,6 +69,20 @@
         android:gravity="center"
         android:textColor="#161823"
         android:textSize="20dp" />
+-->
+    <TextView
+        android:id="@+id/change_lang"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:text="English"
+        android:drawableRight="@drawable/ic_down_arrow"
+        android:gravity="right"
+        android:drawablePadding="5dp"
+        android:fontFamily="@font/segoeui"
+        android:textSize="14dp"
+        android:textColor="#fff"
+        />
 
 
     <LinearLayout
@@ -56,13 +90,28 @@
         android:layout_height="0dp"
         android:orientation="vertical"
         android:weightSum="100"
-        android:layout_weight="75"
+        android:background="#fff"
+        android:layout_marginTop="10dp"
+        android:layout_marginHorizontal="10dp"
+        android:layout_weight="50"
         >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Register"
+            android:textSize="18dp"
+            android:padding="15dp"
+            android:textColor="#000"
+            android:layout_gravity="center"
+            android:textStyle="bold"
+            android:layout_marginHorizontal="10dp"
+            android:id="@+id/toolbar_title" />
+
         <EditText
             android:id="@+id/name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:fontFamily="@font/segoeui"
             android:hint="Name"
             android:inputType="text"
@@ -291,14 +340,15 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="30dp"
-            android:background="@drawable/border_filled_gold"
+            android:background="@drawable/border_filled_pink"
             android:fontFamily="@font/segoeui"
             android:gravity="center"
             android:padding="15dp"
             android:text="Sign Up"
-            android:textColor="#161823"
+            android:textColor="#fff"
             android:textSize="14dp" />
 
+<!--
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -309,7 +359,9 @@
             android:text="OR"
             android:textColor="#161823"
             android:textSize="14dp" />
+-->
 
+<!--
         <TextView
             android:id="@+id/create_acc"
             android:layout_width="match_parent"
@@ -324,6 +376,7 @@
             android:background="@drawable/border_grey_filled"
             android:textColor="#161823"
             />
+-->
 
 
     </LinearLayout>
