@@ -17,7 +17,7 @@
         android:orientation="vertical"
         android:weightSum="100"
         android:gravity="center"
-        android:layout_weight="30"
+        android:layout_weight="20"
         >
 
      <!-- <ImageView
@@ -177,7 +177,7 @@
             android:fontFamily="@font/segoeui"
             android:gravity="center"
             android:padding="15dp"
-            android:text="Sign In"
+            android:text="LOGIN"
             android:textColor="#ffffff"
             android:textSize="14dp" />
 
@@ -222,7 +222,7 @@
         android:orientation="horizontal"
         android:weightSum="100"
         android:layout_marginTop="10dp"
-        android:layout_weight="15"
+        android:layout_weight="25"
         >
 
 
@@ -231,7 +231,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
-            android:text="New to Xohri? Create an account"
+            android:text="Register"
             android:layout_marginTop="10dp"
             android:fontFamily="@font/segoeui"
             android:gravity="center"

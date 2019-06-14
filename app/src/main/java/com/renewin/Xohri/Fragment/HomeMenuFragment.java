@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -30,7 +31,7 @@ public class HomeMenuFragment extends Fragment implements OnMapReadyCallback, Vi
 Fragment selectedFragment;
     public static DrawerLayout drawer;
     ImageView plus_sign_add;
-    LinearLayout menu,prof_tab;
+    RelativeLayout menu,prof_tab;
     SessionManager sessionManager;
     String userid;
     TextView home,shop_cat,map,looking_for,farms,farmer,account,wallet,sell_on_xohri,help_center,notification;
@@ -55,7 +56,7 @@ public static ScrollView scrollView;
         final View view = inflater.inflate(R.layout.activity_navigation_menu_home, container, false);
 
         menu=view.findViewById(R.id.menu);
-        scrollView=view.findViewById(R.id.scroll_view);
+       // scrollView=view.findViewById(R.id.scroll_view);
         home=view.findViewById(R.id.home);
         shop_cat=view.findViewById(R.id.shop_cat);
         map=view.findViewById(R.id.map);
@@ -76,7 +77,7 @@ public static ScrollView scrollView;
 
         System.out.println("lajfdhsjkd");
 
-        scrollView.requestFocus(View.FOCUS_UP);
+       // scrollView.requestFocus(View.FOCUS_UP);
 
         NavigationView navigationView = (NavigationView)view.findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);

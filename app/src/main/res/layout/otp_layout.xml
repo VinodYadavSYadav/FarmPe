@@ -60,7 +60,6 @@
         android:text=" One Time Password"
         android:gravity="center"
         android:textColor="#161823"
-        android:textStyle="bold"
         android:textSize="18dp"
         />
 
@@ -126,7 +125,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="40dp"
-            android:text="Confirm OTP"
+            android:text="CONFIRM OTP"
             android:gravity="center"
             android:textSize="14dp"
             android:textStyle="bold"

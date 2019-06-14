@@ -54,6 +54,10 @@ public class LookingForFragment extends Fragment {
 
         FarmsImageBean img4=new FarmsImageBean(R.drawable.tractor_red,"Tractor Price","Mahindra Jivo 225 DL 20HP","Immediately","Jagdish Kumar","Rampura Bahjoi");
         newOrderBeansList.add(img4);
+        newOrderBeansList.add(img4);
+        newOrderBeansList.add(img4);
+        newOrderBeansList.add(img4);
+        newOrderBeansList.add(img4);
 
 
         farmadapter=new FarmsImageAdapter(getActivity(),newOrderBeansList);

@@ -3,6 +3,7 @@ package com.renewin.Xohri.Fragment;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,7 +25,8 @@ public class RequestFormFragment extends Fragment {
     public static RecyclerView recyclerView;
     public static AddHpAdapter farmadapter;
     TextView toolbar_title;
-    LinearLayout back_feed;
+    Fragment selectedFragment;
+    LinearLayout back_feed,address_layout;
     CheckBox check_box;
 
 
@@ -39,7 +41,8 @@ public class RequestFormFragment extends Fragment {
        // recyclerView=view.findViewById(R.id.recycler_what_looking);
        toolbar_title=view.findViewById(R.id.toolbar_title);
        back_feed=view.findViewById(R.id.back_feed);
-        check_box=view.findViewById(R.id.check_box);
+       check_box=view.findViewById(R.id.check_box);
+       address_layout=view.findViewById(R.id.address_layout);
        toolbar_title.setText("Request for Quotation");
 
         check_box.setText("I agree that by clicking 'Request for Tractor Price' button, I am explicitly soliciting a call from Xohri App users on my 'Mobile' in order to assist me with my tractor purchase.");
@@ -49,6 +52,16 @@ public class RequestFormFragment extends Fragment {
             public void onClick(View v) {
                 FragmentManager fm = getActivity().getSupportFragmentManager();
                 fm.popBackStack("model", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+            }
+        });
+
+        address_layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                    selectedFragment = Add_New_Address_Fragment.newInstance();
+                    FragmentTransaction transaction = (getActivity()).getSupportFragmentManager().beginTransaction();
+                    transaction.replace(R.id.frame_layout, selectedFragment);
+                    transaction.commit();
             }
         });
 

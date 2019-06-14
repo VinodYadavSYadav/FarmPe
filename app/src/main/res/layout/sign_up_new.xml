@@ -104,7 +104,6 @@
             android:padding="15dp"
             android:textColor="#000"
             android:layout_gravity="center"
-            android:textStyle="bold"
             android:layout_marginHorizontal="10dp"
             android:id="@+id/toolbar_title" />
 
@@ -344,7 +343,7 @@
             android:fontFamily="@font/segoeui"
             android:gravity="center"
             android:padding="15dp"
-            android:text="Sign Up"
+            android:text="REGISTER"
             android:textColor="#fff"
             android:textSize="14dp" />
 
