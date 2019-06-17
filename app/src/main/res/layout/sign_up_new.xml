@@ -92,8 +92,9 @@
         android:weightSum="100"
         android:background="#fff"
         android:layout_marginTop="10dp"
+        android:gravity="center"
         android:layout_marginHorizontal="10dp"
-        android:layout_weight="50"
+        android:layout_weight="60"
         >
 
         <TextView
@@ -101,7 +102,7 @@
             android:layout_height="wrap_content"
             android:text="Register"
             android:textSize="18dp"
-            android:padding="15dp"
+            android:paddingBottom="15dp"
             android:textColor="#000"
             android:layout_gravity="center"
             android:layout_marginHorizontal="10dp"
@@ -381,28 +382,16 @@
     </LinearLayout>
 
 
-    <!-- <LinearLayout
+     <LinearLayout
          android:layout_width="match_parent"
          android:layout_height="0dp"
          android:orientation="vertical"
          android:weightSum="100"
-         android:layout_weight="40"
+         android:layout_weight="20"
          >
 
-     <TextView
-         android:id="@+id/change_lang"
-         android:layout_width="match_parent"
-         android:layout_height="wrap_content"
-         android:layout_marginHorizontal="50dp"
-         android:text="Change Language"
-         android:fontFamily="@font/segoeui"
-         android:gravity="center"
-         android:textSize="14dp"
-         android:textColor="#064a8e"
-         />
 
      </LinearLayout>
- -->
 
 
 

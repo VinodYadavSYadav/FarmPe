@@ -3,6 +3,7 @@ package com.renewin.Xohri.Fragment;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -105,7 +106,7 @@ public class Add_New_Address_Fragment extends Fragment {
 
 
 
-            name.setText(getArguments().getString("Addr_name"));
+           /* name.setText(getArguments().getString("Addr_name"));
             mobile.setText(getArguments().getString("Addr_mobile"));
             pincode_no.setText(getArguments().getString("Addr_pincode"));
             house_numb.setText(getArguments().getString("Addr_Houseno"));
@@ -119,7 +120,7 @@ public class Add_New_Address_Fragment extends Fragment {
             taluk.setText(getArguments().getString("Addr_taluk"));
             hobli.setText(getArguments().getString("Addr_hobli"));
             village.setText(getArguments().getString("Addr_village"));
-            select_address.setText(getArguments().getString("Addr_pickup_from"));
+            select_address.setText(getArguments().getString("Addr_pickup_from"));*/
 
 //
 //        InputFilter filter = new InputFilter() {
@@ -152,77 +153,25 @@ public class Add_New_Address_Fragment extends Fragment {
         sessionManager = new SessionManager(getActivity());
 
 
-//
-//        view.setFocusableInTouchMode(true);
-//        view.requestFocus();
-//        view.setOnKeyListener(new View.OnKeyListener() {
-//            @Override
-//            public boolean onKey(View v, int keyCode, KeyEvent event) {
-//                System.out.println("1111vv");
-//                if( keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP) {
-//                    if (getArguments().getString("ADD_NAV").equals("sell_add")) {
-//
-//                        Bundle bundle = new Bundle();
-//                        bundle.putString("navigation_from", "sub_c");
-//                        selectedFragment = Select_Your_Address_Fragment.newInstance();
-//                        FragmentTransaction transaction = (getActivity()).getSupportFragmentManager().beginTransaction();
-//                        selectedFragment.setArguments(bundle);
-//                        transaction.replace(R.id.frame, selectedFragment);
-//                        transaction.commit();
-//                        return true;
-//                    }else {
-//
-//                        selectedFragment = You_Address_Fragment.newInstance();
-//                        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-//                        transaction.replace(R.id.frame_menu, selectedFragment);
-//                        transaction.commit();
-//                    }
-//
-//                }
-//                return false;
-//            }
-//        });
-//
-
-        view.setFocusableInTouchMode(true);
-        view.requestFocus();
-        view.setOnKeyListener(new View.OnKeyListener() {
-
-
-            @Override
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-                if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP) {
-
-                    System.out.println("1111vv");
-
-
-
-                        selectedFragment = You_Address_Fragment.newInstance();
-                        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                        transaction.replace(R.id.frame_layout_home, selectedFragment);
-                        transaction.commit();
-
-
-                    return true;
-                }
-                return false;
-            }
-        });
 
         back_feed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                FragmentManager fm = getActivity().getSupportFragmentManager();
+                fm.popBackStack("request", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+            }
+        });
 
-                    selectedFragment = You_Address_Fragment.newInstance();
-                    FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                    transaction.replace(R.id.frame_layout_home, selectedFragment);
-                    transaction.commit();
-
-
-
-
-
-
+        view.setFocusableInTouchMode(true);
+        view.requestFocus(View.FOCUS_UP);
+        view.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if( keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP) {
+                    FragmentManager fm = getActivity().getSupportFragmentManager();
+                    fm.popBackStack("request", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                }
+                return false;
             }
         });
 
@@ -443,29 +392,7 @@ public class Add_New_Address_Fragment extends Fragment {
                     e.printStackTrace();
                 }
 
-//               final Dialog dialog = new Dialog(getActivity());
-//               dialog.setContentView(R.layout.state_popup);
-//
-//                ImageView image = (ImageView) dialog.findViewById(R.id.close_popup);
-//                final TextView state_name = (TextView)dialog.findViewById(R.id.state_name);
-//
-//
-//              image.setOnClickListener(new View.OnClickListener() {
-//                  @Override
-//                   public void onClick(View v) {
-//                      dialog.dismiss();
-//                  }
-//               });
-//
-//              state_name.setOnClickListener(new View.OnClickListener() {
-//                   @Override
-//                    public void onClick(View view) {
-//                      state.setText(state_name.getText().toString());
-//                        dialog.dismiss();
-//                 }
-//                });
-//
-//               dialog.show();
+
             }
         });
 

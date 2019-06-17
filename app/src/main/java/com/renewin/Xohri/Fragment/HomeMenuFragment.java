@@ -2,16 +2,20 @@
 package com.renewin.Xohri.Fragment;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.NestedScrollView;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,6 +25,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -89,18 +94,6 @@ public static NestedScrollView scrollView;
         transaction.replace(R.id.first_full_frame, selectedFragment);
         transaction.commit();
 
-      /*  selectedFragment = HomeFragment.newInstance();
-        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.frame_layout_home, selectedFragment);
-        transaction.commit();*/
-        /*farms_view.setVisibility(View.INVISIBLE);
-        farmer_view.setVisibility(View.INVISIBLE);
-
-        selectedFragment = LookingForFragment.newInstance();
-        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.frame_layout_home, selectedFragment);
-        transaction.commit();*/
-
         plus_sign_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -112,44 +105,6 @@ public static NestedScrollView scrollView;
             }
         });
 
-     /* looking_for.setOnClickListener(new View.OnClickListener() {
-          @Override
-          public void onClick(View v) {
-              farms_view.setVisibility(View.INVISIBLE);
-              farmer_view.setVisibility(View.INVISIBLE);
-              looking_view.setVisibility(View.VISIBLE);
-              selectedFragment = LookingForFragment.newInstance();
-              FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-              transaction.replace(R.id.frame_layout_home, selectedFragment);
-              transaction.commit();
-          }
-      });
-
-        farms.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                looking_view.setVisibility(View.INVISIBLE);
-                farmer_view.setVisibility(View.INVISIBLE);
-                farms_view.setVisibility(View.VISIBLE);
-                selectedFragment = FarmsHomePageFragment.newInstance();
-                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.frame_layout_home, selectedFragment);
-                transaction.commit();
-            }
-        });
-
-        farmer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                farms_view.setVisibility(View.INVISIBLE);
-                looking_view.setVisibility(View.INVISIBLE);
-                farmer_view.setVisibility(View.VISIBLE);
-                selectedFragment = FarmerFragment.newInstance();
-                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.frame_layout_home, selectedFragment);
-                transaction.commit();
-            }
-        });*/
 
         menu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -164,12 +119,20 @@ public static NestedScrollView scrollView;
                         transaction.replace(R.id.first_full_frame, selectedFragment);
                         transaction.commit();
                         drawer.closeDrawers();
+                        DashboardFragment.scrollView.post(new Runnable() {
+
+                            @Override
+                            public void run() {
+                                DashboardFragment.scrollView.fullScroll(ScrollView.FOCUS_UP);
+                            }
+                        });
                     }
                 });
 
                 map.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+
                         selectedFragment = HomeFragment.newInstance();
                         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                         transaction.replace(R.id.frame_layout, selectedFragment);

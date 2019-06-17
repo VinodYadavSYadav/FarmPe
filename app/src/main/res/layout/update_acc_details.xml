@@ -12,7 +12,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="10"
         android:orientation="vertical"
         tools:ignore="MissingConstraints">
 
@@ -43,14 +44,14 @@
             </LinearLayout>
 
 
-            <TextView
+            <!--<TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="What are you looking for?"
                 android:textSize="20dp"
                 android:textColor="#fff"
                 android:layout_marginHorizontal="10dp"
-                android:id="@+id/toolbar_title" />
+                android:id="@+id/toolbar_title" />-->
 
         </android.support.v7.widget.Toolbar>
 
@@ -58,16 +59,24 @@
 
 
 
+        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/prod_img"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/avatarmale"
+            app:civ_border_color="#ffffff"
+            app:civ_border_width="0.5dp" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler_what_looking"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:background="#000"
-        android:layout_marginBottom="20dp"
-       android:layout_marginHorizontal="10dp"
-        android:layout_height="wrap_content">
+        android:layout_height="0dp"
+        android:layout_weight="50"
+        android:orientation="vertical"
+        tools:ignore="MissingConstraints">
 
-    </android.support.v7.widget.RecyclerView>
+
+    </LinearLayout>
+
 
 
 </LinearLayout>

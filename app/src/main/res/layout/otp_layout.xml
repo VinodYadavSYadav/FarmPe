@@ -42,7 +42,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="vertical"
-        android:layout_weight="45"
+        android:layout_weight="55"
         android:background="#fff"
         android:layout_marginTop="20dp"
         android:gravity="center_vertical"
@@ -114,8 +114,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="20"
+        android:layout_height="wrap_content"
         android:gravity="center"
         >
 
@@ -129,6 +128,7 @@
             android:gravity="center"
             android:textSize="14dp"
             android:textStyle="bold"
+            android:layout_marginTop="10dp"
             android:background="@drawable/border_filled_pink"
             android:fontFamily="@font/segoeui"
             android:padding="15dp"
@@ -143,7 +143,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="vertical"
-        android:layout_weight="35"
+        android:layout_weight="25"
         android:layout_marginHorizontal="10dp"
         >
 

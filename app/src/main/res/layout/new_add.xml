@@ -92,7 +92,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Select Address"
+                                android:text="Add Your Address"
                                 android:textSize="16dp"
                                 android:textColor="#fff"
                                 android:textStyle="bold"
@@ -630,14 +630,13 @@
         android:layout_marginHorizontal="10dp"
         android:layout_weight="8"
         android:layout_marginTop="10dp"
-        android:background="@drawable/submit_drawable"
+        android:background="@drawable/border_filled_pink"
         android:fontFamily="@font/segoeui"
         android:gravity="center"
         android:hint="Add Address"
         android:padding="10dp"
         android:layout_marginBottom="10dp"
-        android:textStyle="bold"
-        android:textColor="@color/black"
+        android:textColor="#fff"
         android:textSize="16dp" />
     </LinearLayout>
 

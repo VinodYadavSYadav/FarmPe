@@ -3,13 +3,16 @@ package com.renewin.Xohri.Fragment;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 
 import com.renewin.Xohri.Adapter.AddFirstAdapter;
 import com.renewin.Xohri.Bean.FarmsImageBean;
@@ -24,6 +27,7 @@ public class AddFirstFragment extends Fragment {
     public static RecyclerView recyclerView;
     public static AddFirstAdapter farmadapter;
     LinearLayout back_feed;
+    Fragment selectedFragment;
 
 
     public static AddFirstFragment newInstance() {
@@ -42,22 +46,22 @@ public class AddFirstFragment extends Fragment {
             public void onClick(View v) {
                 FragmentManager fm = getActivity().getSupportFragmentManager();
                 fm.popBackStack("looking", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+
             }
         });
 
-        /*view.setFocusableInTouchMode(true);
+        view.setFocusableInTouchMode(true);
         view.requestFocus(View.FOCUS_UP);
         view.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
-                Log.i("ONBACK", "keyCode: " + keyCode);
                 if( keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP) {
                     FragmentManager fm = getActivity().getSupportFragmentManager();
                     fm.popBackStack("looking", FragmentManager.POP_BACK_STACK_INCLUSIVE);
                 }
                 return false;
             }
-        });*/
+        });
 
 
 
@@ -69,10 +73,10 @@ public class AddFirstFragment extends Fragment {
         FarmsImageBean img1=new FarmsImageBean(R.drawable.tractor_green,"Tractor Price","","","","");
         newOrderBeansList.add(img1);
 
-        FarmsImageBean img2=new FarmsImageBean(R.drawable.gyrovator,"Tractor Implements Price","","","","");
+        FarmsImageBean img2=new FarmsImageBean(R.drawable.gyrovator,"Implements Price","","","","");
         newOrderBeansList.add(img2);
 
-        FarmsImageBean img3=new FarmsImageBean(R.drawable.tractor_green,"Tractor Accessories Price","","","","");
+        FarmsImageBean img3=new FarmsImageBean(R.drawable.tractor_green,"Accessories Price","","","","");
         newOrderBeansList.add(img3);
 
         FarmsImageBean img4=new FarmsImageBean(R.drawable.tractor_red,"JCB Price","","","","");

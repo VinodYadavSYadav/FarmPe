@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ScrollView;
 
 import com.renewin.Xohri.Adapter.FarmsImageAdapter;
 import com.renewin.Xohri.Bean.FarmsImageBean;
@@ -33,10 +34,6 @@ public class LookingForFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.looking_for_recy, container, false);
         recyclerView=view.findViewById(R.id.recycler_looking);
-        HomeMenuFragment.scrollView.requestFocus(View.FOCUS_UP);
-
-
-
 
         newOrderBeansList.clear();
         GridLayoutManager mLayoutManager_farm = new GridLayoutManager(getActivity(), 2, GridLayoutManager.VERTICAL, false);

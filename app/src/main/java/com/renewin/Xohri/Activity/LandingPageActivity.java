@@ -54,10 +54,7 @@ public class LandingPageActivity extends AppCompatActivity {
             }
         }, 3000);
 
-
     }
-
-
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {

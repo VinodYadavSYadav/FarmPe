@@ -89,7 +89,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="35"
+            android:layout_weight="40"
             android:layout_marginTop="10dp"
             android:layout_marginHorizontal="10dp"
             android:orientation="vertical"
@@ -196,6 +196,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="10"
+            android:gravity="center_vertical"
             android:layout_marginHorizontal="10dp"
             android:orientation="horizontal"
             android:background="@drawable/border_empty"
@@ -210,9 +211,7 @@
                 android:textSize="14dp"
                 android:textColor="#000"
                 android:drawableLeft="@drawable/ic_location_sign"
-                android:paddingVertical="10dp"
                 android:drawablePadding="5dp"
-                android:layout_marginTop="10dp"
                 android:layout_marginHorizontal="10dp"
                 />
 
@@ -233,7 +232,6 @@
             android:gravity="start"
             android:buttonTint="#D81B60"
             android:fontFamily="@font/segoeui"
-            android:textColor="#000"
             android:textSize="12dp" />
 
 
@@ -241,9 +239,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="20"
+            android:layout_weight="15"
             android:orientation="vertical"
-            android:gravity="center"
+
             android:background="#ffff"
 
             >

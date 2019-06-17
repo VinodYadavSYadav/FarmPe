@@ -3,6 +3,7 @@ package com.renewin.Xohri.Fragment;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -49,6 +50,8 @@ public class AddBrandFragment extends Fragment {
                 fm.popBackStack("first", FragmentManager.POP_BACK_STACK_INCLUSIVE);
             }
         });
+
+
 
 
         newOrderBeansList.clear();

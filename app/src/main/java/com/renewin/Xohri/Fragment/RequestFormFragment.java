@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.RecyclerView;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,47 +56,31 @@ public class RequestFormFragment extends Fragment {
             }
         });
 
+        view.setFocusableInTouchMode(true);
+        view.requestFocus(View.FOCUS_UP);
+        view.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if( keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP) {
+                    FragmentManager fm = getActivity().getSupportFragmentManager();
+                    fm.popBackStack("model", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                }
+                return false;
+            }
+        });
+
         address_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                     selectedFragment = Add_New_Address_Fragment.newInstance();
                     FragmentTransaction transaction = (getActivity()).getSupportFragmentManager().beginTransaction();
                     transaction.replace(R.id.frame_layout, selectedFragment);
+                    transaction.addToBackStack("request");
                     transaction.commit();
             }
         });
 
-       /* newOrderBeansList.clear();
-        GridLayoutManager mLayoutManager_farm = new GridLayoutManager(getActivity(), 2, GridLayoutManager.VERTICAL, false);
-        recyclerView.setLayoutManager(mLayoutManager_farm);
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
 
-        FarmsImageBean img1=new FarmsImageBean(R.drawable.tractor_green,"UPTO 20HP","","","","");
-        newOrderBeansList.add(img1);
-
-        FarmsImageBean img2=new FarmsImageBean(R.drawable.gyrovator,"21-30 HP","","","","");
-        newOrderBeansList.add(img2);
-
-        FarmsImageBean img3=new FarmsImageBean(R.drawable.ceat_tyre,"31-40 HP","","","","");
-        newOrderBeansList.add(img3);
-
-        FarmsImageBean img4=new FarmsImageBean(R.drawable.jcb,"41-50 HP","","","","");
-        newOrderBeansList.add(img4);
-
-        FarmsImageBean img5=new FarmsImageBean(R.drawable.tractor_red,"51-60 HP","","","","");
-        newOrderBeansList.add(img5);
-
-        FarmsImageBean img6=new FarmsImageBean(R.drawable.jcb,"60 HP","","","","");
-        newOrderBeansList.add(img6);
-        newOrderBeansList.add(img6);
-        newOrderBeansList.add(img6);
-       *//* newOrderBeansList.add(img6);
-        newOrderBeansList.add(img6);*//*
-
-
-        farmadapter=new AddHpAdapter(getActivity(),newOrderBeansList);
-        recyclerView.setAdapter(farmadapter);
-*/
         return view;
     }
 
