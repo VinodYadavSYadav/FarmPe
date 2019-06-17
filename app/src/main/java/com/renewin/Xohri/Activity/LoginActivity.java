@@ -311,6 +311,7 @@ public class LoginActivity extends AppCompatActivity {
                     }
                     System.out.println("gggggggggggggggggggggjjjjjjjjjjj"+buffer.toString().trim());
                     et2.setText(buffer.toString().trim());
+                    remember_me.setChecked(true);
                     System.out.println("wwwwwwwwwwwwwwwww"+et2);
 
 

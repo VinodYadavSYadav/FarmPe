@@ -3,9 +3,10 @@ package com.renewin.Xohri;
 public class Urls {
 
     public static final String Add_New_Address = "http://3.17.6.57:8080/api/MasterTable/AddUserAddress";
-    private static final String ROOT_URL = "http://3.17.6.57:8080/api/Auth/";
+    private static final String ROOT_URL = " http://3.17.6.57:8686/api/Auth/";
     private static final String ROOT_URL1 = "http://3.17.6.57:8080/api/";
     private static final String ROOT_URL2 = "http://3.17.6.57:8585/api/";
+
 
     public static final String LOGIN=ROOT_URL+"ValidateUser";
     public static final String SIGNUP=ROOT_URL+"RegisterUser";

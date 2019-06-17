@@ -133,6 +133,7 @@ public class ResetPasswordNew extends AppCompatActivity {
                     //Toast.makeText(ResetPassword.this, "Confirm Your Password", Toast.LENGTH_LONG).show();
                     // confpass.setError("Confirm Your Password");
 
+
                 }else if (!(password.equals(confirmP))){
                     Snackbar snackbar = Snackbar
                             .make(linearLayout, "Password Not Matching", Snackbar.LENGTH_LONG);

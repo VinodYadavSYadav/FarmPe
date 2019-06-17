@@ -134,6 +134,7 @@ public class Bank_Account_Details_Fragment extends Fragment {
 //            dataModels.add(new Bank_Account_Bean("Apple Pie", "Android 1.0"));
 //        }
 
+
         mAdapter = new Bank_Account_Details_Adapter(bank_account_ArrayList,getActivity());
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(mLayoutManager);
@@ -165,7 +166,8 @@ public class Bank_Account_Details_Fragment extends Fragment {
 
                         }
 
-                 mAdapter.notifyDataSetChanged();
+
+                          mAdapter.notifyDataSetChanged();
 
 
 
