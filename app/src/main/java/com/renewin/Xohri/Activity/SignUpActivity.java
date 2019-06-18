@@ -532,6 +532,7 @@ public class SignUpActivity extends AppCompatActivity {
                     System.out.println("statussssss" + result);
                     JSONObject jsonObject = new JSONObject();
                     JSONObject jsonObject_resp = new JSONObject();
+
                     try {
                         if (result.isNull("user")) {
                             jsonObject_resp = result.getJSONObject("Response");
@@ -542,6 +543,7 @@ public class SignUpActivity extends AppCompatActivity {
                             TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
                             tv.setTextColor(Color.RED);
                             snackbar.show();
+
                         } else {
                             jsonObject = result.getJSONObject("user");
                             status = jsonObject.getString("OTP");

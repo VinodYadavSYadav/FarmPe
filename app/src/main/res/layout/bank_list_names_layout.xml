@@ -21,7 +21,6 @@
 
 
 
-
                 <RadioButton
                     android:id="@+id/bnk_1"
                     android:layout_width="match_parent"

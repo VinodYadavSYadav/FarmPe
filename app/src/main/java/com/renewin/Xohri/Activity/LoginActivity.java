@@ -198,11 +198,9 @@ public class LoginActivity extends AppCompatActivity {
                         JSONObject jsonObject = new JSONObject();
                         JSONObject post_Object = new JSONObject();
 
-
                         jsonObject.put("UserName",mob_no);
                         jsonObject.put("Password",password);
                         post_Object.put("UserRequest",jsonObject);
-
                         System.out.println("postobjj"+post_Object);
 
                         Login_post.login_posting(LoginActivity.this, Urls.LOGIN,post_Object, new VoleyJsonObjectCallback()  {

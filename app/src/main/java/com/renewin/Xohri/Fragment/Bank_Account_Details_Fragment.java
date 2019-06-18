@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import com.renewin.Xohri.Adapter.Bank_Account_Details_Adapter;
 import com.renewin.Xohri.Bean.Bank_Account_Bean;
 import com.renewin.Xohri.R;
@@ -33,7 +32,7 @@ public class Bank_Account_Details_Fragment extends Fragment {
 
     ArrayList<Bank_Account_Bean> bank_account_ArrayList = new ArrayList<>();
     Bank_Account_Bean bank_account_bean;
-   public static TextView bank_account;
+    public static TextView bank_account;
     LinearLayout back_feed;
     Bank_Account_Details_Adapter mAdapter;
     JSONArray bank_array;
@@ -54,11 +53,7 @@ public class Bank_Account_Details_Fragment extends Fragment {
         recyclerView = view.findViewById(R.id.recycler_2);
         bank_account = view.findViewById(R.id.add_bnk_acc);
         back_feed = view.findViewById(R.id.back_feed);
-
-
-
         sessionManager = new SessionManager(getActivity());
-
 
 
 //        view.setFocusableInTouchMode(true);

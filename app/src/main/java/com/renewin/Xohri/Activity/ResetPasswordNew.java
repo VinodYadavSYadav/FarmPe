@@ -38,7 +38,7 @@ public class ResetPasswordNew extends AppCompatActivity {
     SessionManager sessionManager;
     DatabaseHelper myDb;
     TextInputLayout passwd1_text_input,conf_pass_textinput;
-    String forgot_username;
+    String forgot_username,localize_text;
 
 
     @Override
@@ -149,12 +149,14 @@ public class ResetPasswordNew extends AppCompatActivity {
 
                 {
                     try {
+                        localize_text = "+91";
 
                         System.out.println("aaaaaaaaaaaa");
                         JSONObject postjsonObject = new JSONObject();
                         JSONObject postjsonObject1 = new JSONObject();
-                        postjsonObject.putOpt("UserName",forgot_username);
+                        postjsonObject.putOpt("UserName",localize_text + forgot_username);
                         postjsonObject.putOpt("Password", passwd.getText().toString());
+
                         postjsonObject1.putOpt("UserRequest",postjsonObject);
                         System.out.println("111111111111111111111111"+postjsonObject1);
 
@@ -173,13 +175,13 @@ public class ResetPasswordNew extends AppCompatActivity {
                                         System.out.println("renewwwwwww"+message);
                                         System.out.println("sttrenewwwwwwwrenewwwwwwwrenewwwwwww"+status);
                                         if (status.equals("1")){
+
                                             //sessionManager.createLoginSession(password, ForgotPassword.forgot_mob_no);
                                             System.out.println("qwertyuioaaa" + password + ForgotPasswordNew.forgot_mob_no);
                                             if (myDb.isEmailExists(ForgotPasswordNew.mob_trim)){
                                                 myDb.updateContact(ForgotPasswordNew.mob_trim,conf_pass.getText().toString().trim());
                                             }
                                             System.out.println("hhhhhgggere" +message);
-
                                             Toast.makeText(ResetPasswordNew.this, message, Toast.LENGTH_SHORT).show();
                                             Intent intent=new Intent(ResetPasswordNew.this, LoginActivity.class);
                                             startActivity(intent);
@@ -193,6 +195,7 @@ public class ResetPasswordNew extends AppCompatActivity {
                                         }else {
                                             Toast.makeText(ResetPasswordNew.this, "Password not Updated", Toast.LENGTH_SHORT).show();
                                         }
+
 
                                     } else {
                                         JSONObject response = responseobject.getJSONObject("Response");

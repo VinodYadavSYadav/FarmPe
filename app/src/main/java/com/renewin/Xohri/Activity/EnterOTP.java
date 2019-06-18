@@ -102,6 +102,7 @@ public class EnterOTP extends AppCompatActivity {
                             try{
 
                                 String  Otp = result.getString("OTP");
+                                sessionId=Otp;
                                 String  Message = result.getString("Message");
                                 int  status= result.getInt("Status");
 
@@ -236,8 +237,9 @@ public class EnterOTP extends AppCompatActivity {
                                     String message=response.getString("Message");
                                     if (status.equals("0")){
                                         Toast.makeText(EnterOTP.this,message,Toast.LENGTH_SHORT).show();
-                                       /* Intent intent=new Intent(EnterOTP.this,LandingPageActivity.class);
-                                        startActivity(intent);*/
+
+                                       Intent intent=new Intent(EnterOTP.this,LoginActivity.class);
+                                        startActivity(intent);
                                   /*  selectedFragment = TabLayoutFragmentTrending.newInstance();
                                     FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
                                     transaction.replace(R.id.frame_layout,selectedFragment);
