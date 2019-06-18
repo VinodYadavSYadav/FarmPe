@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -377,6 +378,14 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onBackPressed() {
+        //System.exit(0);
+
+        Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
+        startActivity(intent);
+
+    }
 
     public void setupUI(View view) {
 
@@ -431,7 +440,7 @@ public class SignUpActivity extends AppCompatActivity {
         try {
 
             JSONObject userRequestjsonObject = new JSONObject();
-            userRequestjsonObject.put("Id",sessionManager.getRegId("userId"));
+             userRequestjsonObject.put("Id",sessionManager.getRegId("userId"));
 
             JSONObject postjsonObject = new JSONObject();
             postjsonObject.put("objUser", userRequestjsonObject);

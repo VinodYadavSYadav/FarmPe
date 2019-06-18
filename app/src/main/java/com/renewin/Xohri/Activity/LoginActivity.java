@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
@@ -23,6 +24,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.renewin.Xohri.DB.DatabaseHelper;
@@ -280,6 +282,33 @@ public class LoginActivity extends AppCompatActivity {
         });
 
     }
+
+    @Override
+       public void onBackPressed() {
+           //System.exit(0);
+           if (doubleBackToExitPressedOnce) {
+
+               Intent intent1 = new Intent(Intent.ACTION_MAIN);
+               intent1.addCategory(Intent.CATEGORY_HOME);
+                intent1.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);//***Change Here***
+                startActivity(intent1);
+               finish();
+               System.exit(0);                    }
+
+           doubleBackToExitPressedOnce = true;
+            Toast.makeText(getApplicationContext(), "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
+
+           new Handler().postDelayed(new Runnable() {
+
+                @Override
+                public void run() {
+                    doubleBackToExitPressedOnce=false;
+                }
+            }, 3000);
+
+
+       }
+
     public void edittext_move(final EditText et1, final EditText et2) {
         et1.addTextChangedListener(new TextWatcher() {
 

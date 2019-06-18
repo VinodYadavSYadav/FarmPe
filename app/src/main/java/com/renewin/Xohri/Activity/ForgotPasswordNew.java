@@ -9,7 +9,9 @@ import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -182,6 +184,16 @@ public class ForgotPasswordNew extends AppCompatActivity {
 
 
 
+
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        //System.exit(0);
+
+        Intent intent=new Intent(ForgotPasswordNew.this,LoginActivity.class);
+        startActivity(intent);
     }
 
 
@@ -212,7 +224,7 @@ public class ForgotPasswordNew extends AppCompatActivity {
         }
     }
 
-    public static void hideSoftKeyboard(Activity activity) {
+    public static void hideSoftKeyboard(Activity activity)  {
  /*InputMethodManager inputMethodManager = (InputMethodManager)  activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
 inputMethodManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), 0);*/
 

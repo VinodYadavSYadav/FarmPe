@@ -220,6 +220,14 @@ public class ResetPasswordNew extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        //System.exit(0);
+
+        Intent intent=new Intent(ResetPasswordNew.this,Thank_U_New.class);
+        startActivity(intent);
+    }
+
     public void edittext_move(final EditText et1, final EditText et2) {
         et1.addTextChangedListener(new TextWatcher() {
 

@@ -126,6 +126,15 @@ public class Thank_U_New extends AppCompatActivity {
         });
 
     }
+    @Override
+    public void onBackPressed() {
+        //System.exit(0);
+
+        Intent intent=new Intent(Thank_U_New.this,ForgotPasswordNew.class);
+        startActivity(intent);
+    }
+
+
     private  boolean checkAndRequestPermissions() {
 
         if (Build.VERSION.SDK_INT >= 23) {

@@ -137,7 +137,7 @@ public class EnterOTP extends AppCompatActivity {
         left_arrow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(EnterOTP.this,XLoginNew.class);
+                Intent intent=new Intent(EnterOTP.this,SignUpActivity.class);
                 startActivity(intent);
             }
         });
@@ -267,6 +267,15 @@ public class EnterOTP extends AppCompatActivity {
 
         });
     }
+
+    @Override
+    public void onBackPressed() {
+        //System.exit(0);
+
+        Intent intent=new Intent(EnterOTP.this,SignUpActivity.class);
+        startActivity(intent);
+    }
+
     private  boolean checkAndRequestPermissions() {
 
         if (Build.VERSION.SDK_INT >= 23) {
