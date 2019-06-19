@@ -153,44 +153,69 @@ public class LoginActivity extends AppCompatActivity {
 
                 if (mobile_string.equals("")) {
                     mobile_no.requestFocus();
-                    snackbar = Snackbar
-                            .make(coordinatorLayout,toast_mob, Snackbar.LENGTH_LONG);
 
-                    //snackbar.setActionTextColor(R.color.colorAccent);
+                    Snackbar snackbar = Snackbar
+                            .make(linearLayout, "Enter Your Mobile Number", Snackbar.LENGTH_LONG);
                     View snackbarView = snackbar.getView();
                     TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
                     tv.setTextColor(Color.RED);
-                    //tv.setText("abc");
                     snackbar.show();
-                    //Toast.makeText(Login.this, "Enter Your Mobile Number", Toast.LENGTH_LONG).show();
-
-                }else if (loc_text == null) {
-                    snackbar = Snackbar
-                            .make(coordinatorLayout, "Please select country code", Snackbar.LENGTH_LONG);
+//                    snackbar = Snackbar
+//                            .make(coordinatorLayout,toast_mob, Snackbar.LENGTH_LONG);
 
                     //snackbar.setActionTextColor(R.color.colorAccent);
-                    View snackbarView = snackbar.getView();
-                    TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-                    tv.setTextColor(Color.RED);
-                    //tv.setText("abc");
-                    snackbar.show();
+//                    View snackbarView = snackbar.getView();
+//                    TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+//                    tv.setTextColor(Color.RED);
+//                    //tv.setText("abc");
+//                    snackbar.show();
+                  //  Toast.makeText(LoginActivity.this, "Enter Your Mobile Number", Toast.LENGTH_LONG).show();
+//
+//                }else if (loc_text == null) {
+//                    snackbar = Snackbar
+//                            .make(coordinatorLayout, "Please select country code", Snackbar.LENGTH_LONG);
+//
+//                    //snackbar.setActionTextColor(R.color.colorAccent);
+//                    View snackbarView = snackbar.getView();
+//                    TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+//                    tv.setTextColor(Color.RED);
+//                    //tv.setText("abc");
+//                    snackbar.show();
 
                 } else if (password.equals("")) {
                     pass.requestFocus();
+
                     Snackbar snackbar = Snackbar
-                            .make(coordinatorLayout, pass_toast, Snackbar.LENGTH_LONG);
+                            .make(linearLayout, "Enter Your Password", Snackbar.LENGTH_LONG);
                     View snackbarView = snackbar.getView();
                     TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
                     tv.setTextColor(Color.RED);
                     snackbar.show();
+
+                    //Toast.makeText(LoginActivity.this, "Enter Your Password", Toast.LENGTH_LONG).show();
+//                    Snackbar snackbar = Snackbar
+//                            .make(coordinatorLayout, pass_toast, Snackbar.LENGTH_LONG);
+//                    View snackbarView = snackbar.getView();
+//                    TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+//                    tv.setTextColor(Color.RED);
+//                    snackbar.show();
                 } else if (password.contains(" ")) {
                     pass.requestFocus();
+
                     Snackbar snackbar = Snackbar
-                            .make(coordinatorLayout, "Password should not contain spaces", Snackbar.LENGTH_LONG);
+                            .make(linearLayout, "Password should not contain spaces", Snackbar.LENGTH_LONG);
                     View snackbarView = snackbar.getView();
                     TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
                     tv.setTextColor(Color.RED);
                     snackbar.show();
+
+                //    Toast.makeText(LoginActivity.this, "Password should not contain spaces", Toast.LENGTH_LONG).show();
+//                    Snackbar snackbar = Snackbar
+//                            .make(coordinatorLayout, "Password should not contain spaces", Snackbar.LENGTH_LONG);
+//                    View snackbarView = snackbar.getView();
+//                    TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+//                    tv.setTextColor(Color.RED);
+//                    snackbar.show();
                 } else {
 
 

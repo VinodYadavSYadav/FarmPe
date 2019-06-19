@@ -77,10 +77,14 @@ public class EnterOTP extends AppCompatActivity {
         otp_title=findViewById(R.id.thank);
         otpedittext=findViewById(R.id.otp);
         otp_text=findViewById(R.id.thanktu);
-        sessionId= getIntent().getStringExtra("otpnumber");
         linearLayout=findViewById(R.id.main_layout);
        // close=findViewById(R.id.arrow_thank_u);
         left_arrow=findViewById(R.id.left_arow);
+
+
+
+
+        sessionId= getIntent().getStringExtra("otpnumber");
 
 
         resendotp=findViewById(R.id.resend);
@@ -206,10 +210,10 @@ public class EnterOTP extends AppCompatActivity {
                /* Intent intent=new Intent(EnterOTP.this,Login.class);
                 startActivity(intent);*/
 
-                if (otpedittext.equals("")){
-                    otpedittext.requestFocus();
+                if (otp_get_text.equals("")){
+                   // otp_get_text.requestFocus();
                     Snackbar snackbar = Snackbar
-                            .make(linearLayout, "Enter Your OTP", Snackbar.LENGTH_LONG);
+                            .make(linearLayout, "Enter OTP", Snackbar.LENGTH_LONG);
                     View snackbarView = snackbar.getView();
                     TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
                     tv.setTextColor(Color.RED);
@@ -261,7 +265,13 @@ public class EnterOTP extends AppCompatActivity {
 // here ur calling URL
 
                 }else{
-                    Toast.makeText(EnterOTP.this,"Incorrect OTP",Toast.LENGTH_SHORT).show();
+                 //   Toast.makeText(EnterOTP.this,"Incorrect OTP",Toast.LENGTH_SHORT).show();
+                    Snackbar snackbar = Snackbar
+                            .make(linearLayout, "Incorrect OTP", Snackbar.LENGTH_LONG);
+                    View snackbarView = snackbar.getView();
+                    TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+                    tv.setTextColor(Color.RED);
+                    snackbar.show();
                 }
             }
 

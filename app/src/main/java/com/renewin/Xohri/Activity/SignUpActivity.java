@@ -513,7 +513,6 @@ public class SignUpActivity extends AppCompatActivity {
 
     }
 
-
     private void register() {
 
         try {
@@ -552,6 +551,7 @@ public class SignUpActivity extends AppCompatActivity {
                             TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
                             tv.setTextColor(Color.RED);
                             snackbar.show();
+
 
                         } else {
                             jsonObject = result.getJSONObject("user");

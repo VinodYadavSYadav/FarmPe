@@ -91,6 +91,8 @@ public class ForgotPasswordNew extends AppCompatActivity {
 
             }
         });
+
+
         forgot_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -98,7 +100,15 @@ public class ForgotPasswordNew extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         if (mobileno.getText().toString().equals("")) {
-                            Toast.makeText(ForgotPasswordNew.this, "Enter Mobile Number", Toast.LENGTH_SHORT).show();
+
+
+                            Snackbar snackbar = Snackbar
+                                    .make(coordinatorLayout, "Enter Your Mobile Number", Snackbar.LENGTH_LONG);
+                            View snackbarView = snackbar.getView();
+                            TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+                            tv.setTextColor(Color.RED);
+                            snackbar.show();
+                          //  Toast.makeText(ForgotPasswordNew.this, "Enter Mobile Number", Toast.LENGTH_SHORT).show();
                         } else if (mobileno.length() <= 9) {
                             //  mobile.setError("Please enter 10 digits mobile number");
                             Snackbar snackbar = Snackbar
@@ -108,6 +118,7 @@ public class ForgotPasswordNew extends AppCompatActivity {
                             TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
                             tv.setTextColor(Color.RED);
                             snackbar.show();
+
                         } else {
                             try {
                                 localize_text="+91";

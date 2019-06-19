@@ -23,6 +23,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.renewin.Xohri.Activity.ForgotPasswordNew;
 import com.renewin.Xohri.Activity.LandingPageActivity;
@@ -194,36 +195,41 @@ public class LoginFragment extends Fragment {
 
                 if (mobile_string.equals("")) {
                     mobile_no.requestFocus();
-                    snackbar = Snackbar
-                            .make(coordinatorLayout,toast_mob, Snackbar.LENGTH_LONG);
-
-                    //snackbar.setActionTextColor(R.color.colorAccent);
-                    View snackbarView = snackbar.getView();
-                    TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-                    tv.setTextColor(Color.RED);
-                    //tv.setText("abc");
-                    snackbar.show();
+                    Toast.makeText(getActivity(),"enter your mobile number", Toast.LENGTH_SHORT).show();
+//
+//                    snackbar = Snackbar
+//                            .make(coordinatorLayout,toast_mob, Snackbar.LENGTH_LONG);
+//
+//                    //snackbar.setActionTextColor(R.color.colorAccent);
+//                    View snackbarView = snackbar.getView();
+//                    TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+//                    tv.setTextColor(Color.RED);
+//                    //tv.setText("abc");
+//                    snackbar.show();
                     //Toast.makeText(Login.this, "Enter Your Mobile Number", Toast.LENGTH_LONG).show();
 
-                }else if (loc_text == null) {
-                    snackbar = Snackbar
-                            .make(coordinatorLayout, "Please select country code", Snackbar.LENGTH_LONG);
-
-                    //snackbar.setActionTextColor(R.color.colorAccent);
-                    View snackbarView = snackbar.getView();
-                    TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-                    tv.setTextColor(Color.RED);
-                    //tv.setText("abc");
-                    snackbar.show();
+//                }else if (loc_text == null) {
+//                    snackbar = Snackbar
+//                            .make(coordinatorLayout, "Please select country code", Snackbar.LENGTH_LONG);
+//
+//                    //snackbar.setActionTextColor(R.color.colorAccent);
+//                    Toast.makeText(get, "", Toast.LENGTH_SHORT).show();
+//                    View snackbarView = snackbar.getView();
+//                    TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+//                    tv.setTextColor(Color.RED);
+//                    //tv.setText("abc");
+//                    snackbar.show();
 
                 } else if (password.equals("")) {
                     pass.requestFocus();
-                    Snackbar snackbar = Snackbar
-                            .make(coordinatorLayout, pass_toast, Snackbar.LENGTH_LONG);
-                    View snackbarView = snackbar.getView();
-                    TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-                    tv.setTextColor(Color.RED);
-                    snackbar.show();
+                    Toast.makeText(getActivity(),pass_toast, Toast.LENGTH_SHORT).show();
+//                    Snackbar snackbar = Snackbar
+//                            .make(coordinatorLayout, pass_toast, Snackbar.LENGTH_LONG);
+//                    View snackbarView = snackbar.getView();
+//                    TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+//                    tv.setTextColor(Color.RED);
+//                    snackbar.show();
+
                 } else if (password.contains(" ")) {
                     pass.requestFocus();
                     Snackbar snackbar = Snackbar

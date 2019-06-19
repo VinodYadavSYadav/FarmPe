@@ -18,7 +18,6 @@ import com.renewin.Xohri.SessionManager;
 import com.renewin.Xohri.Urls;
 import com.renewin.Xohri.Volly_class.Crop_Post;
 import com.renewin.Xohri.Volly_class.VoleyJsonObjectCallback;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -42,7 +41,6 @@ public class Bank_Account_Details_Fragment extends Fragment {
 
     public static Bank_Account_Details_Fragment newInstance() {
         Bank_Account_Details_Fragment fragment = new Bank_Account_Details_Fragment();
-
         return fragment;
     }
 
