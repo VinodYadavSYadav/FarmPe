@@ -96,6 +96,7 @@ public class Bank_Account_Details_Fragment extends Fragment {
 //        });
 //
 
+
         bank_account.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -106,9 +107,7 @@ public class Bank_Account_Details_Fragment extends Fragment {
                 bundle.putString("Ifsc_Code","");
                 bundle.putString("Acc_name","");
                 bundle.putString("BankId","");
-
                 bundle.putString("ADD_NBANK","bank details");
-
                 selectedFragment = Add_New_Bank_Details_Fragment.newInstance();
                 FragmentTransaction transaction = (getActivity()).getSupportFragmentManager().beginTransaction();
                 selectedFragment.setArguments(bundle);
@@ -140,9 +139,9 @@ public class Bank_Account_Details_Fragment extends Fragment {
 
             JSONObject jsonObject = new JSONObject();
 
-            jsonObject.put("UserId",sessionManager.getRegId("userId"));
+             jsonObject.put("UserId",sessionManager.getRegId("userId"));
 
-            Crop_Post.crop_posting(getActivity(), Urls.Get_Bank_Details, jsonObject, new VoleyJsonObjectCallback() {
+             Crop_Post.crop_posting(getActivity(), Urls.Get_Bank_Details, jsonObject, new VoleyJsonObjectCallback() {
                 @Override
                 public void onSuccessResponse(JSONObject result) {
                     System.out.println("111111bbbbbbbbbbbbb" + result);
@@ -159,10 +158,7 @@ public class Bank_Account_Details_Fragment extends Fragment {
 
                         }
 
-
                           mAdapter.notifyDataSetChanged();
-
-
 
 
                     }catch (Exception e){

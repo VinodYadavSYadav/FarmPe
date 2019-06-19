@@ -145,13 +145,14 @@ public static NestedScrollView scrollView;
                 account.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        /*selectedFragment = My_Account_Fragment.newInstance();
-                        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                        transaction.replace(R.id.first_full_frame, selectedFragment);
-                        transaction.commit();
-                        drawer.closeDrawers();*/
+                       selectedFragment = My_Account_Fragment.newInstance();
+                       FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                       transaction.replace(R.id.first_full_frame, selectedFragment);
+                       transaction.commit();
+                       drawer.closeDrawers();
                     }
                 });
+
                 shop_cat.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
