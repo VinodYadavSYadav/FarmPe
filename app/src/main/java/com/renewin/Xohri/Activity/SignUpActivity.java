@@ -559,7 +559,7 @@ public class SignUpActivity extends AppCompatActivity {
                             String userid = jsonObject.getString("Id");
                             System.out.println("useerrrriidd" + userid);
                             sessionManager.saveUserId(userid);
-                            sessionManager.save_name(jsonObject.getString("FullName"));
+                            sessionManager.save_name(jsonObject.getString("FullName"),jsonObject.getString("PhoneNo"));
                             Intent intent = new Intent(SignUpActivity.this, EnterOTP.class);
                             intent.putExtra("otpnumber", status);
                             startActivity(intent);

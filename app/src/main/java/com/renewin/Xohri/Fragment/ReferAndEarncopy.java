@@ -60,7 +60,7 @@ public class ReferAndEarncopy extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.refer_earn, container, false);
-        getActivity().getActionBar().hide();
+      //  getActivity().getActionBar().hide();
 
         whatsapp=view.findViewById(R.id.whatsapp);
         facebook=view.findViewById(R.id.facebook);

@@ -253,9 +253,8 @@ public class LoginActivity extends AppCompatActivity {
                                             startActivity(intent);
                                             sessionManager.createLoginSession(password,mob_no);
 
-                                            sessionManager.save_name(userObject.getString("FullName"));
-                                            sessionManager.saveUserId(userId);
-
+                                            sessionManager.save_name(userObject.getString("FullName"),userObject.getString("PhoneNo"));
+                                            sessionManager.saveUserId(userObject.getString("Id"));
                                            /* if(remember_me.isChecked()){
 
                                                 if(!myDb.isEmailExists(mobile_no.getText().toString())){

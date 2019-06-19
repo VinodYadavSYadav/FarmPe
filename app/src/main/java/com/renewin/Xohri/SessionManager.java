@@ -102,12 +102,12 @@ public class SessionManager {
         loginPrefsEditor.commit();
     }
 
-    public void save_name(String name){
+    public void save_name(String name , String phone){
 
         System.out.println("111111111111aaaa"+name);
         // Storing name in pref
         loginPrefsEditor.putString(KEY_NAME, name);
-        loginPrefsEditor.putString(KEY_NAME, name);
+        loginPrefsEditor.putString(KEY_PHONE, phone);
 
 
 

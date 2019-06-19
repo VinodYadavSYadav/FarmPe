@@ -78,6 +78,8 @@ public static NestedScrollView scrollView;
         sessionManager = new SessionManager(getActivity());
         userid=sessionManager.getRegId("userId");
 
+
+
         user_name_menu.setText("Hello, "+sessionManager.getRegId("name"));
         drawer = (DrawerLayout)view.findViewById(R.id.drawer_layout);
 
@@ -147,7 +149,7 @@ public static NestedScrollView scrollView;
                     public void onClick(View v) {
                        selectedFragment = My_Account_Fragment.newInstance();
                        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                       transaction.replace(R.id.first_full_frame, selectedFragment);
+                       transaction.replace(R.id.frame_layout, selectedFragment);
                        transaction.commit();
                        drawer.closeDrawers();
                     }

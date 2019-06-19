@@ -277,7 +277,7 @@ public class LoginFragment extends Fragment {
                                             startActivity(intent);
                                             sessionManager.createLoginSession(password,mob_no);
 
-                                            sessionManager.save_name(userObject.getString("FullName"));
+                                            sessionManager.save_name(userObject.getString("FullName"),userObject.getString("PhoneNo"));
                                             sessionManager.saveUserId(userId);
 
                                             if(remember_me.isChecked()){

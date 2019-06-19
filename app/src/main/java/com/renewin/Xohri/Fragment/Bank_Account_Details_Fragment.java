@@ -111,7 +111,7 @@ public class Bank_Account_Details_Fragment extends Fragment {
                 selectedFragment = Add_New_Bank_Details_Fragment.newInstance();
                 FragmentTransaction transaction = (getActivity()).getSupportFragmentManager().beginTransaction();
                 selectedFragment.setArguments(bundle);
-                transaction.replace(R.id.frame_layout_home, selectedFragment);
+                transaction.replace(R.id.frame_layout, selectedFragment);
                 transaction.addToBackStack("new_account");
                 transaction.commit();
 

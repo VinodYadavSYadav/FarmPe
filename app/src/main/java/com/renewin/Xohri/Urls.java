@@ -8,6 +8,8 @@ public class Urls {
     private static final String ROOT_URL2 = "http://3.17.6.57:8585/api/";
 
 
+
+
     public static final String LOGIN=ROOT_URL+"ValidateUser";
     public static final String SIGNUP=ROOT_URL+"RegisterUser";
     public static final String GetAllCrops=ROOT_URL1+"Crops/GetCrops";
@@ -36,6 +38,7 @@ public class Urls {
     public static final String ORDER_SUB_CATEGORIES="http://3.17.6.57:8585/api/MasterTable/GetCrops";
     public static final String GetUserDetails=ROOT_URL+"GetUserDetails";
     public static final String ValidateReferalCode=ROOT_URL+"ValidateRefferalCode";
+    public static final String Update_User_Password = ROOT_URL + "Auth/UpdateUserPassword";
     public static final String PaytmChecksum="http://3.17.6.57:8080/api/Paytm/GetPaytmCheckSum";
     public static final String AddTransactionDetails="http://3.17.6.57:8080/api/Order/AddOrderPaymentDetails";
 
@@ -46,11 +49,11 @@ public class Urls {
 
     //My Account
 
-    public static final String Edit_Profile_Details = ROOT_URL + "Auth/GetUserDetails";
-    public static final String Update_Profile_Details = ROOT_URL + "Auth/UpdateUserProfile";
+    public static final String Edit_Profile_Details = ROOT_URL2 + "Auth/GetUserDetails";
+    public static final String Update_Profile_Details = ROOT_URL2 + "Auth/UpdateUserProfile";
 
 
-    public static final String Bank_Name_List= ROOT_URL + "MasterTable/GetBankLists";
+    public static final String Bank_Name_List= ROOT_URL2 + "MasterTable/GetBankLists";
 
 
     // Refer n Earn
@@ -60,10 +63,19 @@ public class Urls {
 
     // Address
 
-    public static final String Delete_Address_Details = ROOT_URL + "MasterTable/DeleteUserAddress";
-    public static final String Default_Address = ROOT_URL + "MasterTable/UpdateUserDefaultAddress";
+    public static final String Delete_Address_Details = ROOT_URL2 + "MasterTable/DeleteUserAddress";
+    public static final String Default_Address = ROOT_URL2 + "MasterTable/UpdateUserDefaultAddress";
+
+//Transportation
+    public static final String GetTransportationDetails = ROOT_URL2 +"MasterTable/GetTransportationDetails";
+    public static final String AddUpdateTransportationDetails = ROOT_URL2 +"MasterTable/AddUpdateTransportationDetails";
+    public static final String DeleteTransportationDetails = ROOT_URL2 +"MasterTable/DeleteTransportationDetails";
 
 
+
+    //KYC
+    public static final String KYC_Details = ROOT_URL2 +"MasterTable/GetUserKYCDetails";
+    public static final String ADD_KYC_Details = ROOT_URL2 +"MasterTable/AddUpdateUserKYCDetails";
 
 
 
