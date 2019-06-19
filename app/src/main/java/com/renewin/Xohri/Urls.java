@@ -57,7 +57,7 @@ public class Urls {
 
 
     // Refer n Earn
-    public static final String Refferal_Code = ROOT_URL +"Auth/GetUserDetails";
+    public static final String Refferal_Code = ROOT_URL2 +"Auth/GetUserDetails";
     public static final String ValidateRefferalCode = ROOT_URL +"Auth/ValidateRefferalCode";
 
 
@@ -85,9 +85,9 @@ public class Urls {
     public static final String Villages=ROOT_URL2+"MasterTable/GetVillages";
     public static final String State = ROOT_URL2+"MasterTable/GetStates";
 
-    public static final String Get_Bank_Details = ROOT_URL1 +"MasterTable/GetUserBankDetails";
-    public static final String Add_Bank_Details = ROOT_URL1 +"MasterTable/AddUpdateUserBankDetails";
-    public static final String Delete_Bank_Details = ROOT_URL1+"MasterTable/DeleteBankDetails";
+    public static final String Get_Bank_Details = ROOT_URL2 +"MasterTable/GetUserBankDetails";
+    public static final String Add_Bank_Details = ROOT_URL2+"MasterTable/AddUpdateUserBankDetails";
+    public static final String Delete_Bank_Details = ROOT_URL2+"MasterTable/DeleteBankDetails";
     public static final String UpdateDefaultAddress = ROOT_URL1+"MasterTable/UpdateUserDefaultAddress";
     public static final String TransactionDetails = ROOT_URL1+"MasterTable/GetTransactionsByUser";
     public static final String ViewOrderDetails = ROOT_URL2+"Order/GetOrderDetailsById";
@@ -96,4 +96,15 @@ public class Urls {
     public static final String UpdateUserProfile = ROOT_URL +"UpdateUserProfile";
     public static final String GetBankNames = ROOT_URL1+"MasterTable/GetBankLists";
     public static final String GetWalletAmount = ROOT_URL1+"MasterTable/GetWalletDetails";
+
+
+    //Transactions
+
+    public static final String GET_ALL_TRANSACTION = ROOT_URL2 +"MasterTable/GetTransactionsByUser";
+    public static final String GET_SUCESSFULL_TRANSACTION = ROOT_URL2 +"MasterTable/GetSuccessfullTransactionsByUser";
+    public static final String GET_FAILED_TRANSACTION = ROOT_URL2 +"MasterTable/GetFailedTransactionsByUser";
+
+
+
+
 }

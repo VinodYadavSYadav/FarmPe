@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     android:weightSum="100"
     android:background="#ffffff"
-    android:orientation="vertical"
+    android:tag="cards main container">
 
-    >
 
     <ScrollView
         android:id="@+id/scroll_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -20,12 +22,11 @@
             android:orientation="vertical"
             >
 
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:orientation="horizontal"
-                android:layout_weight="10"
+                android:layout_weight="15"
                 android:layout_marginTop="5dp"
                 android:background="#ffffff"
                 android:weightSum="100"
@@ -53,6 +54,7 @@
 
 
 
+
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
@@ -73,6 +75,8 @@
                         android:fontFamily="@font/segoeui"
                         android:textColor="#000"
                         android:textSize="14dp"/>
+
+
 
 
 
@@ -109,13 +113,104 @@
 
             </LinearLayout>
 
-            <LinearLayout
+          <!--  <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:orientation="vertical"
-                android:layout_weight="90"
-                android:background="#fff"
+                android:orientation="horizontal"
+                android:layout_weight="30"
+                android:layout_marginTop="10dp"
+                android:background="#ffffff"
+                android:weightSum="100"
                 >
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_marginBottom="10dp"
+                    android:layout_weight="30"
+                    android:gravity="center"
+                    >
+
+                    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/propic"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_centerInParent="true"
+                        android:layout_gravity="center_horizontal|center"
+                        android:background="@drawable/ic_farmer_large"
+                        android:baselineAligned="false"/>
+
+                </LinearLayout>
+
+
+
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_marginTop="15dp"
+                    android:layout_weight="70"
+                    android:layout_marginLeft="5dp"
+                    >
+
+
+                    <TextView
+                        android:id="@+id/name1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:drawableRight="@drawable/ic_right_angle_arrow"
+                        android:textStyle="bold"
+                        android:padding="6dp"
+                        android:layout_marginRight="10dp"
+                        android:fontFamily="@font/segoeui"
+                        android:textColor="#000"
+                        android:textSize="14dp"
+
+                        />
+
+
+                    &lt;!&ndash;<ImageView&ndash;&gt;
+                    &lt;!&ndash;android:id="@+id/arrow_icon"&ndash;&gt;
+                    &lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;
+                    &lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;
+                    &lt;!&ndash;android:src="@drawable/ic_right_angle_arrow"&ndash;&gt;
+                    &lt;!&ndash;android:layout_gravity="right"&ndash;&gt;
+                    &lt;!&ndash;android:layout_marginRight="20dp"&ndash;&gt;
+                    &lt;!&ndash;/>&ndash;&gt;
+
+
+
+                    <TextView
+                        android:id="@+id/phone_numb"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:fontFamily="@font/segoeui"
+                        android:textColor="#000"
+                        android:textSize="14dp"
+
+                        />
+
+
+
+
+                </LinearLayout>
+
+            </LinearLayout>-->
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:background="#dcdcdc"
+                android:layout_marginTop="10dp"
+                />
+
+
+
 
 
                 <LinearLayout
@@ -158,7 +253,6 @@
                             android:layout_marginHorizontal="15dp"
                             android:paddingVertical="5dp"
                             >
-
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -295,6 +389,15 @@
 
 
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="#fff"
+                >
+
+
+
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -303,6 +406,10 @@
                     android:layout_marginTop="12dp"
 
                     >
+
+
+
+
 
 
                     <TextView
@@ -567,6 +674,18 @@
 
                 </LinearLayout>
 
+
+            </LinearLayout>
+
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="#fff"
+                >
 
 
 
@@ -885,7 +1004,6 @@
                 </LinearLayout>
 
 
-
             </LinearLayout>
 
 
@@ -895,7 +1013,1047 @@
 
 
 
+
+
+
+            <!-- <LinearLayout
+                 android:layout_width="match_parent"
+                 android:layout_height="0dp"
+                 android:layout_weight="70"
+                 android:orientation="vertical"
+                 android:weightSum="100"
+                 android:background="#fff"
+                 >
+
+
+                 <TextView
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_marginLeft="10dp"
+                     android:layout_marginTop="20dp"
+                     android:fontFamily="@font/segoeui"
+                     android:gravity="start"
+                     android:text="Your Profile"
+                     android:textColor="#000000"
+                     android:textSize="18dp"
+                     android:textStyle="bold" />
+
+
+
+                 <LinearLayout
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:orientation="vertical"
+                     android:layout_marginTop="12dp"
+
+                     >
+
+                     <LinearLayout
+                         android:id="@+id/your_address1"
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:orientation="horizontal"
+                         android:layout_marginHorizontal="15dp"
+                         android:paddingVertical="5dp"
+                         >
+                         <ImageView
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content"
+                             android:src="@drawable/ic_address"
+                             android:layout_gravity="center_vertical"
+                             />
+
+                         <LinearLayout
+                             android:layout_width="match_parent"
+                             android:layout_height="wrap_content"
+                             android:orientation="vertical"
+                             android:layout_marginLeft="20dp"
+                             >
+
+                             <TextView
+                                 android:layout_width="match_parent"
+                                 android:layout_height="wrap_content"
+                                 android:fontFamily="@font/segoeui"
+                                 android:paddingVertical="20dp"
+                                 android:text="Your Address"
+                                 android:textSize="14dp" />
+
+
+                         </LinearLayout>
+
+
+                     </LinearLayout>
+                     <View
+                         android:layout_width="match_parent"
+                         android:layout_height="1dp"
+                         android:background="#dcdcdc"
+                         android:layout_marginLeft="45dp"
+                         />
+
+
+
+                     <LinearLayout
+                         android:id="@+id/bank_acc"
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:orientation="horizontal"
+                         android:layout_marginHorizontal="15dp"
+                         android:paddingVertical="5dp"
+                         >
+                         <ImageView
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content"
+                             android:src="@drawable/ic_bank_account"
+                             android:layout_gravity="center_vertical"
+                             />
+
+                         <LinearLayout
+                             android:layout_width="match_parent"
+                             android:layout_height="wrap_content"
+                             android:orientation="vertical"
+                             android:layout_marginLeft="20dp"
+                             >
+
+                             <TextView
+                                 android:layout_width="match_parent"
+                                 android:layout_height="wrap_content"
+                                 android:fontFamily="@font/segoeui"
+                                 android:paddingVertical="20dp"
+                                 android:text="Bank Account"
+                                 android:textSize="14dp" />
+
+
+                         </LinearLayout>
+
+
+                     </LinearLayout>
+                     <View
+                         android:layout_width="match_parent"
+                         android:layout_height="1dp"
+                         android:background="#dcdcdc"
+                         android:layout_marginLeft="45dp"
+                         />
+
+
+
+
+                     <LinearLayout
+                         android:id="@+id/wallets"
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:orientation="horizontal"
+                         android:layout_marginHorizontal="15dp"
+                         android:paddingVertical="5dp"
+                         >
+                         <ImageView
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content"
+                             android:src="@drawable/ic_wallet"
+                             android:layout_gravity="center_vertical"
+                             />
+
+                         <LinearLayout
+                             android:layout_width="match_parent"
+                             android:layout_height="wrap_content"
+                             android:orientation="vertical"
+                             android:layout_marginLeft="20dp"
+                             >
+
+                             <TextView
+                                 android:layout_width="match_parent"
+                                 android:layout_height="wrap_content"
+                                 android:fontFamily="@font/segoeui"
+                                 android:paddingVertical="20dp"
+                                 android:text="Wallet"
+                                 android:textSize="14dp" />
+
+
+                         </LinearLayout>
+
+
+                     </LinearLayout>
+                     <View
+                         android:layout_width="match_parent"
+                         android:layout_height="1dp"
+                         android:background="#dcdcdc"
+                         android:layout_marginLeft="45dp"
+                         />
+
+                     <LinearLayout
+                         android:id="@+id/list_earn"
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:orientation="horizontal"
+                         android:layout_marginHorizontal="15dp"
+                         android:paddingVertical="5dp"
+                         >
+                         <ImageView
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content"
+                             android:src="@drawable/ic_salary"
+                             android:layout_gravity="center_vertical"
+                             />
+
+                         <LinearLayout
+                             android:layout_width="match_parent"
+                             android:layout_height="wrap_content"
+                             android:orientation="vertical"
+                             android:layout_marginLeft="20dp"
+                             >
+
+                             <TextView
+                                 android:layout_width="match_parent"
+                                 android:layout_height="wrap_content"
+                                 android:fontFamily="@font/segoeui"
+                                 android:paddingVertical="20dp"
+                                 android:text="Refer N Earn"
+                                 android:textSize="14dp" />
+
+
+                         </LinearLayout>
+
+
+                     </LinearLayout>
+                     <View
+                         android:layout_width="match_parent"
+                         android:layout_height="1dp"
+                         android:background="#dcdcdc"
+                         android:layout_marginLeft="45dp"
+                         />
+
+                     <LinearLayout
+                         android:id="@+id/store_transport"
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:orientation="horizontal"
+                         android:layout_marginHorizontal="15dp"
+                         android:paddingVertical="5dp"
+                         >
+
+                         <ImageView
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content"
+                             android:layout_gravity="center_vertical"
+                             android:src="@drawable/ic_wallet" />
+
+                         <LinearLayout
+                             android:layout_width="match_parent"
+                             android:layout_height="wrap_content"
+                             android:orientation="vertical"
+                             android:layout_marginLeft="20dp"
+                             >
+
+                             <TextView
+                                 android:layout_width="match_parent"
+                                 android:layout_height="wrap_content"
+                                 android:fontFamily="@font/segoeui"
+                                 android:paddingVertical="20dp"
+                                 android:text="Transportation"
+                                 android:textSize="14dp" />
+
+
+                         </LinearLayout>
+
+
+                     </LinearLayout>
+                     <View
+                         android:layout_width="match_parent"
+                         android:layout_height="1dp"
+                         android:background="#dcdcdc"
+                         android:layout_marginLeft="45dp"
+                         />
+
+
+
+                 </LinearLayout>
+
+
+
+             </LinearLayout>-->
+
+        <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="0dp"-->
+                <!--android:layout_weight="85"-->
+                <!--android:orientation="vertical"-->
+                <!--android:weightSum="100"-->
+                <!--android:background="#fff"-->
+                <!--&gt;-->
+
+
+
+
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_marginLeft="10dp"-->
+                    <!--android:layout_marginTop="20dp"-->
+                    <!--android:fontFamily="@font/segoeui"-->
+                    <!--android:gravity="start"-->
+                    <!--android:text="Your Profile"-->
+                    <!--android:textColor="#000000"-->
+                    <!--android:textSize="18dp"-->
+                    <!--android:textStyle="bold" />-->
+
+
+
+                <!--<LinearLayout-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:orientation="vertical"-->
+                    <!--android:layout_marginTop="12dp"-->
+
+                    <!--&gt;-->
+
+                    <!--<LinearLayout-->
+                        <!--android:id="@+id/your_address1"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:orientation="horizontal"-->
+                        <!--android:layout_marginHorizontal="15dp"-->
+                        <!--android:paddingVertical="5dp"-->
+                        <!--&gt;-->
+                        <!--<ImageView-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:src="@drawable/ic_address"-->
+                            <!--android:layout_gravity="center_vertical"-->
+                            <!--/>-->
+
+                        <!--<LinearLayout-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:orientation="vertical"-->
+                            <!--android:layout_marginLeft="20dp"-->
+                            <!--&gt;-->
+
+                            <!--<TextView-->
+                                <!--android:layout_width="match_parent"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:fontFamily="@font/segoeui"-->
+                                <!--android:paddingVertical="20dp"-->
+                                <!--android:text="Your Address"-->
+                                <!--android:textSize="14dp" />-->
+
+
+                        <!--</LinearLayout>-->
+
+
+                    <!--</LinearLayout>-->
+                    <!--<View-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="1dp"-->
+                        <!--android:background="#dcdcdc"-->
+                        <!--android:layout_marginLeft="45dp"-->
+                        <!--/>-->
+
+                    <!--<LinearLayout-->
+                        <!--android:id="@+id/wallets"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:orientation="horizontal"-->
+                        <!--android:layout_marginHorizontal="15dp"-->
+                        <!--android:paddingVertical="5dp"-->
+
+                        <!--&gt;-->
+                        <!--<ImageView-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:src="@drawable/ic_wallet"-->
+                            <!--android:layout_gravity="center_vertical"-->
+                            <!--/>-->
+
+                        <!--<LinearLayout-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:orientation="vertical"-->
+                            <!--android:layout_marginLeft="20dp"-->
+                            <!--&gt;-->
+
+                            <!--<TextView-->
+                                <!--android:layout_width="match_parent"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:fontFamily="@font/segoeui"-->
+                                <!--android:paddingVertical="20dp"-->
+                                <!--android:text="Wallet"-->
+                                <!--android:textSize="14dp" />-->
+
+
+                        <!--</LinearLayout>-->
+
+
+                    <!--</LinearLayout>-->
+
+                    <!--<View-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="1dp"-->
+                        <!--android:background="#dcdcdc"-->
+                        <!--android:layout_marginLeft="45dp"-->
+                        <!--/>-->
+
+
+                    <!--<LinearLayout-->
+                        <!--android:id="@+id/list_earn"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:orientation="horizontal"-->
+                        <!--android:layout_marginHorizontal="15dp"-->
+                        <!--android:paddingVertical="5dp"-->
+
+                        <!--&gt;-->
+
+                        <!--<ImageView-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_gravity="center_vertical"-->
+                            <!--android:src="@drawable/ic_salary" />-->
+
+                        <!--<LinearLayout-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_marginLeft="20dp"-->
+                            <!--android:orientation="vertical">-->
+
+                            <!--<TextView-->
+                                <!--android:layout_width="match_parent"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:fontFamily="@font/segoeui"-->
+                                <!--android:paddingVertical="20dp"-->
+                                <!--android:text="Refer N Earn"-->
+                                <!--android:textSize="14dp" />-->
+
+
+                        <!--</LinearLayout>-->
+
+
+
+
+                    <!--</LinearLayout>-->
+
+
+                    <!--<LinearLayout-->
+                        <!--android:id="@+id/list_earn"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:orientation="horizontal"-->
+                        <!--android:layout_marginHorizontal="15dp"-->
+                        <!--android:paddingVertical="5dp"-->
+
+                        <!--&gt;-->
+
+                        <!--<ImageView-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_gravity="center_vertical"-->
+                            <!--android:src="@drawable/ic_salary" />-->
+
+                        <!--<LinearLayout-->
+                            <!--android:layout_width="match_parent"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:layout_marginLeft="20dp"-->
+                            <!--android:orientation="vertical">-->
+
+                            <!--<TextView-->
+                                <!--android:layout_width="match_parent"-->
+                                <!--android:layout_height="wrap_content"-->
+                                <!--android:fontFamily="@font/segoeui"-->
+                                <!--android:paddingVertical="20dp"-->
+                                <!--android:text="Refer N Earn"-->
+                                <!--android:textSize="14dp" />-->
+
+
+                        <!--</LinearLayout>-->
+
+
+
+
+                    <!--</LinearLayout>-->
+
+
+                    <!--<View-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="3dp"-->
+                        <!--android:layout_marginTop="20dp"-->
+                        <!--android:background="#dcdcdc"-->
+
+                        <!--/>-->
+
+
+
+
+
+                    <!--&lt;!&ndash;<TextView&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:fontFamily="@font/segoeui"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:gravity="start"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:textStyle="bold"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:text="Payments"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_marginTop="20dp"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_marginLeft="10dp"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:textColor="#000000"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:textSize="18dp" />&ndash;&gt;-->
+
+
+
+
+                    <!--&lt;!&ndash;<LinearLayout&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:id="@+id/bnk_accnt"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:orientation="horizontal"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_marginTop="12dp"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_marginHorizontal="15dp"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:paddingVertical="5dp"&ndash;&gt;-->
+                        <!--&lt;!&ndash;&gt;&ndash;&gt;-->
+                        <!--&lt;!&ndash;<ImageView&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:src="@drawable/ic_bank_account"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_gravity="center_vertical"&ndash;&gt;-->
+                            <!--&lt;!&ndash;/>&ndash;&gt;-->
+
+                        <!--&lt;!&ndash;<LinearLayout&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:orientation="vertical"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_marginLeft="20dp"&ndash;&gt;-->
+                            <!--&lt;!&ndash;&gt;&ndash;&gt;-->
+
+                            <!--&lt;!&ndash;<TextView&ndash;&gt;-->
+                                <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+                                <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                                <!--&lt;!&ndash;android:fontFamily="@font/segoeui"&ndash;&gt;-->
+                                <!--&lt;!&ndash;android:paddingVertical="20dp"&ndash;&gt;-->
+                                <!--&lt;!&ndash;android:text="Bank Account "&ndash;&gt;-->
+                                <!--&lt;!&ndash;android:textSize="14dp" />&ndash;&gt;-->
+
+
+                        <!--&lt;!&ndash;</LinearLayout>&ndash;&gt;-->
+
+
+                    <!--&lt;!&ndash;</LinearLayout>&ndash;&gt;-->
+
+
+                    <!--&lt;!&ndash;<View&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_height="1dp"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:background="#dcdcdc"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_marginLeft="45dp"&ndash;&gt;-->
+                        <!--&lt;!&ndash;/>&ndash;&gt;-->
+
+
+
+
+
+
+
+                    <!--&lt;!&ndash;<LinearLayout&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:id="@+id/refer_earn"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:orientation="horizontal"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_marginHorizontal="15dp"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:paddingVertical="5dp"&ndash;&gt;-->
+
+                        <!--&lt;!&ndash;&gt;&ndash;&gt;-->
+                        <!--&lt;!&ndash;<ImageView&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:src="@drawable/ic_rupees"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_gravity="center_vertical"&ndash;&gt;-->
+                            <!--&lt;!&ndash;/>&ndash;&gt;-->
+
+                        <!--&lt;!&ndash;<LinearLayout&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:orientation="vertical"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_marginLeft="20dp"&ndash;&gt;-->
+                            <!--&lt;!&ndash;&gt;&ndash;&gt;-->
+
+                            <!--&lt;!&ndash;<TextView&ndash;&gt;-->
+                                <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+                                <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                                <!--&lt;!&ndash;android:fontFamily="@font/segoeui"&ndash;&gt;-->
+                                <!--&lt;!&ndash;android:paddingVertical="20dp"&ndash;&gt;-->
+                                <!--&lt;!&ndash;android:text="Add Money"&ndash;&gt;-->
+                                <!--&lt;!&ndash;android:textSize="14dp" />&ndash;&gt;-->
+
+
+                        <!--&lt;!&ndash;</LinearLayout>&ndash;&gt;-->
+
+
+                    <!--&lt;!&ndash;</LinearLayout>&ndash;&gt;-->
+
+                    <!--&lt;!&ndash;<View&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_height="1dp"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:background="#dcdcdc"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_marginLeft="45dp"&ndash;&gt;-->
+                        <!--&lt;!&ndash;/>&ndash;&gt;-->
+
+                <!--&lt;!&ndash;</LinearLayout>&ndash;&gt;-->
+
+
+
+                <!--&lt;!&ndash;<LinearLayout&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                    <!--&lt;!&ndash;android:orientation="vertical"&ndash;&gt;-->
+
+                    <!--&lt;!&ndash;&gt;&ndash;&gt;-->
+
+                    <!--&lt;!&ndash;<LinearLayout&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:id="@+id/transatn_1"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:orientation="horizontal"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:paddingVertical="5dp"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_marginHorizontal="15dp"&ndash;&gt;-->
+
+                        <!--&lt;!&ndash;&gt;&ndash;&gt;-->
+                        <!--&lt;!&ndash;<ImageView&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:src="@drawable/ic_transaction_"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_gravity="center_vertical"&ndash;&gt;-->
+                            <!--&lt;!&ndash;/>&ndash;&gt;-->
+
+                        <!--&lt;!&ndash;<LinearLayout&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:orientation="horizontal"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:weightSum="100"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_marginLeft="20dp"&ndash;&gt;-->
+                            <!--&lt;!&ndash;&gt;&ndash;&gt;-->
+
+                            <!--&lt;!&ndash;<TextView&ndash;&gt;-->
+                                <!--&lt;!&ndash;android:layout_width="0dp"&ndash;&gt;-->
+                                <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                                <!--&lt;!&ndash;android:layout_weight="70"&ndash;&gt;-->
+                                <!--&lt;!&ndash;android:fontFamily="@font/segoeui"&ndash;&gt;-->
+                                <!--&lt;!&ndash;android:paddingVertical="20dp"&ndash;&gt;-->
+                                <!--&lt;!&ndash;android:text="Transaction"&ndash;&gt;-->
+                                <!--&lt;!&ndash;android:textSize="14dp" />&ndash;&gt;-->
+
+
+
+                        <!--&lt;!&ndash;</LinearLayout>&ndash;&gt;-->
+
+
+                    <!--&lt;!&ndash;</LinearLayout>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<View&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_height="1dp"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:background="#dcdcdc"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_marginLeft="45dp"&ndash;&gt;-->
+                        <!--&lt;!&ndash;/>&ndash;&gt;-->
+
+                    <!--&lt;!&ndash;<LinearLayout&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:id="@+id/wallets"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:orientation="horizontal"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_marginHorizontal="15dp"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:paddingVertical="5dp"&ndash;&gt;-->
+
+                        <!--&lt;!&ndash;&gt;&ndash;&gt;-->
+                        <!--&lt;!&ndash;<ImageView&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:src="@drawable/ic_wallet"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_gravity="center_vertical"&ndash;&gt;-->
+                            <!--&lt;!&ndash;/>&ndash;&gt;-->
+
+                        <!--&lt;!&ndash;<LinearLayout&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:orientation="vertical"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_marginLeft="20dp"&ndash;&gt;-->
+                            <!--&lt;!&ndash;&gt;&ndash;&gt;-->
+
+                            <!--&lt;!&ndash;<TextView&ndash;&gt;-->
+                                <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+                                <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                                <!--&lt;!&ndash;android:fontFamily="@font/segoeui"&ndash;&gt;-->
+                                <!--&lt;!&ndash;android:paddingVertical="20dp"&ndash;&gt;-->
+                                <!--&lt;!&ndash;android:text="Wallet "&ndash;&gt;-->
+                                <!--&lt;!&ndash;android:textSize="14dp" />&ndash;&gt;-->
+
+
+                        <!--&lt;!&ndash;</LinearLayout>&ndash;&gt;-->
+
+
+                    <!--&lt;!&ndash;</LinearLayout>&ndash;&gt;-->
+
+                    <!--&lt;!&ndash;<View&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_height="1dp"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:background="#dcdcdc"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_marginLeft="45dp"&ndash;&gt;-->
+                        <!--&lt;!&ndash;/>&ndash;&gt;-->
+
+
+                    <!--&lt;!&ndash;<LinearLayout&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:id="@+id/verify_kyc"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:orientation="horizontal"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_marginHorizontal="15dp"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:paddingVertical="5dp"&ndash;&gt;-->
+
+                        <!--&lt;!&ndash;&gt;&ndash;&gt;-->
+                        <!--&lt;!&ndash;<ImageView&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:src="@drawable/ic_kyc"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_gravity="center_vertical"&ndash;&gt;-->
+                            <!--&lt;!&ndash;/>&ndash;&gt;-->
+
+                        <!--&lt;!&ndash;<LinearLayout&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:orientation="vertical"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_marginLeft="20dp"&ndash;&gt;-->
+                            <!--&lt;!&ndash;&gt;&ndash;&gt;-->
+
+                            <!--&lt;!&ndash;<TextView&ndash;&gt;-->
+                                <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+                                <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                                <!--&lt;!&ndash;android:fontFamily="@font/segoeui"&ndash;&gt;-->
+                                <!--&lt;!&ndash;android:paddingVertical="20dp"&ndash;&gt;-->
+                                <!--&lt;!&ndash;android:text="Update KYC"&ndash;&gt;-->
+                                <!--&lt;!&ndash;android:textSize="14dp" />&ndash;&gt;-->
+
+
+                        <!--&lt;!&ndash;</LinearLayout>&ndash;&gt;-->
+
+
+                    <!--&lt;!&ndash;</LinearLayout>&ndash;&gt;-->
+
+                    <!--&lt;!&ndash;<View&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_height="3dp"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_marginTop="10dp"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:background="#dcdcdc"/>&ndash;&gt;-->
+
+
+                    <!--&lt;!&ndash;<TextView&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:fontFamily="@font/segoeui"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:gravity="start"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:textStyle="bold"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:text="Settings"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_marginTop="20dp"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_marginLeft="10dp"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:textColor="#000000"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:textSize="18dp" />&ndash;&gt;-->
+
+
+
+
+                    <!--&lt;!&ndash;<LinearLayout&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:id="@+id/lang_change"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:orientation="horizontal"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_marginTop="12dp"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_marginHorizontal="15dp"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:paddingVertical="5dp"&ndash;&gt;-->
+                        <!--&lt;!&ndash;&gt;&ndash;&gt;-->
+                        <!--&lt;!&ndash;<ImageView&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:src="@drawable/ic_language"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_gravity="center_vertical"&ndash;&gt;-->
+                            <!--&lt;!&ndash;/>&ndash;&gt;-->
+
+                        <!--&lt;!&ndash;<LinearLayout&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:orientation="horizontal"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_marginLeft="20dp"&ndash;&gt;-->
+                            <!--&lt;!&ndash;&gt;&ndash;&gt;-->
+
+                            <!--&lt;!&ndash;<TextView&ndash;&gt;-->
+                                <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+                                <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                                <!--&lt;!&ndash;android:fontFamily="@font/segoeui"&ndash;&gt;-->
+                                <!--&lt;!&ndash;android:paddingVertical="20dp"&ndash;&gt;-->
+                                <!--&lt;!&ndash;android:text="Change Language"&ndash;&gt;-->
+                                <!--&lt;!&ndash;android:textSize="14dp" />&ndash;&gt;-->
+
+                            <!--&lt;!&ndash;<TextView&ndash;&gt;-->
+                                <!--&lt;!&ndash;android:id="@+id/lang_setting"&ndash;&gt;-->
+                                <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+                                <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                                <!--&lt;!&ndash;android:fontFamily="@font/segoeui"&ndash;&gt;-->
+                                <!--&lt;!&ndash;android:paddingVertical="20dp"&ndash;&gt;-->
+                                <!--&lt;!&ndash;android:text="English"&ndash;&gt;-->
+                                <!--&lt;!&ndash;android:layout_marginRight="12dp"&ndash;&gt;-->
+                                <!--&lt;!&ndash;android:gravity="right"&ndash;&gt;-->
+                                <!--&lt;!&ndash;android:textColor="@color/navy_blue"&ndash;&gt;-->
+                                <!--&lt;!&ndash;android:textSize="14dp" />&ndash;&gt;-->
+
+
+                        <!--&lt;!&ndash;</LinearLayout>&ndash;&gt;-->
+
+
+                    <!--&lt;!&ndash;</LinearLayout>&ndash;&gt;-->
+
+
+
+                    <!--&lt;!&ndash;<View&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_height="1dp"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:background="#dcdcdc"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_marginLeft="45dp"&ndash;&gt;-->
+                        <!--&lt;!&ndash;/>&ndash;&gt;-->
+
+
+
+                    <!--&lt;!&ndash;<LinearLayout&ndash;&gt;-->
+
+                        <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:orientation="horizontal"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_marginHorizontal="15dp"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:paddingVertical="5dp"&ndash;&gt;-->
+                        <!--&lt;!&ndash;&gt;&ndash;&gt;-->
+                        <!--&lt;!&ndash;<ImageView&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:src="@drawable/ic_notification"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_gravity="center_vertical"&ndash;&gt;-->
+                            <!--&lt;!&ndash;/>&ndash;&gt;-->
+
+                        <!--&lt;!&ndash;<LinearLayout&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:orientation="vertical"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_marginLeft="20dp"&ndash;&gt;-->
+                            <!--&lt;!&ndash;&gt;&ndash;&gt;-->
+
+                            <!--&lt;!&ndash;<TextView&ndash;&gt;-->
+                                <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+                                <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                                <!--&lt;!&ndash;android:fontFamily="@font/segoeui"&ndash;&gt;-->
+                                <!--&lt;!&ndash;android:paddingVertical="15dp"&ndash;&gt;-->
+                                <!--&lt;!&ndash;android:text="Notification"&ndash;&gt;-->
+                                <!--&lt;!&ndash;android:textSize="14dp" />&ndash;&gt;-->
+
+
+                        <!--&lt;!&ndash;</LinearLayout>&ndash;&gt;-->
+
+
+                    <!--&lt;!&ndash;</LinearLayout>&ndash;&gt;-->
+
+
+                    <!--&lt;!&ndash;<View&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_height="1dp"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:background="#dcdcdc"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_marginLeft="45dp"&ndash;&gt;-->
+                        <!--&lt;!&ndash;/>&ndash;&gt;-->
+
+
+
+
+                    <!--&lt;!&ndash;<LinearLayout&ndash;&gt;-->
+
+                        <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:orientation="horizontal"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_marginHorizontal="15dp"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:paddingVertical="5dp"&ndash;&gt;-->
+                        <!--&lt;!&ndash;&gt;&ndash;&gt;-->
+
+                        <!--&lt;!&ndash;<ImageView&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:src="@drawable/ic_change_password"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_gravity="center_vertical"&ndash;&gt;-->
+                            <!--&lt;!&ndash;/>&ndash;&gt;-->
+
+                        <!--&lt;!&ndash;<LinearLayout&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:id="@+id/chng_password"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:orientation="vertical"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_marginLeft="20dp"&ndash;&gt;-->
+                            <!--&lt;!&ndash;&gt;&ndash;&gt;-->
+
+                            <!--&lt;!&ndash;<TextView&ndash;&gt;-->
+                                <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+                                <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                                <!--&lt;!&ndash;android:fontFamily="@font/segoeui"&ndash;&gt;-->
+                                <!--&lt;!&ndash;android:paddingVertical="20dp"&ndash;&gt;-->
+                                <!--&lt;!&ndash;android:text="Change Password"&ndash;&gt;-->
+                                <!--&lt;!&ndash;android:textSize="14dp" />&ndash;&gt;-->
+
+
+                        <!--&lt;!&ndash;</LinearLayout>&ndash;&gt;-->
+
+
+                    <!--&lt;!&ndash;</LinearLayout>&ndash;&gt;-->
+
+
+                    <!--&lt;!&ndash;<View&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_height="1dp"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:background="#dcdcdc"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_marginLeft="45dp"&ndash;&gt;-->
+                        <!--&lt;!&ndash;/>&ndash;&gt;-->
+
+
+
+
+
+                    <!--&lt;!&ndash;<LinearLayout&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:id="@+id/logout"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:orientation="horizontal"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_marginHorizontal="15dp"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:paddingVertical="5dp"&ndash;&gt;-->
+                        <!--&lt;!&ndash;&gt;&ndash;&gt;-->
+                        <!--&lt;!&ndash;<ImageView&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:src="@drawable/ic_help_support"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_gravity="center_vertical"&ndash;&gt;-->
+                            <!--&lt;!&ndash;/>&ndash;&gt;-->
+
+                        <!--&lt;!&ndash;<LinearLayout&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:orientation="vertical"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_marginLeft="20dp"&ndash;&gt;-->
+                            <!--&lt;!&ndash;&gt;&ndash;&gt;-->
+
+                            <!--&lt;!&ndash;<TextView&ndash;&gt;-->
+                                <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+                                <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                                <!--&lt;!&ndash;android:fontFamily="@font/segoeui"&ndash;&gt;-->
+                                <!--&lt;!&ndash;android:paddingVertical="20dp"&ndash;&gt;-->
+                                <!--&lt;!&ndash;android:text="Logout"&ndash;&gt;-->
+                                <!--&lt;!&ndash;android:textSize="14dp" />&ndash;&gt;-->
+
+
+                        <!--&lt;!&ndash;</LinearLayout>&ndash;&gt;-->
+
+                    <!--&lt;!&ndash;</LinearLayout>&ndash;&gt;-->
+
+                    <!--&lt;!&ndash;<View&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_height="1dp"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:background="#dcdcdc"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_marginLeft="45dp"&ndash;&gt;-->
+                        <!--&lt;!&ndash;/>&ndash;&gt;-->
+
+                    <!--&lt;!&ndash;<LinearLayout&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:id="@+id/about"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:orientation="horizontal"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_marginHorizontal="15dp"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:paddingVertical="5dp"&ndash;&gt;-->
+                        <!--&lt;!&ndash;&gt;&ndash;&gt;-->
+                        <!--&lt;!&ndash;<ImageView&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:src="@drawable/ic_aboutus"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_gravity="center_vertical"&ndash;&gt;-->
+                            <!--&lt;!&ndash;/>&ndash;&gt;-->
+
+                        <!--&lt;!&ndash;<LinearLayout&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:orientation="vertical"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_marginLeft="20dp"&ndash;&gt;-->
+                            <!--&lt;!&ndash;&gt;&ndash;&gt;-->
+
+                            <!--&lt;!&ndash;<TextView&ndash;&gt;-->
+                                <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+                                <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                                <!--&lt;!&ndash;android:fontFamily="@font/segoeui"&ndash;&gt;-->
+                                <!--&lt;!&ndash;android:paddingVertical="15dp"&ndash;&gt;-->
+                                <!--&lt;!&ndash;android:text="About Us"&ndash;&gt;-->
+                                <!--&lt;!&ndash;android:textSize="14dp" />&ndash;&gt;-->
+
+
+                        <!--&lt;!&ndash;</LinearLayout>&ndash;&gt;-->
+
+
+                    <!--&lt;!&ndash;</LinearLayout>&ndash;&gt;-->
+
+
+
+
+
+
+                    <!--&lt;!&ndash;<View&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_height="1dp"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:background="#dcdcdc"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_marginLeft="45dp"&ndash;&gt;-->
+                        <!--&lt;!&ndash;/>&ndash;&gt;-->
+
+
+
+                    <!--&lt;!&ndash;<LinearLayout&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:id="@+id/logout1"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:orientation="horizontal"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:layout_marginHorizontal="15dp"&ndash;&gt;-->
+                        <!--&lt;!&ndash;android:paddingVertical="5dp"&ndash;&gt;-->
+                        <!--&lt;!&ndash;&gt;&ndash;&gt;-->
+
+                        <!--&lt;!&ndash;<ImageView&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:src="@drawable/ic_logout"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_gravity="center_vertical"&ndash;&gt;-->
+                            <!--&lt;!&ndash;/>&ndash;&gt;-->
+
+                        <!--&lt;!&ndash;<LinearLayout&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:orientation="vertical"&ndash;&gt;-->
+                            <!--&lt;!&ndash;android:layout_marginLeft="20dp"&ndash;&gt;-->
+                            <!--&lt;!&ndash;&gt;&ndash;&gt;-->
+
+                            <!--&lt;!&ndash;<TextView&ndash;&gt;-->
+                                <!--&lt;!&ndash;android:layout_width="match_parent"&ndash;&gt;-->
+                                <!--&lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;-->
+                                <!--&lt;!&ndash;android:fontFamily="@font/segoeui"&ndash;&gt;-->
+                                <!--&lt;!&ndash;android:paddingVertical="20dp"&ndash;&gt;-->
+                                <!--&lt;!&ndash;android:text="Logout"&ndash;&gt;-->
+                                <!--&lt;!&ndash;android:textSize="14dp" />&ndash;&gt;-->
+
+
+                        <!--&lt;!&ndash;</LinearLayout>&ndash;&gt;-->
+
+
+                    <!--&lt;!&ndash;</LinearLayout>&ndash;&gt;-->
+
+                <!--&lt;!&ndash;</LinearLayout>&ndash;&gt;-->
+
+
+            <!--&lt;!&ndash;</LinearLayout>&ndash;&gt;-->
+
+                <!--</LinearLayout>-->
+
+<!--</LinearLayout>-->
+
         </LinearLayout>
     </ScrollView>
-
 </LinearLayout>
+
+
+
+
+
+

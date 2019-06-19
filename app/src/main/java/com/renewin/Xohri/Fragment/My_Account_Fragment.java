@@ -82,7 +82,7 @@ public class My_Account_Fragment extends Fragment {
 
 
 
-     //  logout=view.findViewById(R.id.logout);
+     logout=view.findViewById(R.id.logout1);
         username_1 =view.findViewById(R.id.name1);
         profile_image =view.findViewById(R.id.propic);
         verify_kyc =view.findViewById(R.id.verify_kyc);
@@ -291,7 +291,7 @@ public class My_Account_Fragment extends Fragment {
                                     bundle.putString("Id","");
                                     bundle.putString("ADD_NTRANSPOTATION", "MYACC");
 
-                          // bundle.putString("ADD_NBANK","MYACC");
+// bundle.putString("ADD_NBANK","MYACC");
                                           /*  Intent i=new Intent(activity, Home_Page_Without_BottomMenu_Activity.class);
                                             i.putExtra("CAT_NAV","NEW_TRANSPORTATION");
                                             activity.startActivity(i);*/
@@ -322,6 +322,22 @@ public class My_Account_Fragment extends Fragment {
                 }catch (Exception e){
                     e.printStackTrace();
                 }
+            }
+        });
+
+        transactions.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle bundle = new Bundle();
+                bundle.putString("Stat","all_transaction");
+                bundle.putString("T_Stat","30days");
+
+                selectedFragment = Transaction_Fragment.newInstance();
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.frame_layout, selectedFragment);
+                selectedFragment.setArguments(bundle);
+                transaction.addToBackStack("transaction");
+                transaction.commit();
 
             }
         });
@@ -378,10 +394,60 @@ public class My_Account_Fragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                selectedFragment = Bank_Account_Details_Fragment.newInstance();
-                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.frame_layout, selectedFragment);
-                transaction.commit();
+                try{
+
+                    JSONObject jsonObject = new JSONObject();
+
+                    jsonObject.put("UserId",sessionManager.getRegId("userId"));
+
+                    Crop_Post.crop_posting(getActivity(), Urls.Get_Bank_Details, jsonObject, new VoleyJsonObjectCallback() {
+                        @Override
+                        public void onSuccessResponse(JSONObject result) {
+                            System.out.println("111111bbbbbbbbbbbbbbbbbbbb" + result);
+                            try{
+                                bank_aray= result.getJSONArray("UserBankDetails");
+                                if(bank_aray.length() == 0){
+
+                                          /*  Intent intent=new Intent(activity, Home_Page_Without_BottomMenu_Activity.class);
+                                            intent.putExtra("CAT_NAV","ADD_NEW");
+                                            activity.startActivity(intent);*/
+
+                                    Bundle bundle=new Bundle();
+                                    bundle.putString("Bank_name","");
+                                    bundle.putString("Account_number","");
+                                    bundle.putString("Ifsc_Code","");
+                                    bundle.putString("Acc_name","");
+                                    bundle.putString("BankId","");
+                                    bundle.putString("ADD_NBANK","MYACC");
+
+
+                                    selectedFragment = Add_New_Bank_Details_Fragment.newInstance();
+                                    FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                                    selectedFragment.setArguments(bundle);
+                                    transaction.replace(R.id.frame_layout, selectedFragment);
+                                    transaction.addToBackStack("my_account");
+                                    transaction.commit();
+
+
+                                }else {
+
+                                    selectedFragment = Bank_Account_Details_Fragment.newInstance();
+                                    FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                                    transaction.replace(R.id.frame_layout, selectedFragment);
+                                    transaction.commit();
+                                }
+
+                            }catch (Exception e){
+                                e.printStackTrace();
+                            }
+                        }
+                    });
+
+
+
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
 
 
             }

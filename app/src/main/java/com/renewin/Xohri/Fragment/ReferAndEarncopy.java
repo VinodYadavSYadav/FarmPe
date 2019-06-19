@@ -69,7 +69,7 @@ public class ReferAndEarncopy extends Fragment {
         twitter=view.findViewById(R.id.twitter);
         referal_code=view.findViewById(R.id.refer_code);
 
-sessionManager = new SessionManager(getActivity());
+        sessionManager = new SessionManager(getActivity());
 
         view.setFocusableInTouchMode(true);
         view.requestFocus();
