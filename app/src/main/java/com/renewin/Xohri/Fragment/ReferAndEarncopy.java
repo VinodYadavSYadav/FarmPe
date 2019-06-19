@@ -96,7 +96,7 @@ sessionManager = new SessionManager(getActivity());
             public void onClick(View v) {
                 selectedFragment = My_Account_Fragment.newInstance();
                 FragmentTransaction transaction = (getActivity()).getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.frame_layout_home, selectedFragment);
+                transaction.replace(R.id.frame_layout, selectedFragment);
                 transaction.commit();
 
 

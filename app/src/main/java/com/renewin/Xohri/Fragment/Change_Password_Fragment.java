@@ -117,7 +117,7 @@ public class Change_Password_Fragment extends Fragment {
 
                                      selectedFragment = My_Account_Fragment.newInstance();
                                      FragmentTransaction transaction4 = getActivity().getSupportFragmentManager().beginTransaction();
-                                     transaction4.replace(R.id.first_full_frame, selectedFragment);
+                                     transaction4.replace(R.id.frame_layout, selectedFragment);
 
                                      transaction4.commit();
 
@@ -160,7 +160,7 @@ public class Change_Password_Fragment extends Fragment {
                 if( keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP) {
                     selectedFragment = My_Account_Fragment.newInstance();
                     FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                    transaction.replace(R.id.first_full_frame, selectedFragment);
+                    transaction.replace(R.id.frame_layout, selectedFragment);
                     transaction.commit();
                     return true;
 
@@ -178,7 +178,7 @@ public class Change_Password_Fragment extends Fragment {
             public void onClick(View v) {
                 selectedFragment = My_Account_Fragment.newInstance();
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.first_full_frame, selectedFragment);
+                transaction.replace(R.id.frame_layout, selectedFragment);
                 transaction.commit();
 
             }

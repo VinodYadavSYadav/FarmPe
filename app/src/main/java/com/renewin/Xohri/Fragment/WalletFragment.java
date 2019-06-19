@@ -43,7 +43,7 @@ public class WalletFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.wallet, container, false);
 
-        getActivity().getActionBar().hide();
+        //getActivity().getActionBar().hide();
 
 
         back_feed= view.findViewById(R.id.back_feed);

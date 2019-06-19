@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,48 +55,39 @@ public class Bank_Account_Details_Fragment extends Fragment {
         sessionManager = new SessionManager(getActivity());
 
 
-//        view.setFocusableInTouchMode(true);
-//        view.requestFocus();
-//        view.setOnKeyListener(new View.OnKeyListener() {
-//
-//
-//            @Override
-//            public boolean onKey(View v, int keyCode, KeyEvent event) {
-//                if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP) {
-//                    Intent intent=new Intent(getActivity(), Home_Page_WithBottomMenu_Activity.class);
-//                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-//                  // intent.putExtra("nav_switch","BANK_ACC");
-//                    startActivity(intent);
-//
-//
-//                    return true;
-//                }
-//                return false;
-//            }
-//        });
+        view.setFocusableInTouchMode(true);
+        view.requestFocus();
+        view.setOnKeyListener(new View.OnKeyListener() {
 
 
-//        back_feed.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//               /* Intent intent = new Intent(getActivity(), Home_Page_Without_BottomMenu_Activity.class);
-//                intent.putExtra("nav_switch", "BANK_ACC");
-//                startActivity(intent);*/
-//               /* selectedFragment = My_Account_Fragment.newInstance();
-//                FragmentTransaction transaction = (getActivity()).getSupportFragmentManager().beginTransaction();
-//                transaction.replace(R.id.frame_menu, selectedFragment);
-//                transaction.commit();*/
-//               /* FragmentManager fm = getActivity().getSupportFragmentManager();
-//                fm.popBackStack("home", FragmentManager.POP_BACK_STACK_INCLUSIVE);*/
-//                Intent intent=new Intent(getActivity(), Home_Page_WithBottomMenu_Activity.class);
-//                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-//
-//              //  intent.putExtra("nav_switch","BANK_ACC");
-//                startActivity(intent);
-//            }
-//        });
-//
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP) {
 
+                    selectedFragment = My_Account_Fragment.newInstance();
+                    FragmentTransaction transaction = (getActivity()).getSupportFragmentManager().beginTransaction();
+                    transaction.replace(R.id.frame_layout, selectedFragment);
+                    transaction.commit();
+
+
+                    return true;
+                }
+                return false;
+            }
+        });
+
+
+        back_feed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectedFragment = My_Account_Fragment.newInstance();
+                FragmentTransaction transaction = (getActivity()).getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.frame_layout, selectedFragment);
+                transaction.commit();
+
+
+            }
+        });
 
         bank_account.setOnClickListener(new View.OnClickListener() {
             @Override

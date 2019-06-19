@@ -1,8 +1,11 @@
 package com.renewin.Xohri.Fragment;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -13,6 +16,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -21,6 +25,7 @@ import android.widget.Toast;
 import com.renewin.Xohri.R;
 import com.renewin.Xohri.SessionManager;
 import com.renewin.Xohri.Urls;
+import com.renewin.Xohri.Utils;
 import com.renewin.Xohri.Volly_class.Crop_Post;
 import com.renewin.Xohri.Volly_class.VoleyJsonObjectCallback;
 
@@ -229,6 +234,7 @@ public class My_Account_Fragment extends Fragment {
                                     selectedFragment = Add_KYC_Details_Fragment.newInstance();
                                     FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                                     transaction.replace(R.id.frame_layout, selectedFragment);
+                                    transaction.addToBackStack("kyc_details");
                                     transaction.commit();
 
 
@@ -238,6 +244,7 @@ public class My_Account_Fragment extends Fragment {
                                     selectedFragment = Complete_KYC_Fragment.newInstance();
                                     FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                                     transaction.replace(R.id.frame_layout, selectedFragment);
+                                    transaction.addToBackStack("kyc_details");
                                     transaction.commit();
 
 
@@ -284,7 +291,7 @@ public class My_Account_Fragment extends Fragment {
                                     bundle.putString("Id","");
                                     bundle.putString("ADD_NTRANSPOTATION", "MYACC");
 
-// bundle.putString("ADD_NBANK","MYACC");
+                          // bundle.putString("ADD_NBANK","MYACC");
                                           /*  Intent i=new Intent(activity, Home_Page_Without_BottomMenu_Activity.class);
                                             i.putExtra("CAT_NAV","NEW_TRANSPORTATION");
                                             activity.startActivity(i);*/
@@ -319,52 +326,52 @@ public class My_Account_Fragment extends Fragment {
             }
         });
 
-//        logout.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(final View view) {
-//
-//                final TextView yes1,no1;
-//                System.out.println("aaaaaaaaaaaa");
-//                final Dialog dialog = new Dialog(getContext());
-//                dialog.setContentView(R.layout.logout_layout);
-//                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-//                dialog.setCancelable(Utils.setCancleable);
-//
-//
-//                no1 =  dialog.findViewById(R.id.no_1);
-//                no1.setOnClickListener(new View.OnClickListener() {
-//
-//                    @Override
-//                    public void onClick(View v) {
-//                        dialog.dismiss();
-//                    }
-//                });
-//
-//                yes1 =  dialog.findViewById(R.id.yes_1);
-//                yes1.setOnClickListener(new View.OnClickListener() {
-//
-//                    @Override
-//                    public void onClick(View v) {
-//                        sessionManager.logoutUser();
-//                        getActivity().finish();
-//
-//                        dialog.dismiss();
-//                    }
-//                });
-//
-//                ImageView image = dialog.findViewById(R.id.close_popup);
-//                image.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        dialog.dismiss();
-//                    }
-//                });
-//
-//
-//                dialog.show();
-//
-//            }
-//        });
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View view) {
+
+                final TextView yes1,no1;
+                System.out.println("aaaaaaaaaaaa");
+                final Dialog dialog = new Dialog(getContext());
+                dialog.setContentView(R.layout.logout_layout);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.setCancelable(Utils.setCancleable);
+
+
+                no1 =  dialog.findViewById(R.id.no_1);
+                no1.setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+
+                yes1 =  dialog.findViewById(R.id.yes_1);
+                yes1.setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        sessionManager.logoutUser();
+                        getActivity().finish();
+
+                        dialog.dismiss();
+                    }
+                });
+
+                ImageView image = dialog.findViewById(R.id.close_popup);
+                image.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+
+
+                dialog.show();
+
+            }
+        });
 
 
         bank_account.setOnClickListener(new View.OnClickListener() {

@@ -3,11 +3,13 @@ package com.renewin.Xohri.Fragment;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -144,74 +146,100 @@ public class Add_New_Bank_Details_Fragment extends Fragment {
 
 
 
+        view.setFocusableInTouchMode(true);
+        view.requestFocus();
+        view.setOnKeyListener(new View.OnKeyListener() {
 
 
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP) {
+                    if (getArguments().getString("ADD_NBANK").equals("bank details")) {
 
 
+                        selectedFragment = Bank_Account_Details_Fragment.newInstance();
+                        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                        transaction.replace(R.id.frame_layout, selectedFragment);
+                        transaction.commit();
+
+                    }
+                    else if (getArguments().getString("ADD_NBANK").equals("BANK_ADAPTR")) {
+
+                        selectedFragment = Bank_Account_Details_Fragment.newInstance();
+                        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                        transaction.replace(R.id.frame_layout, selectedFragment);
+                        transaction.commit();
 
 
-//        view.setFocusableInTouchMode(true);
-//        view.requestFocus();
-//        view.setOnKeyListener(new View.OnKeyListener() {
-//
-//
-//            @Override
-//            public boolean onKey(View v, int keyCode, KeyEvent event) {
-//                if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP) {
-//                    if (getArguments().getString("ADD_NBANK").equals("bank details")) {
-//
-//                        Intent intent = new Intent(getActivity(), Home_Page_Without_BottomMenu_Activity.class);
-//                        intent.putExtra("CAT_NAV", "BANK_ACC");
-//                        startActivity(intent);
-//
-//                    }
-//                    else if (getArguments().getString("ADD_NBANK").equals("BANK_ADAPTR")) {
-//
-//                        Intent intent = new Intent(getActivity(), Home_Page_Without_BottomMenu_Activity.class);
-//                        intent.putExtra("CAT_NAV", "BANK_ACC");
-//                        startActivity(intent);
-//
-//
-//                    }
-//
-//                else {
-//
+                    }
+
+                    else {
+
+                        FragmentManager fm = getActivity().getSupportFragmentManager();
+                        fm.popBackStack ("my_account", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+
 //                  Intent intent = new Intent(getActivity(), Home_Page_WithBottomMenu_Activity.class);
 //                        intent.putExtra("nav_switch", "ADD_NEW");
 //                        startActivity(intent);
-//
-//                }
-//                    return true;
-//                }
-//                return false;
-//            }
-//        });
+
+                    }
+                    return true;
+                }
+                return false;
+            }
+        });
 
 
         back_feed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (getArguments().getString("ADD_NBANK").equals("bank details")) {
+                    selectedFragment = Bank_Account_Details_Fragment.newInstance();
+                    FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                    transaction.replace(R.id.frame_layout, selectedFragment);
+                    transaction.commit();
 
+
+                }else if (getArguments().getString("ADD_NBANK").equals("BANK_ADAPTR")) {
+
+                    selectedFragment = Bank_Account_Details_Fragment.newInstance();
+                    FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                    transaction.replace(R.id.frame_layout, selectedFragment);
+                    transaction.commit();
+
+
+                }
+                else {
+
+                    FragmentManager fm = getActivity().getSupportFragmentManager();
+                    fm.popBackStack ("my_account", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+
+                }
 
             }
         });
 
 
-       /* select_bank_list.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                selectedFragment = Bank_List_Fragment.newInstance();
-                FragmentTransaction transaction = (getActivity()).getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.frame_menu, selectedFragment);
-                transaction.addToBackStack("bank_list");
-                transaction.commit();
-
-            }
 
 
-        });
-*/
+
+
+
+
+//        select_bank_list.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                selectedFragment = Bank_List_Fragment.newInstance();
+//                FragmentTransaction transaction = (getActivity()).getSupportFragmentManager().beginTransaction();
+//                transaction.replace(R.id.frame_layout, selectedFragment);
+//                transaction.addToBackStack("bank_list");
+//                transaction.commit();
+//
+//            }
+//
+//
+//        });
 
         add_bnk_details.setOnClickListener(new View.OnClickListener() {
             @Override

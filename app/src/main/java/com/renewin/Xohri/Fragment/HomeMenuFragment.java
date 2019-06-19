@@ -155,6 +155,7 @@ public static NestedScrollView scrollView;
                     }
                 });
 
+
                 shop_cat.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -210,10 +211,8 @@ public static NestedScrollView scrollView;
 
 
 
-
         return view;
     }
-
 
 
     @Override
