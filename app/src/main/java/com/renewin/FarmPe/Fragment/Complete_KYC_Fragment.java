@@ -12,48 +12,49 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import com.renewin.Xohri.Adapter.Bank_Account_Details_Adapter;
-import com.renewin.Xohri.Bean.Bank_Account_Bean;
+
+import com.renewin.Xohri.Adapter.Complete_KYC_Adapter;
+import com.renewin.Xohri.Bean.Kyc_Bean;
 import com.renewin.Xohri.R;
 import com.renewin.Xohri.SessionManager;
 import com.renewin.Xohri.Urls;
 import com.renewin.Xohri.Volly_class.Crop_Post;
 import com.renewin.Xohri.Volly_class.VoleyJsonObjectCallback;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class Bank_Account_Details_Fragment extends Fragment {
+public class Complete_KYC_Fragment extends Fragment {
 
     Fragment selectedFragment;
     private RecyclerView recyclerView;
-    SessionManager sessionManager;
-
-    ArrayList<Bank_Account_Bean> bank_account_ArrayList = new ArrayList<>();
-    Bank_Account_Bean bank_account_bean;
-    public static TextView bank_account;
     LinearLayout back_feed;
-    Bank_Account_Details_Adapter mAdapter;
-    JSONArray bank_array;
+    SessionManager sessionManager;
+    JSONArray kyc_array;
+
+    ArrayList<Kyc_Bean> kyc_beanArrayList = new ArrayList<>();
+    Kyc_Bean kyc_bean;
+    TextView add_kyc;
+    Complete_KYC_Adapter mAdapter;
 
 
 
+    public static Complete_KYC_Fragment newInstance() {
+        Complete_KYC_Fragment fragment = new Complete_KYC_Fragment();
 
-    public static Bank_Account_Details_Fragment newInstance() {
-        Bank_Account_Details_Fragment fragment = new Bank_Account_Details_Fragment();
         return fragment;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.bank_acc_details_recyc_layout, container, false);
+        View view = inflater.inflate(R.layout.kyc_recyc_layout, container, false);
 
         recyclerView = view.findViewById(R.id.recycler_2);
-        bank_account = view.findViewById(R.id.add_bnk_acc);
+        add_kyc = view.findViewById(R.id.add_kyc_details);
         back_feed = view.findViewById(R.id.back_feed);
         sessionManager = new SessionManager(getActivity());
-
 
         view.setFocusableInTouchMode(true);
         view.requestFocus();
@@ -65,9 +66,16 @@ public class Bank_Account_Details_Fragment extends Fragment {
                 if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP) {
 
                     selectedFragment = My_Account_Fragment.newInstance();
-                    FragmentTransaction transaction = (getActivity()).getSupportFragmentManager().beginTransaction();
+                    FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                     transaction.replace(R.id.frame_layout, selectedFragment);
                     transaction.commit();
+
+
+
+//                    Intent i=new Intent(getActivity(), Home_Page_WithBottomMenu_Activity.class);
+//                    i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+//                  //  i.putExtra("nav_switch","COMPLETE_KYC");
+//                    startActivity(i);
 
 
                     return true;
@@ -76,36 +84,43 @@ public class Bank_Account_Details_Fragment extends Fragment {
             }
         });
 
-
         back_feed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
                 selectedFragment = My_Account_Fragment.newInstance();
-                FragmentTransaction transaction = (getActivity()).getSupportFragmentManager().beginTransaction();
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.frame_layout, selectedFragment);
                 transaction.commit();
 
 
+//                Intent i=new Intent(getActivity(), Home_Page_WithBottomMenu_Activity.class);
+//                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+//             //   i.putExtra("nav_switch","COMPLETE_KYC");
+//                startActivity(i);
+
             }
         });
 
-        bank_account.setOnClickListener(new View.OnClickListener() {
+
+        add_kyc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 Bundle bundle = new Bundle();
-                bundle.putString("Bank_name","");
-                bundle.putString("Account_number","");
-                bundle.putString("Ifsc_Code","");
-                bundle.putString("Acc_name","");
-                bundle.putString("BankId","");
-                bundle.putString("ADD_NBANK","bank details");
-                selectedFragment = Add_New_Bank_Details_Fragment.newInstance();
+                bundle.putString("ADD_NKYC","kyc details");
+                selectedFragment = Add_KYC_Details_Fragment.newInstance();
                 FragmentTransaction transaction = (getActivity()).getSupportFragmentManager().beginTransaction();
                 selectedFragment.setArguments(bundle);
-                transaction.replace(R.id.frame_layout, selectedFragment);
-                transaction.addToBackStack("new_account");
+               transaction.replace(R.id.frame_layout, selectedFragment);
+                transaction.addToBackStack("kyc_details");
                 transaction.commit();
+
+
+
+
+
 
             }
         });
@@ -113,50 +128,41 @@ public class Bank_Account_Details_Fragment extends Fragment {
 
 
 
-//        dataModels= new ArrayList<>();
-//        for (int i=0;i<=4;i++){
-//            dataModels.add(new Bank_Account_Bean("Apple Pie", "Android 1.0"));
-//        }
-
-
-        mAdapter = new Bank_Account_Details_Adapter(bank_account_ArrayList,getActivity());
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
+        mAdapter = new Complete_KYC_Adapter(kyc_beanArrayList,getActivity());
+        final RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(mAdapter);
 
 
-
         try{
 
-            JSONObject jsonObject = new JSONObject();
+            JSONObject  jsonObject = new JSONObject();
+            jsonObject.put("UserId",sessionManager.getRegId("userId"));
 
-             jsonObject.put("UserId",sessionManager.getRegId("userId"));
 
-             Crop_Post.crop_posting(getActivity(), Urls.Get_Bank_Details, jsonObject, new VoleyJsonObjectCallback() {
+            Crop_Post.crop_posting(getActivity(), Urls.KYC_Details, jsonObject, new VoleyJsonObjectCallback() {
                 @Override
                 public void onSuccessResponse(JSONObject result) {
-                    System.out.println("111111bbbbbbbbbbbbb" + result);
+                    System.out.println("11111kkkk" + result);
                     try{
-                        bank_account_ArrayList.clear();
+                        kyc_beanArrayList.clear();
 
+                        kyc_array = result.getJSONArray("UserKYCDetails");
 
-                        bank_array = result.getJSONArray("UserBankDetails");
-                        for(int i = 0;i<bank_array.length();i++){
-                            JSONObject jsonObject1 = bank_array.getJSONObject(i);
-
-                            bank_account_bean = new Bank_Account_Bean(jsonObject1.getString("BankName"),jsonObject1.getString("AccountHolderName"),jsonObject1.getString("AccountNumber"),jsonObject1.getString("IFSCCode"),jsonObject1.getString("Id"),false);
-                            bank_account_ArrayList.add(bank_account_bean);
+                        for(int i = 0;i<kyc_array.length();i++){
+                            JSONObject jsonObject1 = kyc_array.getJSONObject(i);
+                            kyc_bean = new Kyc_Bean(jsonObject1.getString("DocumentType"),jsonObject1.getString("DocumentNumber"),jsonObject1.getString("NameAsPerID"),jsonObject1.getString("Id"));
+                            kyc_beanArrayList.add(kyc_bean);
 
                         }
 
-                          mAdapter.notifyDataSetChanged();
+                        mAdapter.notifyDataSetChanged();
 
 
                     }catch (Exception e){
                         e.printStackTrace();
                     }
-
 
                 }
             });

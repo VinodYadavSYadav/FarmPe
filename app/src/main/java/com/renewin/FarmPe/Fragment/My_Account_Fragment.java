@@ -1,27 +1,34 @@
-package com.renewin.FarmPe.Fragment;
+package com.renewin.Xohri.Fragment;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.renewin.FarmPe.R;
-import com.renewin.FarmPe.SessionManager;
-import com.renewin.FarmPe.Urls;
-import com.renewin.FarmPe.Volly_class.Crop_Post;
-import com.renewin.FarmPe.Volly_class.VoleyJsonObjectCallback;
+import com.renewin.Xohri.R;
+import com.renewin.Xohri.SessionManager;
+import com.renewin.Xohri.Urls;
+import com.renewin.Xohri.Utils;
+import com.renewin.Xohri.Volly_class.Crop_Post;
+import com.renewin.Xohri.Volly_class.VoleyJsonObjectCallback;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -57,12 +64,6 @@ public class My_Account_Fragment extends Fragment {
 
 
 
-
-
-
-
-    ////////////
-
     public static My_Account_Fragment newInstance() {
         My_Account_Fragment fragment = new My_Account_Fragment();
         return fragment;
@@ -76,45 +77,48 @@ public class My_Account_Fragment extends Fragment {
 
 
 
-    //    logout=view.findViewById(R.id.logout);
+     logout=view.findViewById(R.id.logout1);
         username_1 =view.findViewById(R.id.name1);
         profile_image =view.findViewById(R.id.propic);
-       // verify_kyc =view.findViewById(R.id.verify_kyc);
+        verify_kyc =view.findViewById(R.id.verify_kyc);
       //  lang_change =view.findViewById(R.id.lang_change);
        //lang_setting=view.findViewById(R.id.lang_setting);
         refer_earn=view.findViewById(R.id.list_earn);
         user_mobil=view.findViewById(R.id.phone_numb);
-       bank_account=view.findViewById(R.id.bank_acc);
-       // store_transport=view.findViewById(R.id.store_transport);
-      //  transactions=view.findViewById(R.id.transatn_1);
+       bank_account=view.findViewById(R.id.bnk_accnt);
+       store_transport=view.findViewById(R.id.store_transport);
+        transactions=view.findViewById(R.id.transatn_1);
 //        policies=view.findViewById(R.id.policies);
 //        help_support=view.findViewById(R.id.help);
         select_address =view.findViewById(R.id.your_address1);
-        //about_us =view.findViewById(R.id.about);
-       // change_password =view.findViewById(R.id.chng_password);
+        about_us =view.findViewById(R.id.about);
+        change_password =view.findViewById(R.id.chng_password);
         scroll_view =view.findViewById(R.id.scroll_view);
 
 
 
 
 
-//        view.setFocusableInTouchMode(true);
-//        view.requestFocus();
-//        view.setOnKeyListener(new View.OnKeyListener() {
-//            @Override
-//            public boolean onKey(View v, int keyCode, KeyEvent event) {
-//                if( keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP) {
-//                    // getFragmentManager().popBackStack("farmers", FragmentManager.POP_BACK_STACK_INCLUSIVE);
-//                    Intent intent = new Intent(getActivity(), Home_Page_WithBottomMenu_Activity.class);
-//                    intent.putExtra("nav_switch","HOME");
-//                    startActivity(intent);
-//
-//
-//                    return true;
-//                }
-//                return false;
-//            }
-//        });
+       view.setFocusableInTouchMode(true);
+       view.requestFocus();
+       view.setOnKeyListener(new View.OnKeyListener() {
+           @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if( keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP) {
+                   // getFragmentManager().popBackStack("farmers", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                   /* Intent intent = new Intent(getActivity(), Home_Page_WithBottomMenu_Activity.class);
+                    intent.putExtra("nav_switch","HOME");
+                    startActivity(intent);*/
+                    selectedFragment = HomeMenuFragment.newInstance();
+                    FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                    transaction.replace(R.id.frame_layout, selectedFragment);
+                    transaction.commit();
+
+                    return true;
+               }
+                return false;
+           }
+        });
 
 
       //  tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.ic_tomato).setText("Vegitables"));
@@ -139,8 +143,11 @@ public class My_Account_Fragment extends Fragment {
 
         sessionManager=new SessionManager(getActivity());
 
-       // username_1.setText(sessionManager.getRegId("name"));
-      //  user_mobil.setText(sessionManager.getRegId("phone"));
+        username_1.setText(sessionManager.getRegId("name"));
+        System.out.println("111111111111nnnn" + sessionManager.getRegId("name") );
+
+        user_mobil.setText(sessionManager.getRegId("phone"));
+        System.out.println("111111111111pppp" + sessionManager.getRegId("phone") );
         //lang_setting.setText(sessionManager.getRegId("language"));
 
 
@@ -159,6 +166,17 @@ public class My_Account_Fragment extends Fragment {
         });
 
 
+        about_us.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                selectedFragment = About_Us_TabFragment.newInstance();
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.frame_layout, selectedFragment);
+                transaction.commit();
+
+            }
+        });
+
 
 //        username_1.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -170,74 +188,264 @@ public class My_Account_Fragment extends Fragment {
 //            }
 //        });
 
-//        change_password.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
+        change_password.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                selectedFragment = Change_Password_Fragment.newInstance();
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.frame_layout, selectedFragment);
+                transaction.commit();
+
 //                Intent intent=new Intent(getActivity(), Home_Page_Without_BottomMenu_Activity.class);
 //                intent.putExtra("CAT_NAV","CHANGE_PASS");
 //                startActivity(intent);
-//            }
-//        });
+            }
+        });
 
 
-//        logout.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(final View view) {
-//
-//                final TextView yes1,no1;
-//                System.out.println("aaaaaaaaaaaa");
-//                final Dialog dialog = new Dialog(getContext());
-//                dialog.setContentView(R.layout.logout_layout);
-//                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-//                dialog.setCancelable(Utils.setCancleable);
-//
-//
-//                no1 =  dialog.findViewById(R.id.no_1);
-//                no1.setOnClickListener(new View.OnClickListener() {
-//
-//                    @Override
-//                    public void onClick(View v) {
-//                        dialog.dismiss();
-//                    }
-//                });
-//
-//                yes1 =  dialog.findViewById(R.id.yes_1);
-//                yes1.setOnClickListener(new View.OnClickListener() {
-//
-//                    @Override
-//                    public void onClick(View v) {
-//                        sessionManager.logoutUser();
-//                        getActivity().finish();
-//
-//                        dialog.dismiss();
-//                    }
-//                });
-//
-//                ImageView image = dialog.findViewById(R.id.close_popup);
-//                image.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        dialog.dismiss();
-//                    }
-//                });
-//
-//
-//                dialog.show();
-//
-//            }
-//        });
+        verify_kyc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                try{
+
+                    JSONObject  jsonObject = new JSONObject();
+                    jsonObject.put("UserId",sessionManager.getRegId("userId"));
+
+
+                    Crop_Post.crop_posting(getActivity(), Urls.KYC_Details, jsonObject, new VoleyJsonObjectCallback() {
+                        @Override
+                        public void onSuccessResponse(JSONObject result) {
+                            System.out.println("11111kkkk" + result);
+                            try{
+                                kyc_array = result.getJSONArray("UserKYCDetails");
+
+                                if(kyc_array.length()==0){
+                                          /*  Intent i=new Intent(activity, Home_Page_Without_BottomMenu_Activity.class);
+                                            i.putExtra("CAT_NAV","ADD_NEW_KYC");
+                                            activity.startActivity(i);*/
+
+
+                                    selectedFragment = Add_KYC_Details_Fragment.newInstance();
+                                    FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                                    transaction.replace(R.id.frame_layout, selectedFragment);
+                                    transaction.addToBackStack("kyc_details");
+                                    transaction.commit();
+
+
+                                }else{
+
+
+                                    selectedFragment = Complete_KYC_Fragment.newInstance();
+                                    FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                                    transaction.replace(R.id.frame_layout, selectedFragment);
+                                    transaction.addToBackStack("kyc_details");
+                                    transaction.commit();
+
+
+                                }
+
+
+                            }catch (Exception e){
+                                e.printStackTrace();
+                            }
+
+                        }
+                    });
+
+
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+
+
+            }
+        });
+
+        store_transport.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                try{
+
+                    JSONObject jsonObject1 = new JSONObject();
+
+                    jsonObject1.put("CreatedBy",sessionManager.getRegId("userId"));
+
+                    Crop_Post.crop_posting(getActivity(), Urls.GetTransportationDetails, jsonObject1, new VoleyJsonObjectCallback() {
+                        @Override
+                        public void onSuccessResponse(JSONObject result) {
+                            System.out.println("abcdanvvvvbbbmnn" + result);
+                            try{
+                                trans_array= result.getJSONArray("TransportationLists");
+                                if(trans_array.length() == 0){
+                                    Bundle bundle=new Bundle();
+                                    bundle.putString("TransportationType","");
+                                    bundle.putString("VehicleNumber","");
+                                    bundle.putString("OwnerName","");
+                                    bundle.putString("Id","");
+                                    bundle.putString("ADD_NTRANSPOTATION", "MYACC");
+
+// bundle.putString("ADD_NBANK","MYACC");
+                                          /*  Intent i=new Intent(activity, Home_Page_Without_BottomMenu_Activity.class);
+                                            i.putExtra("CAT_NAV","NEW_TRANSPORTATION");
+                                            activity.startActivity(i);*/
+                                    selectedFragment = Add_Transportation_Details_Fragment.newInstance();
+                                    FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                                    selectedFragment.setArguments(bundle);
+                                    transaction.replace(R.id.frame_layout, selectedFragment);
+                                    transaction.commit();
+
+                                }else {
+
+                                    selectedFragment = Transportation_Fragment.newInstance();
+                                    FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                                    transaction.replace(R.id.frame_layout, selectedFragment);
+                                    transaction.commit();
+                                }
+
+
+                            }catch (Exception e){
+                                e.printStackTrace();
+                            }
+
+                        }
+                    });
+
+
+
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        transactions.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle bundle = new Bundle();
+                bundle.putString("Stat","all_transaction");
+                bundle.putString("T_Stat","30days");
+
+                selectedFragment = Transaction_Fragment.newInstance();
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.frame_layout, selectedFragment);
+                selectedFragment.setArguments(bundle);
+                transaction.addToBackStack("transaction");
+                transaction.commit();
+
+            }
+        });
+
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View view) {
+
+                final TextView yes1,no1;
+                System.out.println("aaaaaaaaaaaa");
+                final Dialog dialog = new Dialog(getContext());
+                dialog.setContentView(R.layout.logout_layout);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.setCancelable(Utils.setCancleable);
+
+
+                no1 =  dialog.findViewById(R.id.no_1);
+                no1.setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+
+                yes1 =  dialog.findViewById(R.id.yes_1);
+                yes1.setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        sessionManager.logoutUser();
+                        getActivity().finish();
+
+                        dialog.dismiss();
+                    }
+                });
+
+                ImageView image = dialog.findViewById(R.id.close_popup);
+                image.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+
+
+                dialog.show();
+
+            }
+        });
 
 
         bank_account.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+                try{
 
-                selectedFragment = Bank_Account_Details_Fragment.newInstance();
-                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.frame_layout_home, selectedFragment);
-                transaction.commit();
+                    JSONObject jsonObject = new JSONObject();
+
+                    jsonObject.put("UserId",sessionManager.getRegId("userId"));
+
+                    Crop_Post.crop_posting(getActivity(), Urls.Get_Bank_Details, jsonObject, new VoleyJsonObjectCallback() {
+                        @Override
+                        public void onSuccessResponse(JSONObject result) {
+                            System.out.println("111111bbbbbbbbbbbbbbbbbbbb" + result);
+                            try{
+                                bank_aray= result.getJSONArray("UserBankDetails");
+                                if(bank_aray.length() == 0){
+
+                                          /*  Intent intent=new Intent(activity, Home_Page_Without_BottomMenu_Activity.class);
+                                            intent.putExtra("CAT_NAV","ADD_NEW");
+                                            activity.startActivity(intent);*/
+
+                                    Bundle bundle=new Bundle();
+                                    bundle.putString("Bank_name","");
+                                    bundle.putString("Account_number","");
+                                    bundle.putString("Ifsc_Code","");
+                                    bundle.putString("Acc_name","");
+                                    bundle.putString("BankId","");
+                                    bundle.putString("ADD_NBANK","MYACC");
+
+
+                                    selectedFragment = Add_New_Bank_Details_Fragment.newInstance();
+                                    FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                                    selectedFragment.setArguments(bundle);
+                                    transaction.replace(R.id.frame_layout, selectedFragment);
+                                    transaction.addToBackStack("my_account");
+                                    transaction.commit();
+
+
+                                }else {
+
+                                    selectedFragment = Bank_Account_Details_Fragment.newInstance();
+                                    FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                                    transaction.replace(R.id.frame_layout, selectedFragment);
+                                    transaction.commit();
+                                }
+
+                            }catch (Exception e){
+                                e.printStackTrace();
+                            }
+                        }
+                    });
+
+
+
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
 
 
             }
@@ -250,12 +458,11 @@ public class My_Account_Fragment extends Fragment {
             public void onClick(View v) {
                 selectedFragment = WalletFragment.newInstance();
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.frame_layout_home, selectedFragment);
+                transaction.replace(R.id.frame_layout, selectedFragment);
                 transaction.addToBackStack("menu");
                 transaction.commit();
             }
         });
-
 
 
 
@@ -264,7 +471,7 @@ public class My_Account_Fragment extends Fragment {
             public void onClick(View v) {
                 selectedFragment = ReferAndEarncopy.newInstance();
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.frame_layout_home, selectedFragment);
+                transaction.replace(R.id.frame_layout, selectedFragment);
                 transaction.addToBackStack("menu");
                 transaction.commit();
             }
@@ -278,7 +485,7 @@ public class My_Account_Fragment extends Fragment {
 
                 selectedFragment = You_Address_Fragment.newInstance();
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.first_full_frame, selectedFragment);
+                transaction.replace(R.id.frame_layout, selectedFragment);
                 transaction.addToBackStack("you_c");
                 transaction.commit();
 

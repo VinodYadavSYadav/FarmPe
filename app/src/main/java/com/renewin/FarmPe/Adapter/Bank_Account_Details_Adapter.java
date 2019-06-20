@@ -215,7 +215,7 @@ public class Bank_Account_Details_Adapter extends RecyclerView.Adapter<Bank_Acco
 
                 selectedFragment = Add_New_Bank_Details_Fragment.newInstance();
                 FragmentTransaction transaction = ((FragmentActivity) activity).getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.frame_layout_home, selectedFragment);
+                transaction.replace(R.id.frame_layout, selectedFragment);
                 selectedFragment.setArguments(bundle);
                 transaction.commit();
 

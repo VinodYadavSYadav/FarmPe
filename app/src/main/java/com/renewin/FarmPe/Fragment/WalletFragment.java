@@ -43,7 +43,7 @@ public class WalletFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.wallet, container, false);
 
-        getActivity().getActionBar().hide();
+        //getActivity().getActionBar().hide();
 
 
         back_feed= view.findViewById(R.id.back_feed);
@@ -85,7 +85,7 @@ public class WalletFragment extends Fragment {
             public void onClick(View v) {
                 selectedFragment = My_Account_Fragment.newInstance();
                 FragmentTransaction transaction4 = getActivity().getSupportFragmentManager().beginTransaction();
-                transaction4.replace(R.id.frame_layout_home, selectedFragment);
+                transaction4.replace(R.id.frame_layout, selectedFragment);
                 transaction4.commit();
             }
         });

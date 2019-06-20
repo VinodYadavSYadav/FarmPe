@@ -26,6 +26,97 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:orientation="horizontal"
+                android:layout_weight="15"
+                android:layout_marginTop="5dp"
+                android:background="#ffffff"
+                android:weightSum="100"
+                >
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_weight="30"
+                    android:gravity="center"
+                    >
+
+                    <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/propic"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_centerInParent="true"
+                        android:layout_gravity="center_horizontal|center"
+                        android:background="@drawable/ic_farmer_large"
+                        android:baselineAligned="false"/>
+
+                </LinearLayout>
+
+
+
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_weight="55"
+                    android:layout_marginLeft="5dp"
+                    >
+
+
+                    <TextView
+                        android:id="@+id/name1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textStyle="bold"
+                        android:padding="6dp"
+                        android:fontFamily="@font/segoeui"
+                        android:textColor="#000"
+                        android:textSize="14dp"/>
+
+
+
+
+
+                    <TextView
+                        android:id="@+id/phone_numb"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:fontFamily="@font/segoeui"
+                        android:textColor="#000"
+                        android:textSize="14dp"
+
+                        />
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/edit_link"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="15"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="25dp"
+                        android:layout_marginRight="10dp"
+                        android:src="@drawable/ic_right_angle_arrow"/>
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+          <!--  <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:orientation="horizontal"
                 android:layout_weight="30"
                 android:layout_marginTop="10dp"
                 android:background="#ffffff"
@@ -82,14 +173,14 @@
                         />
 
 
-                    <!--<ImageView-->
-                    <!--android:id="@+id/arrow_icon"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:src="@drawable/ic_right_angle_arrow"-->
-                    <!--android:layout_gravity="right"-->
-                    <!--android:layout_marginRight="20dp"-->
-                    <!--/>-->
+                    &lt;!&ndash;<ImageView&ndash;&gt;
+                    &lt;!&ndash;android:id="@+id/arrow_icon"&ndash;&gt;
+                    &lt;!&ndash;android:layout_width="wrap_content"&ndash;&gt;
+                    &lt;!&ndash;android:layout_height="wrap_content"&ndash;&gt;
+                    &lt;!&ndash;android:src="@drawable/ic_right_angle_arrow"&ndash;&gt;
+                    &lt;!&ndash;android:layout_gravity="right"&ndash;&gt;
+                    &lt;!&ndash;android:layout_marginRight="20dp"&ndash;&gt;
+                    &lt;!&ndash;/>&ndash;&gt;
 
 
 
@@ -109,38 +200,192 @@
 
                 </LinearLayout>
 
-            </LinearLayout>
+            </LinearLayout>-->
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="3dp"
                 android:background="#dcdcdc"
                 android:layout_marginTop="10dp"
-
                 />
 
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="70"
-            android:orientation="vertical"
-            android:weightSum="100"
-            android:background="#fff"
-            >
 
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="20dp"
-                android:fontFamily="@font/segoeui"
-                android:gravity="start"
-                android:text="Your Profile"
-                android:textColor="#000000"
-                android:textSize="18dp"
-                android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="#fff"
+                    >
+
+
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="20dp"
+                        android:fontFamily="@font/segoeui"
+                        android:gravity="start"
+                        android:text="Your Profile"
+                        android:textColor="#000000"
+                        android:textSize="18dp"
+                        android:textStyle="bold" />
+
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginTop="12dp"
+
+                        >
+
+                        <LinearLayout
+                            android:id="@+id/store_transport"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginHorizontal="15dp"
+                            android:paddingVertical="5dp"
+                            >
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_transportation"
+                                android:layout_gravity="center_vertical"
+                                />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:layout_marginLeft="20dp"
+                                >
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/segoeui"
+                                    android:paddingVertical="20dp"
+                                    android:text="Transportation"
+                                    android:textSize="14dp" />
+
+
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="#dcdcdc"
+                            android:layout_marginLeft="45dp"
+                            />
+
+                        <LinearLayout
+                            android:id="@+id/your_address1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginHorizontal="15dp"
+                            android:paddingVertical="5dp"
+
+                            >
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_address"
+                                android:layout_gravity="center_vertical"
+                                />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:layout_marginLeft="20dp"
+                                >
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/segoeui"
+                                    android:paddingVertical="20dp"
+                                    android:text="Your Address"
+                                    android:textSize="14dp" />
+
+
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="#dcdcdc"
+                            android:layout_marginLeft="45dp"
+                            />
+
+
+                        <LinearLayout
+                            android:id="@+id/list_earn"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginHorizontal="15dp"
+                            android:paddingVertical="5dp"
+
+                            >
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical"
+                                android:src="@drawable/ic_salary" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="20dp"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/segoeui"
+                                    android:paddingVertical="20dp"
+                                    android:text="Refer N Earn"
+                                    android:textSize="14dp" />
+
+
+                            </LinearLayout>
+
+
+
+
+                        </LinearLayout>
+
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="3dp"
+                            android:layout_marginTop="10dp"
+                            android:background="#dcdcdc"
+
+                            />
+
+
+
+                    </LinearLayout>
+
+
+
+                </LinearLayout>
 
 
 
@@ -148,232 +393,883 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginTop="12dp"
-
+                android:background="#fff"
                 >
 
+
+
+
                 <LinearLayout
-                    android:id="@+id/your_address1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginHorizontal="15dp"
-                    android:paddingVertical="5dp"
+                    android:orientation="vertical"
+                    android:layout_marginTop="12dp"
+
                     >
-                    <ImageView
+
+
+
+
+
+
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/ic_address"
-                        android:layout_gravity="center_vertical"
+                        android:fontFamily="@font/segoeui"
+                        android:gravity="start"
+                        android:textStyle="bold"
+                        android:text="Payments"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginLeft="10dp"
+                        android:textColor="#000000"
+                        android:textSize="18dp" />
+
+
+
+
+                    <LinearLayout
+                        android:id="@+id/bnk_accnt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginHorizontal="15dp"
+                        android:paddingVertical="5dp"
+                        >
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_bank_account"
+                            android:layout_gravity="center_vertical"
+                            />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_marginLeft="20dp"
+                            >
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/segoeui"
+                                android:paddingVertical="20dp"
+                                android:text="Bank Account "
+                                android:textSize="14dp" />
+
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#dcdcdc"
+                        android:layout_marginLeft="45dp"
+                        />
+
+
+
+
+
+
+
+                    <LinearLayout
+                        android:id="@+id/refer_earn"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginHorizontal="15dp"
+                        android:paddingVertical="5dp"
+
+                        >
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_rupees"
+                            android:layout_gravity="center_vertical"
+                            />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_marginLeft="20dp"
+                            >
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/segoeui"
+                                android:paddingVertical="20dp"
+                                android:text="Add Money"
+                                android:textSize="14dp" />
+
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#dcdcdc"
+                        android:layout_marginLeft="45dp"
+                        />
+
+                </LinearLayout>
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+
+                    >
+
+                    <LinearLayout
+                        android:id="@+id/transatn_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingVertical="5dp"
+                        android:layout_marginHorizontal="15dp"
+
+                        >
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_transaction_"
+                            android:layout_gravity="center_vertical"
+                            />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:weightSum="100"
+                            android:layout_marginLeft="20dp"
+                            >
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="70"
+                                android:fontFamily="@font/segoeui"
+                                android:paddingVertical="20dp"
+                                android:text="Transaction"
+                                android:textSize="14dp" />
+
+
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#dcdcdc"
+                        android:layout_marginLeft="45dp"
                         />
 
                     <LinearLayout
+                        android:id="@+id/wallets"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_marginLeft="20dp"
-                        >
+                        android:orientation="horizontal"
+                        android:layout_marginHorizontal="15dp"
+                        android:paddingVertical="5dp"
 
-                        <TextView
+                        >
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_wallet"
+                            android:layout_gravity="center_vertical"
+                            />
+
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/segoeui"
-                            android:paddingVertical="20dp"
-                            android:text="Your Address"
-                            android:textSize="14dp" />
+                            android:orientation="vertical"
+                            android:layout_marginLeft="20dp"
+                            >
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/segoeui"
+                                android:paddingVertical="20dp"
+                                android:text="Wallet "
+                                android:textSize="14dp" />
+
+
+                        </LinearLayout>
 
 
                     </LinearLayout>
 
-
-                </LinearLayout>
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="#dcdcdc"
-                    android:layout_marginLeft="45dp"
-                    />
-
-
-
-                <LinearLayout
-                    android:id="@+id/bank_acc"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginHorizontal="15dp"
-                    android:paddingVertical="5dp"
-                    >
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_bank_account"
-                        android:layout_gravity="center_vertical"
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#dcdcdc"
+                        android:layout_marginLeft="45dp"
                         />
 
+
                     <LinearLayout
+                        android:id="@+id/verify_kyc"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_marginLeft="20dp"
-                        >
+                        android:orientation="horizontal"
+                        android:layout_marginHorizontal="15dp"
+                        android:paddingVertical="5dp"
 
-                        <TextView
+                        >
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_kyc"
+                            android:layout_gravity="center_vertical"
+                            />
+
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:fontFamily="@font/segoeui"
-                            android:paddingVertical="20dp"
-                            android:text="Bank Account"
-                            android:textSize="14dp" />
+                            android:orientation="vertical"
+                            android:layout_marginLeft="20dp"
+                            >
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/segoeui"
+                                android:paddingVertical="20dp"
+                                android:text="Update KYC"
+                                android:textSize="14dp" />
+
+
+                        </LinearLayout>
 
 
                     </LinearLayout>
 
-
-                </LinearLayout>
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="#dcdcdc"
-                    android:layout_marginLeft="45dp"
-                    />
-
-
-
-
-                <LinearLayout
-                    android:id="@+id/wallets"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginHorizontal="15dp"
-                    android:paddingVertical="5dp"
-                    >
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_wallet"
-                        android:layout_gravity="center_vertical"
-                        />
-
-                    <LinearLayout
+                    <View
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_marginLeft="20dp"
-                        >
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/segoeui"
-                            android:paddingVertical="20dp"
-                            android:text="Wallet"
-                            android:textSize="14dp" />
+                        android:layout_height="3dp"
+                        android:layout_marginTop="10dp"
+                        android:background="#dcdcdc"/>
 
 
-                    </LinearLayout>
+
+
 
 
                 </LinearLayout>
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="#dcdcdc"
-                    android:layout_marginLeft="45dp"
-                    />
-
-                <LinearLayout
-                    android:id="@+id/list_earn"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginHorizontal="15dp"
-                    android:paddingVertical="5dp"
-                    >
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_salary"
-                        android:layout_gravity="center_vertical"
-                        />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_marginLeft="20dp"
-                        >
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/segoeui"
-                            android:paddingVertical="20dp"
-                            android:text="Refer N Earn"
-                            android:textSize="14dp" />
-
-
-                    </LinearLayout>
-
-
-                </LinearLayout>
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="#dcdcdc"
-                    android:layout_marginLeft="45dp"
-                    />
-
-                <LinearLayout
-                    android:id="@+id/store_transport"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginHorizontal="15dp"
-                    android:paddingVertical="5dp"
-                    >
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:src="@drawable/ic_wallet" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_marginLeft="20dp"
-                        >
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/segoeui"
-                            android:paddingVertical="20dp"
-                            android:text="Transportation"
-                            android:textSize="14dp" />
-
-
-                    </LinearLayout>
-
-
-                </LinearLayout>
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="#dcdcdc"
-                    android:layout_marginLeft="45dp"
-                    />
-
 
 
             </LinearLayout>
 
 
 
-        </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="#fff"
+                >
+
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    >
+
+
+
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/segoeui"
+                        android:gravity="start"
+                        android:textStyle="bold"
+                        android:text="Settings"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginLeft="10dp"
+                        android:textColor="#000000"
+                        android:textSize="18dp" />
+
+
+
+
+                    <LinearLayout
+                        android:id="@+id/lang_change"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginHorizontal="15dp"
+                        android:paddingVertical="5dp"
+                        >
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_language"
+                            android:layout_gravity="center_vertical"
+                            />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_marginLeft="20dp"
+                            >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/segoeui"
+                                android:paddingVertical="20dp"
+                                android:text="Change Language"
+                                android:textSize="14dp" />
+
+                            <TextView
+                                android:id="@+id/lang_setting"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/segoeui"
+                                android:paddingVertical="20dp"
+                                android:text="English"
+                                android:layout_marginRight="12dp"
+                                android:gravity="right"
+                                android:textColor="@color/navy_blue"
+                                android:textSize="14dp" />
+
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#dcdcdc"
+                        android:layout_marginLeft="45dp"
+                        />
+
+
+
+                    <LinearLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginHorizontal="15dp"
+                        android:paddingVertical="5dp"
+                        >
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_notification"
+                            android:layout_gravity="center_vertical"
+                            />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_marginLeft="20dp"
+                            >
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/segoeui"
+                                android:paddingVertical="15dp"
+                                android:text="Notification"
+                                android:textSize="14dp" />
+
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#dcdcdc"
+                        android:layout_marginLeft="45dp"
+                        />
+
+
+
+
+                    <LinearLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginHorizontal="15dp"
+                        android:paddingVertical="5dp"
+                        >
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_change_password"
+                            android:layout_gravity="center_vertical"
+                            />
+
+                        <LinearLayout
+                            android:id="@+id/chng_password"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_marginLeft="20dp"
+                            >
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/segoeui"
+                                android:paddingVertical="20dp"
+                                android:text="Change Password"
+                                android:textSize="14dp" />
+
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#dcdcdc"
+                        android:layout_marginLeft="45dp"
+                        />
+
+
+
+
+
+                    <LinearLayout
+                        android:id="@+id/help_supp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginHorizontal="15dp"
+                        android:paddingVertical="5dp"
+                        >
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_help_support"
+                            android:layout_gravity="center_vertical"
+                            />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_marginLeft="20dp"
+                            >
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/segoeui"
+                                android:paddingVertical="20dp"
+                                android:text="@string/Help_Support"
+                                android:textSize="14dp" />
+
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#dcdcdc"
+                        android:layout_marginLeft="45dp"
+                        />
+
+                    <LinearLayout
+                        android:id="@+id/about"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginHorizontal="15dp"
+                        android:paddingVertical="5dp"
+                        >
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_aboutus"
+                            android:layout_gravity="center_vertical"
+                            />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_marginLeft="20dp"
+                            >
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/segoeui"
+                                android:paddingVertical="15dp"
+                                android:text="About Us"
+                                android:textSize="14dp" />
+
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+
+
+
+
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="#dcdcdc"
+                        android:layout_marginLeft="45dp"
+                        />
+
+
+
+                    <LinearLayout
+                        android:id="@+id/logout1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginHorizontal="15dp"
+                        android:paddingVertical="5dp"
+                        >
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_logout"
+                            android:layout_gravity="center_vertical"
+                            />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_marginLeft="20dp"
+                            >
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/segoeui"
+                                android:paddingVertical="20dp"
+                                android:text="Logout"
+                                android:textSize="14dp" />
+
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
+            <!-- <LinearLayout
+                 android:layout_width="match_parent"
+                 android:layout_height="0dp"
+                 android:layout_weight="70"
+                 android:orientation="vertical"
+                 android:weightSum="100"
+                 android:background="#fff"
+                 >
+
+
+                 <TextView
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_marginLeft="10dp"
+                     android:layout_marginTop="20dp"
+                     android:fontFamily="@font/segoeui"
+                     android:gravity="start"
+                     android:text="Your Profile"
+                     android:textColor="#000000"
+                     android:textSize="18dp"
+                     android:textStyle="bold" />
+
+
+
+                 <LinearLayout
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:orientation="vertical"
+                     android:layout_marginTop="12dp"
+
+                     >
+
+                     <LinearLayout
+                         android:id="@+id/your_address1"
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:orientation="horizontal"
+                         android:layout_marginHorizontal="15dp"
+                         android:paddingVertical="5dp"
+                         >
+                         <ImageView
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content"
+                             android:src="@drawable/ic_address"
+                             android:layout_gravity="center_vertical"
+                             />
+
+                         <LinearLayout
+                             android:layout_width="match_parent"
+                             android:layout_height="wrap_content"
+                             android:orientation="vertical"
+                             android:layout_marginLeft="20dp"
+                             >
+
+                             <TextView
+                                 android:layout_width="match_parent"
+                                 android:layout_height="wrap_content"
+                                 android:fontFamily="@font/segoeui"
+                                 android:paddingVertical="20dp"
+                                 android:text="Your Address"
+                                 android:textSize="14dp" />
+
+
+                         </LinearLayout>
+
+
+                     </LinearLayout>
+                     <View
+                         android:layout_width="match_parent"
+                         android:layout_height="1dp"
+                         android:background="#dcdcdc"
+                         android:layout_marginLeft="45dp"
+                         />
+
+
+
+                     <LinearLayout
+                         android:id="@+id/bank_acc"
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:orientation="horizontal"
+                         android:layout_marginHorizontal="15dp"
+                         android:paddingVertical="5dp"
+                         >
+                         <ImageView
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content"
+                             android:src="@drawable/ic_bank_account"
+                             android:layout_gravity="center_vertical"
+                             />
+
+                         <LinearLayout
+                             android:layout_width="match_parent"
+                             android:layout_height="wrap_content"
+                             android:orientation="vertical"
+                             android:layout_marginLeft="20dp"
+                             >
+
+                             <TextView
+                                 android:layout_width="match_parent"
+                                 android:layout_height="wrap_content"
+                                 android:fontFamily="@font/segoeui"
+                                 android:paddingVertical="20dp"
+                                 android:text="Bank Account"
+                                 android:textSize="14dp" />
+
+
+                         </LinearLayout>
+
+
+                     </LinearLayout>
+                     <View
+                         android:layout_width="match_parent"
+                         android:layout_height="1dp"
+                         android:background="#dcdcdc"
+                         android:layout_marginLeft="45dp"
+                         />
+
+
+
+
+                     <LinearLayout
+                         android:id="@+id/wallets"
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:orientation="horizontal"
+                         android:layout_marginHorizontal="15dp"
+                         android:paddingVertical="5dp"
+                         >
+                         <ImageView
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content"
+                             android:src="@drawable/ic_wallet"
+                             android:layout_gravity="center_vertical"
+                             />
+
+                         <LinearLayout
+                             android:layout_width="match_parent"
+                             android:layout_height="wrap_content"
+                             android:orientation="vertical"
+                             android:layout_marginLeft="20dp"
+                             >
+
+                             <TextView
+                                 android:layout_width="match_parent"
+                                 android:layout_height="wrap_content"
+                                 android:fontFamily="@font/segoeui"
+                                 android:paddingVertical="20dp"
+                                 android:text="Wallet"
+                                 android:textSize="14dp" />
+
+
+                         </LinearLayout>
+
+
+                     </LinearLayout>
+                     <View
+                         android:layout_width="match_parent"
+                         android:layout_height="1dp"
+                         android:background="#dcdcdc"
+                         android:layout_marginLeft="45dp"
+                         />
+
+                     <LinearLayout
+                         android:id="@+id/list_earn"
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:orientation="horizontal"
+                         android:layout_marginHorizontal="15dp"
+                         android:paddingVertical="5dp"
+                         >
+                         <ImageView
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content"
+                             android:src="@drawable/ic_salary"
+                             android:layout_gravity="center_vertical"
+                             />
+
+                         <LinearLayout
+                             android:layout_width="match_parent"
+                             android:layout_height="wrap_content"
+                             android:orientation="vertical"
+                             android:layout_marginLeft="20dp"
+                             >
+
+                             <TextView
+                                 android:layout_width="match_parent"
+                                 android:layout_height="wrap_content"
+                                 android:fontFamily="@font/segoeui"
+                                 android:paddingVertical="20dp"
+                                 android:text="Refer N Earn"
+                                 android:textSize="14dp" />
+
+
+                         </LinearLayout>
+
+
+                     </LinearLayout>
+                     <View
+                         android:layout_width="match_parent"
+                         android:layout_height="1dp"
+                         android:background="#dcdcdc"
+                         android:layout_marginLeft="45dp"
+                         />
+
+                     <LinearLayout
+                         android:id="@+id/store_transport"
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:orientation="horizontal"
+                         android:layout_marginHorizontal="15dp"
+                         android:paddingVertical="5dp"
+                         >
+
+                         <ImageView
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content"
+                             android:layout_gravity="center_vertical"
+                             android:src="@drawable/ic_wallet" />
+
+                         <LinearLayout
+                             android:layout_width="match_parent"
+                             android:layout_height="wrap_content"
+                             android:orientation="vertical"
+                             android:layout_marginLeft="20dp"
+                             >
+
+                             <TextView
+                                 android:layout_width="match_parent"
+                                 android:layout_height="wrap_content"
+                                 android:fontFamily="@font/segoeui"
+                                 android:paddingVertical="20dp"
+                                 android:text="Transportation"
+                                 android:textSize="14dp" />
+
+
+                         </LinearLayout>
+
+
+                     </LinearLayout>
+                     <View
+                         android:layout_width="match_parent"
+                         android:layout_height="1dp"
+                         android:background="#dcdcdc"
+                         android:layout_marginLeft="45dp"
+                         />
+
+
+
+                 </LinearLayout>
+
+
+
+             </LinearLayout>-->
 
         <!--<LinearLayout-->
                 <!--android:layout_width="match_parent"-->
