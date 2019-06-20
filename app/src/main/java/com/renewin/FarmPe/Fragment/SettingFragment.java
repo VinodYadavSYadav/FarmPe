@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.RecyclerView;
@@ -48,7 +49,7 @@ public class SettingFragment extends Fragment {
         policy=view.findViewById(R.id.policy);
         notification=view.findViewById(R.id.notification);
         acc_info=view.findViewById(R.id.acc_info);
-        your_address=view.findViewById(R.id.your_address);
+        your_address=view.findViewById(R.id.ur_address);
 
         sessionManager = new SessionManager(getActivity());
 
@@ -65,6 +66,32 @@ public class SettingFragment extends Fragment {
         });
 
 
+        view.setFocusableInTouchMode(true);
+        view.requestFocus();
+        view.setOnKeyListener(new View.OnKeyListener() {
+
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if( keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP) {
+
+                //    getFragmentManager().popBackStack("home_menu", android.app.FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                    selectedFragment = HomeMenuFragment.newInstance();
+                    FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                    transaction.replace(R.id.frame_layout, selectedFragment);
+                    transaction.commit();
+
+                    return  true;
+                    /*FragmentManager fm = getActivity().getSupportFragmentManager();
+                    fm.popBackStack ("home_m", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                    return true;*/
+                }
+                return false;
+            }
+        });
+
+
+
+
        /* view.setFocusableInTouchMode(true);
         view.requestFocus(View.FOCUS_UP);
         view.setOnKeyListener(new View.OnKeyListener() {
@@ -72,8 +99,13 @@ public class SettingFragment extends Fragment {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if( keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP) {
-                    FragmentManager fm = getActivity().getSupportFragmentManager();
-                    fm.popBackStack("home", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                   *//* FragmentManager fm = getActivity().getSupportFragmentManager();
+                    fm.popBackStack("home_menu", FragmentManager.POP_BACK_STACK_INCLUSIVE);*//*
+                    selectedFragment = HomeMenuFragment.newInstance();
+                    FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                    transaction.replace(R.id.frame_layout, selectedFragment);
+                    // transaction.addToBackStack("looking");
+                    transaction.commit();
 
                 }
                 return false;
@@ -170,17 +202,6 @@ public class SettingFragment extends Fragment {
             }
         });
 
-        your_address.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                selectedFragment = You_Address_Fragment.newInstance();
-                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.frame_layout, selectedFragment);
-                transaction.addToBackStack("setting");
-                transaction.commit();
-            }
-        });
-
         change_lang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -213,6 +234,24 @@ public class SettingFragment extends Fragment {
                 transaction.commit();
             }
         });
+        your_address.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle bundle = new Bundle();
+                bundle.putString("navigation_from", "you_c");
+                selectedFragment = You_Address_Fragment.newInstance();
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.frame_layout, selectedFragment);
+                selectedFragment.setArguments(bundle);
+                transaction.addToBackStack("you_c");
+                transaction.commit();
+
+
+            }
+        });
+
+
+
 
         return view;
     }

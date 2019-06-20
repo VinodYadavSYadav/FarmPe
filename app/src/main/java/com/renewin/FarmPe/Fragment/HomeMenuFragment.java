@@ -116,6 +116,7 @@ public static NestedScrollView scrollView;
                         selectedFragment = DashboardFragment.newInstance();
                         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                         transaction.replace(R.id.first_full_frame, selectedFragment);
+                        transaction.addToBackStack("home_menu");
                         transaction.commit();
                         drawer.closeDrawers();
                         DashboardFragment.scrollView.post(new Runnable() {
