@@ -191,14 +191,14 @@
                                 android:fontFamily="@font/segoeui"
                                 android:hint="Full name "
                                 android:textSize="16dp"
-                                android:gravity="start"
+                                android:gravity="center_vertical"
                                 android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
                                 android:maxLength="30"
                                 android:selectAllOnFocus="true"
                                 android:textCursorDrawable="@drawable/cursor_color"
                                 android:padding="10dp"
                                 android:background="@android:color/transparent"
-                                android:layout_marginTop="10dp"
+
                                 android:textColor="#000000"
                                 />
                         </LinearLayout>
@@ -222,14 +222,13 @@
                                 android:fontFamily="@font/segoeui"
                                 android:hint="10-digit mobile number "
                                 android:textSize="16dp"
-                                android:gravity="start"
+                                android:gravity="center_vertical"
                                 android:padding="10dp"
                                 android:maxLength="10"
                                 android:selectAllOnFocus="true"
                                 android:inputType="number"
                                 android:textCursorDrawable="@drawable/cursor_color"
                                 android:background="@android:color/transparent"
-                                android:layout_marginTop="10dp"
                                 android:textColor="#000000"
                                 />
                         </LinearLayout>
@@ -254,12 +253,11 @@
                                 android:fontFamily="@font/segoeui"
                                 android:hint="Flat/House No./Floor /Building"
                                 android:textSize="16dp"
-                                android:gravity="start"
+                                android:gravity="center_vertical"
                                 android:padding="10dp"
                                 android:selectAllOnFocus="true"
                                 android:textCursorDrawable="@drawable/cursor_color"
                                 android:background="@android:color/transparent"
-                                android:layout_marginTop="10dp"
                                 android:textColor="#000000"
                                 />
                         </LinearLayout>
@@ -284,11 +282,10 @@
                                 android:fontFamily="@font/segoeui"
                                 android:hint="Colony/Street/Locality"
                                 android:textSize="16dp"
-                                android:gravity="start"
+                                android:gravity="center_vertical"
                                 android:padding="10dp"
                                 android:textCursorDrawable="@drawable/cursor_color"
                                 android:background="@android:color/transparent"
-                                android:layout_marginTop="10dp"
                                 android:textColor="#000000"
                                 />
                         </LinearLayout>
@@ -314,12 +311,11 @@
                                 android:fontFamily="@font/segoeui"
                                 android:hint="Landmark"
                                 android:textSize="16dp"
-                                android:gravity="start"
+                                android:gravity="center_vertical"
                                 android:padding="10dp"
                                 android:maxLength="30"
                                 android:textCursorDrawable="@drawable/cursor_color"
                                 android:background="@android:color/transparent"
-                                android:layout_marginTop="10dp"
                                 android:textColor="#000000"
                                 />
                         </LinearLayout>
@@ -347,11 +343,10 @@
                                 android:fontFamily="@font/segoeui"
                                 android:hint="City"
                                 android:textSize="16dp"
-                                android:gravity="start"
+                                android:gravity="center_vertical"
                                 android:padding="10dp"
                                 android:textCursorDrawable="@drawable/cursor_color"
                                 android:background="@android:color/transparent"
-                                android:layout_marginTop="10dp"
                                 android:textColor="#000000"
                                 />
                         </LinearLayout>
@@ -380,13 +375,12 @@
                                 android:fontFamily="@font/segoeui"
                                 android:hint="Pincode"
                                 android:textSize="16dp"
-                                android:gravity="start"
+                                android:gravity="center_vertical"
                                 android:inputType="number"
                                 android:maxLength="6"
                                 android:textCursorDrawable="@drawable/cursor_color"
                                 android:padding="10dp"
                                 android:background="@android:color/transparent"
-                                android:layout_marginTop="10dp"
                                 android:textColor="#000000"
                                 />
                         </LinearLayout>

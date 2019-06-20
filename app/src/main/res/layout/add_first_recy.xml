@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="100"
+    android:fitsSystemWindows="true"
     android:background="#000"
     >
 
@@ -14,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        tools:ignore="MissingConstraints">
+       >
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
@@ -62,8 +63,9 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_what_looking"
         android:layout_width="match_parent"
-        android:background="#000"
+        android:background="#fff"
         android:layout_marginBottom="20dp"
+        android:layout_marginTop="10dp"
        android:layout_marginHorizontal="10dp"
         android:layout_height="wrap_content">
 
