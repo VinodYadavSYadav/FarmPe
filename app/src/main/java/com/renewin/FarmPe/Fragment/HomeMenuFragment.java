@@ -129,7 +129,7 @@ public static NestedScrollView scrollView;
                     }
                 });
 
-                update_acc_layout.setOnClickListener(new View.OnClickListener() {
+               /* update_acc_layout.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         selectedFragment = UpdateAccDetailsFragment.newInstance();
@@ -139,7 +139,7 @@ public static NestedScrollView scrollView;
                         transaction.commit();
                         drawer.closeDrawers();
                     }
-                });
+                });*/
 
 
                 settings.setOnClickListener(new View.OnClickListener() {

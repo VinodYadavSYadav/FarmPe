@@ -2,6 +2,7 @@ package com.renewin.FarmPe.Fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -42,11 +43,14 @@ public class UpdateAccDetailsFragment extends Fragment {
         back_feed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                selectedFragment = HomeMenuFragment.newInstance();
+
+                FragmentManager fm = getActivity().getSupportFragmentManager();
+                fm.popBackStack("setting", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+              /*  selectedFragment = HomeMenuFragment.newInstance();
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.frame_layout, selectedFragment);
                 // transaction.addToBackStack("looking");
-                transaction.commit();
+                transaction.commit();*/
             }
         });
        /* view.setFocusableInTouchMode(true);

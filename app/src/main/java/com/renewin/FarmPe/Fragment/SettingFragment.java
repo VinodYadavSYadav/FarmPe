@@ -26,7 +26,7 @@ public class SettingFragment extends Fragment {
 
     public static List<FarmsImageBean> newOrderBeansList = new ArrayList<>();
     public static RecyclerView recyclerView;
-    LinearLayout back_feed,logout_layout,noti_setting,refer_earn,feedback,change_lang,policy,notification;
+    LinearLayout back_feed,logout_layout,noti_setting,refer_earn,feedback,change_lang,policy,notification,acc_info;
     Fragment selectedFragment;
     SessionManager sessionManager;
 
@@ -47,6 +47,7 @@ public class SettingFragment extends Fragment {
         change_lang=view.findViewById(R.id.change_lang);
         policy=view.findViewById(R.id.policy);
         notification=view.findViewById(R.id.notification);
+        acc_info=view.findViewById(R.id.acc_info);
 
         sessionManager = new SessionManager(getActivity());
 
@@ -61,6 +62,8 @@ public class SettingFragment extends Fragment {
 
             }
         });
+
+
        /* view.setFocusableInTouchMode(true);
         view.requestFocus(View.FOCUS_UP);
         view.setOnKeyListener(new View.OnKeyListener() {
@@ -122,6 +125,17 @@ public class SettingFragment extends Fragment {
 
            }
        });
+
+        acc_info.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectedFragment = UpdateAccDetailsFragment.newInstance();
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.frame_layout, selectedFragment);
+                transaction.addToBackStack("setting");
+                transaction.commit();
+            }
+        });
 
        noti_setting.setOnClickListener(new View.OnClickListener() {
            @Override
