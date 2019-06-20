@@ -162,8 +162,13 @@ public class Add_New_Address_Fragment extends Fragment {
         back_feed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentManager fm = getActivity().getSupportFragmentManager();
-                fm.popBackStack("request", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                if (You_Address_Fragment.address==null) {
+                    FragmentManager fm = getActivity().getSupportFragmentManager();
+                    fm.popBackStack("request", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                }else{
+                    FragmentManager fm = getActivity().getSupportFragmentManager();
+                    fm.popBackStack("addresss", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                }
             }
         });
 
@@ -789,11 +794,6 @@ public class Add_New_Address_Fragment extends Fragment {
 
             }
         });
-
-        selectedFragment = RequestFormFragment.newInstance();
-        FragmentTransaction transaction = (getActivity()).getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.frame_layout, selectedFragment);
-        transaction.commit();
 
         return view;
 

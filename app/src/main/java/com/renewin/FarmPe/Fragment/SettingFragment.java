@@ -26,7 +26,7 @@ public class SettingFragment extends Fragment {
 
     public static List<FarmsImageBean> newOrderBeansList = new ArrayList<>();
     public static RecyclerView recyclerView;
-    LinearLayout back_feed,logout_layout,noti_setting,refer_earn,feedback,change_lang,policy,notification,acc_info;
+    LinearLayout back_feed,logout_layout,noti_setting,refer_earn,feedback,change_lang,policy,notification,acc_info,your_address;
     Fragment selectedFragment;
     SessionManager sessionManager;
 
@@ -48,6 +48,7 @@ public class SettingFragment extends Fragment {
         policy=view.findViewById(R.id.policy);
         notification=view.findViewById(R.id.notification);
         acc_info=view.findViewById(R.id.acc_info);
+        your_address=view.findViewById(R.id.your_address);
 
         sessionManager = new SessionManager(getActivity());
 
@@ -162,6 +163,17 @@ public class SettingFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 selectedFragment = FeedbackFragment.newInstance();
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.frame_layout, selectedFragment);
+                transaction.addToBackStack("setting");
+                transaction.commit();
+            }
+        });
+
+        your_address.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectedFragment = You_Address_Fragment.newInstance();
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.frame_layout, selectedFragment);
                 transaction.addToBackStack("setting");
