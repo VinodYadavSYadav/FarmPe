@@ -107,11 +107,21 @@ public class Complete_KYC_Fragment extends Fragment {
         add_kyc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                Bundle bundle = new Bundle();
+                bundle.putString("ADD_NKYC","kyc details");
                 selectedFragment = Add_KYC_Details_Fragment.newInstance();
                 FragmentTransaction transaction = (getActivity()).getSupportFragmentManager().beginTransaction();
+                selectedFragment.setArguments(bundle);
                transaction.replace(R.id.frame_layout, selectedFragment);
                 transaction.addToBackStack("kyc_details");
                 transaction.commit();
+
+
+
+
+
+
             }
         });
 

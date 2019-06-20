@@ -63,8 +63,21 @@ public class Add_KYC_Details_Fragment extends Fragment {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if( keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP) {
-                    FragmentManager fm = getActivity().getSupportFragmentManager();
-                    fm.popBackStack ("kyc_details", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                    if (getArguments().getString("ADD_NKYC").equals("kyc details")) {
+                        selectedFragment = Complete_KYC_Fragment.newInstance();
+                        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                        transaction.replace(R.id.frame_layout, selectedFragment);
+                        transaction.commit();
+
+
+                    }
+                    else {
+
+                        FragmentManager fm = getActivity().getSupportFragmentManager();
+                        fm.popBackStack ("kyc_details", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+
+                    }
+
                     return true;
                 }
                 return false;
@@ -75,8 +88,37 @@ public class Add_KYC_Details_Fragment extends Fragment {
         back_feed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentManager fm = getActivity().getSupportFragmentManager();
-                fm.popBackStack ("kyc_details", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+
+                if (getArguments().getString("ADD_NKYC").equals("kyc details")) {
+                    selectedFragment = Complete_KYC_Fragment.newInstance();
+                    FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                    transaction.replace(R.id.frame_layout, selectedFragment);
+                    transaction.commit();
+
+
+                }/*else if (getArguments().getString("ADD_NBANK").equals("BANK_ADAPTR")) {
+
+                    selectedFragment = Bank_Account_Details_Fragment.newInstance();
+                    FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                    transaction.replace(R.id.frame_layout, selectedFragment);
+                    transaction.commit();
+
+
+                }*/
+                else {
+
+                    FragmentManager fm = getActivity().getSupportFragmentManager();
+                    fm.popBackStack ("kyc_details", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+
+                }
+
+
+
+
+
+
+               /* FragmentManager fm = getActivity().getSupportFragmentManager();
+                fm.popBackStack ("kyc_details", FragmentManager.POP_BACK_STACK_INCLUSIVE);*/
             }
         });
 

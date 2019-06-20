@@ -38,14 +38,14 @@ public class Urls {
     public static final String ORDER_SUB_CATEGORIES="http://3.17.6.57:8585/api/MasterTable/GetCrops";
     public static final String GetUserDetails=ROOT_URL+"GetUserDetails";
     public static final String ValidateReferalCode=ROOT_URL+"ValidateRefferalCode";
-    public static final String Update_User_Password = ROOT_URL + "Auth/UpdateUserPassword";
+    public static final String Update_User_Password = ROOT_URL2 + "Auth/UpdateUserPassword";
     public static final String PaytmChecksum="http://3.17.6.57:8080/api/Paytm/GetPaytmCheckSum";
     public static final String AddTransactionDetails="http://3.17.6.57:8080/api/Order/AddOrderPaymentDetails";
 
     public static final String PayuGetPaytmCheckSum="http://35.154.22.127:8585/api/Paytm/GetPaytmCheckSum";
     public static final String Get_New_Address = "http://3.17.6.57:8080/api/MasterTable/GetUserAddress";
     // Wallet
-    public static final String GetWalletBalance = ROOT_URL +"MasterTable/GetWalletDetails";
+    public static final String GetWalletBalance = ROOT_URL2 +"MasterTable/GetWalletDetails";
 
     //My Account
 

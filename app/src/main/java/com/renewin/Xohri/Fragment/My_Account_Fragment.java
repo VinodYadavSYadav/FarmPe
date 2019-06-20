@@ -13,6 +13,7 @@ import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -63,12 +64,6 @@ public class My_Account_Fragment extends Fragment {
 
 
 
-
-
-
-
-    ////////////
-
     public static My_Account_Fragment newInstance() {
         My_Account_Fragment fragment = new My_Account_Fragment();
         return fragment;
@@ -104,23 +99,26 @@ public class My_Account_Fragment extends Fragment {
 
 
 
-//        view.setFocusableInTouchMode(true);
-//        view.requestFocus();
-//        view.setOnKeyListener(new View.OnKeyListener() {
-//            @Override
-//            public boolean onKey(View v, int keyCode, KeyEvent event) {
-//                if( keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP) {
-//                    // getFragmentManager().popBackStack("farmers", FragmentManager.POP_BACK_STACK_INCLUSIVE);
-//                    Intent intent = new Intent(getActivity(), Home_Page_WithBottomMenu_Activity.class);
-//                    intent.putExtra("nav_switch","HOME");
-//                    startActivity(intent);
-//
-//
-//                    return true;
-//                }
-//                return false;
-//            }
-//        });
+       view.setFocusableInTouchMode(true);
+       view.requestFocus();
+       view.setOnKeyListener(new View.OnKeyListener() {
+           @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if( keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP) {
+                   // getFragmentManager().popBackStack("farmers", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                   /* Intent intent = new Intent(getActivity(), Home_Page_WithBottomMenu_Activity.class);
+                    intent.putExtra("nav_switch","HOME");
+                    startActivity(intent);*/
+                    selectedFragment = HomeMenuFragment.newInstance();
+                    FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                    transaction.replace(R.id.frame_layout, selectedFragment);
+                    transaction.commit();
+
+                    return true;
+               }
+                return false;
+           }
+        });
 
 
       //  tabLayout.addTab(tabLayout.newTab().setIcon(R.drawable.ic_tomato).setText("Vegitables"));

@@ -66,30 +66,35 @@ public class Change_Password_Fragment extends Fragment {
                  newPassword=new_pass.getText().toString();
 
                  if(oldPassword.equals("")&&newPassword.equals("")){
-                     Snackbar snackbar = Snackbar
+
+                     Toast.makeText(getActivity(), "Enter All Fields", Toast.LENGTH_SHORT).show();
+                     /*Snackbar snackbar = Snackbar
                              .make(linearLayout, "Enter All Fields", Snackbar.LENGTH_LONG);
                      View snackbarView = snackbar.getView();
                      TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
                      tv.setTextColor(Color.RED);
-                     snackbar.show();
+                     snackbar.show();*/
                  }
 
                  else if(oldPassword.equals("")){
                      old_pass.requestFocus();
-                     Snackbar snackbar = Snackbar
+                     Toast.makeText(getActivity(), "Enter Your Old Password", Toast.LENGTH_SHORT).show();
+                    /* Snackbar snackbar = Snackbar
                              .make(linearLayout, "Enter Your Old Password", Snackbar.LENGTH_LONG);
                      View snackbarView = snackbar.getView();
                      TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
                      tv.setTextColor(Color.RED);
-                     snackbar.show();
+                     snackbar.show();*/
                  }else if(newPassword.equals("")){
                      new_pass.requestFocus();
-                     Snackbar snackbar = Snackbar
+                     Toast.makeText(getActivity(), "Enter Your New Password", Toast.LENGTH_SHORT).show();
+
+                     /*Snackbar snackbar = Snackbar
                              .make(linearLayout, "Enter Your New Password", Snackbar.LENGTH_LONG);
                      View snackbarView = snackbar.getView();
                      TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
                      tv.setTextColor(Color.RED);
-                     snackbar.show();
+                     snackbar.show();*/
                  }else try {
                      JSONObject jsonObject = new JSONObject();
                      JSONObject post_json = new JSONObject();
@@ -129,6 +134,8 @@ public class Change_Password_Fragment extends Fragment {
                                  } else {
 
                                      Toast.makeText(getActivity(), "Failed to Change password", Toast.LENGTH_SHORT).show();
+
+
                                  }
 
 
@@ -158,6 +165,7 @@ public class Change_Password_Fragment extends Fragment {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
 
                 if( keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP) {
+
                     selectedFragment = My_Account_Fragment.newInstance();
                     FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                     transaction.replace(R.id.frame_layout, selectedFragment);
