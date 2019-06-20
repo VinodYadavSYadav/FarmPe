@@ -10,7 +10,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -42,7 +41,7 @@ import java.util.Comparator;
 import java.util.List;
 
 
-public class Add_New_Address_Fragment extends Fragment {
+public class Add_New_Address_FragmentCopy extends Fragment {
 
     RecyclerView recyclerView;
     Sell_Location_Adapter mAdapter;
@@ -76,8 +75,8 @@ public class Add_New_Address_Fragment extends Fragment {
 
 
 
-    public static Add_New_Address_Fragment newInstance() {
-        Add_New_Address_Fragment fragment = new Add_New_Address_Fragment();
+    public static Add_New_Address_FragmentCopy newInstance() {
+        Add_New_Address_FragmentCopy fragment = new Add_New_Address_FragmentCopy();
         return fragment;
     }
 
@@ -146,17 +145,6 @@ public class Add_New_Address_Fragment extends Fragment {
        // confimp.setFilters(new InputFilter[] { filter ,new InputFilter.LengthFilter(12)});
 
 
-        linear_name = view.findViewById(R.id.linea_name1);
-        linear_mobile = view.findViewById(R.id.linea_mobile1);
-        linear_pincode= view.findViewById(R.id.linea_pincode1);
-        linear_house= view.findViewById(R.id.linear_houseno);
-        linear_street= view.findViewById(R.id.linea_street);
-        linear_landmark= view.findViewById(R.id.linea_landmark);
-        linear_city= view.findViewById(R.id.linea_city);
-
-
-        sessionManager = new SessionManager(getActivity());
-
 
 
         back_feed.setOnClickListener(new View.OnClickListener() {
@@ -167,7 +155,7 @@ public class Add_New_Address_Fragment extends Fragment {
             }
         });
 
-        view.setFocusableInTouchMode(true);
+       /* view.setFocusableInTouchMode(true);
         view.requestFocus(View.FOCUS_UP);
         view.setOnKeyListener(new View.OnKeyListener() {
             @Override
@@ -178,7 +166,7 @@ public class Add_New_Address_Fragment extends Fragment {
                 }
                 return false;
             }
-        });
+        });*/
 
 
         /*name.setOnTouchListener(new View.OnTouchListener() {
@@ -324,388 +312,7 @@ public class Add_New_Address_Fragment extends Fragment {
         });
 
 
-        state.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                grade_dialog= new Dialog(getActivity());
-                grade_dialog.setContentView(R.layout.select_variety_popup);
-
-                TextView popup_heading = (TextView)grade_dialog.findViewById(R.id.popup_heading);
-                ImageView image = (ImageView) grade_dialog.findViewById(R.id.close_popup);
-                RecyclerView recyclerView = grade_dialog.findViewById(R.id.recycler_view1);
-
-                RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
-                recyclerView.setLayoutManager(mLayoutManager);
-
-                final LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
-                layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-                recyclerView.setLayoutManager(layoutManager);
-                recyclerView.setItemAnimator(new DefaultItemAnimator());
-
-                stateApdater= new StateApdater(stateBeanList,getActivity());
-                recyclerView.setAdapter(stateApdater);
-
-                popup_heading.setText("State");
-
-                image.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        grade_dialog.dismiss();
-                    }
-                });
-
-
-                try{
-
-                  JSONObject jsonObject = new JSONObject();
-
-                    Crop_Post.crop_posting(getActivity(), Urls.State, jsonObject, new VoleyJsonObjectCallback() {
-                        @Override
-                        public void onSuccessResponse(JSONObject result) {
-                            System.out.println("11111ssss" + result);
-
-
-                            try{
-                                stateBeanList.clear();
-                                state_array = result.getJSONArray("StateList");
-                                for(int i =0;i<state_array.length();i++){
-                                    JSONObject jsonObject1 = state_array.getJSONObject(i);
-
-                                    stateBean = new StateBean(jsonObject1.getString("State").trim(),jsonObject1.getString("StateId"));
-                                    stateBeanList.add(stateBean);
-                                }
-
-                                sorting(stateBeanList);
-
-                                stateApdater.notifyDataSetChanged();
-                                grade_dialog.show();
-
-
-
-
-                            }catch(Exception e){
-                                e.printStackTrace();
-                            }
-                        }
-                    });
-
-
-
-
-                }catch (Exception e){
-                    e.printStackTrace();
-                }
-
-
-            }
-        });
-
-
-
-        district.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-
-                grade_dialog= new Dialog(getActivity());
-                grade_dialog.setContentView(R.layout.select_variety_popup);
-
-                ImageView image = (ImageView) grade_dialog.findViewById(R.id.close_popup);
-                TextView popup_heading = (TextView)grade_dialog.findViewById(R.id.popup_heading);
-                RecyclerView recyclerView = grade_dialog.findViewById(R.id.recycler_view1);
-
-                popup_heading.setText("District");
-
-                RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
-                recyclerView.setLayoutManager(mLayoutManager);
-
-                final LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
-                layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-                recyclerView.setLayoutManager(layoutManager);
-                recyclerView.setItemAnimator(new DefaultItemAnimator());
-
-                districtAdapter= new DistrictAdapter( districtBeanList,getActivity());
-                recyclerView.setAdapter(districtAdapter);
-
-                image.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        grade_dialog.dismiss();
-                    }
-                });
-
-
-
-
-             try{
-
-                    JSONObject jsonObject = new JSONObject();
-                    JSONObject post_jsonobject = new JSONObject();
-                    jsonObject.put("StateId",stateApdater.stateid);
-                    post_jsonobject.put("Districtobj",jsonObject);
-
-                    Crop_Post.crop_posting(getActivity(), Urls.Districts, post_jsonobject, new VoleyJsonObjectCallback() {
-                        @Override
-                        public void onSuccessResponse(JSONObject result) {
-                            System.out.println("dddddddddddd11111" + result);
-                            try{
-                                districtBeanList.clear();
-                                jsonArray = result.getJSONArray("DistrictList");
-                                for(int i =0;i<jsonArray.length();i++){
-                                    JSONObject jsonObject1 = jsonArray.getJSONObject(i);
-                                    stateBean = new StateBean(jsonObject1.getString("District"),jsonObject1.getString("DistrictId"));
-                                    districtBeanList.add(stateBean);
-                                }
-
-                                sorting(districtBeanList);
-
-
-                                districtAdapter.notifyDataSetChanged();
-                                grade_dialog.show();
-
-                            }catch (Exception e){
-                                e.printStackTrace();
-                            }
-
-
-                        }
-                    });
-
-
-                }catch (Exception e){
-                    e.printStackTrace();
-                }
-            }
-        });
-
-
-
-        taluk.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-
-                grade_dialog= new Dialog(getActivity());
-                grade_dialog.setContentView(R.layout.select_variety_popup);
-
-                ImageView image = (ImageView) grade_dialog.findViewById(R.id.close_popup);
-                TextView popup_heading = (TextView)grade_dialog.findViewById(R.id.popup_heading);
-                RecyclerView recyclerView = grade_dialog.findViewById(R.id.recycler_view1);
-                RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
-                recyclerView.setLayoutManager(mLayoutManager);
-                final LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
-                layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-                recyclerView.setLayoutManager(layoutManager);
-                recyclerView.setItemAnimator(new DefaultItemAnimator());
-
-                popup_heading.setText("Taluk");
-
-                talukAdapter = new TalukAdapter(talukBeanList,getActivity());
-                recyclerView.setAdapter(talukAdapter);
-
-                image.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        grade_dialog.dismiss();
-                    }
-                });
-
-
-
-                try{
-
-                    JSONObject jsonObject = new JSONObject();
-                    JSONObject jsonpost = new JSONObject();
-                    jsonObject.put("DistrictId",DistrictAdapter.districtid);
-                    jsonpost.put("Talukobj",jsonObject);
-
-                    Crop_Post.crop_posting(getActivity(), Urls.Taluks, jsonpost, new VoleyJsonObjectCallback() {
-                        @Override
-                        public void onSuccessResponse(JSONObject result) {
-                            System.out.println("aaaaaaaaaaaaafffffffffffff"+result);
-                            try{
-                                talukBeanList.clear();
-                                tal_array = result.getJSONArray("TalukList") ;
-                                for(int i=0;i<tal_array.length();i++){
-                                    JSONObject jsonObject1 = tal_array.getJSONObject(i);
-                                    stateBean = new StateBean(jsonObject1.getString("Taluk"),jsonObject1.getString("TalukId"));
-                                    talukBeanList.add(stateBean);
-
-                                }
-                                sorting(talukBeanList);
-
-                                talukAdapter.notifyDataSetChanged();
-                                grade_dialog.show();
-
-                           }catch (Exception e){
-                                e.printStackTrace();
-                            }
-
-                        }
-                    });
-
-
-                }catch (Exception e){
-                    e.printStackTrace();
-                }
-
-
-            }
-        });
-
-
-        hobli.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                grade_dialog= new Dialog(getActivity());
-                grade_dialog.setContentView(R.layout.select_variety_popup);
-
-                ImageView image = (ImageView) grade_dialog.findViewById(R.id.close_popup);
-                RecyclerView recyclerView = grade_dialog.findViewById(R.id.recycler_view1);
-                TextView popup_heading = (TextView)grade_dialog.findViewById(R.id.popup_heading);
-
-                RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
-                recyclerView.setLayoutManager(mLayoutManager);
-                final LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
-                layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-                recyclerView.setLayoutManager(layoutManager);
-                recyclerView.setItemAnimator(new DefaultItemAnimator());
-                 popup_heading.setText("Hobli");
-
-                hoblisAdapter = new HoblisAdapter( hobliBeanList,getActivity());
-                recyclerView.setAdapter(hoblisAdapter);
-
-                image.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        grade_dialog.dismiss();
-                    }
-                });
-
-                try{
-
-                    final JSONObject jsonObject = new JSONObject();
-
-                    JSONObject json_post = new JSONObject();
-                    jsonObject.put("TalukId",TalukAdapter.talukid);
-                    json_post.put("Hobliobj",jsonObject);
-
-                    Crop_Post.crop_posting(getActivity(), Urls.Hoblis, json_post, new VoleyJsonObjectCallback() {
-                        @Override
-                        public void onSuccessResponse(JSONObject result) {
-                            System.out.println("hhhhhhhssssskljhgf" + result);
-
-                            try{
-                                hobliBeanList.clear();
-                                hobli_array = result.getJSONArray("HobliList");
-                                for(int i = 0;i<hobli_array.length();i++){
-                                    JSONObject jsonObject3 = hobli_array.getJSONObject(i);
-                                    stateBean = new StateBean(jsonObject3.getString("Hobli"),jsonObject3.getString("HobliId"));
-                                    hobliBeanList.add(stateBean);
-
-                                }
-                                sorting(hobliBeanList);
-
-                                hoblisAdapter.notifyDataSetChanged();
-                                grade_dialog.show();
-
-
-
-                            }catch (Exception e){
-                                e.printStackTrace();
-                            }
-
-                        }
-                    });
-
-                }catch (Exception e){
-                    e.printStackTrace();
-                }
-
-
-            }
-        });
-
-
-
-             village.setOnClickListener(new View.OnClickListener() {
-              @Override
-              public void onClick(View v) {
-
-
-                  grade_dialog= new Dialog(getActivity());
-                  grade_dialog.setContentView(R.layout.select_variety_popup);
-
-                  ImageView image = (ImageView) grade_dialog.findViewById(R.id.close_popup);
-                  TextView popup_heading = (TextView)grade_dialog.findViewById(R.id.popup_heading);
-                  RecyclerView recyclerView = grade_dialog.findViewById(R.id.recycler_view1);
-
-                  RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
-                  recyclerView.setLayoutManager(mLayoutManager);
-                  final LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
-                  layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-                  recyclerView.setLayoutManager(layoutManager);
-                  recyclerView.setItemAnimator(new DefaultItemAnimator());
-                  villageAdapter = new VillageAdapter(villageBeanList,getActivity());
-                  recyclerView.setAdapter(villageAdapter);
-
-                  popup_heading.setText("Village");
-
-
-                  image.setOnClickListener(new View.OnClickListener() {
-                      @Override
-                      public void onClick(View v) {
-                          grade_dialog.dismiss();
-                      }
-                  });
-
-
-                  try{
-                      JSONObject jsonObject = new JSONObject();
-                      JSONObject post_Object = new JSONObject();
-                      jsonObject.put("HobliId",hoblisAdapter.hobliid);
-                      post_Object.put("Villageobj",jsonObject);
-
-                      Crop_Post.crop_posting(getActivity(), Urls.Villages, post_Object, new VoleyJsonObjectCallback() {
-                          @Override
-                          public void onSuccessResponse(JSONObject result) {
-                              System.out.println("111vvv" + result);
-
-                              try{
-                                  villageBeanList.clear();
-                                  village_array = result.getJSONArray("VillageList");
-                                  for(int i = 0;i<village_array.length();i++) {
-                                      JSONObject jsonObject1 = village_array.getJSONObject(i);
-                                      stateBean = new StateBean(jsonObject1.getString("Village"), jsonObject1.getString("VillagId"));
-                                      villageBeanList.add(stateBean);
-                                  }
-
-                                  sorting(villageBeanList);
-
-                                  villageAdapter.notifyDataSetChanged();
-                                  grade_dialog.show();
-
-
-                              }catch (Exception e){
-                                  e.printStackTrace();
-                              }
-
-                          }
-                      });
-
-
-                  }catch (Exception e){
-                      e.printStackTrace();
-                  }
-
-         }
-         });
-
-
-
-        add_new_address.setOnClickListener(new View.OnClickListener() {
+               add_new_address.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -790,11 +397,11 @@ public class Add_New_Address_Fragment extends Fragment {
             }
         });
 
-        selectedFragment = RequestFormFragment.newInstance();
+      /*  selectedFragment = RequestFormFragment.newInstance();
         FragmentTransaction transaction = (getActivity()).getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.frame_layout, selectedFragment);
         transaction.commit();
-
+*/
         return view;
 
     }

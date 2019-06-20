@@ -73,13 +73,13 @@ public class AddHpFragment extends Fragment {
                 return false;
             }
         });*/
-        HpList();
+      //  HpList();
         newOrderBeansList.clear();
         GridLayoutManager mLayoutManager_farm = new GridLayoutManager(getActivity(), 2, GridLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(mLayoutManager_farm);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
-       /* AddTractorBean img1=new AddTractorBean(R.drawable.tractor_green,"UPTO 20HP","");
+        AddTractorBean img1=new AddTractorBean(R.drawable.tractor_green,"UPTO 20HP","");
         newOrderBeansList.add(img1);
 
         AddTractorBean img2=new AddTractorBean(R.drawable.gyrovator,"21-30 HP","");
@@ -97,13 +97,13 @@ public class AddHpFragment extends Fragment {
         AddTractorBean img6=new AddTractorBean(R.drawable.jcb,"60 HP","");
         newOrderBeansList.add(img6);
         newOrderBeansList.add(img6);
-        newOrderBeansList.add(img6);*/
+        newOrderBeansList.add(img6);
        /* newOrderBeansList.add(img6);
         newOrderBeansList.add(img6);*/
 
 
-       /* farmadapter=new AddHpAdapter(getActivity(),newOrderBeansList);
-        recyclerView.setAdapter(farmadapter);*/
+        farmadapter=new AddHpAdapter(getActivity(),newOrderBeansList);
+        recyclerView.setAdapter(farmadapter);
 
         return view;
     }

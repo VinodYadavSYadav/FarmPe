@@ -76,7 +76,7 @@ public class RequestFormFragment extends Fragment {
 
         sessionManager=new SessionManager(getActivity());
 
-        Bundle bundle=getArguments();
+       /* Bundle bundle=getArguments();
         if (bundle==null){
 
         }else{
@@ -90,7 +90,7 @@ public class RequestFormFragment extends Fragment {
             radioGroup_finance.check(finance_selected);
 
 
-        }
+        }*/
 
        // String addId=bundle.getString("add_id");
 
@@ -120,7 +120,8 @@ public class RequestFormFragment extends Fragment {
         address_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    selectedFragment = Add_New_Address_Fragment.newInstance();
+                System.out.println("hrrrjjkj");
+                    selectedFragment = Add_New_Address_FragmentCopy.newInstance();
                     FragmentTransaction transaction = (getActivity()).getSupportFragmentManager().beginTransaction();
                     transaction.replace(R.id.frame_layout, selectedFragment);
                     transaction.addToBackStack("request");
@@ -131,7 +132,7 @@ public class RequestFormFragment extends Fragment {
         request.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RequestForm();
+              //  RequestForm();
             }
         });
 

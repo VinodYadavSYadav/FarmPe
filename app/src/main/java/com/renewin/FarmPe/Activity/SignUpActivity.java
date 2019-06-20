@@ -1,15 +1,20 @@
 package com.renewin.FarmPe.Activity;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.InputFilter;
 import android.text.Spanned;
 import android.view.MotionEvent;
@@ -21,6 +26,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.renewin.FarmPe.Adapter.SelectLanguageAdapter2;
+import com.renewin.FarmPe.Bean.SelectLanguageBean;
 import com.renewin.FarmPe.R;
 import com.renewin.FarmPe.SessionManager;
 import com.renewin.FarmPe.Urls;
@@ -30,9 +37,12 @@ import com.renewin.FarmPe.Volly_class.VoleyJsonObjectCallback;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SignUpActivity extends AppCompatActivity {
 
-    TextView create_acc,continue_sign_up,mob_text,backtologin,referal_text;
+    TextView create_acc,continue_sign_up,change_lang,backtologin,referal_text;
     LinearLayout back_feed;
     SessionManager sessionManager;
     public static EditText name,mobile_no,password,referal_code;
@@ -45,6 +55,7 @@ public class SignUpActivity extends AppCompatActivity {
     TextInputLayout textInputLayout_name,textInputLayout_pass;
     public static String contact,mob_contact;
     String refer;
+    Dialog dialog;
 
 
     @Override
@@ -60,6 +71,7 @@ public class SignUpActivity extends AppCompatActivity {
        // backtologin=findViewById(R.id.create_acc);
         mobile_no=findViewById(R.id.mobilesignup);
         password=findViewById(R.id.passsignup);
+        change_lang=findViewById(R.id.change_lang);
        // referal_text=findViewById(R.id.referal_text);
        // referal_code=findViewById(R.id.referal_code);
        // textInputLayout_pass=findViewById(R.id.text_pass);
@@ -128,6 +140,62 @@ public class SignUpActivity extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
+
+        change_lang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                System.out.println("jhfdyug");
+                final List<SelectLanguageBean> newOrderBeansList = new ArrayList<>();
+                RecyclerView recyclerView;
+                final TextView yes1,no1;
+                final LinearLayout close_layout;
+                final SelectLanguageAdapter2 mAdapter;
+                System.out.println("aaaaaaaaaaaa");
+                dialog = new Dialog(SignUpActivity.this);
+                dialog.setContentView(R.layout.change_lang_login);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.setCancelable(false);
+
+                close_layout =  dialog.findViewById(R.id.close_layout);
+                recyclerView =  dialog.findViewById(R.id.recycler_change_lang);
+
+                newOrderBeansList.clear();
+                RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(SignUpActivity.this);
+                recyclerView.setLayoutManager(mLayoutManager);
+                recyclerView.setItemAnimator(new DefaultItemAnimator());
+
+
+                SelectLanguageBean bean=new SelectLanguageBean("English",1,"");
+                newOrderBeansList.add(bean);
+
+                SelectLanguageBean bean1=new SelectLanguageBean("Kannada",1,"");
+                newOrderBeansList.add(bean1);
+
+                SelectLanguageBean bean2=new SelectLanguageBean("Hindi",1,"");
+                newOrderBeansList.add(bean2);
+
+                SelectLanguageBean bean3=new SelectLanguageBean("Tamil",1,"");
+                newOrderBeansList.add(bean3);
+
+                SelectLanguageBean bean4=new SelectLanguageBean("Telgu",1,"");
+                newOrderBeansList.add(bean4);
+
+                mAdapter = new SelectLanguageAdapter2(SignUpActivity.this, newOrderBeansList);
+                recyclerView.setAdapter(mAdapter);
+                close_layout.setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+
+                dialog.show();
+
+            }
+        });
+
 
   /*    //  sessionManager.getRegId("lng_object");
         System.out.println("signupresponse" + sessionManager.getRegId("langdetails"));
