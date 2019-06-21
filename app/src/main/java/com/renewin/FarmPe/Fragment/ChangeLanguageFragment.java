@@ -53,9 +53,7 @@ public class ChangeLanguageFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.select_language_layout, container, false);
         back_feed=view.findViewById(R.id.back_feed);
-
         recyclerView =view.findViewById(R.id.recycler_view1);
-
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -94,6 +92,7 @@ public class ChangeLanguageFragment extends Fragment {
 
         return view;
     }
+
     private void Langauges() {
         try {
             newOrderBeansList.clear();
@@ -101,6 +100,7 @@ public class ChangeLanguageFragment extends Fragment {
             JSONObject postjsonObject = new JSONObject();
             userRequestjsonObject.put("TalukId", 5495);
             postjsonObject.putOpt("Hobliobj", userRequestjsonObject);
+
             Login_post.login_posting(getActivity(), Urls.Languages,postjsonObject,new VoleyJsonObjectCallback() {
                 @Override
                 public void onSuccessResponse(JSONObject result) {

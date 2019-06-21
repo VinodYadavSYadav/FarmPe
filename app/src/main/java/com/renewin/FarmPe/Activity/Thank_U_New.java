@@ -36,6 +36,7 @@ public class Thank_U_New extends AppCompatActivity {
    LinearLayout back_thank_u;
    TextView thanktu_submit,otp_text;
    EditText enter_otp;
+    JSONObject lngObject;
     public  static String otp_get_text,sessionId;
     LinearLayout linearLayout;
     private Context mContext=Thank_U_New.this;
@@ -48,6 +49,7 @@ public class Thank_U_New extends AppCompatActivity {
         LocalBroadcastManager.getInstance(Thank_U_New.this).registerReceiver(receiver, new IntentFilter("otp_forgot"));
         super.onResume();
     }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,15 +67,21 @@ public class Thank_U_New extends AppCompatActivity {
         sessionManager = new SessionManager(this);
       //  sessionManager.getRegId("lng_object");
        // System.out.println("llllllllllll" + sessionManager.getRegId("lng_object"));
-        JSONObject lngObject;
+
+
+
         try {
-            lngObject=new JSONObject(sessionManager.getRegId("langdetails"));
+            lngObject = new JSONObject(sessionManager.getRegId("language"));
+
+
             thanktu_submit.setText(lngObject.getString("SendOTP"));
             otp_text.setText(lngObject.getString(" please enter the OTP below to reset password."));
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
+
 
         if (checkAndRequestPermissions()) {
             // carry on the normal flow, as the case of  permissions  granted.
@@ -109,19 +117,11 @@ public class Thank_U_New extends AppCompatActivity {
                     TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
                     tv.setTextColor(Color.RED);
                     snackbar.show();
-                }else {
-                    if (otp_get_text.equals(sessionId)){
-                        Intent intent=new Intent(Thank_U_New.this,ResetPasswordNew.class);
-                        startActivity(intent);
-                    }else{
-                        Snackbar snackbar = Snackbar
-                                .make(linearLayout, "Invalid OTP", Snackbar.LENGTH_LONG);
-                        View snackbarView = snackbar.getView();
-                        TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-                        tv.setTextColor(Color.RED);
-                        snackbar.show();
+                }else{
+                    Intent intent=new Intent(Thank_U_New.this,ResetPasswordNew.class);
+                    startActivity(intent);
                     }
-                }
+
             }
         });
 

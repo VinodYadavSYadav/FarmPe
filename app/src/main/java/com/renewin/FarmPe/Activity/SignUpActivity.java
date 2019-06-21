@@ -27,58 +27,65 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.renewin.FarmPe.Adapter.SelectLanguageAdapter2;
+import com.renewin.FarmPe.Adapter.SelectLanguageAdapter_SignUP;
 import com.renewin.FarmPe.Bean.SelectLanguageBean;
 import com.renewin.FarmPe.R;
 import com.renewin.FarmPe.SessionManager;
 import com.renewin.FarmPe.Urls;
+import com.renewin.FarmPe.Volly_class.Crop_Post;
 import com.renewin.FarmPe.Volly_class.Login_post;
 import com.renewin.FarmPe.Volly_class.VoleyJsonObjectCallback;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
 public class SignUpActivity extends AppCompatActivity {
 
-    TextView create_acc,continue_sign_up,change_lang,backtologin,referal_text;
+   public static TextView create_acc, continue_sign_up, change_lang, backtologin, referal_text;
     LinearLayout back_feed;
     SessionManager sessionManager;
-    public static EditText name,mobile_no,password,referal_code;
-    String status,status_resp;
+    public static EditText name, mobile_no, password, referal_code;
+    String status, status_resp;
     Activity activity;
+    JSONObject lngObject;
     LinearLayout linearLayout;
     BroadcastReceiver receiver;
     EditText spn_localize;
     String localize_text;
-    TextInputLayout textInputLayout_name,textInputLayout_pass;
-    public static String contact,mob_contact;
+    TextInputLayout textInputLayout_name, textInputLayout_pass;
+    public static String contact, mob_contact;
     String refer;
-    Dialog dialog;
+   public static   Dialog dialog;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sign_up_new);
-        linearLayout=findViewById(R.id.linear_login);
-        back_feed=findViewById(R.id.back_feed);
-      //  spn_localize=findViewById(R.id.spn_localize);
-        create_acc=findViewById(R.id.create_account);
-        continue_sign_up=findViewById(R.id.sign_up_continue);
-        name=findViewById(R.id.name);
-       // backtologin=findViewById(R.id.create_acc);
-        mobile_no=findViewById(R.id.mobilesignup);
-        password=findViewById(R.id.passsignup);
-        change_lang=findViewById(R.id.change_lang);
-       // referal_text=findViewById(R.id.referal_text);
-       // referal_code=findViewById(R.id.referal_code);
-       // textInputLayout_pass=findViewById(R.id.text_pass);
-        GetUserDetails();
 
-             setupUI(linearLayout);
-        String[] localize = { "+91"};
+        linearLayout = findViewById(R.id.linear_login);
+        back_feed = findViewById(R.id.back_feed);
+        //  spn_localize=findViewById(R.id.spn_localize);
+        create_acc = findViewById(R.id.register_title);
+        continue_sign_up = findViewById(R.id.sign_up_continue);
+        name = findViewById(R.id.name);
+        // backtologin=findViewById(R.id.create_acc);
+        mobile_no = findViewById(R.id.mobilesignup);
+        password = findViewById(R.id.passsignup);
+        change_lang = findViewById(R.id.change_lang);
+        // referal_text=findViewById(R.id.referal_text);
+        // referal_code=findViewById(R.id.referal_code);
+        // textInputLayout_pass=findViewById(R.id.text_pass);
+
+
+
+        sessionManager = new SessionManager(SignUpActivity.this);
+        setupUI(linearLayout);
+        String[] localize = {"+91"};
 
        /* backtologin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,15 +95,45 @@ public class SignUpActivity extends AppCompatActivity {
             }
         });*/
 
-        back_feed.setOnClickListener(new View.OnClickListener() {
+
+        try {
+
+            if ((sessionManager.getRegId("language")).equals("")) {
+                getLang(1);
+
+            }else{
+
+                lngObject=new JSONObject(sessionManager.getRegId("langdetails"));
+
+                create_acc.setText(lngObject.getString("Register"));
+                name.setHint(lngObject.getString("FullName"));
+                mobile_no.setHint(lngObject.getString("PhoneNo"));
+                password.setHint(lngObject.getString("Password"));
+               // textInputLayout_name.setHint(lngObject.getString("FullName"));
+              //  textInputLayout_pass.setHint(lngObject.getString("EnterPassword"));
+                continue_sign_up.setText(lngObject.getString("Register"));
+
+
+            }
+
+
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+
+
+
+
+                back_feed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
                 startActivity(intent);
             }
         });
-
- final InputFilter EMOJI_FILTER = new InputFilter() {
+        final InputFilter EMOJI_FILTER = new InputFilter() {
 
             @Override
 
@@ -112,7 +149,9 @@ public class SignUpActivity extends AppCompatActivity {
             }
         };
         password.setFilters(new InputFilter[]{EMOJI_FILTER});
-      /*  linearLayout.setOnClickListener(new View.OnClickListener() {
+        name.setFilters(new InputFilter[]{EMOJI_FILTER});
+
+     /*  linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 InputMethodManager inputManager = (InputMethodManager)
@@ -124,23 +163,22 @@ public class SignUpActivity extends AppCompatActivity {
         });*/
 
 
-
-        sessionManager=new SessionManager(this);
+        sessionManager = new SessionManager(this);
         //  sessionManager.getRegId("lng_object");
-        System.out.println("signupresponse" + sessionManager.getRegId("langdetails"));
-        JSONObject lngObject;
-        try {
-            lngObject=new JSONObject(sessionManager.getRegId("langdetails"));
-            create_acc.setText(lngObject.getString("CreateAccount"));
-           // mob_text.setText(lngObject.getString("PhoneNo"));
-            mobile_no.setHint(lngObject.getString("PhoneNo"));
-            name.setHint(lngObject.getString("FullName"));
-            password.setHint(lngObject.getString("EnterPassword"));
-            continue_sign_up.setText(lngObject.getString("Register"));
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+//        System.out.println("signupresponse" + sessionManager.getRegId("langdetails"));
+//        JSONObject lngObject;
+//        try {
+//            lngObject = new JSONObject(sessionManager.getRegId("langdetails"));
+//            create_acc.setText(lngObject.getString("Register"));
+//            // mob_text.setText(lngObject.getString("PhoneNo"));
+//            mobile_no.setHint(lngObject.getString("PhoneNo"));
+//            name.setHint(lngObject.getString("FullName"));
+//            password.setHint(lngObject.getString("EnterPassword"));
+//            continue_sign_up.setText(lngObject.getString("Register"));
+//
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
 
 
         change_lang.setOnClickListener(new View.OnClickListener() {
@@ -149,17 +187,16 @@ public class SignUpActivity extends AppCompatActivity {
                 System.out.println("jhfdyug");
                 final List<SelectLanguageBean> newOrderBeansList = new ArrayList<>();
                 RecyclerView recyclerView;
-                final TextView yes1,no1;
+                final TextView yes1, no1;
                 final LinearLayout close_layout;
-                final SelectLanguageAdapter2 mAdapter;
+                final SelectLanguageAdapter_SignUP mAdapter;
                 System.out.println("aaaaaaaaaaaa");
                 dialog = new Dialog(SignUpActivity.this);
                 dialog.setContentView(R.layout.change_lang_login);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.setCancelable(false);
-
-                close_layout =  dialog.findViewById(R.id.close_layout);
-                recyclerView =  dialog.findViewById(R.id.recycler_change_lang);
+                close_layout = dialog.findViewById(R.id.close_layout);
+                recyclerView = dialog.findViewById(R.id.recycler_change_lang);
 
                 newOrderBeansList.clear();
                 RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(SignUpActivity.this);
@@ -167,22 +204,28 @@ public class SignUpActivity extends AppCompatActivity {
                 recyclerView.setItemAnimator(new DefaultItemAnimator());
 
 
-                SelectLanguageBean bean=new SelectLanguageBean("English",1,"");
+                SelectLanguageBean bean = new SelectLanguageBean("English", 1, "");
                 newOrderBeansList.add(bean);
 
-                SelectLanguageBean bean1=new SelectLanguageBean("Kannada",1,"");
+                SelectLanguageBean bean1 = new SelectLanguageBean("Hindi", 2, "");
                 newOrderBeansList.add(bean1);
 
-                SelectLanguageBean bean2=new SelectLanguageBean("Hindi",1,"");
+                SelectLanguageBean bean2 = new SelectLanguageBean("Kannada", 3, "");
                 newOrderBeansList.add(bean2);
 
-                SelectLanguageBean bean3=new SelectLanguageBean("Tamil",1,"");
+                SelectLanguageBean bean3 = new SelectLanguageBean("Telugu", 4, "");
                 newOrderBeansList.add(bean3);
 
-                SelectLanguageBean bean4=new SelectLanguageBean("Telgu",1,"");
+                SelectLanguageBean bean4 = new SelectLanguageBean("Tamil", 5, "");
                 newOrderBeansList.add(bean4);
 
-                mAdapter = new SelectLanguageAdapter2(SignUpActivity.this, newOrderBeansList);
+                SelectLanguageBean bean5 = new SelectLanguageBean("Malayalam", 6, "");
+                newOrderBeansList.add(bean5);
+
+                SelectLanguageBean bean6 = new SelectLanguageBean("Marathi", 7, "");
+                newOrderBeansList.add(bean6);
+
+                mAdapter = new SelectLanguageAdapter_SignUP(SignUpActivity.this, newOrderBeansList);
                 recyclerView.setAdapter(mAdapter);
                 close_layout.setOnClickListener(new View.OnClickListener() {
 
@@ -198,21 +241,21 @@ public class SignUpActivity extends AppCompatActivity {
         });
 
 
-  /*    //  sessionManager.getRegId("lng_object");
-        System.out.println("signupresponse" + sessionManager.getRegId("langdetails"));
-        JSONObject lngObject;
-        try {
-           // lngObject=new JSONObject(sessionManager.getRegId("langdetails"));
-        //    create_acc.setText(lngObject.getString("CreateAccount"));
-         //   mob_text.setText(lngObject.getString("PhoneNo"));
-          //  mobile_no.setHint(lngObject.getString("PhoneNo"));
-          //  textInputLayout_name.setHint(lngObject.getString("FullName"));
-          //  textInputLayout_pass.setHint(lngObject.getString("EnterPassword"));
-          //  continue_sign_up.setText(lngObject.getString("Register"));
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }*/
+      //  sessionManager.getRegId("lng_object");
+//        System.out.println("signupresponse" + sessionManager.getRegId("langdetails"));
+//        JSONObject lngObject;
+//        try {
+//            lngObject=new JSONObject(sessionManager.getRegId("langdetails"));
+//            create_acc.setText(lngObject.getString("CreateAccount"));
+//            mob_text.setText(lngObject.getString("PhoneNo"));
+//            mobile_no.setHint(lngObject.getString("PhoneNo"));
+//            textInputLayout_name.setHint(lngObject.getString("FullName"));
+//            textInputLayout_pass.setHint(lngObject.getString("EnterPassword"));
+//            continue_sign_up.setText(lngObject.getString("Register"));
+//
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
        /* sign_up_arw1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -223,23 +266,7 @@ public class SignUpActivity extends AppCompatActivity {
             }
         });*/
 
-        final InputFilter filter = new InputFilter() {
-            public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
-                String filtered = "";
-                for (int i = start; i < end; i++) {
-                    char character = source.charAt(i);
-                    if (!Character.isWhitespace(character)) {
-                        filtered += character;
-                    }
-                }
-                return filtered;
-            }
-
-        };
-
-        password.setFilters(new InputFilter[] {filter,new InputFilter.LengthFilter(12) });
-
-
+       //with space in between nt in starting
 
         final InputFilter filter1 = new InputFilter() {
             public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
@@ -258,29 +285,45 @@ public class SignUpActivity extends AppCompatActivity {
 
         name.setFilters(new InputFilter[] {filter1,new InputFilter.LengthFilter(12) });
 
+       //without space
+        final InputFilter filter = new InputFilter() {
+            public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
+                String filtered = "";
+                for (int i = start; i < end; i++) {
+                    char character = source.charAt(i);
+                    if (!Character.isWhitespace(character)) {
+                        filtered += character;
+                    }
+                }
+                return filtered;
+            }
+
+        };
 
 
+        password.setFilters(new InputFilter[]{filter, new InputFilter.LengthFilter(12)});
         continue_sign_up.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 /*Intent intent=new Intent(SignUp.this,SignUpContinue.class);
                 startActivity(intent);*/
-                localize_text="+91";
-                 String name_text = name.getText().toString();
+                localize_text = "+91";
+                String name_text = name.getText().toString();
                 // final String email = SignUp.email.getText().toString();
-                contact =localize_text+mobile_no.getText().toString();
-                System.out.println("connttaaactt"+contact);
+                contact = localize_text + mobile_no.getText().toString();
+                System.out.println("connttaaactt" + contact);
                 // mob_contact=contact.substring(5);
-                System.out.println("mmoobb"+mob_contact);
-                 String password_text= password.getText().toString();
+                System.out.println("mmoobb" + mob_contact);
+                String password_text = password.getText().toString();
+
                 //  final String confirmpassword = SignUp.conf_pass.getText().toString();
 
 
-                System.out.println("nameeee"+name);
-                System.out.println("contacttttt"+contact);
-                System.out.println("passss"+password);
+                System.out.println("nameeee" + name);
+                System.out.println("contacttttt" + contact);
+                System.out.println("passss" + password);
 
-                if (name_text.equals("")&&mobile_no.getText().toString().equals("")&&password_text.equals("")){
+                if (name_text.equals("") && mobile_no.getText().toString().equals("") && password_text.equals("")) {
                     System.out.println("enterrrr");
                     Snackbar snackbar = Snackbar
                             .make(linearLayout, "Enter All Text Fields", Snackbar.LENGTH_LONG);
@@ -288,8 +331,7 @@ public class SignUpActivity extends AppCompatActivity {
                     TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
                     tv.setTextColor(Color.RED);
                     snackbar.show();
-                }
-                else if (name_text.equals("")) {
+                } else if (name_text.equals("")) {
 
                     //Toast.makeText(SignUp.this, "Enter Your Name", Toast.LENGTH_SHORT).show();
                     Snackbar snackbar = Snackbar
@@ -298,15 +340,14 @@ public class SignUpActivity extends AppCompatActivity {
                     TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
                     tv.setTextColor(Color.RED);
                     snackbar.show();
-                }else if (name_text.length()<2){
+                } else if (name_text.length() < 2) {
                     Snackbar snackbar = Snackbar
                             .make(linearLayout, "Name should contain minimum 2 characters", Snackbar.LENGTH_LONG);
                     View snackbarView = snackbar.getView();
                     TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
                     tv.setTextColor(Color.RED);
                     snackbar.show();
-                }
-                else if (name_text.startsWith(" ")){
+                } else if (name_text.startsWith(" ")) {
                     Snackbar snackbar = Snackbar
                             .make(linearLayout, "Name should not starts with space", Snackbar.LENGTH_LONG);
                     View snackbarView = snackbar.getView();
@@ -315,9 +356,7 @@ public class SignUpActivity extends AppCompatActivity {
                     snackbar.show();
 
 
-                }
-
-                else if (contact.equals("")) {
+                } else if (contact.equals("")) {
 
                     //Toast.makeText(SignUp.this, "Enter Mobile Number", Toast.LENGTH_SHORT).show();
                     Snackbar snackbar = Snackbar
@@ -344,8 +383,7 @@ public class SignUpActivity extends AppCompatActivity {
                     TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
                     tv.setTextColor(Color.RED);
                     snackbar.show();
-                }*/
-                else if (password.equals("")) {
+                }*/ else if (password.equals("")) {
 
                     //Toast.makeText(SignUp.this, "Enter Your Password", Toast.LENGTH_SHORT).show();
                     Snackbar snackbar = Snackbar
@@ -363,11 +401,11 @@ public class SignUpActivity extends AppCompatActivity {
                     TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
                     tv.setTextColor(Color.RED);
                     snackbar.show();
-                }else if (password_text.contains(" ")) {
+                } else if (password_text.contains(" ")) {
 
                     Snackbar snackbar = Snackbar
                             .make(linearLayout, "Password should not contain spaces", Snackbar.LENGTH_LONG);
-                    View snackbarView=snackbar.getView();
+                    View snackbarView = snackbar.getView();
                     TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
                     tv.setTextColor(Color.RED);
                     snackbar.show();
@@ -468,6 +506,53 @@ public class SignUpActivity extends AppCompatActivity {
 
     }
 
+    private void getLang(int id) {
+
+        try{
+
+
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("Id",id);
+
+            System.out.print("iiidddddd"+ id);
+
+            Crop_Post.crop_posting(SignUpActivity.this, Urls.CHANGE_LANGUAGE, jsonObject, new VoleyJsonObjectCallback() {
+                @Override
+                public void onSuccessResponse(JSONObject result) {
+
+                    System.out.println("qqqqqqvv" + result);
+
+                    try{
+
+                        sessionManager.saveLanguage(result.toString());
+
+
+                        String log_regi = result.getString("Register");
+                        String log_name = result.getString("FullName");
+                        String log_mobile = result.getString("EnterPhoneNo");
+                        String log_password = result.getString("EnterPassword");
+                        String log_register = result.getString("Register");
+
+
+
+
+                        name.setHint(log_name);
+                        mobile_no.setHint(log_mobile);
+                        password.setHint(log_password);
+                        create_acc.setText(log_regi);
+                        continue_sign_up.setText(log_register);
+
+
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+                }
+            });
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 
     @Override
     public void onBackPressed() {
@@ -481,7 +566,7 @@ public class SignUpActivity extends AppCompatActivity {
     public void setupUI(View view) {
 
         //Set up touch listener for non-text box views to hide keyboard.
-        if(!(view instanceof EditText)) {
+        if (!(view instanceof EditText)) {
 
             view.setOnTouchListener(new View.OnTouchListener() {
 
@@ -516,11 +601,11 @@ public class SignUpActivity extends AppCompatActivity {
 
         if (focusedView != null) {
 
-            try{
+            try {
                 assert inputManager != null;
                 inputManager.hideSoftInputFromWindow(focusedView.getWindowToken(),
                         InputMethodManager.HIDE_NOT_ALWAYS);
-            }catch(AssertionError e){
+            } catch (AssertionError e) {
                 e.printStackTrace();
             }
         }
@@ -531,23 +616,23 @@ public class SignUpActivity extends AppCompatActivity {
         try {
 
             JSONObject userRequestjsonObject = new JSONObject();
-             userRequestjsonObject.put("Id",sessionManager.getRegId("userId"));
+            userRequestjsonObject.put("Id", sessionManager.getRegId("userId"));
 
             JSONObject postjsonObject = new JSONObject();
             postjsonObject.put("objUser", userRequestjsonObject);
-            System.out.println("crop_discover_sub"+postjsonObject);
+            System.out.println("crop_discover_sub" + postjsonObject);
 
-            Login_post.login_posting(activity, Urls.GetUserDetails,postjsonObject,new VoleyJsonObjectCallback() {
+            Login_post.login_posting(activity, Urls.GetUserDetails, postjsonObject, new VoleyJsonObjectCallback() {
                 @Override
                 public void onSuccessResponse(JSONObject result) {
-                    System.out.println("GFGFGFGF"+result);
+                    System.out.println("GFGFGFGF" + result);
                     JSONObject jsonObject;
 
                     try {
 
-                        jsonObject=result.getJSONObject("user");
-                        refer=jsonObject.getString("RefferalCode");
-                        System.out.println("referrrrr"+refer);
+                        jsonObject = result.getJSONObject("user");
+                        refer = jsonObject.getString("RefferalCode");
+                        System.out.println("referrrrr" + refer);
 
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -560,37 +645,38 @@ public class SignUpActivity extends AppCompatActivity {
 
 
     }
+
     private void ValidateUser() {
 
         try {
 
             JSONObject userRequestjsonObject = new JSONObject();
-            userRequestjsonObject.put("RefferalCode",referal_code.getText().toString());
+            userRequestjsonObject.put("RefferalCode", referal_code.getText().toString());
 
             JSONObject postjsonObject = new JSONObject();
             postjsonObject.put("objUser", userRequestjsonObject);
-            System.out.println("rreeddert"+postjsonObject);
+            System.out.println("rreeddert" + postjsonObject);
 
-            Login_post.login_posting(SignUpActivity.this,Urls.ValidateReferalCode,postjsonObject,new VoleyJsonObjectCallback() {
+            Login_post.login_posting(SignUpActivity.this, Urls.ValidateReferalCode, postjsonObject, new VoleyJsonObjectCallback() {
                 @Override
                 public void onSuccessResponse(JSONObject result) {
-                    System.out.println("hgdysfdytf"+result);
+                    System.out.println("hgdysfdytf" + result);
                     JSONObject jsonObject;
 
                     try {
-                        System.out.println("referrrrrADFG"+refer);
+                        System.out.println("referrrrrADFG" + refer);
 
 
-                        jsonObject=result.getJSONObject("user");
-                        refer=jsonObject.getString("IsReferValidated");
-                        System.out.println("referrrrr"+refer);
-                        if (refer.equals("true")){
-                            System.out.println("tryryru"+refer);
+                        jsonObject = result.getJSONObject("user");
+                        refer = jsonObject.getString("IsReferValidated");
+                        System.out.println("referrrrr" + refer);
+                        if (refer.equals("true")) {
+                            System.out.println("tryryru" + refer);
                             register();
-                        }else{
-                            Toast.makeText(activity,"Invalid Referal Code",Toast.LENGTH_LONG).show();
+                        } else {
+                            Toast.makeText(activity, "Invalid Referal Code", Toast.LENGTH_LONG).show();
                         }
-                        System.out.println("referrrrr"+refer);
+                        System.out.println("referrrrr" + refer);
 
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -625,6 +711,7 @@ public class SignUpActivity extends AppCompatActivity {
             System.out.println("post_oobject" + postjsonObject);
 
 
+
             Login_post.login_posting(SignUpActivity.this, Urls.SIGNUP, postjsonObject, new VoleyJsonObjectCallback() {
                 @Override
                 public void onSuccessResponse(JSONObject result) {
@@ -650,7 +737,7 @@ public class SignUpActivity extends AppCompatActivity {
                             String userid = jsonObject.getString("Id");
                             System.out.println("useerrrriidd" + userid);
                             sessionManager.saveUserId(userid);
-                            sessionManager.save_name(jsonObject.getString("FullName"),jsonObject.getString("PhoneNo"));
+                            sessionManager.save_name(jsonObject.getString("FullName"), jsonObject.getString("PhoneNo"));
                             Intent intent = new Intent(SignUpActivity.this, EnterOTP.class);
                             intent.putExtra("otpnumber", status);
                             startActivity(intent);
@@ -667,4 +754,6 @@ public class SignUpActivity extends AppCompatActivity {
         }
     }
 
-    }
+
+}
+

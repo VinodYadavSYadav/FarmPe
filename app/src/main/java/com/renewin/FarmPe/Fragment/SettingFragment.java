@@ -202,6 +202,7 @@ public class SettingFragment extends Fragment {
             }
         });
 
+
         change_lang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -234,6 +235,7 @@ public class SettingFragment extends Fragment {
                 transaction.commit();
             }
         });
+
         your_address.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -244,10 +246,8 @@ public class SettingFragment extends Fragment {
                 transaction.addToBackStack("setting");
                 transaction.commit();
 
-
             }
         });
-
 
 
 

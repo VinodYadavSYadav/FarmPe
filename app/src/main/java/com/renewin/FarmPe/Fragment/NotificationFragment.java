@@ -49,7 +49,7 @@ public class NotificationFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 FragmentManager fm = getActivity().getSupportFragmentManager();
-                fm.popBackStack("setting", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                fm.popBackStack("looking", FragmentManager.POP_BACK_STACK_INCLUSIVE);
             }
         });
 

@@ -98,6 +98,7 @@
         >
 
         <TextView
+            android:id="@+id/register_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Register"
@@ -106,7 +107,7 @@
             android:textColor="#000"
             android:layout_gravity="center"
             android:layout_marginHorizontal="10dp"
-            android:id="@+id/toolbar_title" />
+             />
 
         <EditText
             android:id="@+id/name"
@@ -114,13 +115,14 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/segoeui"
             android:hint="Name"
-            android:inputType="text"
             android:cursorVisible="true"
+            android:digits="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ"
             android:background="@drawable/border_empty"
             android:textCursorDrawable="@drawable/cursor_color"
             android:layout_marginHorizontal="20dp"
             android:maxLength="12"
             android:padding="15dp"
+            android:textColorHint="@color/dot_dark_screen1"
             android:textStyle="normal"
             android:scrollHorizontally="true"
             android:singleLine="true"
@@ -137,6 +139,7 @@
             android:layout_marginHorizontal="20dp"
             android:inputType="number"
             android:maxLength="10"
+            android:textColorHint="@color/dot_dark_screen1"
             android:cursorVisible="true"
             android:background="@drawable/border_empty"
             android:textCursorDrawable="@drawable/cursor_color"
@@ -292,6 +295,7 @@
                 android:layout_marginHorizontal="20dp"
                 android:inputType="textPassword"
                 android:maxLength="12"
+                android:textColorHint="@color/dot_dark_screen1"
                 android:padding="15dp"
                 android:textStyle="normal"
                 android:scrollHorizontally="true"

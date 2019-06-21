@@ -278,8 +278,8 @@ public class LoginFragment extends Fragment {
                                             sessionManager.createLoginSession(password,mob_no);
 
                                             sessionManager.save_name(userObject.getString("FullName"),userObject.getString("PhoneNo"));
-                                            sessionManager.saveUserId(userId);
-
+                                           // sessionManager.saveUserId(userId);
+                                            sessionManager.saveUserId(userObject.getString("Id"));
                                             if(remember_me.isChecked()){
 
                                                 if(!myDb.isEmailExists(mobile_no.getText().toString())){
@@ -289,7 +289,6 @@ public class LoginFragment extends Fragment {
                                             }
                                         }
 
-
                                     } else{
 
                                         Snackbar snackbar = Snackbar
@@ -298,7 +297,6 @@ public class LoginFragment extends Fragment {
                                         TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
                                         tv.setTextColor(Color.RED);
                                         snackbar.show();
-
 
                                     }
 
@@ -320,6 +318,7 @@ public class LoginFragment extends Fragment {
 
         return view;
     }
+
 
     public void edittext_move(final EditText et1, final EditText et2) {
         et1.addTextChangedListener(new TextWatcher() {
