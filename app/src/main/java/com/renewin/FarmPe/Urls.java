@@ -41,7 +41,7 @@ public class Urls {
     public static final String AddTransactionDetails="http://3.17.6.57:8080/api/Order/AddOrderPaymentDetails";
 
     public static final String PayuGetPaytmCheckSum="http://35.154.22.127:8585/api/Paytm/GetPaytmCheckSum";
-    public static final String Get_New_Address = "http://3.17.6.57:8080/api/MasterTable/GetUserAddress";
+    public static final String Get_New_Address = ROOT_URL3+"MasterTable/GetUserAddress";
     // Wallet
     public static final String GetWalletBalance = ROOT_URL +"MasterTable/GetWalletDetails";
 

@@ -95,6 +95,7 @@ public class SignUpActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
  final InputFilter EMOJI_FILTER = new InputFilter() {
 
             @Override
@@ -237,6 +238,28 @@ public class SignUpActivity extends AppCompatActivity {
         };
 
         password.setFilters(new InputFilter[] {filter,new InputFilter.LengthFilter(12) });
+
+
+
+        final InputFilter filter1 = new InputFilter() {
+            public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
+                //String filtered = "";
+                for (int i = start; i < end; i++) {
+                    char character = source.charAt(i);
+                    if (Character.isWhitespace(source.charAt(i))) {
+                        if (dstart == 0)
+                            return "";
+                    }
+                }
+                return null;
+            }
+
+        };
+
+        name.setFilters(new InputFilter[] {filter1,new InputFilter.LengthFilter(12) });
+
+
+
         continue_sign_up.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
