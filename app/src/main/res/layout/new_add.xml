@@ -198,7 +198,7 @@
                                 android:textCursorDrawable="@drawable/cursor_color"
                                 android:padding="10dp"
                                 android:background="@android:color/transparent"
-
+                                android:textColorHint="@color/dot_dark_screen1"
                                 android:textColor="#000000"
                                 />
                         </LinearLayout>
@@ -230,6 +230,7 @@
                                 android:textCursorDrawable="@drawable/cursor_color"
                                 android:background="@android:color/transparent"
                                 android:textColor="#000000"
+                                android:textColorHint="@color/dot_dark_screen1"
                                 />
                         </LinearLayout>
                         <View
@@ -259,6 +260,8 @@
                                 android:textCursorDrawable="@drawable/cursor_color"
                                 android:background="@android:color/transparent"
                                 android:textColor="#000000"
+                                android:textColorHint="@color/dot_dark_screen1"
+
                                 />
                         </LinearLayout>
                         <View
@@ -287,6 +290,8 @@
                                 android:textCursorDrawable="@drawable/cursor_color"
                                 android:background="@android:color/transparent"
                                 android:textColor="#000000"
+                                android:textColorHint="@color/dot_dark_screen1"
+
                                 />
                         </LinearLayout>
 
@@ -317,6 +322,8 @@
                                 android:textCursorDrawable="@drawable/cursor_color"
                                 android:background="@android:color/transparent"
                                 android:textColor="#000000"
+                                android:textColorHint="@color/dot_dark_screen1"
+
                                 />
                         </LinearLayout>
 
@@ -348,6 +355,8 @@
                                 android:textCursorDrawable="@drawable/cursor_color"
                                 android:background="@android:color/transparent"
                                 android:textColor="#000000"
+                                android:textColorHint="@color/dot_dark_screen1"
+
                                 />
                         </LinearLayout>
 
@@ -382,6 +391,8 @@
                                 android:padding="10dp"
                                 android:background="@android:color/transparent"
                                 android:textColor="#000000"
+                                android:textColorHint="@color/dot_dark_screen1"
+
                                 />
                         </LinearLayout>
                         <View

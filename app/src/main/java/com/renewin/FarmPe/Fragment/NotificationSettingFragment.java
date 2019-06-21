@@ -50,18 +50,23 @@ public class NotificationSettingFragment extends Fragment {
 
 
         view.setFocusableInTouchMode(true);
-        view.requestFocus(View.FOCUS_UP);
+        view.requestFocus();
         view.setOnKeyListener(new View.OnKeyListener() {
+
+
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
-                if( keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP) {
+                if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP) {
                     FragmentManager fm = getActivity().getSupportFragmentManager();
                     fm.popBackStack("setting", FragmentManager.POP_BACK_STACK_INCLUSIVE);
 
+
+                    return true;
                 }
                 return false;
             }
         });
+
 
 
 
