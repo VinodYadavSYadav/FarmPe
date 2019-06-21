@@ -21,10 +21,10 @@
        android:id="@+id/update_acc_layout"
        android:layout_width="match_parent"
        android:layout_height="0dp"
-       android:layout_weight="65"
+       android:layout_weight="70"
        android:paddingTop="10dp"
        android:orientation="vertical"
-       android:gravity="center"
+       android:gravity="center|bottom"
        android:background="#000"
        >
 
@@ -48,7 +48,7 @@
        android:layout_height="wrap_content"
        android:orientation="vertical"
        android:layout_weight="15"
-
+       android:gravity="center"
        android:background="#000"
        >
 
@@ -105,7 +105,6 @@
              android:textSize="16dp"
              android:gravity="center"
              android:paddingBottom="5dp"
-             android:textStyle="italic"
              android:textColor="#fff"
              />
 
@@ -197,7 +196,7 @@
        android:layout_width="match_parent"
        android:layout_height="0dp"
        android:orientation="vertical"
-       android:paddingLeft="40dp"
+       android:paddingLeft="30dp"
        >
 
 
@@ -206,6 +205,8 @@
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
        android:text="Messages"
+          android:drawableLeft="@drawable/ic_settings"
+          android:drawablePadding="10dp"
        android:layout_marginTop="15dp"
        android:textSize="16dp"
        android:fontFamily="@font/segoeui"
@@ -218,6 +219,8 @@
           android:text="Connections"
           android:layout_marginTop="20dp"
           android:textSize="16dp"
+          android:drawableLeft="@drawable/ic_settings"
+          android:drawablePadding="10dp"
           android:fontFamily="@font/segoeui"
           android:textColor="#000"
           />
@@ -228,6 +231,8 @@
           android:text="Your Requests"
           android:layout_marginTop="20dp"
           android:textSize="16dp"
+          android:drawableLeft="@drawable/ic_settings"
+          android:drawablePadding="10dp"
           android:fontFamily="@font/segoeui"
           android:textColor="#000"
           />
@@ -237,6 +242,8 @@
           android:text="List your Farm"
           android:layout_marginTop="20dp"
           android:textSize="16dp"
+          android:drawableLeft="@drawable/ic_settings"
+          android:drawablePadding="10dp"
           android:fontFamily="@font/segoeui"
           android:textColor="#000"
           />
@@ -249,6 +256,8 @@
           android:text="Settings"
           android:layout_marginTop="20dp"
           android:textSize="16dp"
+          android:drawableLeft="@drawable/ic_settings"
+          android:drawablePadding="10dp"
           android:fontFamily="@font/segoeui"
           android:textColor="#000"
           />

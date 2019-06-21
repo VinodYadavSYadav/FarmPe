@@ -349,8 +349,9 @@ public class SignUpActivity extends AppCompatActivity {
                     tv.setTextColor(Color.RED);
                     snackbar.show();
                 } else {
-
-                    register();
+                    Intent intent = new Intent(SignUpActivity.this, EnterOTP.class);
+                    startActivity(intent);
+                  //  register();
                    /* try {
 
                         // mobile=mob_no;
@@ -563,7 +564,7 @@ public class SignUpActivity extends AppCompatActivity {
                         System.out.println("referrrrr"+refer);
                         if (refer.equals("true")){
                             System.out.println("tryryru"+refer);
-                            register();
+                          //  register();
                         }else{
                             Toast.makeText(activity,"Invalid Referal Code",Toast.LENGTH_LONG).show();
                         }

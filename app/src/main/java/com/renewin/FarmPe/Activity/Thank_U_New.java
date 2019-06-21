@@ -109,19 +109,11 @@ public class Thank_U_New extends AppCompatActivity {
                     TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
                     tv.setTextColor(Color.RED);
                     snackbar.show();
-                }else {
-                    if (otp_get_text.equals(sessionId)){
-                        Intent intent=new Intent(Thank_U_New.this,ResetPasswordNew.class);
-                        startActivity(intent);
-                    }else{
-                        Snackbar snackbar = Snackbar
-                                .make(linearLayout, "Invalid OTP", Snackbar.LENGTH_LONG);
-                        View snackbarView = snackbar.getView();
-                        TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-                        tv.setTextColor(Color.RED);
-                        snackbar.show();
+                }else{
+                    Intent intent=new Intent(Thank_U_New.this,ResetPasswordNew.class);
+                    startActivity(intent);
                     }
-                }
+
             }
         });
 

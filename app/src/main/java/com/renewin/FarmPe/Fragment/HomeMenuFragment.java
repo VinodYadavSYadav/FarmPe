@@ -39,6 +39,7 @@ Fragment selectedFragment;
     TextView home,shop_cat,map,settings,farms,farmer,account,wallet,sell_on_xohri,help_center,notification;
     public static TextView cart_count_text,user_name_menu;
     View looking_view,farms_view,farmer_view;
+    RelativeLayout notification_bell;
 static boolean fragloaded;
 
 static Fragment myloadingfragment;
@@ -62,6 +63,7 @@ public static NestedScrollView scrollView;
         home=view.findViewById(R.id.home);
         //map=view.findViewById(R.id.map);
         update_acc_layout=view.findViewById(R.id.update_acc_layout);
+        notification_bell=view.findViewById(R.id.notification_bell);
         settings=view.findViewById(R.id.settings);
        /* looking_for=view.findViewById(R.id.looking_for);
         farms=view.findViewById(R.id.farms);
@@ -97,6 +99,17 @@ public static NestedScrollView scrollView;
             @Override
             public void onClick(View v) {
                 selectedFragment = AddFirstLookingFor.newInstance();
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.frame_layout, selectedFragment);
+                transaction.addToBackStack("looking");
+                transaction.commit();
+            }
+        });
+
+        notification_bell.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectedFragment = NotificationFragment.newInstance();
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.frame_layout, selectedFragment);
                 transaction.addToBackStack("looking");

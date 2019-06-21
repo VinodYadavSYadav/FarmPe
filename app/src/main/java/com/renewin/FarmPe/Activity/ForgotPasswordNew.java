@@ -93,9 +93,7 @@ public class ForgotPasswordNew extends AppCompatActivity {
         });
 
 
-        forgot_submit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+
                 forgot_submit.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -120,78 +118,15 @@ public class ForgotPasswordNew extends AppCompatActivity {
                             snackbar.show();
 
                         } else {
-                            try {
-                                localize_text="+91";
-                                JSONObject postjsonObject = new JSONObject();
-                                postjsonObject.put("UserName", localize_text + mobileno.getText().toString());
-                                System.out.println("aaaaaaaaaaaa" + postjsonObject);
-                                Login_post.Forgot_Passsword(ForgotPasswordNew.this, postjsonObject, new VoleyJsonObjectCallback() {
-                                    @Override
-                                    public void onSuccessResponse(JSONObject result) {
-                                        System.out.println("nnnnnmnm" + result.toString());
-                                        try {
-                                            // System.out.println("nnnnnmnm" + result.toString());
-                                            otp = result.getString("OTP");
-                                            forgot_mob_no = result.getString("UserName");
-                                            mob_trim=forgot_mob_no.substring(3);
-                                            Message = result.getString("Message");
-                                            status= result.getInt("Status");
-                                            if(status==0){
-                                                Snackbar snackbar = Snackbar
-                                                        .make(coordinatorLayout, "Your number is not register", Snackbar.LENGTH_LONG);
-                                                //snackbar.setActionTextColor(R.color.colorAccent);
-                                                View snackbarView = snackbar.getView();
-                                                TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-                                                tv.setTextColor(Color.RED);
-                                                snackbar.show();
-                                            }else if (status==2){
-                                                Snackbar snackbar = Snackbar
-                                                        .make(coordinatorLayout, result.getString("Message"), Snackbar.LENGTH_LONG);
-                                                //snackbar.setActionTextColor(R.color.colorAccent);
-                                                View snackbarView = snackbar.getView();
-                                                TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-                                                tv.setTextColor(Color.RED);
-                                                snackbar.show();
-                                            }
-                                            else{
-                                                Toast.makeText(ForgotPasswordNew.this,Message,Toast.LENGTH_LONG).show();
-                                                Intent intent = new Intent(ForgotPasswordNew.this, Thank_U_New.class);
-                                                intent.putExtra("otp_forgot", otp);
-                                                //intent.putExtra("forgot_mob_no", forgot_mob_no);
-                                                startActivity(intent);
-                                            }
-                                            System.out.println("for_ottpp" + otp);
-                                           /* if (Message.equals("You have Exceeded the limit of resending OTP")) {
-                                                Snackbar snackbar = Snackbar
-                                                        .make(coordinatorLayout, "You have Exceeded the limit of resending OTP,Please wait for 24 hours to get OTP", Snackbar.LENGTH_LONG);
-                                                //snackbar.setActionTextColor(R.color.colorAccent);
-                                                View snackbarView = snackbar.getView();
-                                                TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-                                                tv.setTextColor(Color.RED);
-                                                snackbar.show();
-                                            } else {
-                                                Intent intent = new Intent(ForgotPassword.this, Thank_U.class);
-                                                intent.putExtra("otp_forgot", otp);
-                                                //intent.putExtra("forgot_mob_no", forgot_mob_no);
-                                                startActivity(intent);
-                                            }*/
-
-                                        } catch (JSONException e) {
-                                            e.printStackTrace();
-                                        }
-                                    }
-                                });
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
-
+                            Toast.makeText(ForgotPasswordNew.this,Message,Toast.LENGTH_LONG).show();
+                            Intent intent = new Intent(ForgotPasswordNew.this, Thank_U_New.class);
+                            //intent.putExtra("forgot_mob_no", forgot_mob_no);
+                            startActivity(intent);
                         }
                     }
                 });
 
-            }
 
-        });
 
 
 

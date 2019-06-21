@@ -285,88 +285,10 @@ public class LoginActivity extends AppCompatActivity {
 //                    snackbar.show();
                 } else {
 
+                    Intent intent = new Intent(LoginActivity.this, LandingPageActivity.class);
+                    startActivity(intent);
 
 
-                    try{
-
-                        JSONObject jsonObject = new JSONObject();
-                        JSONObject post_Object = new JSONObject();
-
-                        jsonObject.put("UserName",mob_no);
-                        jsonObject.put("Password",password);
-                        post_Object.put("UserRequest",jsonObject);
-                        System.out.println("postobjj"+post_Object);
-
-                        Login_post.login_posting(LoginActivity.this, Urls.LOGIN,post_Object, new VoleyJsonObjectCallback()  {
-                            @Override
-                            public void onSuccessResponse(JSONObject result) {
-                                System.out.println("111111user" + result);
-                                try{
-                                    JSONObject jsonObject;
-                                    JSONObject userObject;
-
-                                    jsonObject = result.getJSONObject("ResultObject");
-
-                                    if(!(jsonObject.isNull("user"))){
-                                        userObject = jsonObject.getJSONObject("user");
-                                        status=jsonObject.getString("Status");
-                                        userId=jsonObject.getString("UserId");
-
-                                        System.out.println("useridddd"+userId);
-
-                                        if(status.equals("1")){
-                                            System.out.println("jdhyusulogin"+status);
-                                            Intent intent = new Intent(LoginActivity.this, LandingPageActivity.class);
-                                            startActivity(intent);
-                                            sessionManager.createLoginSession(password,mob_no);
-
-                                            sessionManager.save_name(userObject.getString("FullName"),userObject.getString("PhoneNo"));
-                                            sessionManager.saveUserId(userObject.getString("Id"));
-                                           /* if(remember_me.isChecked()){
-
-                                                if(!myDb.isEmailExists(mobile_no.getText().toString())){
-
-                                                    AddData(mobile_no.getText().toString(),password);
-                                                }
-                                            }*/
-
-                                            if(remember_me.isChecked()){
-
-                                                if(!myDb.isEmailExists(mobile_no.getText().toString())){
-
-                                                    AddData(mobile_no.getText().toString(),password);
-                                                }
-                                            }else {
-                                                if(myDb.isEmailExists(mobile_no.getText().toString())){
-
-                                                    DeleteData(mobile_no.getText().toString(),password);
-                                                }
-                                            }
-                                        }
-
-
-                                    } else{
-
-                                        Snackbar snackbar = Snackbar
-                                                .make(coordinatorLayout, jsonObject.getString("Message"), Snackbar.LENGTH_LONG);
-                                        View snackbarView = snackbar.getView();
-                                        TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-                                        tv.setTextColor(Color.RED);
-                                        snackbar.show();
-
-
-                                    }
-
-                                }catch (Exception e){
-                                    e.printStackTrace();
-                                }
-
-                            }
-                        });
-
-                    }catch (Exception e){
-                        e.printStackTrace();
-                    }
                 }
 
             }

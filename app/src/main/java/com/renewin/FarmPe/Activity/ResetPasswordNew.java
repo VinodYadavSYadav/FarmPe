@@ -58,25 +58,6 @@ public class ResetPasswordNew extends AppCompatActivity {
 
         setupUI(linearLayout);
 
-        // next=findViewById(R.id.next);
-
-        sessionManager = new SessionManager(this);
-       // sessionManager.getRegId("lng_object");
-        //System.out.println("llllllllllll" + sessionManager.getRegId("lng_object"));
-        JSONObject lngObject;
-        try {
-            lngObject=new JSONObject(sessionManager.getRegId("langdetails"));
-            reset_text.setText(lngObject.getString("ResetPassword"));
-            to_continue_text.setText(lngObject.getString("Continue"));
-            passwd.setHint(lngObject.getString("NewPassword"));
-            conf_pass.setHint(lngObject.getString("ReEnterPassword"));
-           // conf_pass.setText(lngObject.getString("Submit"));
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        forgot_username=ForgotPasswordNew.forgot_mob_no.substring(3);
-
         back_reset_pass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -145,75 +126,9 @@ public class ResetPasswordNew extends AppCompatActivity {
                     // Snackbar snackbar=Snackbar.make(v,"Password Not Matching",Snackbar.LENGTH_LONG);
 
                 }
-                else
-
-                {
-                    try {
-                        localize_text = "+91";
-
-                        System.out.println("aaaaaaaaaaaa");
-                        JSONObject postjsonObject = new JSONObject();
-                        JSONObject postjsonObject1 = new JSONObject();
-                        postjsonObject.putOpt("UserName",localize_text + forgot_username);
-                        postjsonObject.putOpt("Password", passwd.getText().toString());
-
-                        postjsonObject1.putOpt("UserRequest",postjsonObject);
-                        System.out.println("111111111111111111111111"+postjsonObject1);
-
-                        Login_post.ChangePassword(ResetPasswordNew.this, postjsonObject1, new VoleyJsonObjectCallback() {
-                            @Override
-                            public void onSuccessResponse(JSONObject result) {
-                                System.out.println("nnnnnmnmrenewwwwwwwrenewwwwwww" + result.toString());
-                                try {
-                                    JSONObject responseobject = new JSONObject(result.toString());
-                                    if (result.isNull("Result")) {
-                                        System.out.println("jjjjjj");
-
-                                        JSONObject user = responseobject.getJSONObject("ResultObject");
-                                        String status=user.getString("Status");
-                                        String message=user.getString("Message");
-                                        System.out.println("renewwwwwww"+message);
-                                        System.out.println("sttrenewwwwwwwrenewwwwwwwrenewwwwwww"+status);
-                                        if (status.equals("1")){
-
-                                            //sessionManager.createLoginSession(password, ForgotPassword.forgot_mob_no);
-                                            System.out.println("qwertyuioaaa" + password + ForgotPasswordNew.forgot_mob_no);
-                                            if (myDb.isEmailExists(ForgotPasswordNew.mob_trim)){
-                                                myDb.updateContact(ForgotPasswordNew.mob_trim,conf_pass.getText().toString().trim());
-                                            }
-                                            System.out.println("hhhhhgggere" +message);
-                                            Toast.makeText(ResetPasswordNew.this, message, Toast.LENGTH_SHORT).show();
-                                            Intent intent=new Intent(ResetPasswordNew.this, LoginActivity.class);
-                                            startActivity(intent);
-                                           /* if (LoginFragment.rememberMe.isChecked()) {
-
-                                                if (!myDb.isEmailExists(ForgotPasswordNew.forgot_mob_no)) {
-                                                    AddData(ForgotPassword.forgot_mob_no, password);
-                                                }
-
-                                            }*/
-                                        }else {
-                                            Toast.makeText(ResetPasswordNew.this, "Password not Updated", Toast.LENGTH_SHORT).show();
-                                        }
-
-
-                                    } else {
-                                        JSONObject response = responseobject.getJSONObject("Response");
-                                        Toast.makeText(ResetPasswordNew.this, response.getString("Errors"), Toast.LENGTH_SHORT).show();
-                                    }
-
-
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                }
-                            }
-                        });
-
-
-
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
+                else {
+                    Intent intent=new Intent(ResetPasswordNew.this, LoginActivity.class);
+                    startActivity(intent);
                 }
             }
         });

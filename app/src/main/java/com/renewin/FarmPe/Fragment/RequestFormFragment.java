@@ -133,6 +133,11 @@ public class RequestFormFragment extends Fragment {
             @Override
             public void onClick(View v) {
               //  RequestForm();
+                selectedFragment = HomeMenuFragment.newInstance();
+                FragmentTransaction transaction = (getActivity()).getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.frame_layout, selectedFragment);
+                transaction.commit();
+
             }
         });
 
