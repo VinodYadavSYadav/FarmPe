@@ -135,16 +135,19 @@ public class LoginActivity extends AppCompatActivity {
         pass.setFilters(new InputFilter[] {filter,new InputFilter.LengthFilter(12) });
         // sessionManager = new SessionManager(this);
         // sessionManager.getRegId("lng_object");
-        System.out.println("llllllllllll" + sessionManager.getRegId("langdetails"));
+        System.out.println("llllllllllll" + sessionManager.getRegId("language"));
 
         try {
-            if ((sessionManager.getRegId("langdetails")).equals("")){
+            if ((sessionManager.getRegId("language")).equals("")){
                 getLang(1);
 
             }else {
 
 
-                lngObject = new JSONObject(sessionManager.getRegId("langdetails"));
+                lngObject = new JSONObject(sessionManager.getRegId("language"));
+
+                System.out.println("llllllllllllkkkkkkkkkkkkkkk" +lngObject.getString("EnterPhoneNo"));
+
                 //  createaccount.setHint(lngObject.getString("Createanaccount"));
                 //mob_text_signin.setHint(lngObject.getString("Signintoyouraccount"));
                 toast_mob = lngObject.getString("EnterPhoneNo");
