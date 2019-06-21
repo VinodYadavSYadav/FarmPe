@@ -3,6 +3,7 @@ package com.renewin.FarmPe;
 public class Urls {
 
     public static final String Add_New_Address = "http://3.17.6.57:8686/api/MasterTable/AddUserAddress";
+
     private static final String ROOT_URL = " http://3.17.6.57:8686/api/Auth/";
     private static final String ROOT_URL1 = "http://3.17.6.57:8080/api/";
     private static final String ROOT_URL2 = "http://3.17.6.57:8585/api/";
@@ -61,8 +62,9 @@ public class Urls {
 
     // Address
 
-    public static final String Delete_Address_Details = ROOT_URL + "MasterTable/DeleteUserAddress";
-    public static final String Default_Address = ROOT_URL + "MasterTable/UpdateUserDefaultAddress";
+    public static final String Delete_Address_Details = ROOT_URL3 + "MasterTable/DeleteUserAddress";
+    public static final String Default_Address = ROOT_URL3 + "MasterTable/UpdateUserDefaultAddress";
+    public static final String Edit_Address = ROOT_URL3 + "MasterTable/UpdateUserDefaultAddress";
 
 
 
