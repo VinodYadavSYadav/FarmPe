@@ -27,6 +27,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.renewin.FarmPe.Adapter.SelectLanguageAdapter2;
+import com.renewin.FarmPe.Adapter.SelectLanguageAdapter_SignUP;
 import com.renewin.FarmPe.Bean.SelectLanguageBean;
 import com.renewin.FarmPe.R;
 import com.renewin.FarmPe.SessionManager;
@@ -44,12 +45,13 @@ import java.util.List;
 
 public class SignUpActivity extends AppCompatActivity {
 
-    TextView create_acc, continue_sign_up, change_lang, backtologin, referal_text;
+   public static TextView create_acc, continue_sign_up, change_lang, backtologin, referal_text;
     LinearLayout back_feed;
     SessionManager sessionManager;
     public static EditText name, mobile_no, password, referal_code;
     String status, status_resp;
     Activity activity;
+    JSONObject lngObject;
     LinearLayout linearLayout;
     BroadcastReceiver receiver;
     EditText spn_localize;
@@ -57,7 +59,7 @@ public class SignUpActivity extends AppCompatActivity {
     TextInputLayout textInputLayout_name, textInputLayout_pass;
     public static String contact, mob_contact;
     String refer;
-  public static   Dialog dialog;
+   public static   Dialog dialog;
 
 
     @Override
@@ -68,7 +70,7 @@ public class SignUpActivity extends AppCompatActivity {
         linearLayout = findViewById(R.id.linear_login);
         back_feed = findViewById(R.id.back_feed);
         //  spn_localize=findViewById(R.id.spn_localize);
-        create_acc = findViewById(R.id.create_account);
+        create_acc = findViewById(R.id.register_title);
         continue_sign_up = findViewById(R.id.sign_up_continue);
         name = findViewById(R.id.name);
         // backtologin=findViewById(R.id.create_acc);
@@ -78,7 +80,7 @@ public class SignUpActivity extends AppCompatActivity {
         // referal_text=findViewById(R.id.referal_text);
         // referal_code=findViewById(R.id.referal_code);
         // textInputLayout_pass=findViewById(R.id.text_pass);
-        GetUserDetails();
+
 
 
         sessionManager = new SessionManager(SignUpActivity.this);
@@ -93,7 +95,38 @@ public class SignUpActivity extends AppCompatActivity {
             }
         });*/
 
-        back_feed.setOnClickListener(new View.OnClickListener() {
+
+        try {
+
+            if ((sessionManager.getRegId("language")).equals("")) {
+                getLang(1);
+
+            }else{
+
+                lngObject=new JSONObject(sessionManager.getRegId("langdetails"));
+
+                create_acc.setText(lngObject.getString("Register"));
+                name.setHint(lngObject.getString("FullName"));
+                mobile_no.setHint(lngObject.getString("PhoneNo"));
+                password.setHint(lngObject.getString("Password"));
+               // textInputLayout_name.setHint(lngObject.getString("FullName"));
+              //  textInputLayout_pass.setHint(lngObject.getString("EnterPassword"));
+                continue_sign_up.setText(lngObject.getString("Register"));
+
+
+            }
+
+
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+
+
+
+
+                back_feed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
@@ -132,20 +165,20 @@ public class SignUpActivity extends AppCompatActivity {
 
         sessionManager = new SessionManager(this);
         //  sessionManager.getRegId("lng_object");
-        System.out.println("signupresponse" + sessionManager.getRegId("langdetails"));
-        JSONObject lngObject;
-        try {
-            lngObject = new JSONObject(sessionManager.getRegId("langdetails"));
-            create_acc.setText(lngObject.getString("CreateAccount"));
-            // mob_text.setText(lngObject.getString("PhoneNo"));
-            mobile_no.setHint(lngObject.getString("PhoneNo"));
-            name.setHint(lngObject.getString("FullName"));
-            password.setHint(lngObject.getString("EnterPassword"));
-            continue_sign_up.setText(lngObject.getString("Register"));
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+//        System.out.println("signupresponse" + sessionManager.getRegId("langdetails"));
+//        JSONObject lngObject;
+//        try {
+//            lngObject = new JSONObject(sessionManager.getRegId("langdetails"));
+//            create_acc.setText(lngObject.getString("Register"));
+//            // mob_text.setText(lngObject.getString("PhoneNo"));
+//            mobile_no.setHint(lngObject.getString("PhoneNo"));
+//            name.setHint(lngObject.getString("FullName"));
+//            password.setHint(lngObject.getString("EnterPassword"));
+//            continue_sign_up.setText(lngObject.getString("Register"));
+//
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
 
 
         change_lang.setOnClickListener(new View.OnClickListener() {
@@ -156,7 +189,7 @@ public class SignUpActivity extends AppCompatActivity {
                 RecyclerView recyclerView;
                 final TextView yes1, no1;
                 final LinearLayout close_layout;
-                final SelectLanguageAdapter2 mAdapter;
+                final SelectLanguageAdapter_SignUP mAdapter;
                 System.out.println("aaaaaaaaaaaa");
                 dialog = new Dialog(SignUpActivity.this);
                 dialog.setContentView(R.layout.change_lang_login);
@@ -192,7 +225,7 @@ public class SignUpActivity extends AppCompatActivity {
                 SelectLanguageBean bean6 = new SelectLanguageBean("Marathi", 7, "");
                 newOrderBeansList.add(bean6);
 
-                mAdapter = new SelectLanguageAdapter2(SignUpActivity.this, newOrderBeansList);
+                mAdapter = new SelectLanguageAdapter_SignUP(SignUpActivity.this, newOrderBeansList);
                 recyclerView.setAdapter(mAdapter);
                 close_layout.setOnClickListener(new View.OnClickListener() {
 
@@ -208,21 +241,21 @@ public class SignUpActivity extends AppCompatActivity {
         });
 
 
-  /*    //  sessionManager.getRegId("lng_object");
-        System.out.println("signupresponse" + sessionManager.getRegId("langdetails"));
-        JSONObject lngObject;
-        try {
-           // lngObject=new JSONObject(sessionManager.getRegId("langdetails"));
-        //    create_acc.setText(lngObject.getString("CreateAccount"));
-         //   mob_text.setText(lngObject.getString("PhoneNo"));
-          //  mobile_no.setHint(lngObject.getString("PhoneNo"));
-          //  textInputLayout_name.setHint(lngObject.getString("FullName"));
-          //  textInputLayout_pass.setHint(lngObject.getString("EnterPassword"));
-          //  continue_sign_up.setText(lngObject.getString("Register"));
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }*/
+      //  sessionManager.getRegId("lng_object");
+//        System.out.println("signupresponse" + sessionManager.getRegId("langdetails"));
+//        JSONObject lngObject;
+//        try {
+//            lngObject=new JSONObject(sessionManager.getRegId("langdetails"));
+//            create_acc.setText(lngObject.getString("CreateAccount"));
+//            mob_text.setText(lngObject.getString("PhoneNo"));
+//            mobile_no.setHint(lngObject.getString("PhoneNo"));
+//            textInputLayout_name.setHint(lngObject.getString("FullName"));
+//            textInputLayout_pass.setHint(lngObject.getString("EnterPassword"));
+//            continue_sign_up.setText(lngObject.getString("Register"));
+//
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
        /* sign_up_arw1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -473,6 +506,53 @@ public class SignUpActivity extends AppCompatActivity {
 
     }
 
+    private void getLang(int id) {
+
+        try{
+
+
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("Id",id);
+
+            System.out.print("iiidddddd"+ id);
+
+            Crop_Post.crop_posting(SignUpActivity.this, Urls.CHANGE_LANGUAGE, jsonObject, new VoleyJsonObjectCallback() {
+                @Override
+                public void onSuccessResponse(JSONObject result) {
+
+                    System.out.println("qqqqqqvv" + result);
+
+                    try{
+
+                        sessionManager.saveLanguage(result.toString());
+
+
+                        String log_regi = result.getString("Register");
+                        String log_name = result.getString("FullName");
+                        String log_mobile = result.getString("EnterPhoneNo");
+                        String log_password = result.getString("EnterPassword");
+                        String log_register = result.getString("Register");
+
+
+
+
+                        name.setHint(log_name);
+                        mobile_no.setHint(log_mobile);
+                        password.setHint(log_password);
+                        create_acc.setText(log_regi);
+                        continue_sign_up.setText(log_register);
+
+
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+                }
+            });
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 
     @Override
     public void onBackPressed() {

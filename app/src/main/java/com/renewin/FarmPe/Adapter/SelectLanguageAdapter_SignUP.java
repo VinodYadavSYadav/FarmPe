@@ -26,7 +26,7 @@ import org.json.JSONObject;
 import java.util.Date;
 import java.util.List;
 
-public class SelectLanguageAdapter2 extends RecyclerView.Adapter<SelectLanguageAdapter2.MyViewHolder>  {
+public class SelectLanguageAdapter_SignUP extends RecyclerView.Adapter<SelectLanguageAdapter_SignUP.MyViewHolder>  {
     private List<SelectLanguageBean> productList;
     Activity activity;
     Fragment selectedFragment;
@@ -35,7 +35,7 @@ public class SelectLanguageAdapter2 extends RecyclerView.Adapter<SelectLanguageA
     public static int selected_position=0;
 
     public static CardView cardView;
-    public SelectLanguageAdapter2(Activity activity, List<SelectLanguageBean> moviesList) {
+    public SelectLanguageAdapter_SignUP(Activity activity, List<SelectLanguageBean> moviesList) {
         this.productList = moviesList;
         this.activity=activity;
         sessionManager = new SessionManager(activity);
@@ -79,8 +79,8 @@ public class SelectLanguageAdapter2 extends RecyclerView.Adapter<SelectLanguageA
             public void onClick(View v) {
 
                 getLang(products1.getLanguageid());
-                LoginActivity.dialog.dismiss();
 
+                SignUpActivity.dialog.dismiss();
             }
         });
     }
@@ -90,13 +90,13 @@ public class SelectLanguageAdapter2 extends RecyclerView.Adapter<SelectLanguageA
         try{
 
 
-              JSONObject jsonObject = new JSONObject();
-              jsonObject.put("Id",id);
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("Id",id);
 
 
-              System.out.print("iiidddddd"+ id);
+            System.out.print("iiidddddd"+ id);
 
-             Crop_Post.crop_posting(activity, Urls.CHANGE_LANGUAGE, jsonObject, new VoleyJsonObjectCallback() {
+            Crop_Post.crop_posting(activity, Urls.CHANGE_LANGUAGE, jsonObject, new VoleyJsonObjectCallback() {
                 @Override
                 public void onSuccessResponse(JSONObject result) {
 
@@ -107,22 +107,12 @@ public class SelectLanguageAdapter2 extends RecyclerView.Adapter<SelectLanguageA
                         sessionManager.saveLanguage(result.toString());
 
 
-                          String log_login = result.getString("Login");
-                          String log_mobile = result.getString("EnterPhoneNo");
-                          String log_name = result.getString("FullName");
-                          String log_password = result.getString("EnterPassword");
-                          String log_remember_me = result.getString("RememberMe");
-                          String log_forgot_passwrd = result.getString("ForgotPassword");
-                          String log_register = result.getString("Register");
+
+                        String log_name = result.getString("FullName");
+                        String log_password = result.getString("EnterPassword");
+                        String log_register = result.getString("Register");
 
 
-                        LoginActivity.remember_me.setText(log_remember_me);
-                        LoginActivity.log_in.setText(log_login);
-                        LoginActivity.forgot_pass.setText(log_forgot_passwrd);
-                        LoginActivity.pass.setHint(log_password);
-                        LoginActivity.welcome_back.setText(log_login);
-                        LoginActivity.createaccount.setText(log_register);
-                        LoginActivity.mobile_no.setHint(log_mobile);
 
                         SignUpActivity.name.setHint(log_name);
                         SignUpActivity.create_acc.setText(log_register);

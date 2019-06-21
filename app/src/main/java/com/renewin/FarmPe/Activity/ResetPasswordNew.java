@@ -35,6 +35,7 @@ public class ResetPasswordNew extends AppCompatActivity {
    LinearLayout back_reset_pass,linearLayout;
    TextView pass_submit,reset_text,to_continue_text;
     EditText passwd,conf_pass;
+    JSONObject lngObject;
     SessionManager sessionManager;
     DatabaseHelper myDb;
     TextInputLayout passwd1_text_input,conf_pass_textinput;
@@ -45,6 +46,7 @@ public class ResetPasswordNew extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.reset_password);
+
         back_reset_pass=findViewById(R.id.arrow_reset_pass);
         pass_submit=findViewById(R.id.password_submit);
         passwd=findViewById(R.id.passwd1);
@@ -57,6 +59,24 @@ public class ResetPasswordNew extends AppCompatActivity {
         edittext_move(ForgotPasswordNew.mobileno, passwd);
 
         setupUI(linearLayout);
+
+        sessionManager = new SessionManager(ResetPasswordNew.this);
+
+        try {
+
+            lngObject = new JSONObject(sessionManager.getRegId("language"));
+
+            reset_text.setText(lngObject.getString("ResetPassword"));
+            to_continue_text.setText(lngObject.getString("ToContinue"));
+            conf_pass.setHint(lngObject.getString("EnterPassword"));
+            passwd.setHint(lngObject.getString("ReEnterPassword"));
+            pass_submit.setText(lngObject.getString("Submit"));
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
 
         back_reset_pass.setOnClickListener(new View.OnClickListener() {
             @Override

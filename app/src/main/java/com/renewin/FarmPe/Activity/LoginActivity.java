@@ -71,7 +71,7 @@ public class LoginActivity extends AppCompatActivity {
      Snackbar snackbar;
     String mob_no;
     public static  Dialog dialog;
-    TextView welcome_back, createaccount, change_lang, enterPassword, forgotPassword;
+   public static TextView welcome_back, createaccount, change_lang, enterPassword, forgotPassword;
 
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -150,13 +150,14 @@ public class LoginActivity extends AppCompatActivity {
 
                 //  createaccount.setHint(lngObject.getString("Createanaccount"));
                 //mob_text_signin.setHint(lngObject.getString("Signintoyouraccount"));
-                toast_mob = lngObject.getString("EnterPhoneNo");
                 pass_toast = lngObject.getString("EnterPassword");
                 mobile_no.setHint(lngObject.getString("EnterPhoneNo"));
                 pass.setHint(lngObject.getString("EnterPassword"));
                 remember_me.setText(lngObject.getString("RememberMe"));
                 forgot_pass.setText(lngObject.getString("ForgotPassword") + "?");
                 log_in.setText(lngObject.getString("Login"));
+                welcome_back.setText(lngObject.getString("Login"));
+                createaccount.setText(lngObject.getString("Register"));
 
             }
         } catch (JSONException e) {
@@ -431,17 +432,21 @@ public class LoginActivity extends AppCompatActivity {
 
 
                         String log_login = result.getString("Login");
-                      //  String log_mobile = result.getString("");
+                        String log_mobile = result.getString("EnterPhoneNo");
                         String log_password = result.getString("EnterPassword");
                         String log_remember_me = result.getString("RememberMe");
                         String log_forgot_passwrd = result.getString("ForgotPassword");
+                        String log_register = result.getString("Register");
 
 
-                        LoginActivity.remember_me.setText(log_remember_me);
-                        LoginActivity.log_in.setText(log_login);
-                        LoginActivity.forgot_pass.setText(log_forgot_passwrd);
-                        LoginActivity.pass.setHint(log_password);
+
+                        remember_me.setText(log_remember_me);
+                       log_in.setText(log_login);
+                        mobile_no.setText(log_mobile);
+                        forgot_pass.setText(log_forgot_passwrd);
+                       pass.setHint(log_password);
                         welcome_back.setText(log_login);
+                        createaccount.setText(log_register);
 
 
                     }catch (Exception e){
