@@ -103,7 +103,7 @@ public class SignUpActivity extends AppCompatActivity {
 
             }else{
 
-                lngObject=new JSONObject(sessionManager.getRegId("langdetails"));
+                lngObject=new JSONObject(sessionManager.getRegId("language"));
 
                 create_acc.setText(lngObject.getString("Register"));
                 name.setHint(lngObject.getString("FullName"));
@@ -117,12 +117,9 @@ public class SignUpActivity extends AppCompatActivity {
             }
 
 
-
         }catch (Exception e){
             e.printStackTrace();
         }
-
-
 
 
 

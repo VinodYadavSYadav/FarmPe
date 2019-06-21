@@ -65,6 +65,7 @@ public class Thank_U_New extends AppCompatActivity {
         setupUI(linearLayout);
         sessionId= getIntent().getStringExtra("otp_forgot");
         sessionManager = new SessionManager(this);
+
       //  sessionManager.getRegId("lng_object");
        // System.out.println("llllllllllll" + sessionManager.getRegId("lng_object"));
 

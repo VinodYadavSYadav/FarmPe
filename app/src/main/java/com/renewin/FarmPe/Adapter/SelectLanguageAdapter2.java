@@ -42,6 +42,8 @@ public class SelectLanguageAdapter2 extends RecyclerView.Adapter<SelectLanguageA
 
     }
 
+
+
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView language_name;
         public LinearLayout language;
