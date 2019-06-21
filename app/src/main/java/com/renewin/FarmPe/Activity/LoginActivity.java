@@ -41,6 +41,7 @@ import com.renewin.FarmPe.DB.DatabaseHelper;
 import com.renewin.FarmPe.R;
 import com.renewin.FarmPe.SessionManager;
 import com.renewin.FarmPe.Urls;
+import com.renewin.FarmPe.Volly_class.Crop_Post;
 import com.renewin.FarmPe.Volly_class.Login_post;
 import com.renewin.FarmPe.Volly_class.VoleyJsonObjectCallback;
 
@@ -52,31 +53,34 @@ import java.util.List;
 
 
 public class LoginActivity extends AppCompatActivity {
-    TextView register, log_in, forgot_pass,mob_text_signin;
-    public static EditText mobile_no, pass;
-    public static String mobile,loc_text;
-    LinearLayout linearLayout;
-    SessionManager sessionManager;
-    public String status,userId;
-    boolean doubleBackToExitPressedOnce = false;
-    LinearLayout back_xlogin;
-    LinearLayout coordinatorLayout;
-    public static CheckBox remember_me;
-    DatabaseHelper myDb;
-    TextInputLayout textInputLayout,textInputLayout_pass;
-    String password,toast_mob,mobile_string,pass_toast;
-    EditText spn_localize;
-    JSONObject lngObject;
-    Snackbar snackbar;
+     public static TextView register, log_in, forgot_pass,mob_text_signin;
+     public static EditText mobile_no, pass;
+     public static String mobile,loc_text;
+     LinearLayout linearLayout;
+     SessionManager sessionManager;
+     public String status,userId;
+     boolean doubleBackToExitPressedOnce = false;
+     LinearLayout back_xlogin;
+     LinearLayout coordinatorLayout;
+     public static CheckBox remember_me;
+     DatabaseHelper myDb;
+     TextInputLayout textInputLayout,textInputLayout_pass;
+     String password,toast_mob,mobile_string,pass_toast;
+     EditText spn_localize;
+     JSONObject lngObject;
+     Snackbar snackbar;
     String mob_no;
     public static  Dialog dialog;
     TextView welcome_back, createaccount, change_lang, enterPassword, forgotPassword;
+
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sign_in);
+
+
         linearLayout=findViewById(R.id.main_layout);
         welcome_back = findViewById(R.id.welcome_back);
         createaccount = findViewById(R.id.create_acc);
@@ -95,6 +99,12 @@ public class LoginActivity extends AppCompatActivity {
         setupUI(linearLayout);
         myDb = new DatabaseHelper(this);
         edittext_move(mobile_no, pass);
+
+       // if(sessionManager.getLanguage())
+
+
+
+
         final InputFilter EMOJI_FILTER = new InputFilter() {
             @Override
 
@@ -109,6 +119,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         };
         pass.setFilters(new InputFilter[]{EMOJI_FILTER});
+
         final InputFilter filter = new InputFilter() {
             public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
                 String filtered = "";
@@ -122,20 +133,29 @@ public class LoginActivity extends AppCompatActivity {
             }
         };
         pass.setFilters(new InputFilter[] {filter,new InputFilter.LengthFilter(12) });
-       // sessionManager = new SessionManager(this);
+        // sessionManager = new SessionManager(this);
         // sessionManager.getRegId("lng_object");
         System.out.println("llllllllllll" + sessionManager.getRegId("langdetails"));
+
         try {
-            lngObject=new JSONObject(sessionManager.getRegId("langdetails"));
-            //  createaccount.setHint(lngObject.getString("Createanaccount"));
-            //mob_text_signin.setHint(lngObject.getString("Signintoyouraccount"));
-            toast_mob=lngObject.getString("EnterPhoneNo");
-            pass_toast=lngObject.getString("EnterPassword");
-            mobile_no.setHint(lngObject.getString("EnterPhoneNo"));
-            pass.setHint(lngObject.getString("EnterPassword"));
-            remember_me.setText(lngObject.getString("RememberMe"));
-            forgot_pass.setText(lngObject.getString("ForgotPassword")+"?");
-            log_in.setText(lngObject.getString("Login"));
+            if ((sessionManager.getRegId("langdetails")).equals("")){
+                getLang(1);
+
+            }else {
+
+
+                lngObject = new JSONObject(sessionManager.getRegId("langdetails"));
+                //  createaccount.setHint(lngObject.getString("Createanaccount"));
+                //mob_text_signin.setHint(lngObject.getString("Signintoyouraccount"));
+                toast_mob = lngObject.getString("EnterPhoneNo");
+                pass_toast = lngObject.getString("EnterPassword");
+                mobile_no.setHint(lngObject.getString("EnterPhoneNo"));
+                pass.setHint(lngObject.getString("EnterPassword"));
+                remember_me.setText(lngObject.getString("RememberMe"));
+                forgot_pass.setText(lngObject.getString("ForgotPassword") + "?");
+                log_in.setText(lngObject.getString("Login"));
+
+            }
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -152,13 +172,16 @@ public class LoginActivity extends AppCompatActivity {
         forgot_pass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LoginActivity.this, ForgotPasswordNew.class);
+                Intent intent = new Intent(LoginActivity.this,ForgotPasswordNew.class);
                 startActivity(intent);
             }
         });
+
         change_lang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
                 System.out.println("jhfdyug");
                 final List<SelectLanguageBean> newOrderBeansList = new ArrayList<>();
                 RecyclerView recyclerView;
@@ -179,21 +202,27 @@ public class LoginActivity extends AppCompatActivity {
                 recyclerView.setLayoutManager(mLayoutManager);
                 recyclerView.setItemAnimator(new DefaultItemAnimator());
 
-
-                SelectLanguageBean bean=new SelectLanguageBean("English",1,"");
+                SelectLanguageBean bean = new SelectLanguageBean("English", 1, "");
                 newOrderBeansList.add(bean);
 
-                SelectLanguageBean bean1=new SelectLanguageBean("Kannada",1,"");
+                SelectLanguageBean bean1 = new SelectLanguageBean("Hindi", 2, "");
                 newOrderBeansList.add(bean1);
 
-                SelectLanguageBean bean2=new SelectLanguageBean("Hindi",1,"");
+                SelectLanguageBean bean2 = new SelectLanguageBean("Kannada", 3, "");
                 newOrderBeansList.add(bean2);
 
-                SelectLanguageBean bean3=new SelectLanguageBean("Tamil",1,"");
+                SelectLanguageBean bean3 = new SelectLanguageBean("Telugu", 4, "");
                 newOrderBeansList.add(bean3);
 
-                SelectLanguageBean bean4=new SelectLanguageBean("Telgu",1,"");
+                SelectLanguageBean bean4 = new SelectLanguageBean("Tamil", 5, "");
                 newOrderBeansList.add(bean4);
+
+                SelectLanguageBean bean5 = new SelectLanguageBean("Malayalam", 6, "");
+                newOrderBeansList.add(bean5);
+
+                SelectLanguageBean bean6 = new SelectLanguageBean("Marathi", 7, "");
+                newOrderBeansList.add(bean6);
+
 
                 mAdapter = new SelectLanguageAdapter2(LoginActivity.this, newOrderBeansList);
                 recyclerView.setAdapter(mAdapter);
@@ -209,6 +238,8 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         });
+
+
 
 
         log_in.setOnClickListener(new View.OnClickListener() {
@@ -236,7 +267,7 @@ public class LoginActivity extends AppCompatActivity {
 //                    tv.setTextColor(Color.RED);
 //                    //tv.setText("abc");
 //                    snackbar.show();
-                  //  Toast.makeText(LoginActivity.this, "Enter Your Mobile Number", Toast.LENGTH_LONG).show();
+                    //  Toast.makeText(LoginActivity.this, "Enter Your Mobile Number", Toast.LENGTH_LONG).show();
 //
 //                }else if (loc_text == null) {
 //                    snackbar = Snackbar
@@ -276,7 +307,7 @@ public class LoginActivity extends AppCompatActivity {
                     tv.setTextColor(Color.RED);
                     snackbar.show();
 
-                //    Toast.makeText(LoginActivity.this, "Password should not contain spaces", Toast.LENGTH_LONG).show();
+                    //    Toast.makeText(LoginActivity.this, "Password should not contain spaces", Toast.LENGTH_LONG).show();
 //                    Snackbar snackbar = Snackbar
 //                            .make(coordinatorLayout, "Password should not contain spaces", Snackbar.LENGTH_LONG);
 //                    View snackbarView = snackbar.getView();
@@ -285,10 +316,88 @@ public class LoginActivity extends AppCompatActivity {
 //                    snackbar.show();
                 } else {
 
-                    Intent intent = new Intent(LoginActivity.this, LandingPageActivity.class);
-                    startActivity(intent);
 
 
+                    try{
+
+                        JSONObject jsonObject = new JSONObject();
+                        JSONObject post_Object = new JSONObject();
+
+                        jsonObject.put("UserName",mob_no);
+                        jsonObject.put("Password",password);
+                        post_Object.put("UserRequest",jsonObject);
+                        System.out.println("postobjj"+post_Object);
+
+
+                        Login_post.login_posting(LoginActivity.this, Urls.LOGIN,post_Object, new VoleyJsonObjectCallback()  {
+                            @Override
+                            public void onSuccessResponse(JSONObject result) {
+                                System.out.println("111111user" + result);
+                                try{
+                                    JSONObject jsonObject;
+                                    JSONObject userObject;
+
+                                    jsonObject = result.getJSONObject("ResultObject");
+
+                                    if(!(jsonObject.isNull("user"))){
+                                        userObject = jsonObject.getJSONObject("user");
+                                        status=jsonObject.getString("Status");
+                                        userId=jsonObject.getString("UserId");
+
+                                        System.out.println("useridddd"+userId);
+
+                                        if(status.equals("1")){
+                                            System.out.println("jdhyusulogin"+status);
+                                            Intent intent = new Intent(LoginActivity.this, LandingPageActivity.class);
+                                            startActivity(intent);
+                                            sessionManager.createLoginSession(password,mob_no);
+
+                                            sessionManager.save_name(userObject.getString("FullName"),userObject.getString("PhoneNo"));
+                                            sessionManager.saveUserId(userObject.getString("Id"));
+                                           /* if(remember_me.isChecked()){
+
+                                                if(!myDb.isEmailExists(mobile_no.getText().toString())){
+
+                                                    AddData(mobile_no.getText().toString(),password);
+                                                }
+                                            }*/
+
+                                            if(remember_me.isChecked()){
+
+                                                if(!myDb.isEmailExists(mobile_no.getText().toString())){
+
+                                                    AddData(mobile_no.getText().toString(),password);
+                                                }
+                                            }else {
+                                                if(myDb.isEmailExists(mobile_no.getText().toString())){
+
+                                                    DeleteData(mobile_no.getText().toString(),password);
+                                                }
+                                            }
+                                        }
+
+                                    } else{
+
+                                        Snackbar snackbar = Snackbar
+                                                .make(coordinatorLayout, jsonObject.getString("Message"), Snackbar.LENGTH_LONG);
+                                        View snackbarView = snackbar.getView();
+                                        TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+                                        tv.setTextColor(Color.RED);
+                                        snackbar.show();
+
+
+                                    }
+
+                                }catch (Exception e){
+                                    e.printStackTrace();
+                                }
+
+                            }
+                        });
+
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
                 }
 
             }
@@ -296,31 +405,82 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    @Override
-       public void onBackPressed() {
-           //System.exit(0);
-           if (doubleBackToExitPressedOnce) {
+    private void getLang(int id) {
 
-               Intent intent1 = new Intent(Intent.ACTION_MAIN);
-               intent1.addCategory(Intent.CATEGORY_HOME);
-                intent1.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);//***Change Here***
-                startActivity(intent1);
-               finish();
-               System.exit(0);                    }
+        try{
 
-           doubleBackToExitPressedOnce = true;
-            Toast.makeText(getApplicationContext(), "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
 
-           new Handler().postDelayed(new Runnable() {
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("Id",id);
 
+
+            System.out.print("iiidddddd"+ id);
+
+            Crop_Post.crop_posting(LoginActivity.this, Urls.CHANGE_LANGUAGE, jsonObject, new VoleyJsonObjectCallback() {
                 @Override
-                public void run() {
-                    doubleBackToExitPressedOnce=false;
+                public void onSuccessResponse(JSONObject result) {
+
+                    System.out.println("qqqqqqvv" + result);
+
+                    try{
+
+                        sessionManager.saveLanguage(result.toString());
+
+
+                        String log_login = result.getString("Login");
+                      //  String log_mobile = result.getString("");
+                        String log_password = result.getString("EnterPassword");
+                        String log_remember_me = result.getString("RememberMe");
+                        String log_forgot_passwrd = result.getString("ForgotPassword");
+
+
+                        LoginActivity.remember_me.setText(log_remember_me);
+                        LoginActivity.log_in.setText(log_login);
+                        LoginActivity.forgot_pass.setText(log_forgot_passwrd);
+                        LoginActivity.pass.setHint(log_password);
+                        welcome_back.setText(log_login);
+
+
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
                 }
-            }, 3000);
+            });
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
 
-       }
+
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        //System.exit(0);
+        if (doubleBackToExitPressedOnce) {
+
+            Intent intent1 = new Intent(Intent.ACTION_MAIN);
+            intent1.addCategory(Intent.CATEGORY_HOME);
+            intent1.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);//***Change Here***
+            startActivity(intent1);
+            finish();
+            System.exit(0);                    }
+
+        doubleBackToExitPressedOnce = true;
+        Toast.makeText(getApplicationContext(), "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
+
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce=false;
+            }
+        }, 3000);
+
+
+    }
 
     public void edittext_move(final EditText et1, final EditText et2) {
         et1.addTextChangedListener(new TextWatcher() {
@@ -441,4 +601,4 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
-    }
+}

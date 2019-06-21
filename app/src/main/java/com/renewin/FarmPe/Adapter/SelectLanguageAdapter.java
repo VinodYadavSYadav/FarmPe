@@ -33,6 +33,7 @@ public class SelectLanguageAdapter extends RecyclerView.Adapter<SelectLanguageAd
     Date o_date;
     SessionManager session;
     public static int selected_position=0;
+    public static int selected_post =0;
 
     public static CardView cardView;
     public SelectLanguageAdapter(Activity activity, List<SelectLanguageBean> moviesList) {
@@ -76,11 +77,13 @@ public class SelectLanguageAdapter extends RecyclerView.Adapter<SelectLanguageAd
             //  holder.lng_rad_but.setBackgroundColor(Color.GREEN);
 
         }else {
-
+            holder.right_img.setImageResource(R.drawable.verified_drawable);
             //  holder.lng_rad_but.setBackgroundColor(Color.WHITE);
 
 
         }
+
+
 
         holder.language_name.setText(products.getVendor());
         holder.submit_langu.setOnClickListener(new View.OnClickListener() {

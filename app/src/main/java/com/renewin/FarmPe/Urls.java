@@ -11,8 +11,10 @@ public class Urls {
 
     public static final String LOGIN=ROOT_URL+"ValidateUser";
     public static final String SIGNUP=ROOT_URL+"RegisterUser";
+
     public static final String GetAllCrops=ROOT_URL1+"Crops/GetCrops";
     public static final String GetWishListItems=ROOT_URL1+"Order/GetWishListItems";
+
     public static final String AddToCart=ROOT_URL1+"Order/AddToCart";
     public static final String GetOpenOrders=ROOT_URL1+"Order/GetOpenOrders";
     public static final String GetMyOrder=ROOT_URL1+"Order/GetMyOrder";
@@ -39,6 +41,7 @@ public class Urls {
     public static final String ValidateReferalCode=ROOT_URL+"ValidateRefferalCode";
     public static final String PaytmChecksum="http://3.17.6.57:8080/api/Paytm/GetPaytmCheckSum";
     public static final String AddTransactionDetails="http://3.17.6.57:8080/api/Order/AddOrderPaymentDetails";
+    public static final String CHANGE_LANGUAGE= "http://3.17.6.57:8686/api/Lang/ChangeCurrentCulture";
 
     public static final String PayuGetPaytmCheckSum="http://35.154.22.127:8585/api/Paytm/GetPaytmCheckSum";
     public static final String Get_New_Address = ROOT_URL3+"MasterTable/GetUserAddress";
@@ -48,7 +51,7 @@ public class Urls {
     //My Account
 
     public static final String Edit_Profile_Details = ROOT_URL + "Auth/GetUserDetails";
-    public static final String Update_Profile_Details = ROOT_URL + "Auth/UpdateUserProfile";
+
 
 
     public static final String Bank_Name_List= ROOT_URL + "MasterTable/GetBankLists";
@@ -65,6 +68,11 @@ public class Urls {
     public static final String Default_Address = ROOT_URL + "MasterTable/UpdateUserDefaultAddress";
 
 
+
+
+     //profile details
+    public static final String Get_Profile_Details= ROOT_URL + "GetUserDetails";
+    public static final String Update_Profile_Details= ROOT_URL + "UpdateUserProfile";
 
 
 
