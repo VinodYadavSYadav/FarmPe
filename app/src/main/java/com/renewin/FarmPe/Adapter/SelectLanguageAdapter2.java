@@ -133,10 +133,6 @@ public class SelectLanguageAdapter2 extends RecyclerView.Adapter<SelectLanguageA
                         LoginActivity.createaccount.setText(log_register);
                         LoginActivity.mobile_no.setHint(log_mobile);
 
-                        SignUpActivity.name.setHint(log_name);
-                        SignUpActivity.create_acc.setText(log_register);
-                        SignUpActivity.password.setHint(log_password);
-                        SignUpActivity.continue_sign_up.setText(log_register);
 
 
                     }catch (Exception e){

@@ -246,7 +246,6 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
-
                 close_layout.setOnClickListener(new View.OnClickListener() {
 
                     @Override
@@ -458,8 +457,8 @@ public class LoginActivity extends AppCompatActivity {
 
 
                         remember_me.setText(log_remember_me);
-                       log_in.setText(log_login);
-                        mobile_no.setText(log_mobile);
+                        log_in.setText(log_login);
+                        mobile_no.setHint(log_mobile);
                         forgot_pass.setText(log_forgot_passwrd);
                        pass.setHint(log_password);
                         welcome_back.setText(log_login);
