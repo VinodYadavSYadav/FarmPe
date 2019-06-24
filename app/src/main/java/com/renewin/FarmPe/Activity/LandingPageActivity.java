@@ -1,9 +1,11 @@
 package com.renewin.FarmPe.Activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.v4.app.Fragment;
@@ -15,6 +17,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.renewin.FarmPe.Fragment.HomeMenuFragment;
@@ -32,7 +35,7 @@ public class LandingPageActivity extends AppCompatActivity {
     boolean doubleBackToExitPressedOnce = false;
 
 
-   /* @Override
+   @Override
     public void onBackPressed() {
         if (doubleBackToExitPressedOnce) {
 
@@ -55,7 +58,7 @@ public class LandingPageActivity extends AppCompatActivity {
             }
         }, 3000);
 
-    }*/
+    }
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
