@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main_layout"
@@ -7,26 +8,29 @@
     android:layout_height="match_parent"
     android:layout_centerInParent="true"
     android:orientation="vertical"
+    android:weightSum="100"
     android:background="#000">
 
     <ScrollView
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
         android:layout_height="match_parent"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:background="#000">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="#ffffff"
         android:layout_gravity="center_vertical"
+
         android:layout_marginHorizontal="10dp"
+
         android:orientation="vertical"
         >
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:orientation="vertical">
 
 
@@ -112,7 +116,6 @@
             android:background="#fff"
             >
             <EditText
-                android:id="@+id/fd_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/segoeui"
@@ -134,9 +137,8 @@
             android:background="#fff"
             >
             <EditText
-                android:id="@+id/fd_descp"
                 android:layout_width="match_parent"
-                android:layout_height="230dp"
+                android:layout_height="300dp"
                 android:fontFamily="@font/segoeui"
                 android:hint="Feedback Description"
                 android:layout_marginHorizontal="30dp"
@@ -159,7 +161,9 @@
             android:background="@drawable/border_filled_pink"
             android:paddingVertical="20dp"
             android:gravity="center"
-            android:layout_marginVertical="20dp"
+            android:layout_marginVertical="40dp"
+            android:paddingHorizontal="20dp"
+            android:layout_marginTop="10dp"
             android:layout_marginHorizontal="20dp"
             />
 

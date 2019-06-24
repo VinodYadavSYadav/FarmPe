@@ -44,11 +44,12 @@ public class LookingForFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.looking_for_recy, container, false);
         recyclerView=view.findViewById(R.id.recycler_looking);
-       // LookingForList();
+        LookingForList();
         newOrderBeansList.clear();
         GridLayoutManager mLayoutManager_farm = new GridLayoutManager(getActivity(), 2, GridLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(mLayoutManager_farm);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
+/*
 
         FarmsImageBean img1=new FarmsImageBean(R.drawable.tractor_green,"Tractor Price","Mahindra Jivo 225 DL 20HP","","Immediately","Jagdish Kumar","Rampura Bahjoi","");
         newOrderBeansList.add(img1);
@@ -69,6 +70,7 @@ public class LookingForFragment extends Fragment {
 
         farmadapter=new FarmsImageAdapter(getActivity(),newOrderBeansList);
         recyclerView.setAdapter(farmadapter);
+*/
 
         return view;
     }
@@ -116,8 +118,8 @@ public class LookingForFragment extends Fragment {
 
                             System.out.println("madelslistt"+newOrderBeansList.size());
 
-                          //  FarmsImageBean crops = new FarmsImageBean(image,"Tractor Price",model,"20Hp",purchaseTimeline,name,location,id);
-                           // newOrderBeansList.add(crops);
+                            FarmsImageBean crops = new FarmsImageBean(image,"Tractor Price",model,"20Hp",purchaseTimeline,name,location,id);
+                            newOrderBeansList.add(crops);
 
 
 

@@ -70,7 +70,6 @@
         android:layout_weight="55"
         >
 
-
         <TextView
             android:id="@+id/welcome_back"
             android:layout_width="match_parent"
@@ -85,7 +84,6 @@
             android:textColor="#161823"
             />
 
-
         <EditText
             android:id="@+id/mob_no"
             android:layout_width="match_parent"
@@ -95,7 +93,6 @@
             android:layout_marginHorizontal="20dp"
             android:inputType="number"
             android:maxLength="10"
-            android:textColorHint="@color/dot_dark_screen1"
             android:cursorVisible="true"
             android:background="@drawable/border_empty"
             android:textCursorDrawable="@drawable/cursor_color"
@@ -129,7 +126,6 @@
             android:layout_marginHorizontal="20dp"
             android:inputType="textCapSentences|textAutoCorrect|textMultiLine|textShortMessage"
             android:maxLength="12"
-            android:textColorHint="@color/dot_dark_screen1"
             android:padding="15dp"
             android:textStyle="normal"
             android:scrollHorizontally="true"

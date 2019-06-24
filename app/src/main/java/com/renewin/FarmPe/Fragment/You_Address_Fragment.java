@@ -9,7 +9,6 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -91,7 +90,7 @@ public class You_Address_Fragment extends Fragment {
 
 
 
-        view.setFocusableInTouchMode(true);
+       /* view.setFocusableInTouchMode(true);
         view.requestFocus();
         view.setOnKeyListener(new View.OnKeyListener() {
 
@@ -100,12 +99,12 @@ public class You_Address_Fragment extends Fragment {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP) {
                     FragmentManager fm = getActivity().getSupportFragmentManager();
-                    fm.popBackStack ("setting", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                    fm.popBackStack ("you_c", FragmentManager.POP_BACK_STACK_INCLUSIVE);
                     return true;
                 }
                 return false;
             }
-        });
+        });*/
 
 
 
@@ -160,7 +159,7 @@ public class You_Address_Fragment extends Fragment {
                     @Override
                     public void onClick(View view) {
                         select_address_type.setText(home.getText().toString());
-                       gettingAddress("Home");
+                       // gettingAddress("Home");
                         dialog.dismiss();
                     }
                 });
@@ -170,7 +169,7 @@ public class You_Address_Fragment extends Fragment {
                     public void onClick(View view) {
                         select_address_type.setText(barn.getText().toString());
                         dialog.dismiss();
-                      gettingAddress("Barn");
+                     //   gettingAddress("Barn");
 
                     }
                 });
@@ -180,7 +179,7 @@ public class You_Address_Fragment extends Fragment {
                     public void onClick(View view) {
                         select_address_type.setText(ware_house.getText().toString());
                         dialog.dismiss();
-                     gettingAddress("Warehouse");
+                      //  gettingAddress("Warehouse");
 
 
                     }
@@ -192,7 +191,7 @@ public class You_Address_Fragment extends Fragment {
                         select_address_type.setText(farm.getText().toString());
                         dialog.dismiss();
 
-                        gettingAddress("Farm");
+                      //  gettingAddress("Farm");
 
 
                     }
@@ -204,7 +203,7 @@ public class You_Address_Fragment extends Fragment {
                     public void onClick(View view) {
                         select_address_type.setText(others.getText().toString());
                         dialog.dismiss();
-                       gettingAddress("Others");
+                       // gettingAddress("Others");
 
 
                     }
@@ -224,7 +223,7 @@ public class You_Address_Fragment extends Fragment {
 
 
 
-       gettingAddress("Home");
+       // gettingAddress("Home");
 
 
         return view;

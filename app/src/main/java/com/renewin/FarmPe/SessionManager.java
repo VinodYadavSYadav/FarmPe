@@ -45,7 +45,6 @@ public class SessionManager {
     public static final String KEY_USER_ID = "userId";
     public static final String KEY_LNG_SELECTED = "lng";
     public static final String KEY_LANGUAGE = "language";
-
     // Constructor
     public SessionManager(Context context){
         this._context = context;
@@ -75,6 +74,9 @@ public class SessionManager {
     }
 
 
+
+
+
     /**
      * Create remenberme session
      * */
@@ -99,8 +101,6 @@ public class SessionManager {
         // commit changes
         loginPrefsEditor.commit();
     }
-
-
 
     public void save_name(String name , String phone){
 

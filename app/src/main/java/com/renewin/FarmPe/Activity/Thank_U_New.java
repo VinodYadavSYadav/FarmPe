@@ -36,7 +36,6 @@ public class Thank_U_New extends AppCompatActivity {
    LinearLayout back_thank_u;
    TextView thanktu_submit,otp_text;
    EditText enter_otp;
-    JSONObject lngObject;
     public  static String otp_get_text,sessionId;
     LinearLayout linearLayout;
     private Context mContext=Thank_U_New.this;
@@ -49,7 +48,6 @@ public class Thank_U_New extends AppCompatActivity {
         LocalBroadcastManager.getInstance(Thank_U_New.this).registerReceiver(receiver, new IntentFilter("otp_forgot"));
         super.onResume();
     }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,24 +63,17 @@ public class Thank_U_New extends AppCompatActivity {
         setupUI(linearLayout);
         sessionId= getIntent().getStringExtra("otp_forgot");
         sessionManager = new SessionManager(this);
-
       //  sessionManager.getRegId("lng_object");
        // System.out.println("llllllllllll" + sessionManager.getRegId("lng_object"));
-
-
-
+        JSONObject lngObject;
         try {
-            lngObject = new JSONObject(sessionManager.getRegId("language"));
-
-
+            lngObject=new JSONObject(sessionManager.getRegId("langdetails"));
             thanktu_submit.setText(lngObject.getString("SendOTP"));
             otp_text.setText(lngObject.getString(" please enter the OTP below to reset password."));
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
-
 
         if (checkAndRequestPermissions()) {
             // carry on the normal flow, as the case of  permissions  granted.

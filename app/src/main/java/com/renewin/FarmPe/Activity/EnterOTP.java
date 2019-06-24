@@ -50,7 +50,6 @@ public class EnterOTP extends AppCompatActivity {
     BroadcastReceiver receiver;
     Vibrator vibe;
     TextView resendotp;
-    JSONObject lngObject;
     LinearLayout linearLayout;
     private Context mContext=EnterOTP.this;
     private static final int REQUEST=1;
@@ -152,15 +151,12 @@ public class EnterOTP extends AppCompatActivity {
         sessionManager = new SessionManager(this);
         // sessionManager.getRegId("lng_object");
         // System.out.println("llllllllllll" + sessionManager.getRegId("lng_object"));
-
+        JSONObject lngObject;
         try {
-            lngObject = new JSONObject(sessionManager.getRegId("language"));
-
+            lngObject=new JSONObject(sessionManager.getRegId("langdetails"));
             submit.setText(lngObject.getString("SendOTP"));
             otp_title.setText(lngObject.getString("OTP"));
             otp_text.setText(lngObject.getString("EnterOTP"));
-
-
         } catch (JSONException e) {
             e.printStackTrace();
         }

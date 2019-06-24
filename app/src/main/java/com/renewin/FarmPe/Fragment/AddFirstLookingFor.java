@@ -69,13 +69,13 @@ public class AddFirstLookingFor extends Fragment {
         });
 */
 
-       // AddLookigFor();
+        AddLookigFor();
         newOrderBeansList.clear();
         GridLayoutManager mLayoutManager_farm = new GridLayoutManager(getActivity(), 2, GridLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(mLayoutManager_farm);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
-        AddTractorBean img1=new AddTractorBean(R.drawable.tractor_green,"Tractor Price","");
+       /* AddTractorBean img1=new AddTractorBean(R.drawable.tractor_green,"Tractor Price","");
         newOrderBeansList.add(img1);
 
         AddTractorBean img2=new AddTractorBean(R.drawable.gyrovator,"Implements Price","");
@@ -94,11 +94,11 @@ public class AddFirstLookingFor extends Fragment {
         newOrderBeansList.add(img6);
         newOrderBeansList.add(img6);
         newOrderBeansList.add(img6);
-       /* newOrderBeansList.add(img6);
-        newOrderBeansList.add(img6);*/
+       *//* newOrderBeansList.add(img6);
+        newOrderBeansList.add(img6);*//*
 
         farmadapter=new AddFirstLookingForAdapter(getActivity(),newOrderBeansList);
-        recyclerView.setAdapter(farmadapter);
+        recyclerView.setAdapter(farmadapter);*/
 
         return view;
     }

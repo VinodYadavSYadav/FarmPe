@@ -1,7 +1,6 @@
 package com.renewin.FarmPe.Adapter;
 
 import android.app.Activity;
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
@@ -17,7 +16,6 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.renewin.FarmPe.Bean.AddTractorBean;
-import com.renewin.FarmPe.Bean.FarmsImageBean;
 import com.renewin.FarmPe.Fragment.AddBrandFragment;
 import com.renewin.FarmPe.R;
 
@@ -29,7 +27,7 @@ public class AddFirstAdapter extends RecyclerView.Adapter<AddFirstAdapter.MyView
     Fragment selectedFragment;
 
     public LinearLayout linearLayout;
-   public static LinearLayout next_arw;
+    public static LinearLayout next_arw;
     public static String first,looinkgId;
     public static CardView cardView;
     public AddFirstAdapter(Activity activity, List<AddTractorBean> moviesList) {
@@ -52,7 +50,7 @@ public class AddFirstAdapter extends RecyclerView.Adapter<AddFirstAdapter.MyView
         public MyViewHolder(View view) {
             super(view);
             //agri_text=view.findViewById(R.id.store_agri);
-           // item_2=view.findViewById(R.id.item_2);
+            // item_2=view.findViewById(R.id.item_2);
             prod_price=view.findViewById(R.id.prod_price);
             image=view.findViewById(R.id.prod_img);
             item=view.findViewById(R.id.item);
@@ -74,7 +72,7 @@ public class AddFirstAdapter extends RecyclerView.Adapter<AddFirstAdapter.MyView
     @Override
     public void onBindViewHolder(MyViewHolder holder, final int position) {
         final AddTractorBean products = productList.get(position);
-      //holder.agri_text.setText(products.getAgri_text());
+        //holder.agri_text.setText(products.getAgri_text());
         holder.prod_price.setText(products.getProd_name());
 
         Glide.with(activity).load(products.getImage())

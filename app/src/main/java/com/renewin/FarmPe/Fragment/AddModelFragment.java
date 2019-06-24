@@ -72,13 +72,13 @@ public class AddModelFragment extends Fragment {
             }
         });*/
 
-       // ModelList();
+        ModelList();
        // newOrderBeansList.clear();
         GridLayoutManager mLayoutManager_farm = new GridLayoutManager(getActivity(), 2, GridLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(mLayoutManager_farm);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
-        AddTractorBean img1=new AddTractorBean(R.drawable.tractor_green,"Yuvraj 215 NXT","");
+       /* AddTractorBean img1=new AddTractorBean(R.drawable.tractor_green,"Yuvraj 215 NXT","");
         newOrderBeansList.add(img1);
 
         AddTractorBean img2=new AddTractorBean(R.drawable.gyrovator,"Jivo 225 DI","");
@@ -97,12 +97,12 @@ public class AddModelFragment extends Fragment {
         newOrderBeansList.add(img6);
         newOrderBeansList.add(img6);
         newOrderBeansList.add(img6);
-       /* newOrderBeansList.add(img6);
-        newOrderBeansList.add(img6);*/
+       *//* newOrderBeansList.add(img6);
+        newOrderBeansList.add(img6);*//*
 
 
         farmadapter=new AddModelAdapter(getActivity(),newOrderBeansList);
-        recyclerView.setAdapter(farmadapter);
+        recyclerView.setAdapter(farmadapter);*/
 
         return view;
     }

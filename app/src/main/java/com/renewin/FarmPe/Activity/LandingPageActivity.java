@@ -10,8 +10,11 @@ import android.support.annotation.RequiresApi;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -74,7 +77,13 @@ public class LandingPageActivity extends AppCompatActivity {
 
         System.out.println("landiiiiiing");
 
-       getWindow().setStatusBarColor(Color.parseColor("#000000"));
+      // getWindow().setStatusBarColor(Color.parseColor("#000000"));
+
+        Window window = activity.getWindow();
+        window.setStatusBarColor(ContextCompat.getColor(activity,R.color.colorPrimaryDark));
+        LandingPageActivity.this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+
+
 
         bottomNavigation = findViewById(R.id.bottom_navigation_land);
 

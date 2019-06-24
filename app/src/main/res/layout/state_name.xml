@@ -14,10 +14,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginLeft="10dp"
         android:paddingBottom="5dp"
-        android:text="RadioButton"
-        android:textColor="@color/dot_dark_screen1"
-        />
-
+        android:text="RadioButton" />
 
     <View
         android:layout_width="match_parent"

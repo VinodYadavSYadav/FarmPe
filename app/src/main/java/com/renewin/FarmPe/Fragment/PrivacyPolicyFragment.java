@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -63,7 +62,7 @@ public class PrivacyPolicyFragment extends Fragment {
                 "sunt in culpa qui officia deserunt mollit anim id est laborum." +
                 "sunt in culpa qui officia deserunt mollit anim id est laborum.");
 
-        view.setFocusableInTouchMode(true);
+       /* view.setFocusableInTouchMode(true);
         view.requestFocus();
         view.setOnKeyListener(new View.OnKeyListener() {
 
@@ -72,14 +71,14 @@ public class PrivacyPolicyFragment extends Fragment {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP) {
                     FragmentManager fm = getActivity().getSupportFragmentManager();
-                    fm.popBackStack("setting", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                    fm.popBackStack("menu", FragmentManager.POP_BACK_STACK_INCLUSIVE);
 
 
                     return true;
                 }
                 return false;
             }
-        });
+        });*/
 
 
         back_feed.setOnClickListener(new View.OnClickListener() {
