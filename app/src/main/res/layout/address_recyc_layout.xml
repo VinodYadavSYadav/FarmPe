@@ -181,7 +181,7 @@
         android:padding="3dp"
         android:layout_marginLeft="3dp"
         android:gravity="start"
-        android:textColor="#fff "
+        android:textColor="#181818 "
         />
 
 

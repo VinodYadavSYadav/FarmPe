@@ -19,7 +19,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
 import com.renewin.FarmPe.Adapter.DistrictAdapter;
 import com.renewin.FarmPe.Adapter.HoblisAdapter;
 import com.renewin.FarmPe.Adapter.Sell_Location_Adapter;
@@ -106,8 +105,8 @@ public class Add_New_Address_Fragment extends Fragment {
         village = view.findViewById(R.id.village_1);
 
 
-       selected_id=RequestFormFragment.selectedId;
-        selected_id_time=RequestFormFragment.selectedId_time_recent;
+       selected_id= RequestFormFragment.selectedId;
+        selected_id_time= RequestFormFragment.selectedId_time_recent;
 
         System.out.println("selecteddddd_iddd"+selected_id_time);
 
@@ -490,7 +489,7 @@ public class Add_New_Address_Fragment extends Fragment {
 
                     JSONObject jsonObject = new JSONObject();
                     JSONObject jsonpost = new JSONObject();
-                    jsonObject.put("DistrictId",DistrictAdapter.districtid);
+                    jsonObject.put("DistrictId", DistrictAdapter.districtid);
                     jsonpost.put("Talukobj",jsonObject);
 
                     Crop_Post.crop_posting(getActivity(), Urls.Taluks, jsonpost, new VoleyJsonObjectCallback() {
@@ -562,7 +561,7 @@ public class Add_New_Address_Fragment extends Fragment {
                     final JSONObject jsonObject = new JSONObject();
 
                     JSONObject json_post = new JSONObject();
-                    jsonObject.put("TalukId",TalukAdapter.talukid);
+                    jsonObject.put("TalukId", TalukAdapter.talukid);
                     json_post.put("Hobliobj",jsonObject);
 
                     Crop_Post.crop_posting(getActivity(), Urls.Hoblis, json_post, new VoleyJsonObjectCallback() {
@@ -771,7 +770,7 @@ public class Add_New_Address_Fragment extends Fragment {
         try{
 
             JSONObject jsonObject = new JSONObject();
-            jsonObject.put("DistrictId",DistrictAdapter.districtid);
+            jsonObject.put("DistrictId", DistrictAdapter.districtid);
             jsonObject.put("HobliId", HoblisAdapter.hobliid);
             jsonObject.put("LandMark",landmrk.getText().toString());
             jsonObject.put("City",city.getText().toString());
@@ -779,8 +778,8 @@ public class Add_New_Address_Fragment extends Fragment {
             jsonObject.put("Name",name.getText().toString());
             jsonObject.put("PickUpFrom",select_address.getText().toString());
             jsonObject.put("Pincode",pincode_no.getText().toString());
-            jsonObject.put("StateId",StateApdater.stateid);
-            jsonObject.put("TalukId",TalukAdapter.talukid);
+            jsonObject.put("StateId", StateApdater.stateid);
+            jsonObject.put("TalukId", TalukAdapter.talukid);
             jsonObject.put("VillageId", VillageAdapter.villageid);
             jsonObject.put("StreeAddress",house_numb.getText().toString());
             jsonObject.put("StreeAddress1",street_name.getText().toString());
@@ -811,14 +810,14 @@ public class Add_New_Address_Fragment extends Fragment {
                         if(!(status.equals("0"))){
                             Toast.makeText(getActivity(),message,Toast.LENGTH_SHORT).show();
 
-                            selectedFragment = You_Address_Fragment.newInstance();
+                            selectedFragment = RequestFormFragment.newInstance();
                             FragmentTransaction transaction = (getActivity()).getSupportFragmentManager().beginTransaction();
                             transaction.replace(R.id.frame_layout, selectedFragment);
                             transaction.commit();
                             selectedFragment.setArguments(bundle);
 
 
-                                /* selectedFragment = RequestFormFragment.newInstance();
+                               /*  selectedFragment = RequestFormFragment.newInstance();
                                  FragmentTransaction transaction = (getActivity()).getSupportFragmentManager().beginTransaction();
                                  transaction.replace(R.id.frame_layout, selectedFragment);
                                  transaction.commit();

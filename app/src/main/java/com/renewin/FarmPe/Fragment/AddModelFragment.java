@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 import com.renewin.FarmPe.Adapter.AddBrandAdapter;
 import com.renewin.FarmPe.Adapter.AddModelAdapter;
 import com.renewin.FarmPe.Bean.AddTractorBean;
+import com.renewin.FarmPe.Bean.FarmsImageBean;
 import com.renewin.FarmPe.R;
 import com.renewin.FarmPe.Urls;
 import com.renewin.FarmPe.Volly_class.Login_post;
@@ -100,8 +102,8 @@ public class AddModelFragment extends Fragment {
 
 
         farmadapter=new AddModelAdapter(getActivity(),newOrderBeansList);
-        recyclerView.setAdapter(farmadapter);
-*/
+        recyclerView.setAdapter(farmadapter);*/
+
         return view;
     }
     private void ModelList() {

@@ -1,14 +1,18 @@
 package com.renewin.FarmPe.Activity;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
@@ -22,6 +26,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.renewin.FarmPe.Activity.LoginActivity;
+import com.renewin.FarmPe.Activity.SignUpActivity;
 import com.renewin.FarmPe.R;
 import com.renewin.FarmPe.ReadSms;
 import com.renewin.FarmPe.SessionManager;
@@ -44,7 +50,6 @@ public class EnterOTP extends AppCompatActivity {
     BroadcastReceiver receiver;
     Vibrator vibe;
     TextView resendotp;
-    JSONObject lngObject;
     LinearLayout linearLayout;
     private Context mContext=EnterOTP.this;
     private static final int REQUEST=1;
@@ -146,22 +151,19 @@ public class EnterOTP extends AppCompatActivity {
         sessionManager = new SessionManager(this);
         // sessionManager.getRegId("lng_object");
         // System.out.println("llllllllllll" + sessionManager.getRegId("lng_object"));
-
+        JSONObject lngObject;
         try {
-            lngObject = new JSONObject(sessionManager.getRegId("language"));
-
+            lngObject=new JSONObject(sessionManager.getRegId("langdetails"));
             submit.setText(lngObject.getString("SendOTP"));
             otp_title.setText(lngObject.getString("OTP"));
             otp_text.setText(lngObject.getString("EnterOTP"));
-
-
         } catch (JSONException e) {
             e.printStackTrace();
         }
-//
-//        if (checkAndRequestPermissions()) {
-//            // carry on the normal flow, as the case of  permissions  granted.
-//        }
+
+        if (checkAndRequestPermissions()) {
+            // carry on the normal flow, as the case of  permissions  granted.
+        }
 
         System.out.println("qwertyuio"+sessionId);
       /*  close.setOnClickListener(new View.OnClickListener() {
@@ -242,30 +244,30 @@ public class EnterOTP extends AppCompatActivity {
         startActivity(intent);
     }
 
-//    private  boolean checkAndRequestPermissions() {
-//
-//        if (Build.VERSION.SDK_INT >= 23) {
-//            String[] PERMISSIONS = {Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.ACCESS_COARSE_LOCATION,Manifest.permission.READ_SMS};
-//            if (!hasPermissions(mContext, PERMISSIONS)) {
-//                ActivityCompat.requestPermissions((Activity) mContext, PERMISSIONS, REQUEST);
-//            } else {
-//                //do here
-//            }
-//        } else {
-//            //do here
-//        }
-//        return true;
-//    }
-//    private static boolean hasPermissions(Context context, String... permissions) {
-//        if (context != null && permissions != null) {
-//            for (String permission : permissions) {
-//                if (ActivityCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED) {
-//                    return false;
-//                }
-//            }
-//        }
-//        return true;
-//    }
+    private  boolean checkAndRequestPermissions() {
+
+        if (Build.VERSION.SDK_INT >= 23) {
+            String[] PERMISSIONS = {Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.ACCESS_COARSE_LOCATION,Manifest.permission.READ_SMS};
+            if (!hasPermissions(mContext, PERMISSIONS)) {
+                ActivityCompat.requestPermissions((Activity) mContext, PERMISSIONS, REQUEST);
+            } else {
+                //do here
+            }
+        } else {
+            //do here
+        }
+        return true;
+    }
+    private static boolean hasPermissions(Context context, String... permissions) {
+        if (context != null && permissions != null) {
+            for (String permission : permissions) {
+                if (ActivityCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
     public void setupUI(View view) {
 
         //Set up touch listener for non-text box views to hide keyboard.

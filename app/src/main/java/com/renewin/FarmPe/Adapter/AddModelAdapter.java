@@ -16,7 +16,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.renewin.FarmPe.Bean.AddTractorBean;
-
+import com.renewin.FarmPe.Bean.FarmsImageBean;
 import com.renewin.FarmPe.Fragment.RequestFormFragment;
 import com.renewin.FarmPe.R;
 

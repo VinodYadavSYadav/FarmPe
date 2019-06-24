@@ -1,5 +1,6 @@
 package com.renewin.FarmPe.Activity;
 
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -20,8 +21,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.renewin.FarmPe.Activity.LoginActivity;
-import com.renewin.FarmPe.Activity.Thank_U_New;
+
 import com.renewin.FarmPe.R;
 import com.renewin.FarmPe.SessionManager;
 import com.renewin.FarmPe.Volly_class.Login_post;
@@ -31,10 +31,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 
-
-
 public class ForgotPasswordNew extends AppCompatActivity {
-    TextView forgot_submit, forgot_pass_text, forgt_pass_detail, mob_text_forgot,tocnt;
+    TextView forgot_submit, forgot_pass_text, forgt_pass_detail, mob_text_forgot;
     LinearLayout forgot_back;
     public static EditText mobileno;
     SessionManager sessionManager;
@@ -42,13 +40,9 @@ public class ForgotPasswordNew extends AppCompatActivity {
     public static String otp, forgot_mob_no, Message,mob_trim;
     LinearLayout coordinatorLayout;
     int status;
-
-    JSONObject lngObject;
     TextInputLayout emter_pasword;
     EditText spn_localize;
     String localize_text;
-
-
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,8 +51,7 @@ public class ForgotPasswordNew extends AppCompatActivity {
         forgot_submit = findViewById(R.id.forgot_submit);
         mobileno = findViewById(R.id.mobile_no);
         coordinatorLayout = findViewById(R.id.linear_login);
-
-        forgot_pass_text = findViewById(R.id.forgot_title);
+        forgot_pass_text = findViewById(R.id.forgot);
     //    spn_localize = findViewById(R.id.spn_localize_forgot);
         //emter_pasword=findViewById(R.id.emter_pasword);
         forgt_pass_detail = findViewById(R.id.tocnt);
@@ -69,24 +62,17 @@ public class ForgotPasswordNew extends AppCompatActivity {
         sessionManager = new SessionManager(ForgotPasswordNew.this);
        // sessionManager.getRegId("lng_object");
         //System.out.println("llllllllllll" + sessionManager.getRegId("lng_object"));
-
-
-
+        JSONObject lngObject;
         try {
-
-            lngObject = new JSONObject(sessionManager.getRegId("language"));
-
+            lngObject=new JSONObject(sessionManager.getRegId("langdetails"));
             forgt_pass_detail.setText(lngObject.getString("ForgotPasswordText"));
+            //emter_pasword.setHint(lngObject.getString("EnterPhoneNo"));
             mob_text_forgot.setHint(lngObject.getString("EnterPhoneNo"));
-            forgot_pass_text.setText(lngObject.getString("ForgotPassword") + "?");
+            forgot_pass_text.setText(lngObject.getString("ForgotPassword") + " ?");
             forgot_submit.setText(lngObject.getString("ResetPassword"));
-
-
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
-
         coordinatorLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -97,8 +83,6 @@ public class ForgotPasswordNew extends AppCompatActivity {
                         InputMethodManager.HIDE_NOT_ALWAYS);
             }
         });
-
-
         forgot_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -108,10 +92,13 @@ public class ForgotPasswordNew extends AppCompatActivity {
             }
         });
 
+
+
                 forgot_submit.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         if (mobileno.getText().toString().equals("")) {
+
 
                             Snackbar snackbar = Snackbar
                                     .make(coordinatorLayout, "Enter Your Mobile Number", Snackbar.LENGTH_LONG);
@@ -131,80 +118,21 @@ public class ForgotPasswordNew extends AppCompatActivity {
                             snackbar.show();
 
                         } else {
-                            try {
-                                localize_text="+91";
-                                JSONObject postjsonObject = new JSONObject();
-                                postjsonObject.put("UserName", localize_text + mobileno.getText().toString());
-                                System.out.println("aaaaaaaaaaaa" + postjsonObject);
-                                Login_post.Forgot_Passsword(ForgotPasswordNew.this, postjsonObject, new VoleyJsonObjectCallback() {
-                                    @Override
-                                    public void onSuccessResponse(JSONObject result) {
-                                        System.out.println("nnnnnmnm" + result.toString());
-                                        try {
-                                            // System.out.println("nnnnnmnm" + result.toString());
-                                            otp = result.getString("OTP");
-                                            forgot_mob_no = result.getString("UserName");
-                                            mob_trim=forgot_mob_no.substring(3);
-                                            Message = result.getString("Message");
-                                            status= result.getInt("Status");
-
-                                            if(status==0){
-                                                Snackbar snackbar = Snackbar
-                                                        .make(coordinatorLayout, "Your number is not registered", Snackbar.LENGTH_LONG);
-                                                //snackbar.setActionTextColor(R.color.colorAccent);
-                                                View snackbarView = snackbar.getView();
-                                                TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-                                                tv.setTextColor(Color.RED);
-                                                snackbar.show();
-
-                                            }else if (status==2){
-                                                Snackbar snackbar = Snackbar
-                                                        .make(coordinatorLayout, result.getString("Message"), Snackbar.LENGTH_LONG);
-                                                //snackbar.setActionTextColor(R.color.colorAccent);
-                                                View snackbarView = snackbar.getView();
-                                                TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-                                                tv.setTextColor(Color.RED);
-                                                snackbar.show();
-                                            }
-
-                                            else{
-                                                Toast.makeText(ForgotPasswordNew.this,Message,Toast.LENGTH_LONG).show();
-                                                Intent intent = new Intent(ForgotPasswordNew.this, Thank_U_New.class);
-                                                intent.putExtra("otp_forgot", otp);
-                                                //intent.putExtra("forgot_mob_no", forgot_mob_no);
-                                                startActivity(intent);
-                                            }
-                                            System.out.println("for_ottpp" + otp);
-                                           /* if (Message.equals("You have Exceeded the limit of resending OTP")) {
-                                                Snackbar snackbar = Snackbar
-                                                        .make(coordinatorLayout, "You have Exceeded the limit of resending OTP,Please wait for 24 hours to get OTP", Snackbar.LENGTH_LONG);
-                                                //snackbar.setActionTextColor(R.color.colorAccent);
-                                                View snackbarView = snackbar.getView();
-                                                TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-                                                tv.setTextColor(Color.RED);
-                                                snackbar.show();
-                                            } else {
-                                                Intent intent = new Intent(ForgotPassword.this, Thank_U.class);
-                                                intent.putExtra("otp_forgot", otp);
-                                                //intent.putExtra("forgot_mob_no", forgot_mob_no);
-                                                startActivity(intent);
-                                            }*/
-
-                                        } catch (JSONException e) {
-                                            e.printStackTrace();
-                                        }
-                                    }
-                                });
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
-
+                            Toast.makeText(ForgotPasswordNew.this,Message,Toast.LENGTH_LONG).show();
+                            Intent intent = new Intent(ForgotPasswordNew.this, Thank_U_New.class);
+                            //intent.putExtra("forgot_mob_no", forgot_mob_no);
+                            startActivity(intent);
                         }
                     }
                 });
 
-            }
 
+
+
+
+
+
+    }
 
     @Override
     public void onBackPressed() {

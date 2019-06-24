@@ -5,6 +5,8 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.RecyclerView;
 import android.view.KeyEvent;
@@ -47,7 +49,7 @@ public class SettingFragment extends Fragment {
         policy=view.findViewById(R.id.policy);
         notification=view.findViewById(R.id.notification);
         acc_info=view.findViewById(R.id.acc_info);
-        your_address=view.findViewById(R.id.your_address);
+        your_address=view.findViewById(R.id.ur_address);
 
         sessionManager = new SessionManager(getActivity());
 
@@ -200,7 +202,6 @@ public class SettingFragment extends Fragment {
             }
         });
 
-
         change_lang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -233,19 +234,22 @@ public class SettingFragment extends Fragment {
                 transaction.commit();
             }
         });
-
         your_address.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Bundle bundle = new Bundle();
+                bundle.putString("navigation_from", "you_c");
                 selectedFragment = You_Address_Fragment.newInstance();
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.frame_layout, selectedFragment);
-                transaction.addToBackStack("setting");
+                selectedFragment.setArguments(bundle);
+                transaction.addToBackStack("you_c");
                 transaction.commit();
+
 
             }
         });
+
 
 
 

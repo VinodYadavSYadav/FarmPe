@@ -1,20 +1,24 @@
 package com.renewin.FarmPe.Fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
+import com.renewin.FarmPe.Activity.SelectLanguageActivity;
 import com.renewin.FarmPe.Adapter.SelectLanguageAdapter;
+import com.renewin.FarmPe.Bean.AgriBean;
 import com.renewin.FarmPe.Bean.SelectLanguageBean;
 import com.renewin.FarmPe.R;
 import com.renewin.FarmPe.SessionManager;
@@ -49,7 +53,9 @@ public class ChangeLanguageFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.select_language_layout, container, false);
         back_feed=view.findViewById(R.id.back_feed);
+
         recyclerView =view.findViewById(R.id.recycler_view1);
+
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -57,7 +63,7 @@ public class ChangeLanguageFragment extends Fragment {
         recyclerView.setAdapter(mAdapter);
         Langauges();
 
-        view.setFocusableInTouchMode(true);
+       /* view.setFocusableInTouchMode(true);
         view.requestFocus();
         view.setOnKeyListener(new View.OnKeyListener() {
 
@@ -66,14 +72,14 @@ public class ChangeLanguageFragment extends Fragment {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP) {
                     FragmentManager fm = getActivity().getSupportFragmentManager();
-                    fm.popBackStack("setting", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                    fm.popBackStack("menu", FragmentManager.POP_BACK_STACK_INCLUSIVE);
 
 
                     return true;
                 }
                 return false;
             }
-        });
+        });*/
 
 
         back_feed.setOnClickListener(new View.OnClickListener() {
@@ -88,7 +94,6 @@ public class ChangeLanguageFragment extends Fragment {
 
         return view;
     }
-
     private void Langauges() {
         try {
             newOrderBeansList.clear();
@@ -96,7 +101,6 @@ public class ChangeLanguageFragment extends Fragment {
             JSONObject postjsonObject = new JSONObject();
             userRequestjsonObject.put("TalukId", 5495);
             postjsonObject.putOpt("Hobliobj", userRequestjsonObject);
-
             Login_post.login_posting(getActivity(), Urls.Languages,postjsonObject,new VoleyJsonObjectCallback() {
                 @Override
                 public void onSuccessResponse(JSONObject result) {

@@ -1,13 +1,17 @@
 package com.renewin.FarmPe.Activity;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
@@ -32,7 +36,6 @@ public class Thank_U_New extends AppCompatActivity {
    LinearLayout back_thank_u;
    TextView thanktu_submit,otp_text;
    EditText enter_otp;
-    JSONObject lngObject;
     public  static String otp_get_text,sessionId;
     LinearLayout linearLayout;
     private Context mContext=Thank_U_New.this;
@@ -45,7 +48,6 @@ public class Thank_U_New extends AppCompatActivity {
         LocalBroadcastManager.getInstance(Thank_U_New.this).registerReceiver(receiver, new IntentFilter("otp_forgot"));
         super.onResume();
     }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,16 +63,11 @@ public class Thank_U_New extends AppCompatActivity {
         setupUI(linearLayout);
         sessionId= getIntent().getStringExtra("otp_forgot");
         sessionManager = new SessionManager(this);
-
       //  sessionManager.getRegId("lng_object");
        // System.out.println("llllllllllll" + sessionManager.getRegId("lng_object"));
-
-
-
+        JSONObject lngObject;
         try {
-            lngObject = new JSONObject(sessionManager.getRegId("language"));
-
-
+            lngObject=new JSONObject(sessionManager.getRegId("langdetails"));
             thanktu_submit.setText(lngObject.getString("SendOTP"));
             otp_text.setText(lngObject.getString(" please enter the OTP below to reset password."));
 
@@ -78,12 +75,10 @@ public class Thank_U_New extends AppCompatActivity {
             e.printStackTrace();
         }
 
-
-//
-//        if (checkAndRequestPermissions()) {
-//            // carry on the normal flow, as the case of  permissions  granted.
-//        }
-//       // next=findViewById(R.id.next);
+        if (checkAndRequestPermissions()) {
+            // carry on the normal flow, as the case of  permissions  granted.
+        }
+       // next=findViewById(R.id.next);
 
         back_thank_u.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -132,30 +127,30 @@ public class Thank_U_New extends AppCompatActivity {
     }
 
 
-//    private  boolean checkAndRequestPermissions() {
-//
-//        if (Build.VERSION.SDK_INT >= 23) {
-//            String[] PERMISSIONS = {Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.ACCESS_COARSE_LOCATION,Manifest.permission.READ_SMS};
-//            if (!hasPermissions(mContext, PERMISSIONS)) {
-//                ActivityCompat.requestPermissions((Activity) mContext, PERMISSIONS, REQUEST);
-//            } else {
-//                //do here
-//            }
-//        } else {
-//            //do here
-//        }
-//        return true;
-//    }
-//    private static boolean hasPermissions(Context context, String... permissions) {
-//        if (context != null && permissions != null) {
-//            for (String permission : permissions) {
-//                if (ActivityCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED) {
-//                    return false;
-//                }
-//            }
-//        }
-//        return true;
-//    }
+    private  boolean checkAndRequestPermissions() {
+
+        if (Build.VERSION.SDK_INT >= 23) {
+            String[] PERMISSIONS = {Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.ACCESS_COARSE_LOCATION,Manifest.permission.READ_SMS};
+            if (!hasPermissions(mContext, PERMISSIONS)) {
+                ActivityCompat.requestPermissions((Activity) mContext, PERMISSIONS, REQUEST);
+            } else {
+                //do here
+            }
+        } else {
+            //do here
+        }
+        return true;
+    }
+    private static boolean hasPermissions(Context context, String... permissions) {
+        if (context != null && permissions != null) {
+            for (String permission : permissions) {
+                if (ActivityCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
     public void setupUI(View view) {
 
         //Set up touch listener for non-text box views to hide keyboard.

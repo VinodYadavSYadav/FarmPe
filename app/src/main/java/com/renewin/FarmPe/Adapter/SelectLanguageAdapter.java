@@ -1,6 +1,7 @@
 package com.renewin.FarmPe.Adapter;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -11,9 +12,16 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.renewin.FarmPe.Activity.XLoginNew;
 import com.renewin.FarmPe.Bean.SelectLanguageBean;
 import com.renewin.FarmPe.R;
 import com.renewin.FarmPe.SessionManager;
+import com.renewin.FarmPe.Urls;
+import com.renewin.FarmPe.Volly_class.Login_post;
+import com.renewin.FarmPe.Volly_class.VoleyJsonObjectCallback;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.Date;
 import java.util.List;
@@ -25,7 +33,6 @@ public class SelectLanguageAdapter extends RecyclerView.Adapter<SelectLanguageAd
     Date o_date;
     SessionManager session;
     public static int selected_position=0;
-    public static int selected_post =0;
 
     public static CardView cardView;
     public SelectLanguageAdapter(Activity activity, List<SelectLanguageBean> moviesList) {
@@ -69,13 +76,11 @@ public class SelectLanguageAdapter extends RecyclerView.Adapter<SelectLanguageAd
             //  holder.lng_rad_but.setBackgroundColor(Color.GREEN);
 
         }else {
-            holder.right_img.setImageResource(R.drawable.verified_drawable);
+
             //  holder.lng_rad_but.setBackgroundColor(Color.WHITE);
 
 
         }
-
-
 
         holder.language_name.setText(products.getVendor());
         holder.submit_langu.setOnClickListener(new View.OnClickListener() {
@@ -84,7 +89,6 @@ public class SelectLanguageAdapter extends RecyclerView.Adapter<SelectLanguageAd
                 selected_position = position;
                 notifyDataSetChanged();
                 session.save_Language(products.getLanguageid());
-
 
                 /*holder.right_img.setBackground(R.drawable.ic_verified_filled_grey_white);*/
                 /*JSONObject postlngjsonObject = new JSONObject();

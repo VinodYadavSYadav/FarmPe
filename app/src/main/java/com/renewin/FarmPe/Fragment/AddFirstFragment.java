@@ -68,13 +68,13 @@ public class AddFirstFragment extends Fragment {
         });
 */
 
-       AddLookigFor();
+        AddLookigFor();
         newOrderBeansList.clear();
         GridLayoutManager mLayoutManager_farm = new GridLayoutManager(getActivity(), 2, GridLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(mLayoutManager_farm);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
-       /* AddTractorBean img1=new AddTractorBean(R.drawable.tractor_green,"Tractor Price","");
+      /*  AddTractorBean img1=new AddTractorBean(R.drawable.tractor_green,"Tractor Price","");
         newOrderBeansList.add(img1);
 
         AddTractorBean img2=new AddTractorBean(R.drawable.gyrovator,"Implements Price","");
@@ -93,23 +93,22 @@ public class AddFirstFragment extends Fragment {
         newOrderBeansList.add(img6);
         newOrderBeansList.add(img6);
         newOrderBeansList.add(img6);
-       *//* newOrderBeansList.add(img6);
-        newOrderBeansList.add(img6);*//*
+        newOrderBeansList.add(img6);
+        newOrderBeansList.add(img6);
 
         farmadapter=new AddFirstAdapter(getActivity(),newOrderBeansList);
-        recyclerView.setAdapter(farmadapter);
-*/
+        recyclerView.setAdapter(farmadapter);*/
         return view;
     }
 
     private void AddLookigFor() {
-    Bundle bundle=getArguments();
-    String looking_id=bundle.getString("looking_first_id");
+        Bundle bundle=getArguments();
+        String looking_id=bundle.getString("looking_first_id");
         try {
             newOrderBeansList.clear();
 
             JSONObject userRequestjsonObject = new JSONObject();
-             userRequestjsonObject.put("Id", looking_id);
+            userRequestjsonObject.put("Id", looking_id);
 
             JSONObject postjsonObject = new JSONObject();
             postjsonObject.put("LookingForObj", userRequestjsonObject);
@@ -129,12 +128,12 @@ public class AddFirstFragment extends Fragment {
 
                             String getPrice=jsonObject1.getString("LookingForDetails");
 
-                           // String lookingForId=jsonObject1.getString("LookingForId");
+                            // String lookingForId=jsonObject1.getString("LookingForId");
                             String lookingForId=jsonObject1.getString("Id");
 
 
-                              AddTractorBean crops = new AddTractorBean(R.drawable.tractor_green, getPrice,lookingForId);
-                              newOrderBeansList.add(crops);
+                            AddTractorBean crops = new AddTractorBean(R.drawable.tractor_green, getPrice,lookingForId);
+                            newOrderBeansList.add(crops);
 
                           /*  if(!latts.equals("") | !langgs.equals("")) {
 
