@@ -150,7 +150,7 @@ public class FarmsHomePageFragment extends Fragment {
                             JSONObject jsonObject1=cropsListArray.getJSONObject(i);
                             String farm_name=jsonObject1.getString("FarmName");
                             String location=jsonObject1.getString("Location");
-                            String image=jsonObject1.getString("CoverPhoto");
+                            String image=jsonObject1.getString("FarmImages");
                             String id=jsonObject1.getString("Id");
 
 
