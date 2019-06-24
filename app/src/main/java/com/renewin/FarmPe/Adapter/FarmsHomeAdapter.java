@@ -113,6 +113,7 @@ public class FarmsHomeAdapter extends RecyclerView.Adapter<FarmsHomeAdapter.MyVi
     public int getItemCount() {
         System.out.println("lengthhhhhhh"+productList.size());
         return productList.size();
+      //  return 4;
     }
 
 }
