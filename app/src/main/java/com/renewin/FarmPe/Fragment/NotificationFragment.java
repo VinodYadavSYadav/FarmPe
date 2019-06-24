@@ -13,9 +13,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.renewin.FarmPe.Adapter.AddHpAdapter;
 import com.renewin.FarmPe.Adapter.NotificationAdapter;
-import com.renewin.FarmPe.Bean.FarmsImageBean;
 import com.renewin.FarmPe.Bean.NotificationBean;
 import com.renewin.FarmPe.R;
 
@@ -56,6 +54,8 @@ public class NotificationFragment extends Fragment {
         view.setFocusableInTouchMode(true);
         view.requestFocus();
         view.setOnKeyListener(new View.OnKeyListener() {
+
+
 
 
             @Override

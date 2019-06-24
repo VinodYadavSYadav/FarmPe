@@ -15,7 +15,6 @@ import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
@@ -33,9 +32,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-import com.renewin.FarmPe.Adapter.SelectLanguageAdapter;
 import com.renewin.FarmPe.Adapter.SelectLanguageAdapter2;
-import com.renewin.FarmPe.Bean.AddTractorBean;
 import com.renewin.FarmPe.Bean.SelectLanguageBean;
 import com.renewin.FarmPe.DB.DatabaseHelper;
 import com.renewin.FarmPe.R;
@@ -44,6 +41,7 @@ import com.renewin.FarmPe.Urls;
 import com.renewin.FarmPe.Volly_class.Crop_Post;
 import com.renewin.FarmPe.Volly_class.Login_post;
 import com.renewin.FarmPe.Volly_class.VoleyJsonObjectCallback;
+
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -57,7 +55,6 @@ public class LoginActivity extends AppCompatActivity {
      public static EditText mobile_no, pass;
      public static String mobile,loc_text;
      LinearLayout linearLayout;
-     SessionManager sessionManager;
      public String status,userId;
      boolean doubleBackToExitPressedOnce = false;
      LinearLayout back_xlogin;
@@ -70,6 +67,7 @@ public class LoginActivity extends AppCompatActivity {
      JSONObject lngObject;
      Snackbar snackbar;
     String mob_no;
+    SessionManager sessionManager;
     public static  Dialog dialog;
    public static TextView welcome_back, createaccount, change_lang, enterPassword, forgotPassword;
 

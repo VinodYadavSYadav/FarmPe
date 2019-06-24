@@ -19,7 +19,7 @@
         android:roundIcon="@drawable/ic_orange"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.renewin.FarmPe.Activity.LoginActivity">
+        <activity android:name=".Activity.LandingPageActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -34,15 +34,15 @@
        <!-- <activity android:name="com.renewin.xohriFarmer.Activity.LandingPageActivity"
             android:screenOrientation="portrait"
             />-->
-        <activity android:name="com.renewin.FarmPe.Activity.SelectLanguageActivity" />
-        <activity android:name="com.renewin.FarmPe.Activity.EnterOTP" />
-        <activity android:name="com.renewin.FarmPe.Activity.Thank_U_New" />
-        <activity android:name="com.renewin.FarmPe.Activity.LandingPageActivity" />
-        <activity android:name="com.renewin.FarmPe.Activity.ResetPasswordNew" />
-        <activity android:name="com.renewin.FarmPe.Activity.FarmerUser" />
-        <activity android:name="com.renewin.FarmPe.Activity.FarmerActivity" />
+        <activity android:name=".Activity.SelectLanguageActivity" />
+        <activity android:name=".Activity.EnterOTP" />
+        <activity android:name=".Activity.Thank_U_New" />
+        <activity android:name=".Activity.LoginActivity" />
+        <activity android:name=".Activity.ResetPasswordNew" />
+        <activity android:name=".Activity.FarmerUser" />
+        <activity android:name=".Activity.FarmerActivity" />
         <activity android:name="com.renewin.FarmPe.Activity.SignUpActivity" />
-        <activity android:name="com.renewin.FarmPe.Activity.FarmerActivityNext" />
+        <activity android:name=".Activity.FarmerActivityNext" />
 
 
     </application>

@@ -6,7 +6,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +15,6 @@ import android.widget.TextView;
 import com.renewin.FarmPe.Adapter.AddBrandAdapter;
 import com.renewin.FarmPe.Adapter.AddModelAdapter;
 import com.renewin.FarmPe.Bean.AddTractorBean;
-import com.renewin.FarmPe.Bean.FarmsImageBean;
 import com.renewin.FarmPe.R;
 import com.renewin.FarmPe.Urls;
 import com.renewin.FarmPe.Volly_class.Login_post;
@@ -72,13 +70,13 @@ public class AddModelFragment extends Fragment {
             }
         });*/
 
-       // ModelList();
+        ModelList();
        // newOrderBeansList.clear();
         GridLayoutManager mLayoutManager_farm = new GridLayoutManager(getActivity(), 2, GridLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(mLayoutManager_farm);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
-        AddTractorBean img1=new AddTractorBean(R.drawable.tractor_green,"Yuvraj 215 NXT","");
+       /* AddTractorBean img1=new AddTractorBean(R.drawable.tractor_green,"Yuvraj 215 NXT","");
         newOrderBeansList.add(img1);
 
         AddTractorBean img2=new AddTractorBean(R.drawable.gyrovator,"Jivo 225 DI","");
@@ -97,13 +95,13 @@ public class AddModelFragment extends Fragment {
         newOrderBeansList.add(img6);
         newOrderBeansList.add(img6);
         newOrderBeansList.add(img6);
-       /* newOrderBeansList.add(img6);
-        newOrderBeansList.add(img6);*/
+       *//* newOrderBeansList.add(img6);
+        newOrderBeansList.add(img6);*//*
 
 
         farmadapter=new AddModelAdapter(getActivity(),newOrderBeansList);
         recyclerView.setAdapter(farmadapter);
-
+*/
         return view;
     }
     private void ModelList() {

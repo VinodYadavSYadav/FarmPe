@@ -1,7 +1,6 @@
 package com.renewin.FarmPe.Adapter;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -12,16 +11,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.renewin.FarmPe.Activity.XLoginNew;
 import com.renewin.FarmPe.Bean.SelectLanguageBean;
 import com.renewin.FarmPe.R;
 import com.renewin.FarmPe.SessionManager;
-import com.renewin.FarmPe.Urls;
-import com.renewin.FarmPe.Volly_class.Login_post;
-import com.renewin.FarmPe.Volly_class.VoleyJsonObjectCallback;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.Date;
 import java.util.List;

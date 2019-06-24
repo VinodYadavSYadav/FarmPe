@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 
 import com.renewin.FarmPe.Bean.StateBean;
+
 import com.renewin.FarmPe.Fragment.Add_New_Address_Fragment;
 import com.renewin.FarmPe.R;
 
@@ -49,8 +50,8 @@ public class HoblisAdapter extends RecyclerView.Adapter<HoblisAdapter.HoblisMyVi
             @Override
             public void onClick(View view) {
                 hobliid=stateBean.getId();
-                Add_New_Address_Fragment.hobli.setText(holder.statename.getText().toString());
-                Add_New_Address_Fragment.grade_dialog.dismiss();
+         Add_New_Address_Fragment.hobli.setText(holder.statename.getText().toString());
+               Add_New_Address_Fragment.grade_dialog.dismiss();
 
 
             }

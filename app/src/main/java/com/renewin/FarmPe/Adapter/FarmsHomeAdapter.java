@@ -1,7 +1,10 @@
 package com.renewin.FarmPe.Adapter;
 
 import android.app.Activity;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -13,8 +16,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.renewin.FarmPe.Bean.FarmsImageBean;
 import com.renewin.FarmPe.Bean.FarmsImageBean1;
+import com.renewin.FarmPe.Fragment.FarmsDetailsFragment;
 import com.renewin.FarmPe.R;
 
 import java.util.List;
@@ -23,6 +26,7 @@ public class FarmsHomeAdapter extends RecyclerView.Adapter<FarmsHomeAdapter.MyVi
     private List<FarmsImageBean1> productList;
     Activity activity;
     Fragment selectedFragment;
+    String farm_title_name;
 
     public LinearLayout linearLayout;
    public static LinearLayout next_arw;
@@ -79,6 +83,20 @@ public class FarmsHomeAdapter extends RecyclerView.Adapter<FarmsHomeAdapter.MyVi
         holder.duration.setText(products.getDuration());
         holder.farmer_name.setText(products.getFarmer_name());
         holder.location.setText(products.getLocation());
+
+        holder.connect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle bundle=new Bundle();
+                bundle.putString("farm_name",products.getProd_price());
+                selectedFragment = FarmsDetailsFragment.newInstance();
+                FragmentTransaction transaction = ((FragmentActivity)activity).getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.frame_layout, selectedFragment);
+                transaction.addToBackStack("connect");
+                selectedFragment.setArguments(bundle);
+                transaction.commit();
+            }
+        });
 
         holder.duration.setVisibility(View.GONE);
         Glide.with(activity).load(products.getImage())

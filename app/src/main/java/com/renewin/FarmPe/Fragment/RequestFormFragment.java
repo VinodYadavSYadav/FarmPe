@@ -15,11 +15,10 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-import com.renewin.FarmPe.Adapter.AddBrandAdapter;
+
 import com.renewin.FarmPe.Adapter.AddFirstAdapter;
 import com.renewin.FarmPe.Adapter.AddHpAdapter;
 import com.renewin.FarmPe.Adapter.AddModelAdapter;
-import com.renewin.FarmPe.Bean.AddTractorBean;
 import com.renewin.FarmPe.Bean.FarmsImageBean;
 import com.renewin.FarmPe.R;
 import com.renewin.FarmPe.SessionManager;
@@ -27,7 +26,6 @@ import com.renewin.FarmPe.Urls;
 import com.renewin.FarmPe.Volly_class.Login_post;
 import com.renewin.FarmPe.Volly_class.VoleyJsonObjectCallback;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -76,7 +74,7 @@ public class RequestFormFragment extends Fragment {
 
         sessionManager=new SessionManager(getActivity());
 
-       /* Bundle bundle=getArguments();
+        Bundle bundle=getArguments();
         if (bundle==null){
 
         }else{
@@ -90,7 +88,7 @@ public class RequestFormFragment extends Fragment {
             radioGroup_finance.check(finance_selected);
 
 
-        }*/
+        }
 
        // String addId=bundle.getString("add_id");
 
@@ -132,7 +130,7 @@ public class RequestFormFragment extends Fragment {
         request.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              //  RequestForm();
+                RequestForm();
                 selectedFragment = HomeMenuFragment.newInstance();
                 FragmentTransaction transaction = (getActivity()).getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.frame_layout, selectedFragment);

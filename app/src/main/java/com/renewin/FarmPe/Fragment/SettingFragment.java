@@ -5,8 +5,6 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.RecyclerView;
 import android.view.KeyEvent;
@@ -49,7 +47,7 @@ public class SettingFragment extends Fragment {
         policy=view.findViewById(R.id.policy);
         notification=view.findViewById(R.id.notification);
         acc_info=view.findViewById(R.id.acc_info);
-        your_address=view.findViewById(R.id.ur_address);
+        your_address=view.findViewById(R.id.your_address);
 
         sessionManager = new SessionManager(getActivity());
 

@@ -10,8 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.renewin.FarmPe.Adapter.FarmsHomeAdapter;
-import com.renewin.FarmPe.Adapter.FarmsImageAdapter;
-import com.renewin.FarmPe.Bean.FarmsImageBean;
 import com.renewin.FarmPe.Bean.FarmsImageBean1;
 import com.renewin.FarmPe.R;
 import com.renewin.FarmPe.Urls;
@@ -41,16 +39,17 @@ public class FarmsHomePageFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.looking_for_recy, container, false);
         recyclerView=view.findViewById(R.id.recycler_looking);
+        FarmsList();
         newOrderBeansList.clear();
         GridLayoutManager mLayoutManager_farm = new GridLayoutManager(getActivity(), 2, GridLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(mLayoutManager_farm);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
-        FarmsImageBean1 img1=new FarmsImageBean1(R.drawable.cow_dairy,"Amrutha Dairy Farm","Commertial Dairy Farming Training,Consulting Project Reporting","","","Jagdish Kumar","Halenahalli DoddaBallapura","");
+      /*  FarmsImageBean1 img1=new FarmsImageBean1(R.drawable.cow_dairy,"Amrutha Dairy Farm","Commertial Dairy Farming Training,Consulting Project Reporting","","","Jagdish Kumar","Halenahalli DoddaBallapura","");
         newOrderBeansList.add(img1);
         newOrderBeansList.add(img1);
         newOrderBeansList.add(img1);
-        newOrderBeansList.add(img1);
+        newOrderBeansList.add(img1);*/
 
        /* FarmsImageBean img2=new FarmsImageBean(R.drawable.gyrovator,"Tractor Implements Price","Mahindra Jivo 225 DL 20HP","1 Month","Jagdish Kumar","Rampura Bahjoi");
         newOrderBeansList.add(img2);
@@ -62,12 +61,12 @@ public class FarmsHomePageFragment extends Fragment {
         newOrderBeansList.add(img4);*/
 
 
-        farmadapter=new FarmsHomeAdapter(getActivity(),newOrderBeansList);
+       /* farmadapter=new FarmsHomeAdapter(getActivity(),newOrderBeansList);
         recyclerView.setAdapter(farmadapter);
-
+*/
         return view;
     }
-   /* private void FarmsList() {
+    private void FarmsList() {
 
         try {
             newOrderBeansList.clear();
@@ -75,12 +74,12 @@ public class FarmsHomePageFragment extends Fragment {
             JSONObject userRequestjsonObject = new JSONObject();
 
 
-          *//*  JSONObject postjsonObject = new JSONObject();
+            JSONObject postjsonObject = new JSONObject();
             postjsonObject.put("objCropDetails", userRequestjsonObject);
-*//*
+
             System.out.println("postObj"+userRequestjsonObject.toString());
 
-            Login_post.login_posting(getActivity(), Urls.GetLookingForList,userRequestjsonObject,new VoleyJsonObjectCallback() {
+            Login_post.login_posting(getActivity(), Urls.GetFarmDetailsList,userRequestjsonObject,new VoleyJsonObjectCallback() {
                 @Override
                 public void onSuccessResponse(JSONObject result) {
                     System.out.println("cropsresult"+result);
@@ -91,27 +90,21 @@ public class FarmsHomePageFragment extends Fragment {
                         for (int i=0;i<cropsListArray.length();i++){
                             JSONObject jsonObject1=cropsListArray.getJSONObject(i);
                             String farm_name=jsonObject1.getString("FarmName");
-                            String purchaseTimeline=jsonObject1.getString("PurchaseTimeline");
-                            String image=jsonObject1.getString("ModelImage");
+                            String location=jsonObject1.getString("Location");
+                          //  String image=jsonObject1.getString("ModelImage");
                             String id=jsonObject1.getString("Id");
 
 
                             System.out.println("madelslistt"+newOrderBeansList.size());
 
-                            FarmsImageBean crops = new FarmsImageBean(image,"Tractor Price",model,"20Hp",purchaseTimeline,name,location,id);
+                            FarmsImageBean1 crops = new FarmsImageBean1(R.drawable.cow_dairy,farm_name,"","","Commertial Dairy Farming Training,Consulting Project Reporting","Jagdish Kumar",location,id);
                             newOrderBeansList.add(crops);
 
 
 
-                          *//*  if(!latts.equals("") | !langgs.equals("")) {
 
-                                CropListBean crops = new CropListBean(cropName, crop_variety, location, crop_grade,
-                                        crop_quantity, crop_uom, crop_price, id, farmerId,
-                                        UserName,latts,langgs,CropImg,category);
-                                newOrderBeansList.add(crops);
-                            }*//*
                         }
-                        farmadapter=new FarmsImageAdapter(getActivity(),newOrderBeansList);
+                        farmadapter=new FarmsHomeAdapter(getActivity(),newOrderBeansList);
                         recyclerView.setAdapter(farmadapter);
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -123,7 +116,6 @@ public class FarmsHomePageFragment extends Fragment {
         }
 
     }
-*/
 
 
 }

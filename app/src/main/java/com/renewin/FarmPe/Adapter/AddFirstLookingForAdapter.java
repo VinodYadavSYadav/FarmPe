@@ -17,7 +17,6 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.renewin.FarmPe.Bean.AddTractorBean;
-import com.renewin.FarmPe.Fragment.AddBrandFragment;
 import com.renewin.FarmPe.Fragment.AddFirstFragment;
 import com.renewin.FarmPe.R;
 

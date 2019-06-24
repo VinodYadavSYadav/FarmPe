@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
@@ -20,7 +19,6 @@ import android.widget.Toast;
 
 
 import com.renewin.FarmPe.Bean.Add_New_Address_Bean;
-import com.renewin.FarmPe.Fragment.Add_New_Address_Fragment;
 import com.renewin.FarmPe.Fragment.You_Address_Fragment;
 import com.renewin.FarmPe.R;
 import com.renewin.FarmPe.SessionManager;

@@ -10,7 +10,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -19,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
 
 import com.renewin.FarmPe.Adapter.DistrictAdapter;
 import com.renewin.FarmPe.Adapter.HoblisAdapter;
@@ -106,44 +106,12 @@ public class Add_New_Address_Fragment extends Fragment {
         village = view.findViewById(R.id.village_1);
 
 
-    /*   selected_id=RequestFormFragment.selectedId;
-        selected_id_time=RequestFormFragment.selectedId_time_recent;*/
+       selected_id=RequestFormFragment.selectedId;
+        selected_id_time=RequestFormFragment.selectedId_time_recent;
 
         System.out.println("selecteddddd_iddd"+selected_id_time);
 
-          /*  name.setText(getArguments().getString("Addr_name"));
-            mobile.setText(getArguments().getString("Addr_mobile"));
-            pincode_no.setText(getArguments().getString("Addr_pincode"));
-            house_numb.setText(getArguments().getString("Addr_Houseno"));
-            street_name.setText(getArguments().getString("Addr_Street"));
-            landmrk.setText(getArguments().getString("Addr_landmark"));
-            city.setText(getArguments().getString("Addr_city"));
 
-
-            state.setText(getArguments().getString("Addr_state"));
-            district.setText(getArguments().getString("Addr_district"));
-            taluk.setText(getArguments().getString("Addr_taluk"));
-            hobli.setText(getArguments().getString("Addr_hobli"));
-            village.setText(getArguments().getString("Addr_village"));
-            select_address.setText(getArguments().getString("Addr_pickup_from"));*/
-
-//
-//        InputFilter filter = new InputFilter() {
-//            public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
-//                String filtered = "";
-//                for (int i = start; i < end; i++) {
-//                    char character = source.charAt(i);
-//                    if (!Character.isWhitespace(character)) {
-//                        filtered += character;
-//                    }
-//                }
-//                return filtered;
-//            }
-//
-//        };
-//
-//        name.setFilters(new InputFilter[] { filter,new InputFilter.LengthFilter(30) });
-       // confimp.setFilters(new InputFilter[] { filter ,new InputFilter.LengthFilter(12)});
 
 
         linear_name = view.findViewById(R.id.linea_name1);
