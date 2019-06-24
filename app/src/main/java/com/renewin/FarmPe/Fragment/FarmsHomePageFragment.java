@@ -91,13 +91,13 @@ public class FarmsHomePageFragment extends Fragment {
                             canLoadMoreData = false;
                             //Log.v("...", "Last Item Wow !");
                             count1++;
-                            int x=count1*10;
+                            int x=count1*12;
                             System.out.println("llllllllllllllllllllllll"+x);
                             System.out.println("llllllllllllllllllllllll"+pagination_list.size());
                             System.out.println("llllllllllllllllllllllll"+pagination_list.size());
 
                             // List<ModelName> list = arrl.subList(x-10, x-1);
-                            if ((newOrderBeansList.size()-pagination_list.size())<4){
+                            if ((newOrderBeansList.size()-pagination_list.size())<12){
                                 canLoadMoreData=false;
                                 pagination_list=newOrderBeansList.subList(0,newOrderBeansList.size());
                               /*  mAdapter = new Sell_Sub_Categories_Adapter(getActivity(),pagination_list);
@@ -155,7 +155,7 @@ public class FarmsHomePageFragment extends Fragment {
 
                             System.out.println("madelslistt"+newOrderBeansList.size());
 
-                            FarmsImageBean1 crops = new FarmsImageBean1(R.drawable.cow_dairy,farm_name,"","","Commertial Dairy Farming Training,Consulting Project Reporting","Jagdish Kumar",location,id);
+                            FarmsImageBean1 crops = new FarmsImageBean1(R.drawable.cow,farm_name,"","","Commertial Dairy Farming Training,Consulting Project Reporting","Jagdish Kumar",location,id);
                             newOrderBeansList.add(crops);
 
 
@@ -163,14 +163,14 @@ public class FarmsHomePageFragment extends Fragment {
 
                         }
 
-                        if (newOrderBeansList.size()<6){
+                        if (newOrderBeansList.size()<12){
                             pagination_list=newOrderBeansList.subList(0,newOrderBeansList.size());
                             farmadapter=new FarmsHomeAdapter(getActivity(),pagination_list);
                             recyclerView.setAdapter(farmadapter);
                             ;
 
                         }else {
-                            pagination_list=newOrderBeansList.subList(0,6);
+                            pagination_list=newOrderBeansList.subList(0,12);
                             farmadapter=new FarmsHomeAdapter(getActivity(),pagination_list);
                             recyclerView.setAdapter(farmadapter);
 
