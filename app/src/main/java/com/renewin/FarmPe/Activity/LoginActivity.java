@@ -100,12 +100,16 @@ public class LoginActivity extends AppCompatActivity {
         myDb = new DatabaseHelper(this);
         edittext_move(mobile_no, pass);
 
+
+        pass.setFilters(new InputFilter[]{new EmojiExcludeFilter()});
+
+
        // if(sessionManager.getLanguage())
 
 
 
 
-        final InputFilter EMOJI_FILTER = new InputFilter() {
+       /* final InputFilter EMOJI_FILTER = new InputFilter() {
             @Override
 
             public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
@@ -120,6 +124,30 @@ public class LoginActivity extends AppCompatActivity {
         };
         pass.setFilters(new InputFilter[]{EMOJI_FILTER});
 
+
+        pass.setFilters(new InputFilter[]{new EmojiExcludeFilter()});
+        private class EmojiExcludeFilter implements InputFilter {
+
+            @Override
+            public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
+                for (int i = start; i < end; i++) {
+                    int type = Character.getType(source.charAt(i));
+                    if (type == Character.SURROGATE || type == Character.OTHER_SYMBOL) {
+                        return "";
+                    }
+                }
+                return null;
+            }
+        }*/
+
+
+
+
+
+
+
+
+
         final InputFilter filter = new InputFilter() {
             public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
                 String filtered = "";
@@ -133,8 +161,10 @@ public class LoginActivity extends AppCompatActivity {
             }
         };
         pass.setFilters(new InputFilter[] {filter,new InputFilter.LengthFilter(12) });
-        // sessionManager = new SessionManager(this);
-        // sessionManager.getRegId("lng_object");
+
+
+
+
         System.out.println("llllllllllll" + sessionManager.getRegId("language"));
 
         try {
@@ -610,4 +640,16 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
+    private class EmojiExcludeFilter implements InputFilter {
+        @Override
+        public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
+            for (int i = start; i < end; i++) {
+                int type = Character.getType(source.charAt(i));
+                if (type == Character.SURROGATE || type == Character.OTHER_SYMBOL) {
+                    return "";
+                }
+            }
+            return null;
+        }
+    }
 }

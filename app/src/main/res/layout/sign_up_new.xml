@@ -82,6 +82,8 @@
         android:fontFamily="@font/segoeui"
         android:textSize="14dp"
         android:textColor="#fff"
+        android:padding="10dp"
+        android:focusableInTouchMode="true"
         />
 
 

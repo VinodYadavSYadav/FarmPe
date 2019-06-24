@@ -133,7 +133,7 @@ public class You_Address_Adapter extends RecyclerView.Adapter<You_Address_Adapte
 
 
 
-        /*holder.edit_1.setOnClickListener(new View.OnClickListener() {
+        holder.edit_1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -164,7 +164,7 @@ public class You_Address_Adapter extends RecyclerView.Adapter<You_Address_Adapte
                 transaction.commit();
 
             }
-        });*/
+        });
 
 
 

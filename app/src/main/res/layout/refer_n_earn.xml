@@ -67,6 +67,35 @@
                 android:id="@+id/toolbar_title" />
 
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp">
+
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Wallet Balance : "
+                android:textSize="18dp"
+                android:textColor="#000"
+                android:gravity="left"
+                android:layout_marginLeft="10dp"
+                 />
+
+                <TextView
+                    android:id="@+id/wallet_blnc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="5.0"
+                    android:textSize="18dp"
+                    android:textColor="#000"
+                    android:gravity="left"
+                    android:layout_marginLeft="10dp"
+                    />
+            </LinearLayout>
 
         </LinearLayout>
 
@@ -142,6 +171,19 @@
                 android:gravity="center"
                 android:textStyle="bold"
                 android:layout_marginBottom="10dp"
+                android:textColor="#000"
+                android:textSize="16dp" />
+
+            <TextView
+                android:id="@+id/refer_code"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/segoeui"
+                android:text="Referer Code"
+                android:layout_gravity="center"
+                android:textStyle="bold"
+                android:textColor="#000"
+                android:layout_marginTop="10dp"
                 android:textSize="16dp" />
 
 
