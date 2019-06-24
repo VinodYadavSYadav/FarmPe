@@ -25,7 +25,7 @@ import com.renewin.FarmPe.R;
 import java.util.List;
 
 public class FarmsHomeAdapter extends RecyclerView.Adapter<FarmsHomeAdapter.MyViewHolder>  {
-    private List<FarmsImageBean1> productList;
+    private List<FarmsImageBean> productList;
     Activity activity;
     Fragment selectedFragment;
 
@@ -34,7 +34,7 @@ public class FarmsHomeAdapter extends RecyclerView.Adapter<FarmsHomeAdapter.MyVi
     public static String first;
     //    SessionManager session;
     public static CardView cardView;
-    public FarmsHomeAdapter(Activity activity, List<FarmsImageBean1> moviesList) {
+    public FarmsHomeAdapter(Activity activity, List<FarmsImageBean> moviesList) {
         this.productList = moviesList;
         this.activity=activity;
 //        session=new SessionManager(activity);
@@ -77,13 +77,13 @@ public class FarmsHomeAdapter extends RecyclerView.Adapter<FarmsHomeAdapter.MyVi
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, final int position) {
-        final FarmsImageBean1 products = productList.get(position);
+        final FarmsImageBean products = productList.get(position);
       //holder.agri_text.setText(products.getAgri_text());
         holder.prod_price.setText(products.getProd_price());
       //  holder.prod_name.setText(products.getModelname());
        // holder.duration.setText(products.getDuration());
         holder.farmer_name.setText(products.getFarmer_name());
-        holder.location.setText(products.getLocation());
+        holder.location.setText(products.getLocation()+", "+"Karnataka");
 
         holder.connect.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,6 +98,8 @@ public class FarmsHomeAdapter extends RecyclerView.Adapter<FarmsHomeAdapter.MyVi
                 transaction.commit();
             }
         });
+
+
 
      //   holder.duration.setVisibility(View.GONE);
         Glide.with(activity).load(products.getImage())

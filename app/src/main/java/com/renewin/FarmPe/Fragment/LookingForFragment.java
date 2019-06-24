@@ -107,6 +107,7 @@ public class LookingForFragment extends Fragment {
                             String name=jsonObject2.getString("Name");
                             String city=jsonObject2.getString("City");
                             String state=jsonObject2.getString("State");
+                            String hp_range=jsonObject2.getString("HorsePowerRange");
 
                             if (city.equals("")){
                                  location="Bangalore"+", "+state;
@@ -118,7 +119,7 @@ public class LookingForFragment extends Fragment {
 
                             System.out.println("madelslistt"+newOrderBeansList.size());
 
-                            FarmsImageBean crops = new FarmsImageBean(image,"Tractor Price",model,"20Hp",purchaseTimeline,name,location,id);
+                            FarmsImageBean crops = new FarmsImageBean(image,"Tractor Price",model,hp_range,purchaseTimeline,name,location,id);
                             newOrderBeansList.add(crops);
 
 

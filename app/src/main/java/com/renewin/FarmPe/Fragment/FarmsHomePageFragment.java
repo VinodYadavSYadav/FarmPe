@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.renewin.FarmPe.Adapter.FarmsHomeAdapter;
+import com.renewin.FarmPe.Bean.FarmsImageBean;
 import com.renewin.FarmPe.Bean.FarmsImageBean1;
 import com.renewin.FarmPe.R;
 import com.renewin.FarmPe.Urls;
@@ -25,8 +26,8 @@ import java.util.List;
 
 public class FarmsHomePageFragment extends Fragment {
 
-    public static List<FarmsImageBean1> newOrderBeansList = new ArrayList<>();
-    private List<FarmsImageBean1> pagination_list = new ArrayList<>();
+    public static List<FarmsImageBean> newOrderBeansList = new ArrayList<>();
+    private List<FarmsImageBean> pagination_list = new ArrayList<>();
 
     public static RecyclerView recyclerView;
     public static FarmsHomeAdapter farmadapter;
@@ -149,13 +150,13 @@ public class FarmsHomePageFragment extends Fragment {
                             JSONObject jsonObject1=cropsListArray.getJSONObject(i);
                             String farm_name=jsonObject1.getString("FarmName");
                             String location=jsonObject1.getString("Location");
-                          //  String image=jsonObject1.getString("ModelImage");
+                            String image=jsonObject1.getString("CoverPhoto");
                             String id=jsonObject1.getString("Id");
 
 
                             System.out.println("madelslistt"+newOrderBeansList.size());
 
-                            FarmsImageBean1 crops = new FarmsImageBean1(R.drawable.cow_dairy,farm_name,"","","Commertial Dairy Farming Training,Consulting Project Reporting","Jagdish Kumar",location,id);
+                            FarmsImageBean crops = new FarmsImageBean(image,farm_name,"","","Commertial Dairy Farming Training,Consulting Project Reporting","Jagdish Kumar",location,id);
                             newOrderBeansList.add(crops);
 
 

@@ -16,8 +16,6 @@
         android:id="@+id/menu"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
         android:fitsSystemWindows="true">
 
         <LinearLayout
@@ -50,8 +48,10 @@
                 android:gravity="center_vertical"
                 android:paddingLeft="10dp"
                 android:text="Dairy Farm"
+                android:singleLine="true"
+                android:ellipsize="end"
                 android:textColor="#fff"
-                android:textSize="14dp" />
+                android:textSize="16dp" />
 
             <TextView
                 android:id="@+id/farmer_name"
@@ -67,7 +67,7 @@
                 android:id="@+id/location"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:drawablePadding="10dp"
+                android:drawablePadding="5dp"
                 android:gravity="center_vertical"
                 android:paddingLeft="10dp"
                 android:paddingBottom="10dp"
@@ -77,14 +77,15 @@
 
             <TextView
                 android:id="@+id/connect"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/segoeui"
                 android:text="Connect"
-                android:background="@drawable/border_empty"
                 android:paddingVertical="5dp"
-                android:paddingHorizontal="10dp"
-                android:layout_marginLeft="10dp"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="5dp"
+                android:drawableLeft="@drawable/ic_air_conditioner"
+                android:drawablePadding="10dp"
                 android:layout_marginBottom="20dp"
                 android:textColor="#fff"
                 android:textSize="14dp"
