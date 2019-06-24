@@ -57,6 +57,8 @@ public class ChangeLanguageFragment extends Fragment {
         recyclerView.setAdapter(mAdapter);
         Langauges();
 
+
+
         view.setFocusableInTouchMode(true);
         view.requestFocus();
         view.setOnKeyListener(new View.OnKeyListener() {

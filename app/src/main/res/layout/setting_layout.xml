@@ -55,6 +55,7 @@
 
 
             <TextView
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Settings"
@@ -62,7 +63,7 @@
                 android:layout_gravity="center"
                 android:textColor="#fff"
                 android:layout_marginHorizontal="10dp"
-                android:id="@+id/toolbar_title" />
+                android:id="@+id/setting_tittle" />
 
         </android.support.v7.widget.Toolbar>
 
@@ -113,6 +114,7 @@
             >
 
             <TextView
+                android:id="@+id/acc_info1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Account Info"
@@ -165,6 +167,7 @@
                 >
 
                 <TextView
+                    android:id="@+id/your_addresss"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Your Address"
@@ -216,6 +219,7 @@
                 >
 
                 <TextView
+                    android:id="@+id/change_language"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Change Language"
@@ -267,6 +271,7 @@
                 >
 
                 <TextView
+                    android:id="@+id/notificatn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Notifications"
@@ -318,6 +323,7 @@
                 >
 
                 <TextView
+                    android:id="@+id/refer_ern"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Refer n Earn"
@@ -369,6 +375,7 @@
                 >
 
                 <TextView
+                    android:id="@+id/feedbk"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Feedback"
@@ -420,6 +427,7 @@
                 >
 
                 <TextView
+                    android:id="@+id/help_1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/Help"
@@ -472,9 +480,10 @@
                 >
 
                 <TextView
+                    android:id="@+id/abt_frmpe"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="About Xohri"
+                    android:text="About FarmPe"
                     android:textSize="14dp"
                     android:layout_gravity="center_vertical"
                     android:textColor="#fff"
@@ -524,6 +533,7 @@
                 >
 
                 <TextView
+                    android:id="@+id/polic_1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Policies"
@@ -576,6 +586,7 @@
                 >
 
                 <TextView
+                    android:id="@+id/logot"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Logout"

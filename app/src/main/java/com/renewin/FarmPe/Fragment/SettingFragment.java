@@ -18,6 +18,9 @@ import com.renewin.FarmPe.Bean.FarmsImageBean;
 import com.renewin.FarmPe.R;
 import com.renewin.FarmPe.SessionManager;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,8 +30,10 @@ public class SettingFragment extends Fragment {
     public static RecyclerView recyclerView;
     LinearLayout back_feed,logout_layout,noti_setting,refer_earn,feedback,change_lang,policy,notification,acc_info,your_address;
     Fragment selectedFragment;
+    TextView notificatn,change_language,your_addresss,acc_info1,refer_ern,feedbk,help_1,abt_frmpe,polic_1,logot,setting_tittle;
     SessionManager sessionManager;
 
+    JSONObject lngObject;
 
     public static SettingFragment newInstance() {
         SettingFragment fragment = new SettingFragment();
@@ -45,9 +50,26 @@ public class SettingFragment extends Fragment {
         feedback=view.findViewById(R.id.feedback);
         change_lang=view.findViewById(R.id.change_lang);
         policy=view.findViewById(R.id.policy);
+        setting_tittle=view.findViewById(R.id.setting_tittle);
         notification=view.findViewById(R.id.notification);
         acc_info=view.findViewById(R.id.acc_info);
         your_address=view.findViewById(R.id.your_address);
+
+
+
+        notificatn=view.findViewById(R.id.notificatn);
+        change_language=view.findViewById(R.id.change_language);
+        your_addresss=view.findViewById(R.id.your_addresss);
+        acc_info1=view.findViewById(R.id.acc_info1);
+        refer_ern=view.findViewById(R.id.refer_ern);
+        feedbk=view.findViewById(R.id.feedbk);
+        help_1=view.findViewById(R.id.help_1);
+        abt_frmpe=view.findViewById(R.id.abt_frmpe);
+        polic_1=view.findViewById(R.id.polic_1);
+        logot=view.findViewById(R.id.logot);
+
+
+
 
         sessionManager = new SessionManager(getActivity());
 
@@ -86,6 +108,32 @@ public class SettingFragment extends Fragment {
                 return false;
             }
         });
+
+
+
+        try {
+
+            lngObject = new JSONObject(sessionManager.getRegId("language"));
+
+            setting_tittle.setText(lngObject.getString("Settings"));
+            acc_info1.setText(lngObject.getString("AccountInfo"));
+            your_addresss.setText(lngObject.getString("YourAddress"));
+            refer_ern.setText(lngObject.getString("Refer_Earn"));
+            change_language.setText(lngObject.getString("ChangeLanguage"));
+            polic_1.setText(lngObject.getString("PrivacyPolicy"));
+
+            help_1.setText(lngObject.getString("Help_Support"));
+            abt_frmpe.setText(lngObject.getString("AboutFarmPe"));
+            feedbk.setText(lngObject.getString("FeedBack"));
+            notificatn.setText(lngObject.getString("Notifications"));
+            logot.setText(lngObject.getString("Logout"));
+
+
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
 
 

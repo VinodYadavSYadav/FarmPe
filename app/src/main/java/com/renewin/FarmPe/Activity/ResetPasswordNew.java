@@ -18,11 +18,14 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.renewin.FarmPe.DB.DatabaseHelper;
 import com.renewin.FarmPe.R;
 import com.renewin.FarmPe.SessionManager;
+import com.renewin.FarmPe.Volly_class.Login_post;
+import com.renewin.FarmPe.Volly_class.VoleyJsonObjectCallback;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -34,6 +37,7 @@ public class ResetPasswordNew extends AppCompatActivity {
     EditText passwd,conf_pass;
     SessionManager sessionManager;
     DatabaseHelper myDb;
+    String passwrd_toast,passwrd_length_toast,confirm_passwrd_toast,pass_not_matching_toast;
     TextInputLayout passwd1_text_input,conf_pass_textinput;
     String forgot_username,localize_text;
 
@@ -61,13 +65,24 @@ public class ResetPasswordNew extends AppCompatActivity {
        // sessionManager.getRegId("lng_object");
         //System.out.println("llllllllllll" + sessionManager.getRegId("lng_object"));
         JSONObject lngObject;
+
+
         try {
-            lngObject=new JSONObject(sessionManager.getRegId("langdetails"));
+            lngObject=new JSONObject(sessionManager.getRegId("language"));
+
+
             reset_text.setText(lngObject.getString("ResetPassword"));
             to_continue_text.setText(lngObject.getString("Continue"));
             passwd.setHint(lngObject.getString("NewPassword"));
-            conf_pass.setHint(lngObject.getString("ReEnterPassword"));
-           // conf_pass.setText(lngObject.getString("Submit"));
+            conf_pass.setHint(lngObject.getString("Confirmthepassword"));
+
+            passwrd_toast = lngObject.getString("EnterPassword");
+            passwrd_length_toast = lngObject.getString("Enterpasswordoflength6characters");
+            pass_not_matching_toast = lngObject.getString("Yourpasswordisnotmatching");
+            confirm_passwrd_toast = lngObject.getString("Confirmthepassword");
+
+
+
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -89,7 +104,7 @@ public class ResetPasswordNew extends AppCompatActivity {
                 final String confirmP = conf_pass.getText().toString();
                 if (password.equals("")) {
                     Snackbar snackbar = Snackbar
-                            .make(linearLayout, "Enter The Password", Snackbar.LENGTH_LONG);
+                            .make(linearLayout, passwrd_toast, Snackbar.LENGTH_LONG);
                     View snackbarView=snackbar.getView();
                     TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
                     tv.setTextColor(Color.RED);
@@ -110,7 +125,7 @@ public class ResetPasswordNew extends AppCompatActivity {
                 else if (password.length()<6){
                     passwd.requestFocus();
                     Snackbar snackbar = Snackbar
-                            .make(linearLayout, "Enter Minimum 6 Characters", Snackbar.LENGTH_LONG);
+                            .make(linearLayout, passwrd_length_toast, Snackbar.LENGTH_LONG);
                     View snackbarView=snackbar.getView();
                     TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
                     tv.setTextColor(Color.RED);
@@ -118,12 +133,11 @@ public class ResetPasswordNew extends AppCompatActivity {
                     //Toast.makeText(ResetPassword.this, "Enter Minimum 6 Characters", Toast.LENGTH_LONG).show();
                     // passwrd.setError("Enter Minimum 6 Character");
 
-
                 }
                 else if (confirmP.equals("")) {
                     conf_pass.requestFocus();
                     Snackbar snackbar = Snackbar
-                            .make(linearLayout, "Confirm Your Password", Snackbar.LENGTH_LONG);
+                            .make(linearLayout, confirm_passwrd_toast, Snackbar.LENGTH_LONG);
                     View snackbarView=snackbar.getView();
                     TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
                     tv.setTextColor(Color.RED);
@@ -134,7 +148,7 @@ public class ResetPasswordNew extends AppCompatActivity {
 
                 }else if (!(password.equals(confirmP))){
                     Snackbar snackbar = Snackbar
-                            .make(linearLayout, "Password Not Matching", Snackbar.LENGTH_LONG);
+                            .make(linearLayout, pass_not_matching_toast, Snackbar.LENGTH_LONG);
                     View snackbarView=snackbar.getView();
                     TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
                     tv.setTextColor(Color.RED);
@@ -147,6 +161,7 @@ public class ResetPasswordNew extends AppCompatActivity {
 
                 {
                     try {
+
                         localize_text = "+91";
 
                         System.out.println("aaaaaaaaaaaa");
@@ -154,9 +169,9 @@ public class ResetPasswordNew extends AppCompatActivity {
                         JSONObject postjsonObject1 = new JSONObject();
                         postjsonObject.putOpt("UserName",localize_text + forgot_username);
                         postjsonObject.putOpt("Password", passwd.getText().toString());
-
                         postjsonObject1.putOpt("UserRequest",postjsonObject);
                         System.out.println("111111111111111111111111"+postjsonObject1);
+
 
                         Login_post.ChangePassword(ResetPasswordNew.this, postjsonObject1, new VoleyJsonObjectCallback() {
                             @Override

@@ -39,7 +39,7 @@ public class EnterOTP extends AppCompatActivity {
     LinearLayout close;
     String otp;
     EditText otpedittext;
-    public  static String sessionId,otp_get_text;
+    public  static String sessionId,otp_get_text,toast_otp,toast_invalid_otp;
     public static String contact;
     BroadcastReceiver receiver;
     Vibrator vibe;
@@ -78,7 +78,6 @@ public class EnterOTP extends AppCompatActivity {
         linearLayout=findViewById(R.id.main_layout);
        // close=findViewById(R.id.arrow_thank_u);
         left_arrow=findViewById(R.id.left_arow);
-
 
 
 
@@ -153,6 +152,10 @@ public class EnterOTP extends AppCompatActivity {
             submit.setText(lngObject.getString("SendOTP"));
             otp_title.setText(lngObject.getString("OTP"));
             otp_text.setText(lngObject.getString("EnterOTP"));
+            resendotp.setText(lngObject.getString("Resend"));
+
+            toast_otp = lngObject.getString("EntertheOTP");
+            toast_invalid_otp = lngObject.getString("InvalidOTP");
 
 
         } catch (JSONException e) {
@@ -211,23 +214,71 @@ public class EnterOTP extends AppCompatActivity {
                /* Intent intent=new Intent(EnterOTP.this,Login.class);
                 startActivity(intent);*/
 
-
                 if (otp_get_text.equals("")){
                    // otp_get_text.requestFocus();
                     Snackbar snackbar = Snackbar
-                            .make(linearLayout, "Enter OTP", Snackbar.LENGTH_LONG);
+                            .make(linearLayout,toast_otp, Snackbar.LENGTH_LONG);
                     View snackbarView = snackbar.getView();
                     TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
                     tv.setTextColor(Color.RED);
                     snackbar.show();
                 }
 
-               else{
+                else if (otp_get_text.equals(sessionId)){
+                    JSONObject postjsonObject = new JSONObject();
+                    JSONObject postjsonObject1 = new JSONObject();
+                    try {
+                        //   postjsonObject.put("PhoneNo", Sign_In.phoneNo);
+                        postjsonObject.put("PhoneNo",SignUpActivity.contact);
+                        postjsonObject1.put("objUser",postjsonObject);
+                        System.out.println("ffffffffffffff"+postjsonObject1);
 
-                    Intent intent=new Intent(EnterOTP.this, LoginActivity.class);
-                    startActivity(intent);
+                        Login_post.VerifyOTP(EnterOTP.this, postjsonObject1, new VoleyJsonObjectCallback() {
+                            @Override
+                            public void onSuccessResponse(JSONObject result) {
+                                System.out.println("llllllllllllllllllllllllllll"+result);
+                                try {
+                                    System.out.println("nnnnnmnm" + result.toString());
+                                    JSONObject responseobject = new JSONObject(result.toString());
+                                    JSONObject response = responseobject.getJSONObject("Response");
+                                    String status=response.getString("Status");
+                                    String message=response.getString("Message");
+
+                                    if (status.equals("0")){
+                                        Toast.makeText(EnterOTP.this,toast_invalid_otp,Toast.LENGTH_SHORT).show();
+
+                                        System.out.println("fgddgdfgdfgffffffffff"+ message);
+
+                                       Intent intent=new Intent(EnterOTP.this, LoginActivity.class);
+                                        startActivity(intent);
+                                  /*  selectedFragment = TabLayoutFragmentTrending.newInstance();
+                                    FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+                                    transaction.replace(R.id.frame_layout,selectedFragment);
+                                    //transaction.addToBackStack("trending");
+                                    transaction.commit();*/
+                                    }
+                                    else {
+                                        Toast.makeText(EnterOTP.this,"OTP has not verified",Toast.LENGTH_SHORT).show();
+                                    }
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        });
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+// here ur calling URL
+
+                }else{
                  //   Toast.makeText(EnterOTP.this,"Incorrect OTP",Toast.LENGTH_SHORT).show();
-
+                    Snackbar snackbar = Snackbar
+                            .make(linearLayout,toast_invalid_otp, Snackbar.LENGTH_LONG);
+                    View snackbarView = snackbar.getView();
+                    TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+                    tv.setTextColor(Color.RED);
+                    snackbar.show();
                 }
             }
 
@@ -266,6 +317,7 @@ public class EnterOTP extends AppCompatActivity {
 //        }
 //        return true;
 //    }
+
     public void setupUI(View view) {
 
         //Set up touch listener for non-text box views to hide keyboard.

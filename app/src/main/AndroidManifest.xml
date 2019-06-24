@@ -19,7 +19,7 @@
         android:roundIcon="@drawable/ic_orange"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activity.LandingPageActivity">
+        <activity android:name=".Activity.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -31,13 +31,18 @@
             android:value="AIzaSyBQmAnCrsWKs3wQSfscpPfJhlY3Eml6YKM" />
 
         <activity android:name="com.renewin.FarmPe.Activity.ForgotPasswordNew" />
-       <!-- <activity android:name="com.renewin.xohriFarmer.Activity.LandingPageActivity"
-            android:screenOrientation="portrait"
-            />-->
+
+
+            />
         <activity android:name=".Activity.SelectLanguageActivity" />
         <activity android:name=".Activity.EnterOTP" />
         <activity android:name=".Activity.Thank_U_New" />
-        <activity android:name=".Activity.LoginActivity" />
+
+        <activity android:name=".Activity.LandingPageActivity"
+            android:screenOrientation="portrait"
+            android:resizeableActivity="false"
+            />
+
         <activity android:name=".Activity.ResetPasswordNew" />
         <activity android:name=".Activity.FarmerUser" />
         <activity android:name=".Activity.FarmerActivity" />
@@ -46,5 +51,6 @@
 
 
     </application>
+
 
 </manifest>

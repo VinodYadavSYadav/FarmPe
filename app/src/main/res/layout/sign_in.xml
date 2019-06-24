@@ -30,10 +30,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="50dp"
-                    android:text="Xohri"
+                    android:text="FarmPe"
                     android:fontFamily="@font/segoeui"
                     android:gravity="center"
-                    android:textSize="50dp"
+                    android:layout_marginTop="10dp"
+                    android:textSize="36dp"
                     android:textStyle="bold"
                     android:textColor="#fff"
                     />

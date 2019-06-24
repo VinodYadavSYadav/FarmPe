@@ -60,7 +60,7 @@
                             android:id="@+id/prod_img1"
                             android:layout_width="40dp"
                             android:layout_height="40dp"
-                            android:src="@drawable/jk"
+                            android:src="@drawable/avatarmale"
                             app:civ_border_color="#ffffff"
                             app:civ_border_width="0.5dp" />
 

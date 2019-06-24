@@ -9,8 +9,10 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -36,6 +38,7 @@ import com.renewin.FarmPe.Volly_class.Crop_Post;
 import com.renewin.FarmPe.Volly_class.Login_post;
 import com.renewin.FarmPe.Volly_class.VoleyJsonObjectCallback;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -50,8 +53,15 @@ public class SignUpActivity extends AppCompatActivity {
     SessionManager sessionManager;
     public static EditText name, mobile_no, password, referal_code;
     String status, status_resp;
+    JSONArray lng_array;
     Activity activity;
     JSONObject lngObject;
+    public static String mob_toast,passwrd_toast;
+
+    List<SelectLanguageBean>language_arrayBeanList = new ArrayList<>();
+    SelectLanguageBean selectLanguageBean;
+    SelectLanguageAdapter_SignUP mAdapter;
+
     LinearLayout linearLayout;
     BroadcastReceiver receiver;
     EditText spn_localize;
@@ -59,13 +69,21 @@ public class SignUpActivity extends AppCompatActivity {
     TextInputLayout textInputLayout_name, textInputLayout_pass;
     public static String contact, mob_contact;
     String refer;
-   public static   Dialog dialog;
+     public static   Dialog dialog;
 
+
+    @Nullable
+    @Override
+    public ActionBar getSupportActionBar() {
+        return super.getSupportActionBar();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sign_up_new);
+
+
 
         linearLayout = findViewById(R.id.linear_login);
         back_feed = findViewById(R.id.back_feed);
@@ -120,11 +138,17 @@ public class SignUpActivity extends AppCompatActivity {
 
                 create_acc.setText(lngObject.getString("Register"));
                 name.setHint(lngObject.getString("FullName"));
-                mobile_no.setHint(lngObject.getString("PhoneNo"));
+                mobile_no.setHint(lngObject.getString("DigitMobileNumber"));
                 password.setHint(lngObject.getString("Password"));
                // textInputLayout_name.setHint(lngObject.getString("FullName"));
               //  textInputLayout_pass.setHint(lngObject.getString("EnterPassword"));
                 continue_sign_up.setText(lngObject.getString("Register"));
+
+
+
+                passwrd_toast = lngObject.getString("Enterpasswordoflength6characters");
+                mob_toast = lngObject.getString("Entervalidmobilenumber");
+
 
 
             }
@@ -194,49 +218,90 @@ public class SignUpActivity extends AppCompatActivity {
         change_lang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
                 System.out.println("jhfdyug");
-                final List<SelectLanguageBean> newOrderBeansList = new ArrayList<>();
+
                 RecyclerView recyclerView;
                 final TextView yes1, no1;
                 final LinearLayout close_layout;
-                final SelectLanguageAdapter_SignUP mAdapter;
                 System.out.println("aaaaaaaaaaaa");
                 dialog = new Dialog(SignUpActivity.this);
                 dialog.setContentView(R.layout.change_lang_login);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.setCancelable(false);
                 close_layout = dialog.findViewById(R.id.close_layout);
-                recyclerView = dialog.findViewById(R.id.recycler_change_lang);
 
-                newOrderBeansList.clear();
+                recyclerView = dialog.findViewById(R.id.recycler_change_lang);
                 RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(SignUpActivity.this);
                 recyclerView.setLayoutManager(mLayoutManager);
                 recyclerView.setItemAnimator(new DefaultItemAnimator());
-
-
-                SelectLanguageBean bean = new SelectLanguageBean("English", 1, "");
-                newOrderBeansList.add(bean);
-
-                SelectLanguageBean bean1 = new SelectLanguageBean("Hindi", 2, "");
-                newOrderBeansList.add(bean1);
-
-                SelectLanguageBean bean2 = new SelectLanguageBean("Kannada", 3, "");
-                newOrderBeansList.add(bean2);
-
-                SelectLanguageBean bean3 = new SelectLanguageBean("Telugu", 4, "");
-                newOrderBeansList.add(bean3);
-
-                SelectLanguageBean bean4 = new SelectLanguageBean("Tamil", 5, "");
-                newOrderBeansList.add(bean4);
-
-                SelectLanguageBean bean5 = new SelectLanguageBean("Malayalam", 6, "");
-                newOrderBeansList.add(bean5);
-
-                SelectLanguageBean bean6 = new SelectLanguageBean("Marathi", 7, "");
-                newOrderBeansList.add(bean6);
-
-                mAdapter = new SelectLanguageAdapter_SignUP(SignUpActivity.this, newOrderBeansList);
+                mAdapter = new SelectLanguageAdapter_SignUP(SignUpActivity.this, language_arrayBeanList);
                 recyclerView.setAdapter(mAdapter);
+
+
+                try{
+
+                    JSONObject jsonObject = new JSONObject();
+
+                    Crop_Post.crop_posting(SignUpActivity.this, Urls.Languages, jsonObject, new VoleyJsonObjectCallback() {
+                        @Override
+                        public void onSuccessResponse(JSONObject result) {
+                            System.out.print("111111ang" + result);
+                            try{
+
+                                language_arrayBeanList.clear();
+                                lng_array = result.getJSONArray("LanguagesList");
+                                for(int i=0;i<lng_array.length();i++){
+                                    JSONObject  jsonObject1 = lng_array.getJSONObject(i);
+
+                                    selectLanguageBean = new SelectLanguageBean(jsonObject1.getString("Language"),jsonObject1.getInt("Id"),"");
+                                    language_arrayBeanList.add(selectLanguageBean);
+
+
+
+                                }
+
+                                mAdapter.notifyDataSetChanged();
+
+
+
+
+                            }catch (Exception e){
+                                e.printStackTrace();
+                            }
+
+                        }
+                    });
+
+
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+
+
+//                SelectLanguageBean bean = new SelectLanguageBean("English", 1, "");
+//                newOrderBeansList.add(bean);
+//
+//                SelectLanguageBean bean1 = new SelectLanguageBean("Hindi", 2, "");
+//                newOrderBeansList.add(bean1);
+//
+//                SelectLanguageBean bean2 = new SelectLanguageBean("Kannada", 3, "");
+//                newOrderBeansList.add(bean2);
+//
+//                SelectLanguageBean bean3 = new SelectLanguageBean("Telugu", 4, "");
+//                newOrderBeansList.add(bean3);
+//
+//                SelectLanguageBean bean4 = new SelectLanguageBean("Tamil", 5, "");
+//                newOrderBeansList.add(bean4);
+//
+//                SelectLanguageBean bean5 = new SelectLanguageBean("Malayalam", 6, "");
+//                newOrderBeansList.add(bean5);
+//
+//                SelectLanguageBean bean6 = new SelectLanguageBean("Marathi", 7, "");
+//                newOrderBeansList.add(bean6);
+
+
                 close_layout.setOnClickListener(new View.OnClickListener() {
 
                     @Override
@@ -370,7 +435,7 @@ public class SignUpActivity extends AppCompatActivity {
 
                     //Toast.makeText(SignUp.this, "Enter Mobile Number", Toast.LENGTH_SHORT).show();
                     Snackbar snackbar = Snackbar
-                            .make(linearLayout, "Enter Mobile Number", Snackbar.LENGTH_LONG);
+                            .make(linearLayout, passwrd_toast, Snackbar.LENGTH_LONG);
                     View snackbarView = snackbar.getView();
                     TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
                     tv.setTextColor(Color.RED);
@@ -379,7 +444,7 @@ public class SignUpActivity extends AppCompatActivity {
 
                     //Toast.makeText(SignUp.this, "Enter valid Mobile Number", Toast.LENGTH_SHORT).show();
                     Snackbar snackbar = Snackbar
-                            .make(linearLayout, "Enter valid Mobile Number", Snackbar.LENGTH_LONG);
+                            .make(linearLayout, mob_toast, Snackbar.LENGTH_LONG);
                     View snackbarView = snackbar.getView();
                     TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
                     tv.setTextColor(Color.RED);
@@ -406,7 +471,7 @@ public class SignUpActivity extends AppCompatActivity {
                     // Sign_Up.this.pass.requestFocus();
                     //Toast.makeText(SignUp.this, "Enter password of length 6 characters", Toast.LENGTH_SHORT).show();
                     Snackbar snackbar = Snackbar
-                            .make(linearLayout, "Enter password of length 6 characters", Snackbar.LENGTH_LONG);
+                            .make(linearLayout, passwrd_toast, Snackbar.LENGTH_LONG);
                     View snackbarView = snackbar.getView();
                     TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
                     tv.setTextColor(Color.RED);
@@ -539,9 +604,12 @@ public class SignUpActivity extends AppCompatActivity {
 
                         String log_regi = result.getString("Register");
                         String log_name = result.getString("FullName");
-                        String log_mobile = result.getString("EnterPhoneNo");
-                        String log_password = result.getString("EnterPassword");
+                        String log_mobile = result.getString("DigitMobileNumber");
+                        String log_password = result.getString("Password");
                         String log_register = result.getString("Register");
+
+                        passwrd_toast = result.getString("Enterpasswordoflength6characters");
+                        mob_toast = result.getString("Entervalidmobilenumber");
 
 
 
@@ -567,6 +635,7 @@ public class SignUpActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         //System.exit(0);
+        activity.finish();
 
         Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
         startActivity(intent);

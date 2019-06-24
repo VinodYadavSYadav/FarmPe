@@ -46,13 +46,16 @@ public class ForgotPasswordNew extends AppCompatActivity {
     JSONObject lngObject;
     TextInputLayout emter_pasword;
     EditText spn_localize;
-    String localize_text;
+    String localize_text,toast_mobile,toast_valid_number;
 
 
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.forgot_password);
+
+
+
         forgot_back = findViewById(R.id.back_feed);
         forgot_submit = findViewById(R.id.forgot_submit);
         mobileno = findViewById(R.id.mobile_no);
@@ -77,9 +80,13 @@ public class ForgotPasswordNew extends AppCompatActivity {
             lngObject = new JSONObject(sessionManager.getRegId("language"));
 
             forgt_pass_detail.setText(lngObject.getString("ForgotPasswordText"));
-            mob_text_forgot.setHint(lngObject.getString("EnterPhoneNo"));
+            mobileno.setHint(lngObject.getString("DigitMobileNumber"));
             forgot_pass_text.setText(lngObject.getString("ForgotPassword") + "?");
             forgot_submit.setText(lngObject.getString("ResetPassword"));
+
+
+            toast_mobile = lngObject.getString("EnterPhoneNo");
+            toast_valid_number = lngObject.getString("ResetPassword");
 
 
         } catch (JSONException e) {
@@ -114,7 +121,7 @@ public class ForgotPasswordNew extends AppCompatActivity {
                         if (mobileno.getText().toString().equals("")) {
 
                             Snackbar snackbar = Snackbar
-                                    .make(coordinatorLayout, "Enter Your Mobile Number", Snackbar.LENGTH_LONG);
+                                    .make(coordinatorLayout,toast_mobile, Snackbar.LENGTH_LONG);
                             View snackbarView = snackbar.getView();
                             TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
                             tv.setTextColor(Color.RED);
@@ -209,6 +216,7 @@ public class ForgotPasswordNew extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         //System.exit(0);
+        finish();
 
         Intent intent=new Intent(ForgotPasswordNew.this,LoginActivity.class);
         startActivity(intent);

@@ -42,6 +42,8 @@ public class SelectLanguageAdapter_SignUP extends RecyclerView.Adapter<SelectLan
 
     }
 
+
+
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView language_name;
         public LinearLayout language;
@@ -110,15 +112,22 @@ public class SelectLanguageAdapter_SignUP extends RecyclerView.Adapter<SelectLan
 
 
                         String log_name = result.getString("FullName");
-                        String log_password = result.getString("EnterPassword");
+                        String log_mobile = result.getString("DigitMobileNumber");
+                        String log_password = result.getString("Password");
                         String log_register = result.getString("Register");
+
 
 
 
                         SignUpActivity.name.setHint(log_name);
                         SignUpActivity.create_acc.setText(log_register);
+                        SignUpActivity.mobile_no.setHint(log_mobile);
                         SignUpActivity.password.setHint(log_password);
                         SignUpActivity.continue_sign_up.setText(log_register);
+
+                        SignUpActivity.mob_toast = result.getString("Entervalidmobilenumber");
+                        SignUpActivity.passwrd_toast = result.getString("Enterpasswordoflength6characters");
+
 
 
                     }catch (Exception e){

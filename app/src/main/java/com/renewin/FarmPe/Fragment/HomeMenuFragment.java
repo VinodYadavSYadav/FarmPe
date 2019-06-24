@@ -32,6 +32,7 @@ import com.renewin.FarmPe.Urls;
 import com.renewin.FarmPe.Volly_class.Crop_Post;
 import com.renewin.FarmPe.Volly_class.VoleyJsonObjectCallback;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -46,10 +47,11 @@ Fragment selectedFragment;
     SessionManager sessionManager;
       CircleImageView prod_img,prod_img1;
     String userid;
-    TextView home,shop_cat,map,settings,farms,farmer,account,wallet,sell_on_xohri,help_center,notification;
+    TextView home,settings,nw_request,nearby,connections,connection_nw,your_requests,list_farm;
     public static TextView cart_count_text,user_name_menu,phone_no;
     View looking_view,farms_view,farmer_view;
     RelativeLayout notification_bell;
+    JSONObject lngObject;
      static boolean fragloaded;
 
    static Fragment myloadingfragment;
@@ -68,6 +70,7 @@ Fragment selectedFragment;
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.activity_navigation_menu_home, container, false);
 
+
         menu=view.findViewById(R.id.menu);
        //scrollView=view.findViewById(R.id.scroll);
         home = view.findViewById(R.id.home);
@@ -84,6 +87,15 @@ Fragment selectedFragment;
         looking_view=view.findViewById(R.id.looking_view);
         farms_view=view.findViewById(R.id.farms_view);
         farmer_view=view.findViewById(R.id.farmer_view);
+
+        connections=view.findViewById(R.id.connections);
+        connection_nw=view.findViewById(R.id.connection_nw);
+        your_requests=view.findViewById(R.id.your_requests);
+        list_farm=view.findViewById(R.id.list_farm);
+
+        nw_request=view.findViewById(R.id.nw_request);
+        nearby=view.findViewById(R.id.nearby);
+
         plus_sign_add=view.findViewById(R.id.plus_sign_add);
         user_name_menu=view.findViewById(R.id.user_name_menu);
         near_by=view.findViewById(R.id.near_by);
@@ -93,11 +105,39 @@ Fragment selectedFragment;
 
 //        user_name_menu.setText(sessionManager.getRegId("name"));
 //        phone_no.setText(sessionManager.getRegId("phone"));
+
         drawer = (DrawerLayout)view.findViewById(R.id.drawer_layout);
 
         System.out.println("lajfdhsjkd");
 
-       // scrollView.requestFocus(View.FOCUS_UP);
+
+
+
+
+        try {
+
+            lngObject = new JSONObject(sessionManager.getRegId("language"));
+
+
+            connections.setText(lngObject.getString("Connections"));
+            nw_request.setText(lngObject.getString("NewRequest"));
+            nearby.setText(lngObject.getString("Nearby"));
+            home.setText(lngObject.getString("Message"));
+            settings.setText(lngObject.getString("Settings"));
+
+            connection_nw.setText(lngObject.getString("Connections"));
+            list_farm.setText(lngObject.getString("ListyourFarm"));
+            your_requests.setText(lngObject.getString("YourRequests"));
+
+
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+        // scrollView.requestFocus(View.FOCUS_UP);
 
         NavigationView navigationView = (NavigationView)view.findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
@@ -240,7 +280,9 @@ Fragment selectedFragment;
                                 .thumbnail(0.5f)
                                 .crossFade()
                                 .diskCacheStrategy(DiskCacheStrategy.ALL)
+                                .error(R.drawable.avatarmale)
                                 .into(prod_img);
+
 
 
                         Glide.with(getActivity()).load(ProfileImage)
@@ -248,6 +290,7 @@ Fragment selectedFragment;
                                 .thumbnail(0.5f)
                                 .crossFade()
                                 .diskCacheStrategy(DiskCacheStrategy.ALL)
+                                .error(R.drawable.avatarmale)
                                 .into(prod_img1);
 
 

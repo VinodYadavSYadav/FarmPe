@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.android.volley.toolbox.StringRequest;
 import com.renewin.FarmPe.Activity.LoginActivity;
 import com.renewin.FarmPe.Activity.SignUpActivity;
 import com.renewin.FarmPe.Bean.SelectLanguageBean;
@@ -20,20 +21,24 @@ import com.renewin.FarmPe.SessionManager;
 import com.renewin.FarmPe.Urls;
 import com.renewin.FarmPe.Volly_class.Crop_Post;
 import com.renewin.FarmPe.Volly_class.VoleyJsonObjectCallback;
-
 import org.json.JSONObject;
-
 import java.util.Date;
 import java.util.List;
+
+
+
 
 public class SelectLanguageAdapter2 extends RecyclerView.Adapter<SelectLanguageAdapter2.MyViewHolder>  {
     private List<SelectLanguageBean> productList;
     Activity activity;
 
+
     Fragment selectedFragment;
     Date o_date;
     SessionManager sessionManager;
     public static int selected_position=0;
+
+
 
     public static CardView cardView;
     public SelectLanguageAdapter2(Activity activity, List<SelectLanguageBean> moviesList) {
@@ -44,11 +49,11 @@ public class SelectLanguageAdapter2 extends RecyclerView.Adapter<SelectLanguageA
     }
 
 
-
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView language_name;
         public LinearLayout language;
         public ImageView right_img;
+
 
 
 
@@ -70,7 +75,6 @@ public class SelectLanguageAdapter2 extends RecyclerView.Adapter<SelectLanguageA
 
     }
 
-
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
         final SelectLanguageBean products1 = productList.get(position);
@@ -84,7 +88,6 @@ public class SelectLanguageAdapter2 extends RecyclerView.Adapter<SelectLanguageA
             @Override
             public void onClick(View v) {
 
-
                 sessionManager.saveLanguage_name(products1.getVendor());
                 getLang(products1.getLanguageid());
                 LoginActivity.change_lang.setText(products1.getVendor());
@@ -93,6 +96,7 @@ public class SelectLanguageAdapter2 extends RecyclerView.Adapter<SelectLanguageA
             }
         });
     }
+
 
     private void getLang(int id) {
 
@@ -103,9 +107,9 @@ public class SelectLanguageAdapter2 extends RecyclerView.Adapter<SelectLanguageA
               jsonObject.put("Id",id);
 
 
-              System.out.print("iiidddddd"+ id);
+               System.out.print("iiidddddd"+ id);
 
-             Crop_Post.crop_posting(activity, Urls.CHANGE_LANGUAGE, jsonObject, new VoleyJsonObjectCallback() {
+               Crop_Post.crop_posting(activity, Urls.CHANGE_LANGUAGE, jsonObject, new VoleyJsonObjectCallback() {
                 @Override
                 public void onSuccessResponse(JSONObject result) {
 
@@ -113,25 +117,32 @@ public class SelectLanguageAdapter2 extends RecyclerView.Adapter<SelectLanguageA
 
                     try{
 
-                        sessionManager.saveLanguage(result.toString());
+
+
+                         sessionManager.saveLanguage(result.toString());
+
 
 
                           String log_login = result.getString("Login");
-                          String log_mobile = result.getString("EnterPhoneNo");
-                          String log_name = result.getString("FullName");
-                          String log_password = result.getString("EnterPassword");
+                          String log_mobile = result.getString("DigitMobileNumber");
+                          String log_password = result.getString("Password");
                           String log_remember_me = result.getString("RememberMe");
                           String log_forgot_passwrd = result.getString("ForgotPassword");
                           String log_register = result.getString("Register");
 
 
+
+
+
                         LoginActivity.remember_me.setText(log_remember_me);
-                        LoginActivity.log_in.setText(log_login);
-                        LoginActivity.forgot_pass.setText(log_forgot_passwrd);
-                        LoginActivity.pass.setHint(log_password);
-                        LoginActivity.welcome_back.setText(log_login);
-                        LoginActivity.createaccount.setText(log_register);
-                        LoginActivity.mobile_no.setHint(log_mobile);
+                          LoginActivity.log_in.setText(log_login);
+                          LoginActivity.forgot_pass.setText(log_forgot_passwrd);
+                          LoginActivity.pass.setHint(log_password);
+                          LoginActivity.welcome_back.setText(log_login);
+                          LoginActivity.createaccount.setText(log_register);
+                          LoginActivity.mobile_no.setHint(log_mobile);
+                          LoginActivity.mob_toast = result.getString("EnterPhoneNo");
+                          LoginActivity.pass_toast = result.getString("EnterPassword");
 
 
 

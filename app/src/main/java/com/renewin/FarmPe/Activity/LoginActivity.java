@@ -34,6 +34,7 @@ import android.widget.Toast;
 
 import com.renewin.FarmPe.Adapter.SelectLanguageAdapter2;
 import com.renewin.FarmPe.Bean.SelectLanguageBean;
+import com.renewin.FarmPe.Bean.Select_Language_LoginBean;
 import com.renewin.FarmPe.DB.DatabaseHelper;
 import com.renewin.FarmPe.R;
 import com.renewin.FarmPe.SessionManager;
@@ -43,6 +44,7 @@ import com.renewin.FarmPe.Volly_class.Login_post;
 import com.renewin.FarmPe.Volly_class.VoleyJsonObjectCallback;
 
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -57,14 +59,21 @@ public class LoginActivity extends AppCompatActivity {
      LinearLayout linearLayout;
      public String status,userId;
      boolean doubleBackToExitPressedOnce = false;
+
+     List<SelectLanguageBean>language_arrayBeanList = new ArrayList<>();
+     SelectLanguageBean selectLanguageBean;
+    SelectLanguageAdapter2 mAdapter;
+
+
      LinearLayout back_xlogin;
      LinearLayout coordinatorLayout;
      public static CheckBox remember_me;
      DatabaseHelper myDb;
      TextInputLayout textInputLayout,textInputLayout_pass;
-     String password,toast_mob,mobile_string,pass_toast;
+   public static   String password,mob_toast,mobile_string,pass_toast;
      EditText spn_localize;
-     JSONObject lngObject;
+  public static   JSONObject lngObject;
+     JSONArray lng_array;
      Snackbar snackbar;
     String mob_no;
     SessionManager sessionManager;
@@ -159,20 +168,24 @@ public class LoginActivity extends AppCompatActivity {
 
                 //  createaccount.setHint(lngObject.getString("Createanaccount"));
                 //mob_text_signin.setHint(lngObject.getString("Signintoyouraccount"));
-                pass_toast = lngObject.getString("EnterPassword");
-                mobile_no.setHint(lngObject.getString("EnterPhoneNo"));
-                pass.setHint(lngObject.getString("EnterPassword"));
+
+                mobile_no.setHint(lngObject.getString("DigitMobileNumber"));
+                pass.setHint(lngObject.getString("Password"));
                 remember_me.setText(lngObject.getString("RememberMe"));
                 forgot_pass.setText(lngObject.getString("ForgotPassword") + "?");
                 log_in.setText(lngObject.getString("Login"));
                 welcome_back.setText(lngObject.getString("Login"));
                 createaccount.setText(lngObject.getString("Register"));
 
+
+                pass_toast = lngObject.getString("EnterPassword");
+                mob_toast = lngObject.getString("EnterPhoneNo");
+
+
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        System.out.println("ooooooooobb"+toast_mob);
 
         createaccount.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -190,19 +203,18 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+
         change_lang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
 
-
-
                 System.out.println("jhfdyug");
-                final List<SelectLanguageBean> newOrderBeansList = new ArrayList<>();
+
                 RecyclerView recyclerView;
                 final TextView yes1,no1;
                 final LinearLayout close_layout;
-                final SelectLanguageAdapter2 mAdapter;
+
                 System.out.println("aaaaaaaaaaaa");
                  dialog = new Dialog(LoginActivity.this);
                 dialog.setContentView(R.layout.change_lang_login);
@@ -212,35 +224,77 @@ public class LoginActivity extends AppCompatActivity {
                 close_layout =  dialog.findViewById(R.id.close_layout);
                 recyclerView =  dialog.findViewById(R.id.recycler_change_lang);
 
-                newOrderBeansList.clear();
                 RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(LoginActivity.this);
                 recyclerView.setLayoutManager(mLayoutManager);
                 recyclerView.setItemAnimator(new DefaultItemAnimator());
 
-                SelectLanguageBean bean = new SelectLanguageBean("English", 1, "");
-                newOrderBeansList.add(bean);
-
-                SelectLanguageBean bean1 = new SelectLanguageBean("Hindi", 2, "");
-                newOrderBeansList.add(bean1);
-
-                SelectLanguageBean bean2 = new SelectLanguageBean("Kannada", 3, "");
-                newOrderBeansList.add(bean2);
-
-                SelectLanguageBean bean3 = new SelectLanguageBean("Telugu", 4, "");
-                newOrderBeansList.add(bean3);
-
-                SelectLanguageBean bean4 = new SelectLanguageBean("Tamil", 5, "");
-                newOrderBeansList.add(bean4);
-
-                SelectLanguageBean bean5 = new SelectLanguageBean("Malayalam", 6, "");
-                newOrderBeansList.add(bean5);
-
-                SelectLanguageBean bean6 = new SelectLanguageBean("Marathi", 7, "");
-                newOrderBeansList.add(bean6);
-
-
-                mAdapter = new SelectLanguageAdapter2(LoginActivity.this, newOrderBeansList);
+                mAdapter = new SelectLanguageAdapter2(LoginActivity.this, language_arrayBeanList);
                 recyclerView.setAdapter(mAdapter);
+
+
+                try{
+
+
+                        JSONObject jsonObject = new JSONObject();
+
+                        Crop_Post.crop_posting(LoginActivity.this, Urls.Languages, jsonObject, new VoleyJsonObjectCallback() {
+                              @Override
+                              public void onSuccessResponse(JSONObject result) {
+                                  System.out.print("111111ang" + result);
+                                  try{
+
+                                       language_arrayBeanList.clear();
+                                          lng_array = result.getJSONArray("LanguagesList");
+                                          for(int i=0;i<lng_array.length();i++){
+                                              JSONObject  jsonObject1 = lng_array.getJSONObject(i);
+
+                                              selectLanguageBean = new SelectLanguageBean(jsonObject1.getString("Language"),jsonObject1.getInt("Id"),"");
+                                              language_arrayBeanList.add(selectLanguageBean);
+
+
+
+                                      }
+
+                                      mAdapter.notifyDataSetChanged();
+
+
+
+
+                                  }catch (Exception e){
+                                      e.printStackTrace();
+                                  }
+
+                              }
+                          });
+
+
+                      }catch (Exception e){
+                          e.printStackTrace();
+                      }
+
+
+//                SelectLanguageBean bean = new SelectLanguageBean("English", 1, "");
+//                newOrderBeansList.add(bean);
+//
+//                SelectLanguageBean bean1 = new SelectLanguageBean("Hindi", 2, "");
+//                newOrderBeansList.add(bean1);
+//
+//                SelectLanguageBean bean2 = new SelectLanguageBean("Kannada", 3, "");
+//                newOrderBeansList.add(bean2);
+//
+//                SelectLanguageBean bean3 = new SelectLanguageBean("Telugu", 4, "");
+//                newOrderBeansList.add(bean3);
+//
+//                SelectLanguageBean bean4 = new SelectLanguageBean("Tamil", 5, "");
+//                newOrderBeansList.add(bean4);
+//
+//                SelectLanguageBean bean5 = new SelectLanguageBean("Malayalam", 6, "");
+//                newOrderBeansList.add(bean5);
+//
+//                SelectLanguageBean bean6 = new SelectLanguageBean("Marathi", 7, "");
+//                newOrderBeansList.add(bean6);
+//
+
 
 
 
@@ -258,20 +312,20 @@ public class LoginActivity extends AppCompatActivity {
         });
 
 
-
-
         log_in.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 mobile_string=mobile_no.getText().toString();
                 mob_no =loc_text+ mobile_no.getText().toString();
                 password = pass.getText().toString();
+                System.out.println("pppppppaasssww" + mob_toast);
+                System.out.println("pppppmmmmmw" + mobile_string);
 
                 if (mobile_string.equals("")) {
                     mobile_no.requestFocus();
 
                     Snackbar snackbar = Snackbar
-                            .make(linearLayout, "Enter Your Mobile Number", Snackbar.LENGTH_LONG);
+                            .make(linearLayout, mob_toast, Snackbar.LENGTH_LONG);
                     View snackbarView = snackbar.getView();
                     TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
                     tv.setTextColor(Color.RED);
@@ -302,7 +356,7 @@ public class LoginActivity extends AppCompatActivity {
                     pass.requestFocus();
 
                     Snackbar snackbar = Snackbar
-                            .make(linearLayout, "Enter Your Password", Snackbar.LENGTH_LONG);
+                            .make(linearLayout, pass_toast, Snackbar.LENGTH_LONG);
                     View snackbarView = snackbar.getView();
                     TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
                     tv.setTextColor(Color.RED);
@@ -446,11 +500,15 @@ public class LoginActivity extends AppCompatActivity {
 
 
                         String log_login = result.getString("Login");
-                        String log_mobile = result.getString("EnterPhoneNo");
-                        String log_password = result.getString("EnterPassword");
+                        String log_mobile = result.getString("DigitMobileNumber");
+                        String log_password = result.getString("Password");
                         String log_remember_me = result.getString("RememberMe");
                         String log_forgot_passwrd = result.getString("ForgotPassword");
                         String log_register = result.getString("Register");
+
+                        mob_toast = result.getString("EnterPhoneNo");
+                        pass_toast = result.getString("EnterPassword");
+
 
 
 
@@ -458,7 +516,7 @@ public class LoginActivity extends AppCompatActivity {
                         log_in.setText(log_login);
                         mobile_no.setHint(log_mobile);
                         forgot_pass.setText(log_forgot_passwrd);
-                       pass.setHint(log_password);
+                         pass.setHint(log_password);
                         welcome_back.setText(log_login);
                         createaccount.setText(log_register);
 
@@ -480,7 +538,9 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        //System.exit(0);
+
+        finish();
+
         if (doubleBackToExitPressedOnce) {
 
             Intent intent1 = new Intent(Intent.ACTION_MAIN);

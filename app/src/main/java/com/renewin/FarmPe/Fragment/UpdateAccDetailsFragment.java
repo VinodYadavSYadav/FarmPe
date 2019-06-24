@@ -206,10 +206,11 @@ public class UpdateAccDetailsFragment extends Fragment {
 
                           Glide.with(getActivity()).load(ProfileImage)
 
-                         .thumbnail(0.5f)
-                         .crossFade()
-                         .diskCacheStrategy(DiskCacheStrategy.ALL)
-                         .into(prod_img);
+                                  .thumbnail(0.5f)
+                                  .crossFade()
+                                  .diskCacheStrategy(DiskCacheStrategy.ALL)
+                                  .error(R.drawable.avatarmale)
+                                  .into(prod_img);
 
 
 
