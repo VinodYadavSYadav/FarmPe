@@ -93,6 +93,7 @@ public class SelectLanguageAdapter extends RecyclerView.Adapter<SelectLanguageAd
                 notifyDataSetChanged();
                 session.save_Language(products.getLanguageid());
 
+
                 /*holder.right_img.setBackground(R.drawable.ic_verified_filled_grey_white);*/
                 /*JSONObject postlngjsonObject = new JSONObject();
 

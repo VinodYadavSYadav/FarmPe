@@ -110,6 +110,7 @@ public class ResetPasswordNew extends AppCompatActivity {
                     tv.setTextColor(Color.RED);
                     snackbar.show();
                 }
+
                 else if (password.length()<6){
                     passwd.requestFocus();
                     Snackbar snackbar = Snackbar

@@ -100,6 +100,16 @@ public class LoginActivity extends AppCompatActivity {
         myDb = new DatabaseHelper(this);
         edittext_move(mobile_no, pass);
 
+
+
+        if( sessionManager.getRegId("language_name").equals("")){
+
+            change_lang.setText("English");
+
+        }else{
+
+            change_lang.setText(sessionManager.getRegId("language_name"));
+        }
        // if(sessionManager.getLanguage())
 
 
@@ -132,6 +142,7 @@ public class LoginActivity extends AppCompatActivity {
                 return filtered;
             }
         };
+
         pass.setFilters(new InputFilter[] {filter,new InputFilter.LengthFilter(12) });
         // sessionManager = new SessionManager(this);
         // sessionManager.getRegId("lng_object");
@@ -187,6 +198,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
+
                 System.out.println("jhfdyug");
                 final List<SelectLanguageBean> newOrderBeansList = new ArrayList<>();
                 RecyclerView recyclerView;
@@ -231,6 +243,10 @@ public class LoginActivity extends AppCompatActivity {
 
                 mAdapter = new SelectLanguageAdapter2(LoginActivity.this, newOrderBeansList);
                 recyclerView.setAdapter(mAdapter);
+
+
+
+
                 close_layout.setOnClickListener(new View.OnClickListener() {
 
                     @Override

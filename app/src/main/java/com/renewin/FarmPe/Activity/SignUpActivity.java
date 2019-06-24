@@ -84,6 +84,19 @@ public class SignUpActivity extends AppCompatActivity {
 
 
         sessionManager = new SessionManager(SignUpActivity.this);
+
+        if(sessionManager.getRegId("language_name").equals("")){
+
+            change_lang.setText("English");
+
+        }else {
+
+            change_lang.setText(sessionManager.getRegId("language_name"));
+        }
+
+
+
+
         setupUI(linearLayout);
         String[] localize = {"+91"};
 

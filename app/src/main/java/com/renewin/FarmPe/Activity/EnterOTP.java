@@ -164,10 +164,10 @@ public class EnterOTP extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
-        if (checkAndRequestPermissions()) {
-            // carry on the normal flow, as the case of  permissions  granted.
-        }
+//
+//        if (checkAndRequestPermissions()) {
+//            // carry on the normal flow, as the case of  permissions  granted.
+//        }
 
         System.out.println("qwertyuio"+sessionId);
       /*  close.setOnClickListener(new View.OnClickListener() {
@@ -248,30 +248,30 @@ public class EnterOTP extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private  boolean checkAndRequestPermissions() {
-
-        if (Build.VERSION.SDK_INT >= 23) {
-            String[] PERMISSIONS = {Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.ACCESS_COARSE_LOCATION,Manifest.permission.READ_SMS};
-            if (!hasPermissions(mContext, PERMISSIONS)) {
-                ActivityCompat.requestPermissions((Activity) mContext, PERMISSIONS, REQUEST);
-            } else {
-                //do here
-            }
-        } else {
-            //do here
-        }
-        return true;
-    }
-    private static boolean hasPermissions(Context context, String... permissions) {
-        if (context != null && permissions != null) {
-            for (String permission : permissions) {
-                if (ActivityCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED) {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
+//    private  boolean checkAndRequestPermissions() {
+//
+//        if (Build.VERSION.SDK_INT >= 23) {
+//            String[] PERMISSIONS = {Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.ACCESS_COARSE_LOCATION,Manifest.permission.READ_SMS};
+//            if (!hasPermissions(mContext, PERMISSIONS)) {
+//                ActivityCompat.requestPermissions((Activity) mContext, PERMISSIONS, REQUEST);
+//            } else {
+//                //do here
+//            }
+//        } else {
+//            //do here
+//        }
+//        return true;
+//    }
+//    private static boolean hasPermissions(Context context, String... permissions) {
+//        if (context != null && permissions != null) {
+//            for (String permission : permissions) {
+//                if (ActivityCompat.checkSelfPermission(context, permission) != PackageManager.PERMISSION_GRANTED) {
+//                    return false;
+//                }
+//            }
+//        }
+//        return true;
+//    }
     public void setupUI(View view) {
 
         //Set up touch listener for non-text box views to hide keyboard.

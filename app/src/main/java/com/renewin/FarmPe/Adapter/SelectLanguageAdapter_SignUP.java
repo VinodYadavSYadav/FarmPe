@@ -79,7 +79,7 @@ public class SelectLanguageAdapter_SignUP extends RecyclerView.Adapter<SelectLan
             public void onClick(View v) {
 
                 getLang(products1.getLanguageid());
-
+                SignUpActivity.change_lang.setText(products1.getVendor());
                 SignUpActivity.dialog.dismiss();
             }
         });

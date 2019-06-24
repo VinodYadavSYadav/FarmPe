@@ -29,6 +29,7 @@ import java.util.List;
 public class SelectLanguageAdapter2 extends RecyclerView.Adapter<SelectLanguageAdapter2.MyViewHolder>  {
     private List<SelectLanguageBean> productList;
     Activity activity;
+
     Fragment selectedFragment;
     Date o_date;
     SessionManager sessionManager;
@@ -50,6 +51,7 @@ public class SelectLanguageAdapter2 extends RecyclerView.Adapter<SelectLanguageA
         public ImageView right_img;
 
 
+
         public MyViewHolder(View view) {
             super(view);
             language_name=view.findViewById(R.id.lang_text);
@@ -68,19 +70,24 @@ public class SelectLanguageAdapter2 extends RecyclerView.Adapter<SelectLanguageA
 
     }
 
+
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
         final SelectLanguageBean products1 = productList.get(position);
 
 
         holder.language_name.setText(products1.getVendor());
+
         System.out.print("iiidddddd" + products1.getLanguageid());
 
         holder.language.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+
+                sessionManager.saveLanguage_name(products1.getVendor());
                 getLang(products1.getLanguageid());
+                LoginActivity.change_lang.setText(products1.getVendor());
                 LoginActivity.dialog.dismiss();
 
             }
