@@ -292,7 +292,7 @@ public class UpdateAccDetailsFragment extends Fragment {
                     @Override
                     public void onResponse(NetworkResponse response) {
                         //Toast.makeText(getActivity(), obj.getString("message"), Toast.LENGTH_SHORT).show();
-                        String resultResponse = new String(response.data);
+                      //  String resultResponse = new String(response.data);
 
                         Toast.makeText(getActivity(), "Your Details Updated Successfully", Toast.LENGTH_SHORT).show();
                         selectedFragment = SettingFragment.newInstance();
