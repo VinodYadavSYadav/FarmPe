@@ -44,7 +44,7 @@ Fragment selectedFragment;
     RelativeLayout menu,prof_tab;
     LinearLayout update_acc_layout,near_by;
     SessionManager sessionManager;
-      CircleImageView prod_img;
+      CircleImageView prod_img,prod_img1;
     String userid;
     TextView home,shop_cat,map,settings,farms,farmer,account,wallet,sell_on_xohri,help_center,notification;
     public static TextView cart_count_text,user_name_menu,phone_no;
@@ -77,6 +77,7 @@ Fragment selectedFragment;
         notification_bell=view.findViewById(R.id.notification_bell);
         settings=view.findViewById(R.id.settings);
         prod_img=view.findViewById(R.id.prod_img);
+        prod_img1=view.findViewById(R.id.prod_img1);
        /* looking_for=view.findViewById(R.id.looking_for);
         farms=view.findViewById(R.id.farms);phone_no
         farmer=view.findViewById(R.id.farmer);*/
@@ -241,6 +242,13 @@ Fragment selectedFragment;
                                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                                 .into(prod_img);
 
+
+                        Glide.with(getActivity()).load(ProfileImage)
+
+                                .thumbnail(0.5f)
+                                .crossFade()
+                                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                                .into(prod_img1);
 
 
 

@@ -362,7 +362,7 @@
                     android:layout_marginHorizontal="10dp"
                     />
 
-                colorBottomNavigationDisable
+                
                 <!--<TextView-->
                     <!--android:id="@+id/profile_passwrd"-->
                     <!--android:layout_width="match_parent"-->

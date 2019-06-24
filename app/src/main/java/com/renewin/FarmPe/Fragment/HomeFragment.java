@@ -269,8 +269,6 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
     }
 
 
-
-
     LocationCallback mLocationCallback = new LocationCallback(){
         @Override
         public void onLocationResult(LocationResult locationResult) {
@@ -334,6 +332,8 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
                                 .crossFade()
                                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                                 .into(LandingPageActivity.cart_img);
+
+
 
                        /* LandingPageActivity.buy_now.setOnClickListener(new View.OnClickListener() {
                             @Override
