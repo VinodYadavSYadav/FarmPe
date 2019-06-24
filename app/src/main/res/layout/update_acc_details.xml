@@ -85,7 +85,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Update your Account Details"
+            android:text="Update Your Account Details"
             android:textSize="20dp"
             android:gravity="center"
             android:textColor="#fff"
@@ -129,10 +129,13 @@
                 >
 
                 <EditText
+                    android:id="@+id/profile_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Jagdish Kumar"
+                    android:hint="Enter Your Name"
                     android:textSize="14dp"
+                    android:textColorHint="@color/dot_dark_screen1"
+                    android:digits="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ"
                     android:layout_gravity="center_vertical"
                     android:textColor="#000"
                     android:background="@drawable/border_transperent"
@@ -200,12 +203,14 @@
                 >
 
                 <EditText
+                    android:id="@+id/profile_phone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="9891490506"
+                    android:hint="Enter Your Phone No"
                     android:textSize="14dp"
+                    android:textColorHint="@color/dot_dark_screen1"
                     android:background="@drawable/border_transperent"
-
+                    android:inputType="number"
                     android:layout_gravity="center_vertical"
                     android:textColor="#000"
                     android:layout_marginHorizontal="10dp"
@@ -272,13 +277,15 @@
                 >
 
                 <EditText
+                    android:id="@+id/profile_mail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="jagdishkumar@gmail.com"
+                    android:hint="Enter Your Email Id"
                     android:textSize="14dp"
                     android:background="@drawable/border_transperent"
                     android:layout_gravity="center_vertical"
                     android:textColor="#000"
+                    android:textColorHint="@color/dot_dark_screen1"
                     android:layout_marginHorizontal="10dp"
                     />
 
@@ -342,13 +349,16 @@
                 android:gravity="center"
                 >
 
-                <TextView
+                <EditText
+                    android:id="@+id/profile_passwrd"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Password"
+                    android:hint="Password"
                     android:textSize="14dp"
+                    android:background="@drawable/border_transperent"
                     android:layout_gravity="center_vertical"
                     android:textColor="#000"
+                    android:textColorHint="@color/dot_dark_screen1"
                     android:layout_marginHorizontal="10dp"
                     />
 
@@ -380,6 +390,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/update_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"

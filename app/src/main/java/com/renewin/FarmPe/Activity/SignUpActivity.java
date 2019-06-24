@@ -88,7 +88,7 @@ public class SignUpActivity extends AppCompatActivity {
         linearLayout = findViewById(R.id.linear_login);
         back_feed = findViewById(R.id.back_feed);
         //  spn_localize=findViewById(R.id.spn_localize);
-        create_acc = findViewById(R.id.register_title);
+        create_acc = findViewById(R.id.toolbar_title);
         continue_sign_up = findViewById(R.id.sign_up_continue);
         name = findViewById(R.id.name);
         // backtologin=findViewById(R.id.create_acc);
@@ -125,7 +125,6 @@ public class SignUpActivity extends AppCompatActivity {
                 startActivity(mIntent);
             }
         });*/
-
 
         try {
 

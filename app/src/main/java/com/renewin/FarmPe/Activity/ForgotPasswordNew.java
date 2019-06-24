@@ -60,8 +60,7 @@ public class ForgotPasswordNew extends AppCompatActivity {
         forgot_submit = findViewById(R.id.forgot_submit);
         mobileno = findViewById(R.id.mobile_no);
         coordinatorLayout = findViewById(R.id.linear_login);
-
-        forgot_pass_text = findViewById(R.id.forgot_title);
+        forgot_pass_text = findViewById(R.id.forgot);
     //    spn_localize = findViewById(R.id.spn_localize_forgot);
         //emter_pasword=findViewById(R.id.emter_pasword);
         forgt_pass_detail = findViewById(R.id.tocnt);
