@@ -4,11 +4,11 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <android.support.v4.widget.NestedScrollView
+   <!-- <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/scroll">
-
+-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -122,5 +122,7 @@
 
         </LinearLayout>
 
+<!--
     </android.support.v4.widget.NestedScrollView>
+-->
 </android.support.design.widget.CoordinatorLayout>

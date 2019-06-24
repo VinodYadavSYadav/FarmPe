@@ -40,13 +40,13 @@ public class DashboardFragment extends Fragment {
         farmer_view.setVisibility(View.INVISIBLE);
 
 
-       scrollView.post(new Runnable() {
+     /*  scrollView.post(new Runnable() {
 
             @Override
             public void run() {
                scrollView.fullScroll(ScrollView.FOCUS_UP);
             }
-        });
+        });*/
 
         selectedFragment = LookingForFragment.newInstance();
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
