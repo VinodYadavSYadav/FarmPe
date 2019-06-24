@@ -48,6 +48,7 @@ public class Urls {
     public static final String Get_New_Address = ROOT_URL3+"MasterTable/GetUserAddress";
     // Wallet
     public static final String GetWalletBalance = ROOT_URL +"MasterTable/GetWalletDetails";
+    public static final String GetFarmDetailsList = ROOT_URL3+"MasterTable/GetFarmsList";
 
     //My Account
 
@@ -107,5 +108,4 @@ public class Urls {
     public static final String GetLookingForItems = ROOT_URL3+"MasterTable/GetLookingForDetails";
     public static final String GetLookingForFirst = ROOT_URL3+"MasterTable/GetLookingFor";
     public static final String GetLookingForList = ROOT_URL3+"MasterTable/GetLookingForLists";
-    public static final String GetFarmDetailsList = ROOT_URL3+"MasterTable/GetFarmsList";
 }
