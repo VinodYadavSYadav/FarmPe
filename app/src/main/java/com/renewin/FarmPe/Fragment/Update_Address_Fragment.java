@@ -10,7 +10,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -26,6 +25,7 @@ import com.renewin.FarmPe.Adapter.Sell_Location_Adapter;
 import com.renewin.FarmPe.Adapter.StateApdater;
 import com.renewin.FarmPe.Adapter.TalukAdapter;
 import com.renewin.FarmPe.Adapter.VillageAdapter;
+import com.renewin.FarmPe.Adapter.You_Address_Adapter;
 import com.renewin.FarmPe.Bean.StateBean;
 import com.renewin.FarmPe.R;
 import com.renewin.FarmPe.SessionManager;
@@ -42,7 +42,7 @@ import java.util.Comparator;
 import java.util.List;
 
 
-public class Add_New_Address_Fragment extends Fragment {
+public class Update_Address_Fragment extends Fragment {
 
     RecyclerView recyclerView;
     Sell_Location_Adapter mAdapter;
@@ -63,7 +63,7 @@ public class Add_New_Address_Fragment extends Fragment {
     JSONArray jsonArray,state_array,tal_array,hobli_array,village_array;
      StateBean stateBean;
 
-     public static TextView add_new_address;
+     public static TextView update_address;
     Fragment selectedFragment = null;
 
 
@@ -76,40 +76,40 @@ public class Add_New_Address_Fragment extends Fragment {
 
 
 
-    public static Add_New_Address_Fragment newInstance() {
-        Add_New_Address_Fragment fragment = new Add_New_Address_Fragment();
+    public static Update_Address_Fragment newInstance() {
+        Update_Address_Fragment fragment = new Update_Address_Fragment();
         return fragment;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.new_add, container, false);
+        View view = inflater.inflate(R.layout.update_address, container, false);
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
 
 
-        select_address = view.findViewById(R.id.select_address);
-        name = view.findViewById(R.id.full_name);
-        mobile = view.findViewById(R.id.mobile_no);
+        select_address = view.findViewById(R.id.up_select_address);
+        name = view.findViewById(R.id.up_full_name);
+        mobile = view.findViewById(R.id.up_mobile_no);
         back_feed = view.findViewById(R.id.back_feed);
 
-        pincode_no = view.findViewById(R.id.pincode);
-        house_numb = view.findViewById(R.id.house_no);
-        street_name = view.findViewById(R.id.street);
-        landmrk = view.findViewById(R.id.landmark_1);
-        add_new_address = view.findViewById(R.id.add_address);
+        pincode_no = view.findViewById(R.id.up_pincode);
+        house_numb = view.findViewById(R.id.up_house_no);
+        street_name = view.findViewById(R.id.up_street);
+        landmrk = view.findViewById(R.id.up_landmark_1);
+        update_address = view.findViewById(R.id.update_address);
 
-        state = view.findViewById(R.id.state);
-        city = view.findViewById(R.id.city_1);
-        district = view.findViewById(R.id.district_1);
-        taluk = view.findViewById(R.id.taluk_1);
-        hobli = view.findViewById(R.id.hobli_1);
-        village = view.findViewById(R.id.village_1);
+        state = view.findViewById(R.id.up_state);
+        city = view.findViewById(R.id.up_city_1);
+        district = view.findViewById(R.id.up_district_1);
+        taluk = view.findViewById(R.id.up_taluk_1);
+        hobli = view.findViewById(R.id.up_hobli_1);
+        village = view.findViewById(R.id.up_village_1);
 
 
     /*   selected_id=RequestFormFragment.selectedId;
         selected_id_time=RequestFormFragment.selectedId_time_recent;*/
 
-        System.out.println("selecteddddd_iddd"+selected_id_time);
+        //System.out.println("selecteddddd_iddd"+selected_id_time);
 
             name.setText(getArguments().getString("Addr_name"));
             mobile.setText(getArguments().getString("Addr_mobile"));
@@ -159,7 +159,7 @@ public class Add_New_Address_Fragment extends Fragment {
 
 
 
-        back_feed.setOnClickListener(new View.OnClickListener() {
+       /* back_feed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (You_Address_Fragment.address==null) {
@@ -170,7 +170,7 @@ public class Add_New_Address_Fragment extends Fragment {
                     fm.popBackStack("addresss", FragmentManager.POP_BACK_STACK_INCLUSIVE);
                 }
             }
-        });
+        });*/
 
         view.setFocusableInTouchMode(true);
         view.requestFocus(View.FOCUS_UP);
@@ -178,8 +178,14 @@ public class Add_New_Address_Fragment extends Fragment {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if( keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP) {
-                    FragmentManager fm = getActivity().getSupportFragmentManager();
-                    fm.popBackStack("request", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+
+
+                    selectedFragment = You_Address_Fragment.newInstance();
+                    FragmentTransaction transaction = (getActivity()).getSupportFragmentManager().beginTransaction();
+                    transaction.replace(R.id.frame_layout, selectedFragment);
+                    transaction.commit();
+                   /* FragmentManager fm = getActivity().getSupportFragmentManager();
+                    fm.popBackStack("request", FragmentManager.POP_BACK_STACK_INCLUSIVE);*/
                 }
                 return false;
             }
@@ -710,7 +716,7 @@ public class Add_New_Address_Fragment extends Fragment {
 
 
 
-        add_new_address.setOnClickListener(new View.OnClickListener() {
+        update_address.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -817,49 +823,36 @@ public class Add_New_Address_Fragment extends Fragment {
             jsonObject.put("StreeAddress",house_numb.getText().toString());
             jsonObject.put("StreeAddress1",street_name.getText().toString());
             jsonObject.put("UserId",sessionManager.getRegId("userId"));
-
+            jsonObject.put("Id", You_Address_Adapter.add_id);
             System.out.println("nnnnnnnnnnnnnnnaaaaaaaaa"+jsonObject);
 
 
 
-            Crop_Post.crop_posting(getActivity(), Urls.Add_New_Address, jsonObject, new VoleyJsonObjectCallback() {
+            Crop_Post.crop_posting(getActivity(), Urls.Edit_Address, jsonObject, new VoleyJsonObjectCallback() {
                 @Override
                 public void onSuccessResponse(JSONObject result) {
-                    Bundle bundle=new Bundle();
 
+                    System.out.println("Edit_Addresssssssssssss" +result);
 
                     try{
 
                         status= result.getString("Status");
                         message = result.getString("Message");
 
-                        bundle.putString("add_id",status);
-                        bundle.putString("city",city.getText().toString());
-                        bundle.putInt("selected_id2",selected_id);
-                        bundle.putInt("selected_id_time1",selected_id_time);
-                      /*  bundle.putString("add_id",status);
-                        bundle.putString("add_id",status);*/
 
-                        if(!(status.equals("0"))){
+                        if(status.equals("1")){
                             Toast.makeText(getActivity(),message,Toast.LENGTH_SHORT).show();
 
                             selectedFragment = You_Address_Fragment.newInstance();
                             FragmentTransaction transaction = (getActivity()).getSupportFragmentManager().beginTransaction();
                             transaction.replace(R.id.frame_layout, selectedFragment);
                             transaction.commit();
-                            selectedFragment.setArguments(bundle);
 
-
-                                /* selectedFragment = RequestFormFragment.newInstance();
-                                 FragmentTransaction transaction = (getActivity()).getSupportFragmentManager().beginTransaction();
-                                 transaction.replace(R.id.frame_layout, selectedFragment);
-                                 transaction.commit();
-                                 selectedFragment.setArguments(bundle);*/
 
 
                         }else{
 
-                            Toast.makeText(getActivity(),"Your Address not Added ",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getActivity(),"Your Address not Updated ",Toast.LENGTH_SHORT).show();
                         }
 
 

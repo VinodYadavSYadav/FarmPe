@@ -1,18 +1,26 @@
 package com.renewin.FarmPe.Activity;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.renewin.FarmPe.Adapter.AddHpAdapter;
 import com.renewin.FarmPe.Bean.FarmsImageBean;
+import com.renewin.FarmPe.Fragment.Add_New_Address_Fragment;
 import com.renewin.FarmPe.R;
+import com.renewin.FarmPe.SessionManager;
 
 import java.util.ArrayList;
 import java.util.List;

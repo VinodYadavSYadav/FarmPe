@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import com.renewin.FarmPe.Adapter.AddFirstAdapter;
 import com.renewin.FarmPe.Adapter.AddFirstLookingForAdapter;
 import com.renewin.FarmPe.Bean.AddTractorBean;
 import com.renewin.FarmPe.R;
@@ -134,6 +135,13 @@ public class AddFirstLookingFor extends Fragment {
                               AddTractorBean crops = new AddTractorBean(R.drawable.tractor_green, lookingfor,id);
                               newOrderBeansList.add(crops);
 
+                          /*  if(!latts.equals("") | !langgs.equals("")) {
+
+                                CropListBean crops = new CropListBean(cropName, crop_variety, location, crop_grade,
+                                        crop_quantity, crop_uom, crop_price, id, farmerId,
+                                        UserName,latts,langgs,CropImg,category);
+                                newOrderBeansList.add(crops);
+                            }*/
                         }
                         farmadapter=new AddFirstLookingForAdapter(getActivity(),newOrderBeansList);
                         recyclerView.setAdapter(farmadapter);

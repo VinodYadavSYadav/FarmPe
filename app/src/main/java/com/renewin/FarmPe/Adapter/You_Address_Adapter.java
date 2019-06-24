@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
@@ -19,6 +20,7 @@ import android.widget.Toast;
 
 
 import com.renewin.FarmPe.Bean.Add_New_Address_Bean;
+import com.renewin.FarmPe.Fragment.Add_New_Address_Fragment;
 import com.renewin.FarmPe.Fragment.You_Address_Fragment;
 import com.renewin.FarmPe.R;
 import com.renewin.FarmPe.SessionManager;
@@ -131,7 +133,7 @@ public class You_Address_Adapter extends RecyclerView.Adapter<You_Address_Adapte
 
 
 
-        /*holder.edit_1.setOnClickListener(new View.OnClickListener() {
+        holder.edit_1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -157,12 +159,12 @@ public class You_Address_Adapter extends RecyclerView.Adapter<You_Address_Adapte
 
                 selectedFragment = Add_New_Address_Fragment.newInstance();
                 FragmentTransaction transaction = ((FragmentActivity) activity).getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.frame_layout, selectedFragment);
+                transaction.replace(R.id.frame_layout_home, selectedFragment);
                 selectedFragment.setArguments(bundle);
                 transaction.commit();
 
             }
-        });*/
+        });
 
 
 
@@ -278,7 +280,7 @@ public class You_Address_Adapter extends RecyclerView.Adapter<You_Address_Adapte
 
                                     selectedFragment = You_Address_Fragment.newInstance();
                                     FragmentTransaction transaction = ((FragmentActivity) activity).getSupportFragmentManager().beginTransaction();
-                                    transaction.replace(R.id.frame_layout, selectedFragment);
+                                    transaction.replace(R.id.frame_layout_home, selectedFragment);
                                     transaction.commit();
                                 }
 

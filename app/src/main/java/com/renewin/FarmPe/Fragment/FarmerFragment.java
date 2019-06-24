@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.renewin.FarmPe.Adapter.FarmerImageAdapter;
+import com.renewin.FarmPe.Bean.FarmsImageBean;
 import com.renewin.FarmPe.Bean.FarmsImageBean1;
 import com.renewin.FarmPe.R;
 

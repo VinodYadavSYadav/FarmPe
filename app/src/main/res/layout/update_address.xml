@@ -92,7 +92,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Add Your Address"
+                                android:text="Update Your Address"
                                 android:textSize="16dp"
                                 android:textColor="#fff"
                                 android:textStyle="bold"
@@ -130,7 +130,7 @@
 
 
                         <EditText
-                            android:id="@+id/select_address"
+                            android:id="@+id/up_select_address"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="@drawable/border_grey_filled"
@@ -178,14 +178,14 @@
 
 
                         <LinearLayout
-                            android:id="@+id/linea_name1"
+                            android:id="@+id/up_linea_name1"
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
                             android:layout_weight="1"
                             android:orientation="vertical">
 
                             <EditText
-                                android:id="@+id/full_name"
+                                android:id="@+id/up_full_name"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/segoeui"
@@ -198,7 +198,7 @@
                                 android:textCursorDrawable="@drawable/cursor_color"
                                 android:padding="10dp"
                                 android:background="@android:color/transparent"
-
+                                android:textColorHint="@color/dot_dark_screen1"
                                 android:textColor="#000000"
                                 />
                         </LinearLayout>
@@ -209,14 +209,14 @@
                             />
 
                         <LinearLayout
-                            android:id="@+id/linea_mobile1"
+                            android:id="@+id/up_linea_mobile1"
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
                             android:layout_weight="1"
                             android:orientation="vertical">
 
                             <EditText
-                                android:id="@+id/mobile_no"
+                                android:id="@+id/up_mobile_no"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/segoeui"
@@ -230,6 +230,7 @@
                                 android:textCursorDrawable="@drawable/cursor_color"
                                 android:background="@android:color/transparent"
                                 android:textColor="#000000"
+                                android:textColorHint="@color/dot_dark_screen1"
                                 />
                         </LinearLayout>
                         <View
@@ -239,7 +240,7 @@
                             />
 
                         <LinearLayout
-                            android:id="@+id/linear_houseno"
+                            android:id="@+id/up_linear_houseno"
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
                             android:layout_weight="1"
@@ -247,7 +248,7 @@
                             android:orientation="vertical">
 
                             <EditText
-                                android:id="@+id/house_no"
+                                android:id="@+id/up_house_no"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/segoeui"
@@ -259,6 +260,8 @@
                                 android:textCursorDrawable="@drawable/cursor_color"
                                 android:background="@android:color/transparent"
                                 android:textColor="#000000"
+                                android:textColorHint="@color/dot_dark_screen1"
+
                                 />
                         </LinearLayout>
                         <View
@@ -268,7 +271,7 @@
                             />
 
                         <LinearLayout
-                            android:id="@+id/linea_street"
+                            android:id="@+id/up_linea_street"
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
                             android:layout_weight="1"
@@ -276,7 +279,7 @@
                             android:orientation="vertical">
 
                             <EditText
-                                android:id="@+id/street"
+                                android:id="@+id/up_street"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/segoeui"
@@ -287,6 +290,8 @@
                                 android:textCursorDrawable="@drawable/cursor_color"
                                 android:background="@android:color/transparent"
                                 android:textColor="#000000"
+                                android:textColorHint="@color/dot_dark_screen1"
+
                                 />
                         </LinearLayout>
 
@@ -298,14 +303,14 @@
                             />
 
                         <LinearLayout
-                            android:id="@+id/linea_landmark"
+                            android:id="@+id/up_linea_landmark"
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
                             android:layout_weight="1"
                             android:orientation="vertical">
 
                             <EditText
-                                android:id="@+id/landmark_1"
+                                android:id="@+id/up_landmark_1"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/segoeui"
@@ -317,6 +322,8 @@
                                 android:textCursorDrawable="@drawable/cursor_color"
                                 android:background="@android:color/transparent"
                                 android:textColor="#000000"
+                                android:textColorHint="@color/dot_dark_screen1"
+
                                 />
                         </LinearLayout>
 
@@ -330,14 +337,14 @@
 
 
                         <LinearLayout
-                            android:id="@+id/linea_city"
+                            android:id="@+id/up_linea_city"
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
                             android:layout_weight="1"
                             android:orientation="vertical">
 
                             <EditText
-                                android:id="@+id/city_1"
+                                android:id="@+id/up_city_1"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/segoeui"
@@ -348,6 +355,8 @@
                                 android:textCursorDrawable="@drawable/cursor_color"
                                 android:background="@android:color/transparent"
                                 android:textColor="#000000"
+                                android:textColorHint="@color/dot_dark_screen1"
+
                                 />
                         </LinearLayout>
 
@@ -361,7 +370,7 @@
 
 
                         <LinearLayout
-                            android:id="@+id/linea_pincode1"
+                            android:id="@+id/up_linea_pincode1"
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
                             android:layout_weight="1"
@@ -369,7 +378,7 @@
                             android:orientation="vertical">
 
                             <EditText
-                                android:id="@+id/pincode"
+                                android:id="@+id/up_pincode"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/segoeui"
@@ -382,6 +391,8 @@
                                 android:padding="10dp"
                                 android:background="@android:color/transparent"
                                 android:textColor="#000000"
+                                android:textColorHint="@color/dot_dark_screen1"
+
                                 />
                         </LinearLayout>
                         <View
@@ -467,7 +478,7 @@
 
 
                         <EditText
-                            android:id="@+id/state"
+                            android:id="@+id/up_state"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/segoeui"
@@ -508,7 +519,7 @@
                             <!--/>-->
 
                         <EditText
-                            android:id="@+id/district_1"
+                            android:id="@+id/up_district_1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/segoeui"
@@ -534,7 +545,7 @@
 
 
                         <EditText
-                            android:id="@+id/taluk_1"
+                            android:id="@+id/up_taluk_1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/segoeui"
@@ -560,7 +571,7 @@
                             />
 
                         <EditText
-                            android:id="@+id/hobli_1"
+                            android:id="@+id/up_hobli_1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/segoeui"
@@ -588,7 +599,7 @@
 
 
                         <EditText
-                            android:id="@+id/village_1"
+                            android:id="@+id/up_village_1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/segoeui"
@@ -617,7 +628,7 @@
 
     <TextView
 
-        android:id="@+id/add_address"
+        android:id="@+id/update_address"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_gravity="center"
@@ -627,7 +638,7 @@
         android:background="@drawable/border_filled_pink"
         android:fontFamily="@font/segoeui"
         android:gravity="center"
-        android:hint="Add Address"
+        android:hint="Update Address"
         android:padding="10dp"
         android:layout_marginBottom="10dp"
         android:textColor="#fff"

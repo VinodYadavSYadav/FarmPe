@@ -37,6 +37,4 @@ dependencies {
     implementation 'com.crystal:crystalrangeseekbar:1.0.0'
 
 
-
-
 }

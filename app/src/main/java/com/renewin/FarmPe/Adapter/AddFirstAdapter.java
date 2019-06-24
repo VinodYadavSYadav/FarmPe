@@ -27,7 +27,7 @@ public class AddFirstAdapter extends RecyclerView.Adapter<AddFirstAdapter.MyView
     Fragment selectedFragment;
 
     public LinearLayout linearLayout;
-   public static LinearLayout next_arw;
+    public static LinearLayout next_arw;
     public static String first,looinkgId;
     public static CardView cardView;
     public AddFirstAdapter(Activity activity, List<AddTractorBean> moviesList) {
@@ -50,7 +50,7 @@ public class AddFirstAdapter extends RecyclerView.Adapter<AddFirstAdapter.MyView
         public MyViewHolder(View view) {
             super(view);
             //agri_text=view.findViewById(R.id.store_agri);
-           // item_2=view.findViewById(R.id.item_2);
+            // item_2=view.findViewById(R.id.item_2);
             prod_price=view.findViewById(R.id.prod_price);
             image=view.findViewById(R.id.prod_img);
             item=view.findViewById(R.id.item);
@@ -72,7 +72,7 @@ public class AddFirstAdapter extends RecyclerView.Adapter<AddFirstAdapter.MyView
     @Override
     public void onBindViewHolder(MyViewHolder holder, final int position) {
         final AddTractorBean products = productList.get(position);
-      //holder.agri_text.setText(products.getAgri_text());
+        //holder.agri_text.setText(products.getAgri_text());
         holder.prod_price.setText(products.getProd_name());
 
         Glide.with(activity).load(products.getImage())

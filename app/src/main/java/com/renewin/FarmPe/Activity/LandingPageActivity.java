@@ -1,17 +1,23 @@
 package com.renewin.FarmPe.Activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.aurelhubert.ahbottomnavigation.AHBottomNavigation;
 import com.renewin.FarmPe.Fragment.HomeMenuFragment;
@@ -29,7 +35,7 @@ public class LandingPageActivity extends AppCompatActivity {
     boolean doubleBackToExitPressedOnce = false;
 
 
-   /* @Override
+   @Override
     public void onBackPressed() {
         if (doubleBackToExitPressedOnce) {
 
@@ -52,7 +58,7 @@ public class LandingPageActivity extends AppCompatActivity {
             }
         }, 3000);
 
-    }*/
+    }
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +77,13 @@ public class LandingPageActivity extends AppCompatActivity {
 
         System.out.println("landiiiiiing");
 
-       getWindow().setStatusBarColor(Color.parseColor("#000000"));
+      // getWindow().setStatusBarColor(Color.parseColor("#000000"));
+
+        Window window = activity.getWindow();
+        window.setStatusBarColor(ContextCompat.getColor(activity,R.color.colorPrimaryDark));
+        LandingPageActivity.this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+
+
 
         bottomNavigation = findViewById(R.id.bottom_navigation_land);
 

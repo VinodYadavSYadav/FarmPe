@@ -3,20 +3,24 @@ package com.renewin.FarmPe.Fragment;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.renewin.FarmPe.Adapter.AddBrandAdapter;
-import com.renewin.FarmPe.Adapter.AddFirstAdapter;
+
+import com.renewin.FarmPe.Adapter.NearByHorizontalAdapter;
+import com.renewin.FarmPe.Adapter.NotificationAdapter;
 import com.renewin.FarmPe.Bean.AddTractorBean;
+import com.renewin.FarmPe.Bean.NearByHorizontalBean;
+import com.renewin.FarmPe.Bean.NotificationBean;
 import com.renewin.FarmPe.R;
-import com.renewin.FarmPe.Urls;
-import com.renewin.FarmPe.Volly_class.Login_post;
-import com.renewin.FarmPe.Volly_class.VoleyJsonObjectCallback;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -27,11 +31,15 @@ import java.util.List;
 
 public class FarmsDetailsFragment extends Fragment {
 
-    public static List<AddTractorBean> newOrderBeansList = new ArrayList<>();
-    public static RecyclerView recyclerView;
-    public static AddBrandAdapter farmadapter;
+    public static List<NotificationBean> newOrderBeansList = new ArrayList<>();
+    public static List<NearByHorizontalBean> newOrderBeansList_horizontal = new ArrayList<>();
+    public static RecyclerView recyclerView,recyclerView_horizontal;
     TextView toolbar_title;
     LinearLayout back_feed;
+    RelativeLayout menu;
+    NearByHorizontalAdapter madapter;
+    public static NotificationAdapter farmadapter;
+
 
 
 
@@ -42,10 +50,22 @@ public class FarmsDetailsFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.farms_details_page, container, false);
+        View view = inflater.inflate(R.layout.farms_details_page_copy, container, false);
        // recyclerView=view.findViewById(R.id.recycler_what_looking);
         toolbar_title=view.findViewById(R.id.toolbar_title);
         back_feed=view.findViewById(R.id.back_feed);
+        menu=view.findViewById(R.id.menu);
+        recyclerView_horizontal = view.findViewById(R.id.recycler_view_horizontal);
+        recyclerView = view.findViewById(R.id.recycler_farm);
+
+       /* DisplayMetrics displayMetrics = new DisplayMetrics();
+        getActivity().getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        int height = displayMetrics.heightPixels;
+        int width = displayMetrics.widthPixels;
+
+        System.out.println("heightgd"+height);*/
+
+
 
         Bundle bundle=getArguments();
         toolbar_title.setText(bundle.getString("farm_name"));
@@ -59,66 +79,50 @@ public class FarmsDetailsFragment extends Fragment {
             }
         });
 
+        newOrderBeansList_horizontal.clear();
+        GridLayoutManager mLayoutManager = new GridLayoutManager(getActivity(), 1, GridLayoutManager.HORIZONTAL, false);
+        recyclerView_horizontal.setLayoutManager(mLayoutManager);
+        recyclerView_horizontal.setItemAnimator(new DefaultItemAnimator());
+
+
+        NearByHorizontalBean crop=new NearByHorizontalBean(R.drawable.cow_dairy,"","");
+        newOrderBeansList_horizontal.add(crop);
+        newOrderBeansList_horizontal.add(crop);
+        newOrderBeansList_horizontal.add(crop);
+        newOrderBeansList_horizontal.add(crop);
+        newOrderBeansList_horizontal.add(crop);
+        newOrderBeansList_horizontal.add(crop);
+
+        madapter = new NearByHorizontalAdapter(getActivity(), newOrderBeansList_horizontal);
+        recyclerView_horizontal.setAdapter(madapter);
+
+
+        newOrderBeansList.clear();
+        GridLayoutManager mLayoutManager_farm = new GridLayoutManager(getActivity(), 1, GridLayoutManager.VERTICAL, false);
+        recyclerView.setLayoutManager(mLayoutManager_farm);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+
+        NotificationBean img1=new NotificationBean("Lorem ipsum dolor sit amet, consectetur adipiscing elit.");
+        newOrderBeansList.add(img1);
+        newOrderBeansList.add(img1);
+        newOrderBeansList.add(img1);
+        newOrderBeansList.add(img1);
+        newOrderBeansList.add(img1);
+        newOrderBeansList.add(img1);
+        newOrderBeansList.add(img1);
+
+       /* newOrderBeansList.add(img6);
+        newOrderBeansList.add(img6);*/
+
+
+        farmadapter=new NotificationAdapter(getActivity(),newOrderBeansList);
+        recyclerView.setAdapter(farmadapter);
+
 
 
         return view;
     }
 
-    private void BrandList() {
-       /* Bundle bundle=getArguments();
-        String lookingForId=bundle.getString("looinkgId");*/
-
-        try {
-            newOrderBeansList.clear();
-
-            JSONObject userRequestjsonObject = new JSONObject();
-             userRequestjsonObject.put("LookingForDetailsId", AddFirstAdapter.looinkgId);
-
-
-            JSONObject postjsonObject = new JSONObject();
-            // postjsonObject.put("objCropDetails", userRequestjsonObject);
-
-            System.out.println("postObj"+userRequestjsonObject.toString());
-
-            Login_post.login_posting(getActivity(), Urls.GetBrandList,userRequestjsonObject,new VoleyJsonObjectCallback() {
-                @Override
-                public void onSuccessResponse(JSONObject result) {
-                    System.out.println("cropsresult"+result);
-                    JSONArray cropsListArray=null;
-                    try {
-                        cropsListArray=result.getJSONArray("BrandList");
-                        System.out.println("e     e e ddd"+cropsListArray.length());
-                        for (int i=0;i<cropsListArray.length();i++){
-                            JSONObject jsonObject1=cropsListArray.getJSONObject(i);
-
-                            String brand_name=jsonObject1.getString("BrandName");
-
-                            String id=jsonObject1.getString("Id");
-
-
-                           AddTractorBean crops = new AddTractorBean(R.drawable.tractor_green, brand_name,id);
-                           newOrderBeansList.add(crops);
-
-                          /*  if(!latts.equals("") | !langgs.equals("")) {
-
-                                CropListBean crops = new CropListBean(cropName, crop_variety, location, crop_grade,
-                                        crop_quantity, crop_uom, crop_price, id, farmerId,
-                                        UserName,latts,langgs,CropImg,category);
-                                newOrderBeansList.add(crops);
-                            }*/
-                        }
-                        farmadapter=new AddBrandAdapter(getActivity(),newOrderBeansList);
-                        recyclerView.setAdapter(farmadapter);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                }
-            });
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
 
 
 }

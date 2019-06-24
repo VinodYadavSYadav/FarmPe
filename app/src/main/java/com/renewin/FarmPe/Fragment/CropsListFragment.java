@@ -136,8 +136,7 @@ public class CropsListFragment extends Fragment {
                                 String crop_price=jsonObject1.getString("Price").trim();
                                 System.out.println("pprriiccee"+crop_price);
                                 id=jsonObject1.getString("Id");
-
-                                String sellType = jsonObject1.getString("SellType");
+                            String sellType = jsonObject1.getString("SellType");
                                 farmerId=jsonObject1.getInt("FarmerId");
                                 String UserName=jsonObject1.getString("UserName");
                                 String CropImg=jsonObject1.getString("CropIcon");

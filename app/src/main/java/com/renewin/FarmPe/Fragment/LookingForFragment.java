@@ -9,7 +9,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.renewin.FarmPe.Adapter.AddBrandAdapter;
+import com.renewin.FarmPe.Adapter.AddModelAdapter;
 import com.renewin.FarmPe.Adapter.FarmsImageAdapter;
+import com.renewin.FarmPe.Bean.AddTractorBean;
 import com.renewin.FarmPe.Bean.FarmsImageBean;
 import com.renewin.FarmPe.R;
 import com.renewin.FarmPe.Urls;
@@ -46,8 +49,9 @@ public class LookingForFragment extends Fragment {
         GridLayoutManager mLayoutManager_farm = new GridLayoutManager(getActivity(), 2, GridLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(mLayoutManager_farm);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
+/*
 
-       /* FarmsImageBean img1=new FarmsImageBean(R.drawable.tractor_green,"Tractor Price","Mahindra Jivo 225 DL 20HP","","Immediately","Jagdish Kumar","Rampura Bahjoi","");
+        FarmsImageBean img1=new FarmsImageBean(R.drawable.tractor_green,"Tractor Price","Mahindra Jivo 225 DL 20HP","","Immediately","Jagdish Kumar","Rampura Bahjoi","");
         newOrderBeansList.add(img1);
 
         FarmsImageBean img2=new FarmsImageBean(R.drawable.gyrovator,"Tractor Implements Price","Mahindra Jivo 225 DL 20HP","","1 Month","Jagdish Kumar","Rampura Bahjoi","");
@@ -65,7 +69,8 @@ public class LookingForFragment extends Fragment {
 
 
         farmadapter=new FarmsImageAdapter(getActivity(),newOrderBeansList);
-        recyclerView.setAdapter(farmadapter);*/
+        recyclerView.setAdapter(farmadapter);
+*/
 
         return view;
     }
@@ -102,6 +107,7 @@ public class LookingForFragment extends Fragment {
                             String name=jsonObject2.getString("Name");
                             String city=jsonObject2.getString("City");
                             String state=jsonObject2.getString("State");
+                            String hp_range=jsonObject2.getString("HorsePowerRange");
 
                             if (city.equals("")){
                                  location="Bangalore"+", "+state;
@@ -113,8 +119,8 @@ public class LookingForFragment extends Fragment {
 
                             System.out.println("madelslistt"+newOrderBeansList.size());
 
-                          //  FarmsImageBean crops = new FarmsImageBean(image,"Tractor Price",model,"20Hp",purchaseTimeline,name,location,id);
-                           // newOrderBeansList.add(crops);
+                            FarmsImageBean crops = new FarmsImageBean(image,"Tractor Price",model,hp_range,purchaseTimeline,name,location,id);
+                            newOrderBeansList.add(crops);
 
 
 

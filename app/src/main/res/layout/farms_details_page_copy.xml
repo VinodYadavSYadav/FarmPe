@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+<LinearLayout
 
     android:id="@+id/main_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     android:weightSum="100"
 
@@ -13,14 +18,12 @@
     <RelativeLayout
         android:id="@+id/menu"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="60"
-        android:fitsSystemWindows="true"
-        >
+        android:layout_height="500dp"
+        android:fitsSystemWindows="true">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:background="#fff"
             android:fitsSystemWindows="true"
             android:orientation="vertical">
@@ -37,30 +40,30 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="10dp"
+            android:padding="15dp"
             android:weightSum="100"
+
             >
 
-        <LinearLayout
-            android:id="@+id/back_feed"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            <LinearLayout
+                android:id="@+id/back_feed"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
 
-            android:layout_weight="10"
-            >
+                android:layout_weight="10">
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_left__black_arrow" />
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_left__black_arrow" />
 
-        </LinearLayout>
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:gravity="right"
                 android:layout_weight="80"
+                android:gravity="right"
 
                 >
 
@@ -75,9 +78,8 @@
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:gravity="right"
                 android:layout_weight="10"
-                >
+                android:gravity="right">
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -91,9 +93,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
             android:gravity="bottom"
-            >
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/toolbar_title"
@@ -109,14 +110,15 @@
                 android:id="@+id/location"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:drawablePadding="10dp"
                 android:gravity="center_vertical"
                 android:paddingLeft="10dp"
                 android:paddingBottom="10dp"
                 android:text="Bangalore,Karnataka"
-                android:drawablePadding="10dp"
                 android:textColor="#fff"
                 android:textSize="14dp" />
 
+            <!--
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -197,113 +199,21 @@
 
 
         </LinearLayout>
+-->
 
 
         </LinearLayout>
-
 
 
     </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_weight="40"
         android:background="#fff"
         android:weightSum="100"
         >
-
-             <LinearLayout
-             android:layout_width="match_parent"
-             android:layout_height="wrap_content"
-             android:orientation="horizontal"
-
-                 android:weightSum="100"
-             >
-
-                 <LinearLayout
-                     android:layout_width="0dp"
-                     android:layout_height="wrap_content"
-                     android:layout_weight="33"
-                     android:paddingVertical="5dp"
-                     android:gravity="center"
-                     >
-                     <TextView
-                         android:layout_width="wrap_content"
-                         android:layout_height="wrap_content"
-                         android:text="Share"
-                         android:textSize="14dp"
-                         android:drawablePadding="5dp"
-                         android:padding="10dp"
-                         android:drawableLeft="@drawable/ic_placeholder_pink"
-                         android:textColor="#000"
-                         android:layout_marginHorizontal="10dp"
-                         />
-
-
-
-                 </LinearLayout>
-
-                 <View
-                     android:layout_width="1dp"
-                     android:layout_height="match_parent"
-                     android:background="#d4d4d4"
-                     />
-
-                 <LinearLayout
-                     android:layout_width="0dp"
-                     android:layout_height="wrap_content"
-                     android:layout_weight="33"
-                     android:paddingVertical="5dp"
-                     android:gravity="center"
-                     >
-                     <TextView
-                         android:layout_width="wrap_content"
-                         android:layout_height="wrap_content"
-                         android:text="Share"
-                         android:textSize="14dp"
-                         android:drawablePadding="5dp"
-                         android:padding="10dp"
-                         android:drawableLeft="@drawable/ic_placeholder_pink"
-                         android:textColor="#000"
-                         android:layout_marginHorizontal="10dp"
-                         />
-                 </LinearLayout>
-
-                 <View
-                     android:layout_width="1dp"
-                     android:layout_height="match_parent"
-                     android:background="#d4d4d4"
-                     />
-
-
-                 <LinearLayout
-                     android:layout_width="0dp"
-                     android:layout_height="wrap_content"
-                     android:layout_weight="33"
-                     android:paddingVertical="5dp"
-                     android:gravity="center"
-                     >
-                     <TextView
-                         android:layout_width="wrap_content"
-                         android:layout_height="wrap_content"
-                         android:text="Share"
-                         android:textSize="14dp"
-                         android:drawablePadding="5dp"
-                         android:padding="10dp"
-                         android:drawableLeft="@drawable/ic_placeholder_pink"
-                         android:textColor="#000"
-                         android:layout_marginHorizontal="10dp"
-                         />
-
-
-
-                 </LinearLayout>
-
-
-
-             </LinearLayout>
 
         <View
             android:layout_width="match_parent"
@@ -311,7 +221,93 @@
             android:background="#d4d4d4"
             />
 
-    <LinearLayout
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+
+            android:weightSum="100">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="33"
+                android:gravity="center"
+                android:paddingVertical="5dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_placeholder_pink"
+                    android:drawablePadding="5dp"
+                    android:padding="10dp"
+                    android:text="Bookmark"
+                    android:textColor="#000"
+                    android:textSize="14dp" />
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="#d4d4d4" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="33"
+                android:gravity="center"
+                android:paddingVertical="5dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="10dp"
+                    android:drawableLeft="@drawable/ic_placeholder_pink"
+                    android:drawablePadding="5dp"
+                    android:padding="10dp"
+                    android:text="Call Now"
+                    android:textColor="#000"
+                    android:textSize="14dp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="#d4d4d4" />
+
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="33"
+                android:gravity="center"
+                android:paddingVertical="5dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="10dp"
+                    android:drawableLeft="@drawable/ic_placeholder_pink"
+                    android:drawablePadding="5dp"
+                    android:padding="10dp"
+                    android:text="Location"
+                    android:textColor="#000"
+                    android:textSize="14dp" />
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#d4d4d4"
+            />
+
+        <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#fff"
@@ -324,7 +320,9 @@
             android:text="Location"
             android:textSize="14dp"
             android:textStyle="bold"
-            android:padding="10dp"
+            android:paddingTop="15dp"
+            android:paddingHorizontal="10dp"
+            android:paddingBottom="8dp"
             android:drawablePadding="5dp"
             android:drawableLeft="@drawable/ic_location_sign"
             android:textColor="#000"
@@ -335,7 +333,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#fff"
-            android:layout_marginHorizontal="10dp"
+            android:layout_marginHorizontal="15dp"
             android:orientation="vertical"
             >
             <LinearLayout
@@ -513,7 +511,7 @@
                 android:orientation="horizontal"
                 android:weightSum="100"
                 android:layout_marginTop="2dp"
-                android:layout_marginBottom="5dp"
+
                 >
                 <TextView
                     android:layout_width="0dp"
@@ -560,8 +558,8 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginHorizontal="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="15dp"
             android:background="#f2f2f2"
             />
 
@@ -569,7 +567,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#fff"
-            android:layout_marginTop="5dp"
             android:orientation="vertical"
             >
 
@@ -579,7 +576,9 @@
                 android:text="Location"
                 android:textSize="14dp"
                 android:textStyle="bold"
-                android:padding="10dp"
+                android:paddingTop="15dp"
+                android:paddingHorizontal="10dp"
+                android:paddingBottom="8dp"
                 android:drawablePadding="5dp"
                 android:drawableLeft="@drawable/ic_location_sign"
                 android:textColor="#000"
@@ -590,13 +589,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#fff"
-                android:layout_marginHorizontal="10dp"
+                android:layout_marginHorizontal="15dp"
                 android:orientation="vertical"
                 >
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="#fff"
+                    android:paddingVertical="2dp"
                     android:orientation="horizontal"
                     android:weightSum="100"
                     >
@@ -604,7 +604,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:text="State"
-                        android:layout_weight="20"
+                        android:layout_weight="40"
                         android:textSize="12dp"
                         android:drawablePadding="5dp"
                         android:textColor="#000"
@@ -618,14 +618,140 @@
                         android:textSize="12dp"
                         android:textStyle="bold"
                         android:textColor="#000"
-                        android:layout_marginHorizontal="10dp"
+
                         />
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:text="Karnataka"
-                        android:layout_weight="60"
+                        android:layout_weight="50"
+                        android:textSize="12dp"
+                        android:textColor="#000"
+
+                        />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#fff"
+                    android:layout_marginTop="2dp"
+                    android:orientation="horizontal"
+                    android:weightSum="100"
+                    >
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="State"
+                        android:layout_weight="40"
+                        android:textSize="12dp"
+                        android:drawablePadding="5dp"
+                        android:textColor="#000"
+                        android:layout_marginHorizontal="10dp"
+                        />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text=":"
+                        android:layout_weight="5"
+                        android:textSize="12dp"
+                        android:textStyle="bold"
+                        android:textColor="#000"
+
+                        />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Karnataka"
+                        android:layout_weight="50"
+                        android:textSize="12dp"
+                        android:textColor="#000"
+
+                        />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#fff"
+                    android:layout_marginTop="2dp"
+                    android:orientation="horizontal"
+                    android:weightSum="100"
+                    >
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="State"
+                        android:layout_weight="40"
+                        android:textSize="12dp"
+                        android:drawablePadding="5dp"
+                        android:textColor="#000"
+                        android:layout_marginHorizontal="10dp"
+                        />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text=":"
+                        android:layout_weight="5"
+                        android:textSize="12dp"
+                        android:textStyle="bold"
+                        android:textColor="#000"
+
+                        />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Karnataka"
+                        android:layout_weight="50"
+                        android:textSize="12dp"
+                        android:textColor="#000"
+
+                        />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#fff"
+                    android:layout_marginTop="2dp"
+                    android:orientation="horizontal"
+                    android:weightSum="100"
+                    >
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="State"
+                        android:layout_weight="40"
+                        android:textSize="12dp"
+                        android:drawablePadding="5dp"
+                        android:textColor="#000"
+                        android:layout_marginHorizontal="10dp"
+                        />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text=":"
+                        android:layout_weight="5"
+                        android:textSize="12dp"
+                        android:textStyle="bold"
+                        android:textColor="#000"
+
+                        />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Karnataka"
+                        android:layout_weight="50"
                         android:textSize="12dp"
                         android:textColor="#000"
 
@@ -640,14 +766,16 @@
                     android:background="#fff"
                     android:orientation="horizontal"
                     android:weightSum="100"
+                    android:layout_marginTop="2dp"
+
                     >
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:text="State"
-                        android:layout_weight="20"
+                        android:layout_weight="40"
                         android:textSize="12dp"
-                        android:layout_marginTop="5dp"
+                        android:drawablePadding="5dp"
                         android:textColor="#000"
                         android:layout_marginHorizontal="10dp"
                         />
@@ -657,18 +785,17 @@
                         android:text=":"
                         android:layout_weight="5"
                         android:textSize="12dp"
+                        android:textStyle="bold"
                         android:textColor="#000"
-                        android:layout_marginHorizontal="10dp"
+
                         />
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:text="Karnataka"
-                        android:layout_weight="60"
+                        android:layout_weight="50"
                         android:textSize="12dp"
-                        android:layout_marginTop="5dp"
-
                         android:textColor="#000"
 
                         />
@@ -676,89 +803,6 @@
 
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="#fff"
-                    android:orientation="horizontal"
-                    android:weightSum="100"
-                    >
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:text="State"
-                        android:layout_weight="20"
-                        android:textSize="12dp"
-                        android:layout_marginTop="5dp"
-                        android:textColor="#000"
-                        android:layout_marginHorizontal="10dp"
-                        />
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:text=":"
-                        android:layout_weight="5"
-                        android:textSize="12dp"
-
-                        android:textColor="#000"
-                        android:layout_marginHorizontal="10dp"
-                        />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:text="Karnataka"
-                        android:layout_weight="60"
-                        android:textSize="12dp"
-                        android:layout_marginTop="5dp"
-                        android:textColor="#000"
-
-                        />
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="#fff"
-                    android:orientation="horizontal"
-                    android:weightSum="100"
-                    >
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:text="State"
-                        android:layout_weight="20"
-                        android:textSize="12dp"
-                        android:layout_marginTop="5dp"
-                        android:textColor="#000"
-                        android:layout_marginHorizontal="10dp"
-                        />
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:text=":"
-                        android:layout_weight="5"
-                        android:textSize="12dp"
-
-                        android:textColor="#000"
-                        android:layout_marginHorizontal="10dp"
-                        />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:text="Karnataka"
-                        android:layout_weight="60"
-                        android:textSize="12dp"
-                        android:layout_marginTop="5dp"
-                        android:textColor="#000"
-
-                        />
-
-
-                </LinearLayout>
 
 
             </LinearLayout>
@@ -767,9 +811,342 @@
 
         </LinearLayout>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="15dp"
+            android:background="#f2f2f2"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#fff"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Location"
+                android:textSize="14dp"
+                android:textStyle="bold"
+                android:paddingTop="15dp"
+                android:paddingHorizontal="10dp"
+                android:paddingBottom="8dp"
+                android:drawablePadding="5dp"
+                android:drawableLeft="@drawable/ic_location_sign"
+                android:textColor="#000"
+                android:layout_marginHorizontal="10dp"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#fff"
+                android:layout_marginHorizontal="15dp"
+                android:orientation="vertical"
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#fff"
+                    android:paddingVertical="2dp"
+                    android:orientation="horizontal"
+                    android:weightSum="100"
+                    >
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="State"
+                        android:layout_weight="40"
+                        android:textSize="12dp"
+                        android:drawablePadding="5dp"
+                        android:textColor="#000"
+                        android:layout_marginHorizontal="10dp"
+                        />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text=":"
+                        android:layout_weight="5"
+                        android:textSize="12dp"
+                        android:textStyle="bold"
+                        android:textColor="#000"
+
+                        />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Karnataka"
+                        android:layout_weight="50"
+                        android:textSize="12dp"
+                        android:textColor="#000"
+
+                        />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#fff"
+                    android:layout_marginTop="2dp"
+                    android:orientation="horizontal"
+                    android:weightSum="100"
+                    >
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="State"
+                        android:layout_weight="40"
+                        android:textSize="12dp"
+                        android:drawablePadding="5dp"
+                        android:textColor="#000"
+                        android:layout_marginHorizontal="10dp"
+                        />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text=":"
+                        android:layout_weight="5"
+                        android:textSize="12dp"
+                        android:textStyle="bold"
+                        android:textColor="#000"
+
+                        />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Karnataka"
+                        android:layout_weight="50"
+                        android:textSize="12dp"
+                        android:textColor="#000"
+
+                        />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#fff"
+                    android:layout_marginTop="2dp"
+                    android:orientation="horizontal"
+                    android:weightSum="100"
+                    >
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="State"
+                        android:layout_weight="40"
+                        android:textSize="12dp"
+                        android:drawablePadding="5dp"
+                        android:textColor="#000"
+                        android:layout_marginHorizontal="10dp"
+                        />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text=":"
+                        android:layout_weight="5"
+                        android:textSize="12dp"
+                        android:textStyle="bold"
+                        android:textColor="#000"
+
+                        />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Karnataka"
+                        android:layout_weight="50"
+                        android:textSize="12dp"
+                        android:textColor="#000"
+
+                        />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#fff"
+                    android:layout_marginTop="2dp"
+                    android:orientation="horizontal"
+                    android:weightSum="100"
+                    >
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="State"
+                        android:layout_weight="40"
+                        android:textSize="12dp"
+                        android:drawablePadding="5dp"
+                        android:textColor="#000"
+                        android:layout_marginHorizontal="10dp"
+                        />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text=":"
+                        android:layout_weight="5"
+                        android:textSize="12dp"
+                        android:textStyle="bold"
+                        android:textColor="#000"
+
+                        />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Karnataka"
+                        android:layout_weight="50"
+                        android:textSize="12dp"
+                        android:textColor="#000"
+
+                        />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#fff"
+                    android:orientation="horizontal"
+                    android:weightSum="100"
+                    android:layout_marginTop="2dp"
+
+                    >
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="State"
+                        android:layout_weight="40"
+                        android:textSize="12dp"
+                        android:drawablePadding="5dp"
+                        android:textColor="#000"
+                        android:layout_marginHorizontal="10dp"
+                        />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text=":"
+                        android:layout_weight="5"
+                        android:textSize="12dp"
+                        android:textStyle="bold"
+                        android:textColor="#000"
+
+                        />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="Karnataka"
+                        android:layout_weight="50"
+                        android:textSize="12dp"
+                        android:textColor="#000"
+
+                        />
+
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="15dp"
+            android:background="#f2f2f2"
+            />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="10dp"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Near By"
+                android:padding="10dp"
+                android:textSize="14dp"
+                android:textStyle="bold"
+                android:textColor="#000"
+
+                />
+
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="10dp"
+            android:background="#fff"
+            />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:orientation="vertical"
+            android:layout_marginTop="10dp"
+            android:background="#000"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lorem Ipsum"
+                android:padding="10dp"
+                android:textSize="14dp"
+                android:textStyle="bold"
+                android:textColor="#fff"
+                />
+
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_farm"
+                android:layout_width="match_parent"
+                android:layout_marginBottom="20dp"
+                android:layout_height="wrap_content">
+            </android.support.v7.widget.RecyclerView>
+
+
+
+
+
+        </LinearLayout>
+
+
+
 
 
     </LinearLayout>
 
 
 </LinearLayout>
+
+</ScrollView>

@@ -59,8 +59,12 @@ public class Urls {
 
 
     // Refer n Earn
-    public static final String Refferal_Code = ROOT_URL +"Auth/GetUserDetails";
+    public static final String Refferal_Code = ROOT_URL3 +"Auth/GetUserDetails";
     public static final String ValidateRefferalCode = ROOT_URL +"Auth/ValidateRefferalCode";
+
+
+    //Wallet balance
+    public static final String GetWalletDetails = ROOT_URL3 +"MasterTable/GetWalletDetails";
 
 
     // Address
@@ -68,6 +72,7 @@ public class Urls {
     public static final String Delete_Address_Details = ROOT_URL3 + "MasterTable/DeleteUserAddress";
     public static final String Default_Address = ROOT_URL3 + "MasterTable/UpdateUserDefaultAddress";
     public static final String Edit_Address = ROOT_URL3 + "MasterTable/UpdateUserDefaultAddress";
+
 
 
 
