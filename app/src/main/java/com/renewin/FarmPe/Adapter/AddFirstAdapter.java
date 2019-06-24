@@ -1,7 +1,6 @@
 package com.renewin.FarmPe.Adapter;
 
 import android.app.Activity;
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
@@ -17,7 +16,6 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.renewin.FarmPe.Bean.AddTractorBean;
-import com.renewin.FarmPe.Bean.FarmsImageBean;
 import com.renewin.FarmPe.Fragment.AddBrandFragment;
 import com.renewin.FarmPe.R;
 

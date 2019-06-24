@@ -1,18 +1,14 @@
 package com.renewin.FarmPe.Activity;
 
-import android.Manifest;
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.pm.PackageManager;
 import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.design.widget.Snackbar;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
@@ -26,8 +22,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-import com.renewin.FarmPe.Activity.LoginActivity;
-import com.renewin.FarmPe.Activity.SignUpActivity;
 import com.renewin.FarmPe.R;
 import com.renewin.FarmPe.ReadSms;
 import com.renewin.FarmPe.SessionManager;

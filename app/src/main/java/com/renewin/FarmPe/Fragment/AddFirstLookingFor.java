@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
-import com.renewin.FarmPe.Adapter.AddFirstAdapter;
 import com.renewin.FarmPe.Adapter.AddFirstLookingForAdapter;
 import com.renewin.FarmPe.Bean.AddTractorBean;
 import com.renewin.FarmPe.R;
@@ -69,13 +68,13 @@ public class AddFirstLookingFor extends Fragment {
         });
 */
 
-       // AddLookigFor();
+        AddLookigFor();
         newOrderBeansList.clear();
         GridLayoutManager mLayoutManager_farm = new GridLayoutManager(getActivity(), 2, GridLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(mLayoutManager_farm);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
-        AddTractorBean img1=new AddTractorBean(R.drawable.tractor_green,"Tractor Price","");
+       /* AddTractorBean img1=new AddTractorBean(R.drawable.tractor_green,"Tractor Price","");
         newOrderBeansList.add(img1);
 
         AddTractorBean img2=new AddTractorBean(R.drawable.gyrovator,"Implements Price","");
@@ -94,11 +93,11 @@ public class AddFirstLookingFor extends Fragment {
         newOrderBeansList.add(img6);
         newOrderBeansList.add(img6);
         newOrderBeansList.add(img6);
-       /* newOrderBeansList.add(img6);
-        newOrderBeansList.add(img6);*/
+       *//* newOrderBeansList.add(img6);
+        newOrderBeansList.add(img6);*//*
 
         farmadapter=new AddFirstLookingForAdapter(getActivity(),newOrderBeansList);
-        recyclerView.setAdapter(farmadapter);
+        recyclerView.setAdapter(farmadapter);*/
 
         return view;
     }
@@ -135,13 +134,6 @@ public class AddFirstLookingFor extends Fragment {
                               AddTractorBean crops = new AddTractorBean(R.drawable.tractor_green, lookingfor,id);
                               newOrderBeansList.add(crops);
 
-                          /*  if(!latts.equals("") | !langgs.equals("")) {
-
-                                CropListBean crops = new CropListBean(cropName, crop_variety, location, crop_grade,
-                                        crop_quantity, crop_uom, crop_price, id, farmerId,
-                                        UserName,latts,langgs,CropImg,category);
-                                newOrderBeansList.add(crops);
-                            }*/
                         }
                         farmadapter=new AddFirstLookingForAdapter(getActivity(),newOrderBeansList);
                         recyclerView.setAdapter(farmadapter);

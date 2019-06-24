@@ -6,18 +6,15 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.renewin.FarmPe.Adapter.AddBrandAdapter;
 import com.renewin.FarmPe.Adapter.AddFirstAdapter;
 import com.renewin.FarmPe.Adapter.AddHpAdapter;
 import com.renewin.FarmPe.Bean.AddTractorBean;
-import com.renewin.FarmPe.Bean.FarmsImageBean;
 import com.renewin.FarmPe.R;
 import com.renewin.FarmPe.Urls;
 import com.renewin.FarmPe.Volly_class.Login_post;
@@ -73,13 +70,13 @@ public class AddHpFragment extends Fragment {
                 return false;
             }
         });*/
-      //  HpList();
+        HpList();
         newOrderBeansList.clear();
         GridLayoutManager mLayoutManager_farm = new GridLayoutManager(getActivity(), 2, GridLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(mLayoutManager_farm);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
-        AddTractorBean img1=new AddTractorBean(R.drawable.tractor_green,"UPTO 20HP","");
+       /* AddTractorBean img1=new AddTractorBean(R.drawable.tractor_green,"UPTO 20HP","");
         newOrderBeansList.add(img1);
 
         AddTractorBean img2=new AddTractorBean(R.drawable.gyrovator,"21-30 HP","");
@@ -98,13 +95,13 @@ public class AddHpFragment extends Fragment {
         newOrderBeansList.add(img6);
         newOrderBeansList.add(img6);
         newOrderBeansList.add(img6);
-       /* newOrderBeansList.add(img6);
-        newOrderBeansList.add(img6);*/
+       *//* newOrderBeansList.add(img6);
+        newOrderBeansList.add(img6);*//*
 
 
         farmadapter=new AddHpAdapter(getActivity(),newOrderBeansList);
         recyclerView.setAdapter(farmadapter);
-
+*/
         return view;
     }
 
