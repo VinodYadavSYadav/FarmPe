@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -207,7 +208,33 @@ public class SettingFragment extends Fragment {
 
            }
        });
+        abt_frmpe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int color=0;
+                color = Color.RED;
+                Snackbar snackbar = Snackbar.make(getView(), "Coming Soon", Snackbar.LENGTH_LONG);
+                View sbView = snackbar.getView();
+                TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+                textView.setTextColor(color);
+                snackbar.show();
 
+            }
+        });
+
+        help_1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int color=0;
+                color = Color.RED;
+                Snackbar snackbar = Snackbar.make(getView(), "Coming Soon", Snackbar.LENGTH_LONG);
+                View sbView = snackbar.getView();
+                TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+                textView.setTextColor(color);
+                snackbar.show();
+
+            }
+        });
         acc_info.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

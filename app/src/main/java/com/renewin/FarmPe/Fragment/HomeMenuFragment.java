@@ -7,6 +7,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
@@ -180,6 +181,16 @@ Fragment selectedFragment;
                 home.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+
+//                        int color=0;
+//                        color = Color.RED;
+//                        Snackbar snackbar = Snackbar.make(getView(), "Coming Soon", Snackbar.LENGTH_LONG);
+//                        View sbView = snackbar.getView();
+//                        TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+//                        textView.setTextColor(color);
+//                        snackbar.show();
+
+
                         selectedFragment = DashboardFragment.newInstance();
                         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                         transaction.replace(R.id.first_full_frame, selectedFragment);
