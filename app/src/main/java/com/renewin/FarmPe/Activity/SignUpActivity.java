@@ -376,8 +376,6 @@ public class SignUpActivity extends AppCompatActivity {
 
 
         password.setFilters(new InputFilter[]{filter, new InputFilter.LengthFilter(12)});
-
-
         continue_sign_up.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

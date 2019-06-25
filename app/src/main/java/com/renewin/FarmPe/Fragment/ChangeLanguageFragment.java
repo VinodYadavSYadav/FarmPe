@@ -38,8 +38,10 @@ public class ChangeLanguageFragment extends Fragment {
     LinearLayout back_feed;
     public static   JSONObject lngObject;
 
-   public static TextView lang_title;
+    TextView lang_title;
     private Context context;
+
+
 
 
 
@@ -62,10 +64,11 @@ public class ChangeLanguageFragment extends Fragment {
         mAdapter = new SelectLanguageAdapter(getActivity(), newOrderBeansList);
 
 
-
         sessionManager = new SessionManager(getActivity());
         recyclerView.setAdapter(mAdapter);
         Langauges();
+
+
 
 
         view.setFocusableInTouchMode(true);

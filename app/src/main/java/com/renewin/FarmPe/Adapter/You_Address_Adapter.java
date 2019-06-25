@@ -159,7 +159,7 @@ public class You_Address_Adapter extends RecyclerView.Adapter<You_Address_Adapte
 
                 selectedFragment = Add_New_Address_Fragment.newInstance();
                 FragmentTransaction transaction = ((FragmentActivity) activity).getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.frame_layout, selectedFragment);
+                transaction.replace(R.id.frame_layout_home, selectedFragment);
                 selectedFragment.setArguments(bundle);
                 transaction.commit();
 

@@ -51,7 +51,6 @@ public class RequestFormFragment extends Fragment {
     String time_period;
     boolean finance;
     String finance_status;
-     String request_for;
     public static int selectedId,selectedId_time_recent;
     int finance_selected,time_selected;
     public static RequestFormFragment newInstance() {
@@ -61,19 +60,19 @@ public class RequestFormFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-         view = inflater.inflate(R.layout.request_form, container, false);
-       // recyclerView=view.findViewById(R.id.recycler_what_looking);
-       toolbar_title=view.findViewById(R.id.toolbar_title);
-       back_feed=view.findViewById(R.id.back_feed);
-       check_box=view.findViewById(R.id.check_box);
-       address_layout=view.findViewById(R.id.address_layout);
+        view = inflater.inflate(R.layout.request_form, container, false);
+        // recyclerView=view.findViewById(R.id.recycler_what_looking);
+        toolbar_title=view.findViewById(R.id.toolbar_title);
+        back_feed=view.findViewById(R.id.back_feed);
+        check_box=view.findViewById(R.id.check_box);
+        address_layout=view.findViewById(R.id.address_layout);
         radioGroup=view.findViewById(R.id.radio_group_time);
         radioGroup_finance=view.findViewById(R.id.radioGroup_finance);
-        finance_yes=view.findViewById(R.id.finance_yes);
-        finance_no=view.findViewById(R.id.finance_no);
+        //finance_yes=view.findViewById(R.id.finance_yes);
+        //finance_no=view.findViewById(R.id.finance_no);
         request=view.findViewById(R.id.request);
         address_text=view.findViewById(R.id.address_text);
-       toolbar_title.setText("Request for Quotation");
+        toolbar_title.setText("Request for Quotation");
 
         sessionManager=new SessionManager(getActivity());
 
@@ -84,7 +83,7 @@ public class RequestFormFragment extends Fragment {
             finance_selected=bundle.getInt("selected_id2");
             time_selected=bundle.getInt("selected_id_time1");
             System.out.println("tiiiiimmmee"+time_selected);
-             addId=bundle.getString("add_id");
+            addId=bundle.getString("add_id");
             String city=bundle.getString("city");
             address_text.setText(city);
             radioGroup.check(bundle.getInt("selected_id_time1"));
@@ -93,7 +92,7 @@ public class RequestFormFragment extends Fragment {
 
         }
 
-       // String addId=bundle.getString("add_id");
+        // String addId=bundle.getString("add_id");
 
         check_box.setText("I agree that by clicking 'Request for Tractor Price' button, I am explicitly soliciting a call from Xohri App users on my 'Mobile' in order to assist me with my tractor purchase.");
 
@@ -122,22 +121,21 @@ public class RequestFormFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 System.out.println("hrrrjjkj");
-                //request_for="request_string";
                 Bundle bundle1=new Bundle();
-                bundle1.putString("request_for","request_add");
-                    selectedFragment = Add_New_Address_Fragment.newInstance();
-                    FragmentTransaction transaction = (getActivity()).getSupportFragmentManager().beginTransaction();
-                    transaction.replace(R.id.frame_layout, selectedFragment);
-                    transaction.addToBackStack("request");
-                    selectedFragment.setArguments(bundle1);
-                    transaction.commit();
+                bundle1.putString("request_for","request1");
+                selectedFragment = Add_New_Address_Fragment.newInstance();
+                FragmentTransaction transaction = (getActivity()).getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.frame_layout, selectedFragment);
+                transaction.addToBackStack("request");
+                selectedFragment.setArguments(bundle1);
+                transaction.commit();
             }
         });
 
         request.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               RequestForm();
+                RequestForm();
                 selectedFragment = HomeMenuFragment.newInstance();
                 FragmentTransaction transaction = (getActivity()).getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.frame_layout, selectedFragment);
@@ -149,10 +147,10 @@ public class RequestFormFragment extends Fragment {
         radioGroup_finance.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 // Toast.makeText(getBaseContext(), value, Toast.LENGTH_SHORT).show();
-               selectedId = radioGroup_finance.getCheckedRadioButtonId();
+                selectedId = radioGroup_finance.getCheckedRadioButtonId();
                 radioButton = (RadioButton)view.findViewById(selectedId);
                 System.out.println("checkinggg"+radioButton.getText().toString());
-                 finance_status=radioButton.getTag().toString();
+                finance_status=radioButton.getTag().toString();
 
 
 
@@ -163,7 +161,7 @@ public class RequestFormFragment extends Fragment {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 // Toast.makeText(getBaseContext(), value, Toast.LENGTH_SHORT).show();
                 selectedId_time_recent = radioGroup.getCheckedRadioButtonId();
-             System.out.println("radio_group_1"+selectedId_time_recent);
+                System.out.println("radio_group_1"+selectedId_time_recent);
                 radioButton1 = (RadioButton)view.findViewById(selectedId_time_recent);
                 //System.out.println("valueee"+radioButton.getText());
                 time_period=String.valueOf(radioButton1.getText());
@@ -188,6 +186,10 @@ public class RequestFormFragment extends Fragment {
     private void RequestForm() {
 
 
+
+
+        System.out.println("purchase"+time_period);
+        System.out.println("finance"+time_period);
 
         try {
             newOrderBeansList.clear();
