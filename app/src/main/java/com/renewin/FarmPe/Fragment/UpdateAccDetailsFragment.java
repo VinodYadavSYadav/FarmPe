@@ -19,6 +19,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -87,6 +88,8 @@ public class UpdateAccDetailsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.update_acc_details, container, false);
+        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+
         recyclerView=view.findViewById(R.id.recycler_what_looking);
         toolbar_title=view.findViewById(R.id.toolbar_title);
         back_feed=view.findViewById(R.id.back_feed);
@@ -98,6 +101,7 @@ public class UpdateAccDetailsFragment extends Fragment {
         update_btn=view.findViewById(R.id.update_btn);
 
         sessionManager = new SessionManager(getActivity());
+
         prod_img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -106,6 +110,8 @@ public class UpdateAccDetailsFragment extends Fragment {
                 startActivityForResult(photoPickerIntent, RESULT_LOAD_IMG);
             }
         });
+
+
 
 
 
@@ -138,6 +144,8 @@ public class UpdateAccDetailsFragment extends Fragment {
 */
 
 
+
+
         final InputFilter EMOJI_FILTER = new InputFilter() {
 
             @Override
@@ -153,7 +161,13 @@ public class UpdateAccDetailsFragment extends Fragment {
                 return null;
             }
         };
-     //   pass.setFilters(new InputFilter[]{EMOJI_FILTER});
+
+
+        profile_mail.setFilters(new InputFilter[]{EMOJI_FILTER});
+
+        profile_passwrd.setFilters(new InputFilter[]{EMOJI_FILTER});
+
+        profile_name.setFilters(new InputFilter[]{EMOJI_FILTER});
 
 
 
@@ -173,7 +187,27 @@ public class UpdateAccDetailsFragment extends Fragment {
 
 
 
-       // pass.setFilters(new InputFilter[] {filter,new InputFilter.LengthFilter(12) });
+        profile_passwrd.setFilters(new InputFilter[] {filter,new InputFilter.LengthFilter(12) });
+
+
+
+        final InputFilter filter1 = new InputFilter() {
+            public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
+                //String filtered = "";
+                for (int i = start; i < end; i++) {
+                    char character = source.charAt(i);
+                    if (Character.isWhitespace(source.charAt(i))) {
+                        if (dstart == 0)
+                            return "";
+                    }
+                }
+                return null;
+            }
+
+        };
+
+
+        profile_name.setFilters(new InputFilter[] {filter1,new InputFilter.LengthFilter(30) });
 
 
         try{

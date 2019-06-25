@@ -68,7 +68,6 @@ public class ChangeLanguageFragment extends Fragment {
         Langauges();
 
 
-
         view.setFocusableInTouchMode(true);
         view.requestFocus();
         view.setOnKeyListener(new View.OnKeyListener() {

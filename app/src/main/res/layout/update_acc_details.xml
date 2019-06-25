@@ -58,10 +58,11 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_weight="20"
         android:gravity="center"
+        android:layout_gravity="center"
         android:orientation="vertical"
         >
 
@@ -73,7 +74,9 @@
             app:civ_border_color="#ffffff"
             app:civ_border_width="0.1dp" />
 
+
     </LinearLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -134,6 +137,7 @@
                     android:layout_height="wrap_content"
                     android:hint="Enter Your Name"
                     android:textSize="14dp"
+                    android:maxLength="30"
                     android:textColorHint="@color/dot_dark_screen1"
                     android:digits="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ"
                     android:layout_gravity="center_vertical"
@@ -355,6 +359,8 @@
                     android:layout_height="wrap_content"
                     android:hint="Password"
                     android:textSize="14dp"
+                    android:maxLength="12"
+                    android:inputType="textCapSentences|textAutoCorrect|textMultiLine|textShortMessage"
                     android:background="@drawable/border_transperent"
                     android:layout_gravity="center_vertical"
                     android:textColor="#000"
