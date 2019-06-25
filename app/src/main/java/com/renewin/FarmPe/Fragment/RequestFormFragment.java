@@ -51,6 +51,7 @@ public class RequestFormFragment extends Fragment {
     String time_period;
     boolean finance;
     String finance_status;
+     String request_for;
     public static int selectedId,selectedId_time_recent;
     int finance_selected,time_selected;
     public static RequestFormFragment newInstance() {
@@ -121,10 +122,14 @@ public class RequestFormFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 System.out.println("hrrrjjkj");
+                //request_for="request_string";
+                Bundle bundle1=new Bundle();
+                bundle1.putString("request_for","request_add");
                     selectedFragment = Add_New_Address_Fragment.newInstance();
                     FragmentTransaction transaction = (getActivity()).getSupportFragmentManager().beginTransaction();
                     transaction.replace(R.id.frame_layout, selectedFragment);
                     transaction.addToBackStack("request");
+                    selectedFragment.setArguments(bundle1);
                     transaction.commit();
             }
         });

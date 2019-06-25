@@ -833,21 +833,33 @@ public class Add_New_Address_Fragment extends Fragment {
                         status= result.getString("Status");
                         message = result.getString("Message");
 
-                        bundle.putString("add_id",status);
-                        bundle.putString("city",city.getText().toString());
-                        bundle.putInt("selected_id2",selected_id);
-                        bundle.putInt("selected_id_time1",selected_id_time);
+
                       /*  bundle.putString("add_id",status);
                         bundle.putString("add_id",status);*/
 
                         if(!(status.equals("0"))){
                             Toast.makeText(getActivity(),message,Toast.LENGTH_SHORT).show();
+                           Bundle bundle1=getArguments();
+                            if (bundle1.getString("request_for")==null){
+                                selectedFragment = You_Address_Fragment.newInstance();
+                                FragmentTransaction transaction = (getActivity()).getSupportFragmentManager().beginTransaction();
+                                transaction.replace(R.id.frame_layout, selectedFragment);
+                                transaction.commit();
+                            }else{
+                                bundle.putString("add_id",status);
+                                bundle.putString("city",city.getText().toString());
+                                bundle.putInt("selected_id2",selected_id);
+                                bundle.putInt("selected_id_time1",selected_id_time);
+                                selectedFragment = RequestFormFragment.newInstance();
+                                FragmentTransaction transaction = (getActivity()).getSupportFragmentManager().beginTransaction();
+                                transaction.replace(R.id.frame_layout, selectedFragment);
+                                transaction.commit();
+                                selectedFragment.setArguments(bundle);
+                            }
 
-                            selectedFragment = You_Address_Fragment.newInstance();
-                            FragmentTransaction transaction = (getActivity()).getSupportFragmentManager().beginTransaction();
-                            transaction.replace(R.id.frame_layout, selectedFragment);
-                            transaction.commit();
-                            selectedFragment.setArguments(bundle);
+
+
+
 
 
                                 /* selectedFragment = RequestFormFragment.newInstance();
