@@ -56,7 +56,7 @@ public class SignUpActivity extends AppCompatActivity {
     JSONArray lng_array;
     Activity activity;
     JSONObject lngObject;
-    public static String mob_toast,passwrd_toast;
+    public static String mob_toast,passwrd_toast,minimum_character_toast,enter_all_toast;
 
     List<SelectLanguageBean>language_arrayBeanList = new ArrayList<>();
     SelectLanguageBean selectLanguageBean;
@@ -147,6 +147,8 @@ public class SignUpActivity extends AppCompatActivity {
 
                 passwrd_toast = lngObject.getString("Enterpasswordoflength6characters");
                 mob_toast = lngObject.getString("Entervalidmobilenumber");
+                minimum_character_toast = lngObject.getString("NameShouldContainMinimum2Characters");
+                enter_all_toast = lngObject.getString("EnterAllTextFields");
 
 
 
@@ -400,7 +402,7 @@ public class SignUpActivity extends AppCompatActivity {
                 if (name_text.equals("") && mobile_no.getText().toString().equals("") && password_text.equals("")) {
                     System.out.println("enterrrr");
                     Snackbar snackbar = Snackbar
-                            .make(linearLayout, "Enter All Text Fields", Snackbar.LENGTH_LONG);
+                            .make(linearLayout, enter_all_toast, Snackbar.LENGTH_LONG);
                     View snackbarView = snackbar.getView();
                     TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
                     tv.setTextColor(Color.RED);
@@ -416,7 +418,7 @@ public class SignUpActivity extends AppCompatActivity {
                     snackbar.show();
                 } else if (name_text.length() < 2) {
                     Snackbar snackbar = Snackbar
-                            .make(linearLayout, "Name should contain minimum 2 characters", Snackbar.LENGTH_LONG);
+                            .make(linearLayout, minimum_character_toast, Snackbar.LENGTH_LONG);
                     View snackbarView = snackbar.getView();
                     TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
                     tv.setTextColor(Color.RED);

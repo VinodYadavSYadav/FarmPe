@@ -127,6 +127,9 @@ public class SelectLanguageAdapter_SignUP extends RecyclerView.Adapter<SelectLan
 
                         SignUpActivity.mob_toast = result.getString("Entervalidmobilenumber");
                         SignUpActivity.passwrd_toast = result.getString("Enterpasswordoflength6characters");
+                        SignUpActivity.minimum_character_toast = result.getString("NameShouldContainMinimum2Characters");
+                        SignUpActivity.enter_all_toast = result.getString("EnterAllTextFields");
+
 
 
 
