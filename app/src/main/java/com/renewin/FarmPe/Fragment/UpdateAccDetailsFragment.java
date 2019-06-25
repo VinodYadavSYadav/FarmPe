@@ -16,9 +16,11 @@ import android.text.InputFilter;
 import android.text.Spanned;
 import android.util.Base64;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -59,6 +61,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 import static android.app.Activity.RESULT_OK;
 import static android.content.Context.MODE_PRIVATE;
 import static com.android.volley.VolleyLog.TAG;
+import static com.android.volley.VolleyLog.e;
 import static com.renewin.FarmPe.Volly_class.Crop_Post.progressDialog;
 
 public class UpdateAccDetailsFragment extends Fragment {
@@ -87,6 +90,8 @@ public class UpdateAccDetailsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.update_acc_details, container, false);
+        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+
         recyclerView=view.findViewById(R.id.recycler_what_looking);
         toolbar_title=view.findViewById(R.id.toolbar_title);
         back_feed=view.findViewById(R.id.back_feed);
@@ -97,7 +102,11 @@ public class UpdateAccDetailsFragment extends Fragment {
         prod_img=view.findViewById(R.id.prod_img);
         update_btn=view.findViewById(R.id.update_btn);
 
+
         sessionManager = new SessionManager(getActivity());
+
+
+
         prod_img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -106,6 +115,8 @@ public class UpdateAccDetailsFragment extends Fragment {
                 startActivityForResult(photoPickerIntent, RESULT_LOAD_IMG);
             }
         });
+
+
 
 
 
@@ -122,20 +133,27 @@ public class UpdateAccDetailsFragment extends Fragment {
                 transaction.commit();*/
             }
         });
-       /* view.setFocusableInTouchMode(true);
-        view.requestFocus(View.FOCUS_UP);
+
+        view.setFocusableInTouchMode(true);
+        view.requestFocus();
         view.setOnKeyListener(new View.OnKeyListener() {
+
+
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
-                if( keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP) {
+                if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP) {
                     FragmentManager fm = getActivity().getSupportFragmentManager();
-                    fm.popBackStack("brand", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                    fm.popBackStack("setting", FragmentManager.POP_BACK_STACK_INCLUSIVE);
 
+
+                    return true;
                 }
                 return false;
             }
         });
-*/
+
+
+
 
 
         final InputFilter EMOJI_FILTER = new InputFilter() {
@@ -153,11 +171,17 @@ public class UpdateAccDetailsFragment extends Fragment {
                 return null;
             }
         };
-     //   pass.setFilters(new InputFilter[]{EMOJI_FILTER});
+
+
+        profile_mail.setFilters(new InputFilter[]{EMOJI_FILTER});
+
+        profile_passwrd.setFilters(new InputFilter[]{EMOJI_FILTER});
+
+       // profile_name.setFilters(new InputFilter[]{EMOJI_FILTER});
 
 
 
-        final InputFilter filter = new InputFilter() {
+        final InputFilter filter1 = new InputFilter() {
             public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
                 String filtered = "";
                 for (int i = start; i < end; i++) {
@@ -173,7 +197,27 @@ public class UpdateAccDetailsFragment extends Fragment {
 
 
 
-       // pass.setFilters(new InputFilter[] {filter,new InputFilter.LengthFilter(12) });
+        profile_passwrd.setFilters(new InputFilter[] {filter1,new InputFilter.LengthFilter(12) });
+
+
+
+//        final InputFilter filter11 = new InputFilter() {
+//            public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
+//                //String filtered = "";
+//                for (int i = start; i < end; i++) {
+//                    char character = source.charAt(i);
+//                    if (Character.isWhitespace(source.charAt(i))) {
+//                        if (dstart == 0)
+//                            return "";
+//                    }
+//                }
+//                return null;
+//            }
+//
+//        };
+//
+//
+//        profile_name.setFilters(new InputFilter[] {filter11,new InputFilter.LengthFilter(30) });
 
 
         try{
@@ -193,15 +237,18 @@ public class UpdateAccDetailsFragment extends Fragment {
                     try{
 
                         JSONObject jsonObject1 = result.getJSONObject("user");
-                        String ProfileName = jsonObject1.getString("FullName");
+                        String ProfileName1 = jsonObject1.getString("FullName");
+                        System.out.println("11111" + jsonObject1.getString("FullName"));
                         String ProfilePhone = jsonObject1.getString("PhoneNo");
                         String ProfileEmail = jsonObject1.getString("EmailId");
                         String ProfileImage = jsonObject1.getString("ProfilePic");
+                        System.out.println("11111" + ProfileName1);
 
 
-                        profile_name.setText(ProfileName);
+                        profile_name.setText(ProfileName1);
                         profile_phone.setText(ProfilePhone);
                         profile_mail.setText(ProfileEmail);
+
 
 
                           Glide.with(getActivity()).load(ProfileImage)
@@ -261,20 +308,21 @@ public class UpdateAccDetailsFragment extends Fragment {
     public void onActivityResult(int reqCode, int resultCode, Intent data) {
         super.onActivityResult(reqCode, resultCode, data);
         if (resultCode == RESULT_OK) {
+        Uri imageUri = data.getData();
+            final InputStream imageStream;
             try {
-                final Uri imageUri = data.getData();
-                final InputStream imageStream =getActivity().getContentResolver().openInputStream(imageUri);
-                selectedImage = BitmapFactory.decodeStream(imageStream);
+                imageStream = getActivity().getContentResolver().openInputStream(imageUri);
+
+            selectedImage = BitmapFactory.decodeStream(imageStream);
                 prod_img.setImageBitmap(selectedImage);
-
-
 
 
 
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
-                Toast.makeText(getActivity(), "Something went wrong", Toast.LENGTH_LONG).show();
             }
+
+
         }else {
             Toast.makeText(getActivity(), "You haven't picked Image",Toast.LENGTH_LONG).show();
         }
@@ -283,8 +331,15 @@ public class UpdateAccDetailsFragment extends Fragment {
 
     public byte[] getFileDataFromDrawable(Bitmap bitmap) {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 80, byteArrayOutputStream);
-        return byteArrayOutputStream.toByteArray();
+
+            bitmap.compress(Bitmap.CompressFormat.PNG, 80, byteArrayOutputStream);
+
+            return byteArrayOutputStream.toByteArray();
+
+
+
+        //System.out.println("jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj"+byteArrayOutputStream.toByteArray());
+
     }
 
     private void uploadImage(final Bitmap bitmap){
@@ -294,6 +349,7 @@ public class UpdateAccDetailsFragment extends Fragment {
                     public void onResponse(NetworkResponse response) {
                         //Toast.makeText(getActivity(), obj.getString("message"), Toast.LENGTH_SHORT).show();
                       //  String resultResponse = new String(response.data);
+                        selectedImage=null;
 
                         Toast.makeText(getActivity(), "Your Details Updated Successfully", Toast.LENGTH_SHORT).show();
                         selectedFragment = SettingFragment.newInstance();
@@ -301,35 +357,9 @@ public class UpdateAccDetailsFragment extends Fragment {
                         ft.replace(R.id.frame_layout,selectedFragment);
                         ft.commit();
 
-                   /*     try{
-                            //progressDialog.cancel();
-                            System.out.println("qqqqq"+response.data);
-
-                            JSONObject jsonObject = new JSONObject(response.data.toString());
-                            JSONObject jsonObject1 = jsonObject.getJSONObject("Response");
-                            String status = jsonObject1.getString("Status");
-
-                            if(status.equals("2")){
-
-                                Toast.makeText(getActivity(), "Your Details Updated Successfully", Toast.LENGTH_SHORT).show();
-                                selectedFragment = SettingFragment.newInstance();
-                                FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-                                ft.replace(R.id.frame_layout,selectedFragment);
-                                ft.commit();
-
-                            }else{
-
-                                Toast.makeText(getActivity(), "Your Details Not Updated Successfully", Toast.LENGTH_SHORT).show();
-
-                            }
-
-
-                        }catch (Exception e){
-                            e.printStackTrace();
-                        }
-*/
-                    }
+                           }
                 },
+
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
@@ -344,7 +374,6 @@ public class UpdateAccDetailsFragment extends Fragment {
                 Map<String, String> params = new HashMap<>();
               //  params.put("UserId",sessionManager.getRegId("userId") );
 
-
                 params.put("UserId",sessionManager.getRegId("userId"));
                 params.put("FullName",profile_name.getText().toString());
                 params.put("PhoneNo",profile_phone.getText().toString());
@@ -353,11 +382,21 @@ public class UpdateAccDetailsFragment extends Fragment {
                 Log.e(TAG,"afaeftagsparams"+params);
                 return params;
             }
+
+
             @Override
             protected Map<String, VolleyMultipartRequest.DataPart> getByteData() {
                 Map<String, DataPart> params = new HashMap<>();
                 long imagename = System.currentTimeMillis();
-                params.put("File", new DataPart(imagename + ".png", getFileDataFromDrawable(bitmap)));
+               // params.put("File", new DataPart(imagename + ".png", getFileDataFromDrawable(bitmap)));
+                Log.e(TAG,"Imhereafaeftagsparams Imhereafaeftagsparams "+bitmap);
+
+                if (bitmap==null){
+
+                }else {
+                    params.put("File", new DataPart(imagename + ".png", getFileDataFromDrawable(bitmap)));
+
+                }
                 Log.e(TAG,"Imhereafaeftagsparams "+params);
                 return params;
             }
@@ -367,106 +406,8 @@ public class UpdateAccDetailsFragment extends Fragment {
     }
 
 
-    private String encodeToBase64(Bitmap image) {
-
-        Bitmap immage = image;
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        immage.compress(Bitmap.CompressFormat.PNG, 100, baos);
-        byte[] b = baos.toByteArray();
-        String imageEncoded = Base64.encodeToString(b, Base64.DEFAULT);
-
-        Log.d("Image Log:", imageEncoded);
-        return imageEncoded;
-    }
-
-    private void update_profile_details() {
-
-        try{
-
-            StringRequest postRequest = new StringRequest(Request.Method.POST, "http://3.17.6.57:8686/api/Auth/UpdateUserProfile",
-
-                    new Response.Listener<String>()
-
-                    {
-                        @Override
-                        public void onResponse(String response) {
-
-                            final ProgressDialog progressDialog = ProgressDialog.show(getActivity(), "",
-                                    null, true);
-                            progressDialog.setContentView(R.layout.small_progress_bar);
-                            progressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-
-                            Log.d("Response", response);
-
-                            try{
-                                //progressDialog.cancel();
-
-                                JSONObject jsonObject = new JSONObject(response);
-
-                                JSONObject jsonObject1 = jsonObject.getJSONObject("Response");
-                                String status = jsonObject1.getString("Status");
-
-                                if(status.equals("2")){
-
-                                    Toast.makeText(getActivity(), "Your Details Updated Successfully", Toast.LENGTH_SHORT).show();
-                                    selectedFragment = SettingFragment.newInstance();
-                                    FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-                                    ft.replace(R.id.frame_layout,selectedFragment);
-                                    ft.commit();
-
-                                }else{
-
-                                    Toast.makeText(getActivity(), "Your Details Not Updated Successfully", Toast.LENGTH_SHORT).show();
-
-                                }
 
 
-                            }catch (Exception e){
-                                e.printStackTrace();
-                            }
-
-                        }
-                    },
-                    new Response.ErrorListener()
-                    {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            progressDialog.cancel();
-                            // error
-                        }
-                    }
-            ) {
-                @Override
-                protected Map<String, String> getParams()
-                {
-                    Map<String, String>  params = new HashMap<String, String>();
-
-                    params.put("UserId",sessionManager.getRegId("userId"));
-                    params.put("FullName",profile_name.getText().toString());
-                    params.put("PhoneNo",profile_phone.getText().toString());
-                    params.put("EmailId",profile_mail.getText().toString());
-                    params.put("Password",profile_passwrd.getText().toString());
-
-                    return params;
-                }
-            };
-
-            VolleySingletonQuee.getInstance(getActivity()).addToRequestQueue(postRequest);
-
-//            StringRequest stringRequest=new StringRequest(new VoleyJsonObjectCallback() {
-//                @Override
-//                public void onSuccessResponse(JSONObject result) {
-//
-//                }
-//            })
-
-
-
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-
-    }
 
 
 }

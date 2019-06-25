@@ -81,7 +81,7 @@ public class LandingPageActivity extends AppCompatActivity {
 
         Window window = activity.getWindow();
         window.setStatusBarColor(ContextCompat.getColor(activity,R.color.colorPrimaryDark));
-        LandingPageActivity.this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+        LandingPageActivity.this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 
 
 
