@@ -53,7 +53,7 @@
             android:textColor="#fff"
             android:layout_gravity="center"
             android:layout_marginBottom="15dp"
-            android:id="@+id/toolbar_title" />
+            android:id="@+id/lang_title" />
 
           </android.support.v7.widget.Toolbar>
 

@@ -498,7 +498,6 @@ public class LoginActivity extends AppCompatActivity {
 
                         sessionManager.saveLanguage(result.toString());
 
-
                         String log_login = result.getString("Login");
                         String log_mobile = result.getString("DigitMobileNumber");
                         String log_password = result.getString("Password");

@@ -36,26 +36,38 @@ public class ChangeLanguageFragment extends Fragment {
     SessionManager sessionManager;
     boolean doubleBackToExitPressedOnce = false;
     LinearLayout back_feed;
+    public static   JSONObject lngObject;
 
-    TextView editText;
+    TextView lang_title;
     private Context context;
+
+
+
+
 
     public static ChangeLanguageFragment newInstance() {
         ChangeLanguageFragment fragment = new ChangeLanguageFragment();
         return fragment;
     }
 
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.select_language_layout, container, false);
         back_feed=view.findViewById(R.id.back_feed);
+        lang_title=view.findViewById(R.id.lang_title);
         recyclerView =view.findViewById(R.id.recycler_view1);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         mAdapter = new SelectLanguageAdapter(getActivity(), newOrderBeansList);
+
+
+        sessionManager = new SessionManager(getActivity());
         recyclerView.setAdapter(mAdapter);
         Langauges();
+
 
 
 
@@ -78,6 +90,18 @@ public class ChangeLanguageFragment extends Fragment {
         });
 
 
+
+        try {
+            lngObject = new JSONObject(sessionManager.getRegId("language"));
+
+            lang_title.setText(lngObject.getString("ChangeLanguage"));
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
         back_feed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -87,6 +111,10 @@ public class ChangeLanguageFragment extends Fragment {
 
             }
         });
+
+
+
+
 
         return view;
     }
