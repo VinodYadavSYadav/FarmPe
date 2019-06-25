@@ -128,7 +128,7 @@ public class FarmsHomePageFragment extends Fragment {
     }
     private void FarmsList() {
 
-       /* try {
+        try {
             newOrderBeansList.clear();
 
             JSONObject userRequestjsonObject = new JSONObject();
@@ -183,7 +183,7 @@ public class FarmsHomePageFragment extends Fragment {
             });
         } catch (Exception e) {
             e.printStackTrace();
-        }*/
+        }
 
     }
 

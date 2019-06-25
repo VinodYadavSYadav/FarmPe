@@ -9,7 +9,6 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -91,7 +90,7 @@ public class You_Address_Fragment extends Fragment {
 
 
 
-        view.setFocusableInTouchMode(true);
+       /* view.setFocusableInTouchMode(true);
         view.requestFocus();
         view.setOnKeyListener(new View.OnKeyListener() {
 
@@ -100,12 +99,12 @@ public class You_Address_Fragment extends Fragment {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP) {
                     FragmentManager fm = getActivity().getSupportFragmentManager();
-                    fm.popBackStack ("setting", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                    fm.popBackStack ("you_c", FragmentManager.POP_BACK_STACK_INCLUSIVE);
                     return true;
                 }
                 return false;
             }
-        });
+        });*/
 
 
 
@@ -122,14 +121,11 @@ public class You_Address_Fragment extends Fragment {
         add_new_address.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               // address="your_address";
-                Bundle bundle = new Bundle();
-                bundle.putString("navigation_from", "yu_ads_frg");
+                address="your_address";
                 selectedFragment = Add_New_Address_Fragment.newInstance();
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.frame_layout, selectedFragment);
-                selectedFragment.setArguments(bundle);
-                transaction.addToBackStack("yu_ads_frg");
+                transaction.addToBackStack("addresss");
                 transaction.commit();
 
             }
@@ -227,7 +223,7 @@ public class You_Address_Fragment extends Fragment {
 
 
 
-        gettingAddress("Home");
+       // gettingAddress("Home");
 
 
         return view;
@@ -261,7 +257,7 @@ public class You_Address_Fragment extends Fragment {
                         }
 
                         item_list = String.valueOf(new_address_beanArrayList.size());
-                        address_list.setText(item_list + " Addresses  are added in " + pickUPFrom);
+                        address_list.setText(item_list + " Addresses are added in " + pickUPFrom);
 
 
                         mAdapter.notifyDataSetChanged();

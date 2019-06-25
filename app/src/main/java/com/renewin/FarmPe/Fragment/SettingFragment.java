@@ -19,7 +19,6 @@ import android.widget.TextView;
 import com.renewin.FarmPe.Bean.FarmsImageBean;
 import com.renewin.FarmPe.R;
 import com.renewin.FarmPe.SessionManager;
-import com.renewin.FarmPe.Utils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -170,7 +169,7 @@ public class SettingFragment extends Fragment {
                final Dialog dialog = new Dialog(getContext());
                dialog.setContentView(R.layout.logout_layout);
                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-               dialog.setCancelable(true);
+               dialog.setCancelable(false);
 
 
                no1 =  dialog.findViewById(R.id.no_1);
@@ -276,13 +275,9 @@ public class SettingFragment extends Fragment {
         notification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Bundle bundle = new Bundle();
-                bundle.putString("navigation_from", "setting");
                 selectedFragment = NotificationFragment.newInstance();
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.frame_layout, selectedFragment);
-                selectedFragment.setArguments(bundle);
                 transaction.addToBackStack("setting");
                 transaction.commit();
             }
@@ -290,11 +285,13 @@ public class SettingFragment extends Fragment {
         your_address.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Bundle bundle = new Bundle();
+                bundle.putString("navigation_from", "you_c");
                 selectedFragment = You_Address_Fragment.newInstance();
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.frame_layout, selectedFragment);
-                transaction.addToBackStack("setting");
+                selectedFragment.setArguments(bundle);
+                transaction.addToBackStack("you_c");
                 transaction.commit();
 
 

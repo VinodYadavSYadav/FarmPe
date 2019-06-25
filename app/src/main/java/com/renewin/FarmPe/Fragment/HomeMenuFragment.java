@@ -111,7 +111,7 @@ Fragment selectedFragment;
 //        phone_no.setText(sessionManager.getRegId("phone"));
 
         drawer = (DrawerLayout)view.findViewById(R.id.drawer_layout);
-
+        
 
         System.out.println("lajfdhsjkd");
 
@@ -168,13 +168,10 @@ Fragment selectedFragment;
         notification_bell.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Bundle bundle = new Bundle();
-                bundle.putString("navigation_from", "home");
                 selectedFragment = NotificationFragment.newInstance();
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.frame_layout, selectedFragment);
-                selectedFragment.setArguments(bundle);
-                transaction.addToBackStack("home");
+                transaction.addToBackStack("looking");
                 transaction.commit();
             }
         });
