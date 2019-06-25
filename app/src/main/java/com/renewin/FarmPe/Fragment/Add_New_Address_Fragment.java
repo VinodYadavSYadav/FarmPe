@@ -106,12 +106,12 @@ public class Add_New_Address_Fragment extends Fragment {
         village = view.findViewById(R.id.village_1);
 
 
-    /*   selected_id=RequestFormFragment.selectedId;
-        selected_id_time=RequestFormFragment.selectedId_time_recent;*/
+       selected_id=RequestFormFragment.selectedId;
+        selected_id_time=RequestFormFragment.selectedId_time_recent;
 
-        System.out.println("selecteddddd_iddd"+selected_id_time);
+      //  System.out.println("selecteddddd_iddd"+selected_id_time);
 
-            name.setText(getArguments().getString("Addr_name"));
+            /*name.setText(getArguments().getString("Addr_name"));
             mobile.setText(getArguments().getString("Addr_mobile"));
             pincode_no.setText(getArguments().getString("Addr_pincode"));
             house_numb.setText(getArguments().getString("Addr_Houseno"));
@@ -125,7 +125,7 @@ public class Add_New_Address_Fragment extends Fragment {
             taluk.setText(getArguments().getString("Addr_taluk"));
             hobli.setText(getArguments().getString("Addr_hobli"));
             village.setText(getArguments().getString("Addr_village"));
-            select_address.setText(getArguments().getString("Addr_pickup_from"));
+            select_address.setText(getArguments().getString("Addr_pickup_from"));*/
 
 //
 //        InputFilter filter = new InputFilter() {

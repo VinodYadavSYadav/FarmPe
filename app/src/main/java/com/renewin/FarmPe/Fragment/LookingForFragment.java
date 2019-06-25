@@ -107,7 +107,7 @@ public class LookingForFragment extends Fragment {
                             String name=jsonObject2.getString("Name");
                             String city=jsonObject2.getString("City");
                             String state=jsonObject2.getString("State");
-                            String hp_range=jsonObject2.getString("HorsePowerRange");
+                            String hp_range=jsonObject1.getString("HorsePowerRange");
 
                             if (city.equals("")){
                                  location="Bangalore"+", "+state;
