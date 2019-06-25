@@ -8,10 +8,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.renewin.FarmPe.Bean.FarmsImageBean;
 import com.renewin.FarmPe.R;
 import com.renewin.FarmPe.SessionManager;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,8 +27,8 @@ public class NotificationSettingFragment extends Fragment {
     LinearLayout back_feed,logout_layout;
     Fragment selectedFragment;
     SessionManager sessionManager;
-
-
+    TextView notificatn_set,accountinfo;
+    JSONObject lngObject;
     public static NotificationSettingFragment newInstance() {
         NotificationSettingFragment fragment = new NotificationSettingFragment();
         return fragment;
@@ -35,6 +39,8 @@ public class NotificationSettingFragment extends Fragment {
         View view = inflater.inflate(R.layout.noti_setting_layout, container, false);
         back_feed=view.findViewById(R.id.back_feed);
         logout_layout=view.findViewById(R.id.logout_layout);
+        accountinfo=view.findViewById(R.id.actninfo);
+        notificatn_set=view.findViewById(R.id.toolbar_title);
 
         sessionManager = new SessionManager(getActivity());
 
@@ -59,6 +65,14 @@ public class NotificationSettingFragment extends Fragment {
             }
         });
 */
+
+        try {
+            lngObject = new JSONObject(sessionManager.getRegId("language"));
+            notificatn_set.setText(lngObject.getString("NotificationSetting"));
+            accountinfo.setText(lngObject.getString("AccountInfo"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
 
 

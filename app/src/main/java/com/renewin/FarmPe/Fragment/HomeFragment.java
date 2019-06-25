@@ -1,6 +1,4 @@
-
 package com.renewin.FarmPe.Fragment;
-
 import android.Manifest;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -36,7 +34,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -68,33 +65,25 @@ import com.renewin.FarmPe.SessionManager;
 import com.renewin.FarmPe.Urls;
 import com.renewin.FarmPe.Volly_class.Login_post;
 import com.renewin.FarmPe.Volly_class.VoleyJsonObjectCallback;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.math.BigDecimal;
 import java.text.Format;
 import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-
 import static com.renewin.FarmPe.Activity.LandingPageActivity.mBottomSheetBehavior6;
-
-
+//9035426660
 public class HomeFragment extends Fragment implements OnMapReadyCallback, View.OnClickListener, NavigationView.OnNavigationItemSelectedListener{
-
-
     private TileOverlay mMoonTiles;
-
     public static final int REQ_CD = 1;
     Fragment selectedFragment = null;
     public static ClusterManager<Person> mClusterManager;
     LocationManager locationManager;
     public static IconGenerator mIconGenerator;
     private IconGenerator mIconGenerator1;
-
     public static ImageView mImageView;
     LinearLayout linearLayout,main_layout;
     public static GoogleMap mMap;
@@ -113,38 +102,28 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
     public static ImageView  list;
     boolean fragloaded= false;
     FloatingActionButton fab,fab2;
-
     int mDimension;
     int zoom;
-
     Context mContext ;
     List<Double> lat = new ArrayList<Double>();
     List<Double> lng = new ArrayList<Double>();
-
     public  String city,id,userid;
     public  int farmerId;
     public static double city_lat;
     public static double city_lng;
     public static DrawerLayout drawer;
-
-
-
     public static HomeFragment newInstance() {
         HomeFragment fragment = new HomeFragment();
         return fragment;
     }
-
-
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.home_map_layout, container, false);
-
         SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
         mContext=getActivity();
         getActivity().getWindow().setStatusBarColor(Color.TRANSPARENT);
-
         fab=view.findViewById(R.id.fab);
         fab2=view.findViewById(R.id.grid);
         linearLayout=view.findViewById(R.id.main_layout);
@@ -161,34 +140,25 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
         drawer = (DrawerLayout)view.findViewById(R.id.drawer_layout);
    //     account = view.findViewById(R.id.account);
         Configuration config = new Configuration();
-
         // farming.setTextColor(Color.parseColor("#000000"));
         System.out.println("maoppppp");
-
-
         sessionManager = new SessionManager(getActivity());
         userid=sessionManager.getRegId("userId");
-
         view.setFocusableInTouchMode(true);
         view.requestFocus();
         view.setOnKeyListener(new View.OnKeyListener() {
-
-
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP) {
-
                     selectedFragment = HomeMenuFragment.newInstance();
                     FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                     transaction.replace(R.id.frame_layout, selectedFragment);
                     transaction.commit();
-
                     return true;
                 }
                 return false;
             }
         });
-
         fab2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -208,80 +178,49 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
                 transaction.commit();
             }
         });
-
-
-
         if(Build.VERSION.SDK_INT>Build.VERSION_CODES.JELLY_BEAN){
             getContext().createConfigurationContext(config);
         }else { //deprecated
             getResources().updateConfiguration(config, getResources().getDisplayMetrics());
         }
-
         mIconGenerator = new IconGenerator(getActivity().getApplicationContext());
         mIconGenerator1 = new IconGenerator(getActivity().getApplicationContext());
-
         fab.setOnClickListener(this);
-
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(getActivity());
-
-
-
         return view;
     }
-
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-
         // intialize cluster manager
         mClusterManager = new ClusterManager<>(getActivity(), mMap);
         if (!fragloaded)
         CropsList();
-
         mLocationRequest = new LocationRequest();
         mLocationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
-
         // add items to manager
-
         // for showing details relate dto marker
         mMap.setOnInfoWindowClickListener(mClusterManager);
         mMap.setOnMarkerClickListener(mClusterManager);
-
         // used for setting image for marker
         mClusterManager.setRenderer(new RenderClusterInfoWindow(getActivity(),mMap, mClusterManager));
         System.out.println("sizeeeee"+mClusterManager.getMarkerCollection());
         /*for (int i = 0; i < lat.size(); i++) {
-
-
             mClusterManager.addItem(new Person(lat.get(i), lng.get(i), "", "",""));et
-
-
         }*/
-
         // notify() set
         //   mClusterManager.cluster();
-
-
-
         location_permission();
-
         fragloaded=true;
     }
-
-
-
-
     LocationCallback mLocationCallback = new LocationCallback(){
         @Override
         public void onLocationResult(LocationResult locationResult) {
             for (Location location : locationResult.getLocations()) {
                 Log.i("MapsActivity", "Location: " + location.getLatitude() + " " + location.getLongitude());
                 mLastLocation = location;
-
                 city_lat= location.getLatitude();
                 city_lng= location.getLongitude();
-
-
                 if (mCurrLocationMarker != null) {
                     mCurrLocationMarker.remove();
                 }
@@ -291,16 +230,11 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
                             location.getLatitude(),
                             location.getLongitude(),
                             1);
-
                     String address = addresses.get(0).getAddressLine(0); // If any additional address line present than only, check with max available address lines by getMaxAddressLineInde:@)
                     city = addresses.get(0).getLocality();
                     String state = addresses.get(0).getAdminArea();
-
-
                 }catch (Exception e){
                 }
-
-
 /*main_layout.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
@@ -310,9 +244,6 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
         }
     }
 });*/
-
-
-
                 mClusterManager.setOnClusterItemClickListener(new ClusterManager.OnClusterItemClickListener<Person>() {
                     @Override
                     public boolean onClusterItemClick(final Person person) {
@@ -375,8 +306,6 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
 
     };
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
-
-
     @Override
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
         switch (requestCode) {
@@ -390,7 +319,6 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
                     if (ContextCompat.checkSelfPermission(getActivity(),
                             Manifest.permission.ACCESS_FINE_LOCATION)
                             == PackageManager.PERMISSION_GRANTED) {
-
                         mFusedLocationClient.requestLocationUpdates(mLocationRequest, mLocationCallback, Looper.myLooper());
                         mMap.setMyLocationEnabled(true);
                         mMap.getUiSettings().setMyLocationButtonEnabled(false);
@@ -413,35 +341,24 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
     }
 
     private void CropsList() {
-
         try {
-
             JSONObject userRequestjsonObject = new JSONObject();
             // userRequestjsonObject.put("CreatedBy", "111");
-
-
             JSONObject postjsonObject = new JSONObject();
             // postjsonObject.put("objCropDetails", userRequestjsonObject);
-
             final LatLngBounds.Builder builder = new LatLngBounds.Builder();
-
-
-
             System.out.println("postObj"+postjsonObject.toString());
-
             Login_post.login_posting(getActivity(), Urls.GetAllCrops,userRequestjsonObject,new VoleyJsonObjectCallback() {
                 @Override
                 public void onSuccessResponse(JSONObject result) {
                     System.out.println("cropsresult"+result);
                     JSONArray cropsListArray=null;
                     try {
-
                         cropsListArray=result.getJSONArray("Crops");
-                        System.out.println("e     e e ddd"+cropsListArray.length());
+                        System.out.println("eeeddd"+cropsListArray.length());
                         for (int i=0;i<cropsListArray.length();i++){
                             JSONObject jsonObject1=cropsListArray.getJSONObject(i);
                             String location=jsonObject1.getString("PickupLocation");
-
                             String cropName=jsonObject1.getString("CropName");
                             System.out.println("crop_name"+cropName);
                             String crop_variety=jsonObject1.getString("Variety");
@@ -457,13 +374,10 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
                             String  latts=jsonObject1.getString("Latitude");
                             String langgs=jsonObject1.getString("Longitude");
                             if(!latts.equals("") | !langgs.equals("")) {
-
                                 Double latt = Double.parseDouble(latts);
                                 Double langg = Double.parseDouble(langgs);
-
                                 lat.add(latt);
                                 lng.add(langg);
-
                                 System.out.println("sizeeee"+lat.size());
                                 //Double.parseDouble(jsonObject1.getString("Latitude"))
                                 builder.include(new LatLng(latt, langg));
@@ -471,9 +385,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
                                         langg,
                                         cropName, location, crop_quantity, crop_uom, UserName, crop_price, id, farmerId,image_crop));
                             }
-
                         }
-
                         LatLngBounds bounds = builder.build();
                         mClusterManager.cluster();
                         mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds,100));
@@ -486,13 +398,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
-
-
-
-
-
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -621,53 +527,35 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
     }
 
     public class RenderClusterInfoWindow extends DefaultClusterRenderer<Person> {
-
-
         RenderClusterInfoWindow(Context context, GoogleMap map, ClusterManager<Person> clusterManager) {
             super(context, map, clusterManager);
-
             View multiProfile = getLayoutInflater().inflate(R.layout.multi_profile, null);
             mIconGenerator.setContentView(multiProfile);
-
             mImageView = new ImageView(getActivity().getApplicationContext());
             mDimension = (int) getResources().getDimension(R.dimen.bottom_navigation_icon);
             mImageView.setLayoutParams(new ViewGroup.LayoutParams(mDimension, mDimension));
             int padding = (int) getResources().getDimension(R.dimen.bottom_navigation_notification_padding);
             mImageView.setPadding(padding, padding, padding, padding);
             mIconGenerator.setContentView(mImageView);
-
             mIconGenerator.setBackground(
                     ContextCompat.getDrawable(getActivity().getApplicationContext(), R.drawable.circle_profile));
-
-
         }
-
         @Override
         protected void onClusterRendered(Cluster<Person> cluster, Marker marker) {
             super.onClusterRendered(cluster, marker);
 
         }
-
         @Override
         protected void onBeforeClusterItemRendered(Person item, MarkerOptions markerOptions) {
             markerOptions.title(item.getName());
             markerOptions.snippet("");
-
             super.onBeforeClusterItemRendered(item, markerOptions);
-
-
             mImageView.setImageResource(R.drawable.ic_farmer);
             Bitmap icon = mIconGenerator.makeIcon();
             /*mIconGenerator.setBackground(
                     ContextCompat.getDrawable(mContext, R.drawable.circle_profile));*/
             markerOptions.icon(BitmapDescriptorFactory.fromBitmap(icon));
         }
-
-
-
-
-
-
        /* @Override
         protected void onBeforeClusterRendered(Cluster<Person> cluster, MarkerOptions markerOptions) {
             mImageView.setImageResource(R.drawable.ic_farmer_map);
@@ -676,7 +564,6 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
                     ContextCompat.getDrawable(getActivity().getApplicationContext(), R.drawable.circle_profile));
             markerOptions.icon(BitmapDescriptorFactory.fromBitmap(icon));
         }*/
-
         @Override
         protected boolean shouldRenderAsCluster(Cluster cluster) {
             return cluster.getSize() > 30;

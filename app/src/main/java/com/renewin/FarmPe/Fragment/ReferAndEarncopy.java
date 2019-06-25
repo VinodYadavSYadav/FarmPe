@@ -21,6 +21,7 @@ import com.renewin.FarmPe.Urls;
 import com.renewin.FarmPe.Volly_class.Crop_Post;
 import com.renewin.FarmPe.Volly_class.VoleyJsonObjectCallback;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 public class ReferAndEarncopy extends Fragment {
@@ -34,9 +35,10 @@ public class ReferAndEarncopy extends Fragment {
     String packageName;
     SessionManager sessionManager;
 
+    JSONObject lngObject;
     public static String refer_code;
 
-    TextView editText, wallet_balance,referal_code;
+    TextView editText, wallet_balance,referal_code,copyhereurltxt,getscratchtxt,winuptxt,wallet_blnctxtt,referearntxt;
     private Context context;
 
     public static ReferAndEarncopy newInstance() {
@@ -50,9 +52,12 @@ public class ReferAndEarncopy extends Fragment {
         back_feed=view.findViewById(R.id.back_feed);
         wallet_balance=view.findViewById(R.id.wallet_blnc);
         referal_code=view.findViewById(R.id.refer_code);
-
+        copyhereurltxt=view.findViewById(R.id.copyhereurl);
+        getscratchtxt=view.findViewById(R.id.getscratch);
+        winuptxt=view.findViewById(R.id.winup);
+        wallet_blnctxtt=view.findViewById(R.id.wallet_blnctxt);
+        referearntxt=view.findViewById(R.id.toolbar_title);
         sessionManager=new SessionManager(getActivity());
-
        /* view.setFocusableInTouchMode(true);
         view.requestFocus();
         view.setOnKeyListener(new View.OnKeyListener() {
@@ -163,6 +168,16 @@ public class ReferAndEarncopy extends Fragment {
             e.printStackTrace();
         }
 
+        try {
+            lngObject = new JSONObject(sessionManager.getRegId("language"));
+            referearntxt.setText(lngObject.getString("Refer_Earn"));
+            winuptxt.setText(lngObject.getString("Winupto1000"));
+            getscratchtxt.setText(lngObject.getString("Getascratchcardmin100cashbackonyourfriendsfirstappsharing"));
+            copyhereurltxt.setText(lngObject.getString("ClickHeretoCopyURL"));
+            wallet_blnctxtt.setText(lngObject.getString("Wallet"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
 
 

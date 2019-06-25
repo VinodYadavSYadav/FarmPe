@@ -18,20 +18,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CategoryFragment extends Fragment {
-
     RecyclerView recyclerView;
     CategoryAdapter mAdapter;
     Fragment selectedFragment;
     private List<CategoryBean> newOrderBeansList = new ArrayList<>();
     boolean fragloaded= false;
     LinearLayout back_feed;
-
     public static CategoryFragment newInstance() {
         CategoryFragment fragment = new CategoryFragment();
         return fragment;
     }
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.category_recy, container, false);
@@ -106,14 +102,9 @@ public class CategoryFragment extends Fragment {
         newOrderBeansList.add(bean11);
         CategoryBean bean12=new CategoryBean("Vegitables","12");
         newOrderBeansList.add(bean12);
-
         mAdapter = new CategoryAdapter(getActivity(),newOrderBeansList);
         recyclerView.setAdapter(mAdapter);
         return view;
-
     }
-
-
-
     }
 

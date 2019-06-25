@@ -67,13 +67,12 @@ public class UpdateAccDetailsFragment extends Fragment {
     public static RecyclerView recyclerView;
     public static AddHpAdapter farmadapter;
     SessionManager sessionManager;
-    TextView toolbar_title;
-    LinearLayout update_btn;
+    TextView toolbar_title,update_btn;
     private static int RESULT_LOAD_IMG = 1;
     Bitmap selectedImage,imageB;
     EditText profile_name,profile_phone,profile_mail,profile_passwrd;
     CircleImageView prod_img;
-
+    JSONObject lngObject;
 
     LinearLayout back_feed;
     Fragment selectedFragment;
@@ -240,6 +239,17 @@ public class UpdateAccDetailsFragment extends Fragment {
 
             }
         });
+        try {
+            lngObject = new JSONObject(sessionManager.getRegId("language"));
+            toolbar_title.setText(lngObject.getString("UpdateYourAccountDetails"));
+            update_btn.setText(lngObject.getString("Update"));
+
+
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
 
       /*  SharedPreferences myPrefrence = getActivity().getPreferences(MODE_PRIVATE);

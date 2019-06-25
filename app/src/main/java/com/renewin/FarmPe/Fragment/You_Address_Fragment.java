@@ -28,6 +28,7 @@ import com.renewin.FarmPe.Volly_class.Crop_Post;
 import com.renewin.FarmPe.Volly_class.VoleyJsonObjectCallback;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -55,8 +56,8 @@ public class You_Address_Fragment extends Fragment {
     LinearLayout back,select_add_address;
     String Id;
     ImageView b_arrow;
-
-
+TextView toolbar_titletxt;
+JSONObject lngObject;
     public static You_Address_Fragment newInstance() {
         You_Address_Fragment fragment = new You_Address_Fragment();
         return fragment;
@@ -78,6 +79,7 @@ public class You_Address_Fragment extends Fragment {
 //        street_addrss= view.findViewById(R.id.street_address1);
 //        landmrk= view.findViewById(R.id.landmark1);
         back_feed = view.findViewById(R.id.back_feed);
+        toolbar_titletxt = view.findViewById(R.id.toolbar_title);
         add_new_address=view.findViewById(R.id.new_address);
         select_add_address = view.findViewById(R.id.select_address);
         select_address_type = view.findViewById(R.id.address_type1);
@@ -220,7 +222,17 @@ public class You_Address_Fragment extends Fragment {
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(mAdapter);
+        try {
+            lngObject = new JSONObject(sessionManager.getRegId("language"));
+            toolbar_titletxt.setText(lngObject.getString("SelectYourAdress"));
+            add_new_address.setText(lngObject.getString("AddNewAddress"));
+            select_address_type.setText(lngObject.getString("Home"));
 
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
 
        // gettingAddress("Home");
