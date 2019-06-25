@@ -70,15 +70,15 @@ public class LoginActivity extends AppCompatActivity {
      public static CheckBox remember_me;
      DatabaseHelper myDb;
      TextInputLayout textInputLayout,textInputLayout_pass;
-   public static   String password,mob_toast,mobile_string,pass_toast;
+     public static   String password,mob_toast,mobile_string,pass_toast,toast_invalid;
      EditText spn_localize;
-  public static   JSONObject lngObject;
+     public static   JSONObject lngObject;
      JSONArray lng_array;
      Snackbar snackbar;
     String mob_no;
     SessionManager sessionManager;
     public static  Dialog dialog;
-   public static TextView welcome_back, createaccount, change_lang, enterPassword, forgotPassword;
+    public static TextView welcome_back, createaccount, change_lang, enterPassword, forgotPassword;
 
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -180,6 +180,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 pass_toast = lngObject.getString("EnterPassword");
                 mob_toast = lngObject.getString("EnterPhoneNo");
+                toast_invalid = lngObject.getString("InvalidCredentials");
 
 
             }
@@ -451,7 +452,7 @@ public class LoginActivity extends AppCompatActivity {
                                     } else{
 
                                         Snackbar snackbar = Snackbar
-                                                .make(coordinatorLayout, jsonObject.getString("Message"), Snackbar.LENGTH_LONG);
+                                                .make(coordinatorLayout, toast_invalid, Snackbar.LENGTH_LONG);
                                         View snackbarView = snackbar.getView();
                                         TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
                                         tv.setTextColor(Color.RED);
@@ -508,6 +509,7 @@ public class LoginActivity extends AppCompatActivity {
 
                         mob_toast = result.getString("EnterPhoneNo");
                         pass_toast = result.getString("EnterPassword");
+                        toast_invalid = result.getString("InvalidCredentials");
 
 
 
