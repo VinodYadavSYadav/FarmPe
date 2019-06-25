@@ -98,6 +98,7 @@ public class UpdateAccDetailsFragment extends Fragment {
         update_btn=view.findViewById(R.id.update_btn);
 
         sessionManager = new SessionManager(getActivity());
+
         prod_img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -106,7 +107,6 @@ public class UpdateAccDetailsFragment extends Fragment {
                 startActivityForResult(photoPickerIntent, RESULT_LOAD_IMG);
             }
         });
-
 
 
         back_feed.setOnClickListener(new View.OnClickListener() {
