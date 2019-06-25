@@ -16,6 +16,7 @@ import android.text.InputFilter;
 import android.text.Spanned;
 import android.util.Base64;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -128,20 +129,25 @@ public class UpdateAccDetailsFragment extends Fragment {
                 transaction.commit();*/
             }
         });
-       /* view.setFocusableInTouchMode(true);
-        view.requestFocus(View.FOCUS_UP);
+
+        view.setFocusableInTouchMode(true);
+        view.requestFocus();
         view.setOnKeyListener(new View.OnKeyListener() {
+
+
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
-                if( keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP) {
+                if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP) {
                     FragmentManager fm = getActivity().getSupportFragmentManager();
-                    fm.popBackStack("brand", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                    fm.popBackStack("setting", FragmentManager.POP_BACK_STACK_INCLUSIVE);
 
+
+                    return true;
                 }
                 return false;
             }
         });
-*/
+
 
 
 

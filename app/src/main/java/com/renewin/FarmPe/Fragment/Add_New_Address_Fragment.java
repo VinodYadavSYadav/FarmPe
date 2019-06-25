@@ -42,7 +42,7 @@ import java.util.Comparator;
 import java.util.List;
 
 
-public class Add_New_Address_Fragment extends Fragment {
+public class  Add_New_Address_Fragment extends Fragment {
 
     RecyclerView recyclerView;
     Sell_Location_Adapter mAdapter;
@@ -111,7 +111,7 @@ public class Add_New_Address_Fragment extends Fragment {
 
       //  System.out.println("selecteddddd_iddd"+selected_id_time);
 
-            /*name.setText(getArguments().getString("Addr_name"));
+            name.setText(getArguments().getString("Addr_name"));
             mobile.setText(getArguments().getString("Addr_mobile"));
             pincode_no.setText(getArguments().getString("Addr_pincode"));
             house_numb.setText(getArguments().getString("Addr_Houseno"));
@@ -125,7 +125,7 @@ public class Add_New_Address_Fragment extends Fragment {
             taluk.setText(getArguments().getString("Addr_taluk"));
             hobli.setText(getArguments().getString("Addr_hobli"));
             village.setText(getArguments().getString("Addr_village"));
-            select_address.setText(getArguments().getString("Addr_pickup_from"));*/
+            select_address.setText(getArguments().getString("Addr_pickup_from"));
 
 //
 //        InputFilter filter = new InputFilter() {
@@ -173,13 +173,22 @@ public class Add_New_Address_Fragment extends Fragment {
         });
 
         view.setFocusableInTouchMode(true);
-        view.requestFocus(View.FOCUS_UP);
+        view.requestFocus();
         view.setOnKeyListener(new View.OnKeyListener() {
+
+
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
-                if( keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP) {
-                    FragmentManager fm = getActivity().getSupportFragmentManager();
-                    fm.popBackStack("request", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP) {
+                    if (You_Address_Fragment.address==null) {
+                        FragmentManager fm = getActivity().getSupportFragmentManager();
+                        fm.popBackStack("request", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                    }else{
+                        FragmentManager fm = getActivity().getSupportFragmentManager();
+                        fm.popBackStack("addresss", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                    }
+
+                    return true;
                 }
                 return false;
             }
@@ -833,19 +842,22 @@ public class Add_New_Address_Fragment extends Fragment {
                         status= result.getString("Status");
                         message = result.getString("Message");
 
-
+                        bundle.putString("add_id",status);
+                        bundle.putString("city",city.getText().toString());
+                        bundle.putInt("selected_id2",selected_id);
+                        bundle.putInt("selected_id_time1",selected_id_time);
                       /*  bundle.putString("add_id",status);
                         bundle.putString("add_id",status);*/
 
                         if(!(status.equals("0"))){
                             Toast.makeText(getActivity(),message,Toast.LENGTH_SHORT).show();
 
-                            if (getArguments().getString("request_for")==null){
+                            //if (getArguments().getString("request_for")==null){
                                 selectedFragment = You_Address_Fragment.newInstance();
                                 FragmentTransaction transaction = (getActivity()).getSupportFragmentManager().beginTransaction();
                                 transaction.replace(R.id.frame_layout, selectedFragment);
                                 transaction.commit();
-                            }else{
+                           /* }else{
                                 bundle.putString("add_id",status);
                                 bundle.putString("city",city.getText().toString());
                                 bundle.putInt("selected_id2",selected_id);
@@ -855,7 +867,7 @@ public class Add_New_Address_Fragment extends Fragment {
                                 transaction.replace(R.id.frame_layout, selectedFragment);
                                 transaction.commit();
                                 selectedFragment.setArguments(bundle);
-                            }
+                            }*/
 
                            
 
