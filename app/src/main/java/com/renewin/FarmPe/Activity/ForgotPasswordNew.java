@@ -46,12 +46,14 @@ public class ForgotPasswordNew extends AppCompatActivity {
     JSONObject lngObject;
     TextInputLayout emter_pasword;
     EditText spn_localize;
-    String localize_text,toast_mobile,toast_valid_number,toast_mob_digits,toast_number_not_registered,toast_number_exceeded;
+    String localize_text,toast_mobile,toast_valid_number;
+
 
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.forgot_password);
+
 
 
         forgot_back = findViewById(R.id.back_feed);
@@ -84,9 +86,6 @@ public class ForgotPasswordNew extends AppCompatActivity {
 
             toast_mobile = lngObject.getString("EnterPhoneNo");
             toast_valid_number = lngObject.getString("ResetPassword");
-            toast_mob_digits = lngObject.getString("Pleaseenter10digitsmobilenumber");
-            toast_number_not_registered = lngObject.getString("Yournumberisnotregistered");
-            toast_number_exceeded = lngObject.getString("Youhaveexceededthelimitofresendingotp");
 
 
         } catch (JSONException e) {
@@ -130,7 +129,7 @@ public class ForgotPasswordNew extends AppCompatActivity {
                         } else if (mobileno.length() <= 9) {
                             //  mobile.setError("Please enter 10 digits mobile number");
                             Snackbar snackbar = Snackbar
-                                    .make(coordinatorLayout,toast_mob_digits, Snackbar.LENGTH_LONG);
+                                    .make(coordinatorLayout, "Please enter 10 digits mobile number", Snackbar.LENGTH_LONG);
                             //snackbar.setActionTextColor(R.color.colorAccent);
                             View snackbarView = snackbar.getView();
                             TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
@@ -157,7 +156,7 @@ public class ForgotPasswordNew extends AppCompatActivity {
 
                                             if(status==0){
                                                 Snackbar snackbar = Snackbar
-                                                        .make(coordinatorLayout, toast_number_not_registered, Snackbar.LENGTH_LONG);
+                                                        .make(coordinatorLayout, "Your number is not registered", Snackbar.LENGTH_LONG);
                                                 //snackbar.setActionTextColor(R.color.colorAccent);
                                                 View snackbarView = snackbar.getView();
                                                 TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
@@ -176,7 +175,6 @@ public class ForgotPasswordNew extends AppCompatActivity {
 
                                             else{
                                                 Toast.makeText(ForgotPasswordNew.this,Message,Toast.LENGTH_LONG).show();
-                                                System.out.println("ffffff" + Message);
                                                 Intent intent = new Intent(ForgotPasswordNew.this, Thank_U_New.class);
                                                 intent.putExtra("otp_forgot", otp);
                                                 //intent.putExtra("forgot_mob_no", forgot_mob_no);

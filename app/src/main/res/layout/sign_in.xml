@@ -3,7 +3,6 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -96,7 +95,6 @@
             android:inputType="number"
             android:maxLength="10"
             android:cursorVisible="true"
-            android:textColorHint="@color/dot_dark_screen1"
             android:background="@drawable/border_empty"
             android:textCursorDrawable="@drawable/cursor_color"
             android:padding="15dp"
@@ -125,7 +123,6 @@
             android:layout_marginTop="10dp"
             android:fontFamily="@font/segoeui"
             android:hint="Password"
-            android:textColorHint="@color/dot_dark_screen1"
             android:background="@drawable/border_empty"
             android:layout_marginHorizontal="20dp"
             android:inputType="textCapSentences|textAutoCorrect|textMultiLine|textShortMessage"

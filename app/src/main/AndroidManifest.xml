@@ -33,6 +33,7 @@
         <activity android:name="com.renewin.FarmPe.Activity.ForgotPasswordNew" />
 
 
+            />
         <activity android:name=".Activity.SelectLanguageActivity" />
         <activity android:name=".Activity.EnterOTP" />
         <activity android:name=".Activity.Thank_U_New" />

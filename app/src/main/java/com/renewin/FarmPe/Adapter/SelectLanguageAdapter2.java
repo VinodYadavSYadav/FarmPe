@@ -135,15 +135,14 @@ public class SelectLanguageAdapter2 extends RecyclerView.Adapter<SelectLanguageA
 
 
                         LoginActivity.remember_me.setText(log_remember_me);
-                           LoginActivity.log_in.setText(log_login);
-                           LoginActivity.forgot_pass.setText(log_forgot_passwrd);
-                           LoginActivity.pass.setHint(log_password);
-                           LoginActivity.welcome_back.setText(log_login);
-                           LoginActivity.createaccount.setText(log_register);
-                           LoginActivity.mobile_no.setHint(log_mobile);
-                           LoginActivity.mob_toast = result.getString("EnterPhoneNo");
-                           LoginActivity.pass_toast = result.getString("EnterPassword");
-                           LoginActivity.toast_invalid = result.getString("InvalidCredentials");
+                          LoginActivity.log_in.setText(log_login);
+                          LoginActivity.forgot_pass.setText(log_forgot_passwrd);
+                          LoginActivity.pass.setHint(log_password);
+                          LoginActivity.welcome_back.setText(log_login);
+                          LoginActivity.createaccount.setText(log_register);
+                          LoginActivity.mobile_no.setHint(log_mobile);
+                          LoginActivity.mob_toast = result.getString("EnterPhoneNo");
+                          LoginActivity.pass_toast = result.getString("EnterPassword");
 
 
 

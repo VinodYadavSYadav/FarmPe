@@ -839,8 +839,8 @@ public class Add_New_Address_Fragment extends Fragment {
 
                         if(!(status.equals("0"))){
                             Toast.makeText(getActivity(),message,Toast.LENGTH_SHORT).show();
-                           Bundle bundle1=getArguments();
-                            if (bundle1.getString("request_for")==null){
+
+                            if (getArguments().getString("request_for")==null){
                                 selectedFragment = You_Address_Fragment.newInstance();
                                 FragmentTransaction transaction = (getActivity()).getSupportFragmentManager().beginTransaction();
                                 transaction.replace(R.id.frame_layout, selectedFragment);
@@ -857,7 +857,7 @@ public class Add_New_Address_Fragment extends Fragment {
                                 selectedFragment.setArguments(bundle);
                             }
 
-
+                           
 
 
 
