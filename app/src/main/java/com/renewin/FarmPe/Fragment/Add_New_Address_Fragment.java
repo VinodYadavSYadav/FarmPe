@@ -61,9 +61,9 @@ public class Add_New_Address_Fragment extends Fragment {
     LinearLayout back_feed;
 
     JSONArray jsonArray,state_array,tal_array,hobli_array,village_array;
-     StateBean stateBean;
+    StateBean stateBean;
 
-     public static TextView add_new_address;
+    public static TextView add_new_address;
     Fragment selectedFragment = null;
 
 
@@ -106,10 +106,10 @@ public class Add_New_Address_Fragment extends Fragment {
         village = view.findViewById(R.id.village_1);
 
 
-       selected_id=RequestFormFragment.selectedId;
+        selected_id=RequestFormFragment.selectedId;
         selected_id_time=RequestFormFragment.selectedId_time_recent;
 
-      //  System.out.println("selecteddddd_iddd"+selected_id_time);
+        //  System.out.println("selecteddddd_iddd"+selected_id_time);
 
             /*name.setText(getArguments().getString("Addr_name"));
             mobile.setText(getArguments().getString("Addr_mobile"));
@@ -143,7 +143,7 @@ public class Add_New_Address_Fragment extends Fragment {
 //        };
 //
 //        name.setFilters(new InputFilter[] { filter,new InputFilter.LengthFilter(30) });
-       // confimp.setFilters(new InputFilter[] { filter ,new InputFilter.LengthFilter(12)});
+        // confimp.setFilters(new InputFilter[] { filter ,new InputFilter.LengthFilter(12)});
 
 
         linear_name = view.findViewById(R.id.linea_name1);
@@ -363,7 +363,7 @@ public class Add_New_Address_Fragment extends Fragment {
 
                 try{
 
-                  JSONObject jsonObject = new JSONObject();
+                    JSONObject jsonObject = new JSONObject();
 
                     Crop_Post.crop_posting(getActivity(), Urls.State, jsonObject, new VoleyJsonObjectCallback() {
                         @Override
@@ -443,7 +443,7 @@ public class Add_New_Address_Fragment extends Fragment {
 
 
 
-             try{
+                try{
 
                     JSONObject jsonObject = new JSONObject();
                     JSONObject post_jsonobject = new JSONObject();
@@ -543,7 +543,7 @@ public class Add_New_Address_Fragment extends Fragment {
                                 talukAdapter.notifyDataSetChanged();
                                 grade_dialog.show();
 
-                           }catch (Exception e){
+                            }catch (Exception e){
                                 e.printStackTrace();
                             }
 
@@ -577,7 +577,7 @@ public class Add_New_Address_Fragment extends Fragment {
                 layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
                 recyclerView.setLayoutManager(layoutManager);
                 recyclerView.setItemAnimator(new DefaultItemAnimator());
-                 popup_heading.setText("Hobli");
+                popup_heading.setText("Hobli");
 
                 hoblisAdapter = new HoblisAdapter( hobliBeanList,getActivity());
                 recyclerView.setAdapter(hoblisAdapter);
@@ -635,78 +635,78 @@ public class Add_New_Address_Fragment extends Fragment {
 
 
 
-             village.setOnClickListener(new View.OnClickListener() {
-              @Override
-              public void onClick(View v) {
+        village.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
 
-                  grade_dialog= new Dialog(getActivity());
-                  grade_dialog.setContentView(R.layout.select_variety_popup);
+                grade_dialog= new Dialog(getActivity());
+                grade_dialog.setContentView(R.layout.select_variety_popup);
 
-                  ImageView image = (ImageView) grade_dialog.findViewById(R.id.close_popup);
-                  TextView popup_heading = (TextView)grade_dialog.findViewById(R.id.popup_heading);
-                  RecyclerView recyclerView = grade_dialog.findViewById(R.id.recycler_view1);
+                ImageView image = (ImageView) grade_dialog.findViewById(R.id.close_popup);
+                TextView popup_heading = (TextView)grade_dialog.findViewById(R.id.popup_heading);
+                RecyclerView recyclerView = grade_dialog.findViewById(R.id.recycler_view1);
 
-                  RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
-                  recyclerView.setLayoutManager(mLayoutManager);
-                  final LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
-                  layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-                  recyclerView.setLayoutManager(layoutManager);
-                  recyclerView.setItemAnimator(new DefaultItemAnimator());
-                  villageAdapter = new VillageAdapter(villageBeanList,getActivity());
-                  recyclerView.setAdapter(villageAdapter);
+                RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
+                recyclerView.setLayoutManager(mLayoutManager);
+                final LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+                layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+                recyclerView.setLayoutManager(layoutManager);
+                recyclerView.setItemAnimator(new DefaultItemAnimator());
+                villageAdapter = new VillageAdapter(villageBeanList,getActivity());
+                recyclerView.setAdapter(villageAdapter);
 
-                  popup_heading.setText("Village");
-
-
-                  image.setOnClickListener(new View.OnClickListener() {
-                      @Override
-                      public void onClick(View v) {
-                          grade_dialog.dismiss();
-                      }
-                  });
+                popup_heading.setText("Village");
 
 
-                  try{
-                      JSONObject jsonObject = new JSONObject();
-                      JSONObject post_Object = new JSONObject();
-                      jsonObject.put("HobliId",hoblisAdapter.hobliid);
-                      post_Object.put("Villageobj",jsonObject);
-
-                      Crop_Post.crop_posting(getActivity(), Urls.Villages, post_Object, new VoleyJsonObjectCallback() {
-                          @Override
-                          public void onSuccessResponse(JSONObject result) {
-                              System.out.println("111vvv" + result);
-
-                              try{
-                                  villageBeanList.clear();
-                                  village_array = result.getJSONArray("VillageList");
-                                  for(int i = 0;i<village_array.length();i++) {
-                                      JSONObject jsonObject1 = village_array.getJSONObject(i);
-                                      stateBean = new StateBean(jsonObject1.getString("Village"), jsonObject1.getString("VillagId"));
-                                      villageBeanList.add(stateBean);
-                                  }
-
-                                  sorting(villageBeanList);
-
-                                  villageAdapter.notifyDataSetChanged();
-                                  grade_dialog.show();
+                image.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        grade_dialog.dismiss();
+                    }
+                });
 
 
-                              }catch (Exception e){
-                                  e.printStackTrace();
-                              }
+                try{
+                    JSONObject jsonObject = new JSONObject();
+                    JSONObject post_Object = new JSONObject();
+                    jsonObject.put("HobliId",hoblisAdapter.hobliid);
+                    post_Object.put("Villageobj",jsonObject);
 
-                          }
-                      });
+                    Crop_Post.crop_posting(getActivity(), Urls.Villages, post_Object, new VoleyJsonObjectCallback() {
+                        @Override
+                        public void onSuccessResponse(JSONObject result) {
+                            System.out.println("111vvv" + result);
+
+                            try{
+                                villageBeanList.clear();
+                                village_array = result.getJSONArray("VillageList");
+                                for(int i = 0;i<village_array.length();i++) {
+                                    JSONObject jsonObject1 = village_array.getJSONObject(i);
+                                    stateBean = new StateBean(jsonObject1.getString("Village"), jsonObject1.getString("VillagId"));
+                                    villageBeanList.add(stateBean);
+                                }
+
+                                sorting(villageBeanList);
+
+                                villageAdapter.notifyDataSetChanged();
+                                grade_dialog.show();
 
 
-                  }catch (Exception e){
-                      e.printStackTrace();
-                  }
+                            }catch (Exception e){
+                                e.printStackTrace();
+                            }
 
-         }
-         });
+                        }
+                    });
+
+
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+
+            }
+        });
 
 
 
@@ -720,48 +720,48 @@ public class Add_New_Address_Fragment extends Fragment {
                     Toast.makeText(getActivity(), "Select Address Type", Toast.LENGTH_SHORT).show();
 
 
-                     }else if(name.getText().toString().equals("")) {
+                }else if(name.getText().toString().equals("")) {
                     Toast.makeText(getActivity(), "Enter Name", Toast.LENGTH_SHORT).show();
 
 
 
-                    }else if(mobile.getText().toString().equals("")){
+                }else if(mobile.getText().toString().equals("")){
                     Toast.makeText(getActivity(), "Enter Mobile Number", Toast.LENGTH_SHORT).show();
 
 
-                   }else if(mobile.length()<10){
+                }else if(mobile.length()<10){
                     Toast.makeText(getActivity(), "Incorrect Mobile Number", Toast.LENGTH_SHORT).show();
 
 
-                   }else if(house_numb.getText().toString().equals("")){
+                }else if(house_numb.getText().toString().equals("")){
                     Toast.makeText(getActivity(), "Enter House No/Floor/building", Toast.LENGTH_SHORT).show();
 
 
 
-                  }else if(street_name.getText().toString().equals("")) {
+                }else if(street_name.getText().toString().equals("")) {
                     Toast.makeText(getActivity(), "Enter Street Address", Toast.LENGTH_SHORT).show();
 
 
 
-                   }else if(landmrk.getText().toString().equals("")) {
+                }else if(landmrk.getText().toString().equals("")) {
                     Toast.makeText(getActivity(), "Enter Landmark", Toast.LENGTH_SHORT).show();
 
 
-                   }else if(city.getText().toString().equals("")) {
+                }else if(city.getText().toString().equals("")) {
                     Toast.makeText(getActivity(), "Enter City", Toast.LENGTH_SHORT).show();
 
 
 
-                   }else if(pincode_no.getText().toString().equals("")) {
+                }else if(pincode_no.getText().toString().equals("")) {
                     Toast.makeText(getActivity(), "Enter Pincode", Toast.LENGTH_SHORT).show();
 
 
 
-                   }else if(pincode_no.length()<6){
+                }else if(pincode_no.length()<6){
                     Toast.makeText(getActivity(), "Enter a valid Pincode", Toast.LENGTH_SHORT).show();
 
 
-                   }else if(state.getText().toString().equals("")) {
+                }else if(state.getText().toString().equals("")) {
                     Toast.makeText(getActivity(), "Select State", Toast.LENGTH_SHORT).show();
 
 
@@ -787,7 +787,7 @@ public class Add_New_Address_Fragment extends Fragment {
 
                 }else {
 
-                   ComposeCategory();
+                    ComposeCategory();
 
                 }
 

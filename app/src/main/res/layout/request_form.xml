@@ -120,6 +120,7 @@
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:tag="Immediately"
                 android:text="Immediately"
 
                 />
@@ -127,18 +128,21 @@
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
                 android:text="1 Month"
+                android:tag="1 Month"
                 />
 
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:tag="3Months"
                 android:text="3Months"
+
                 />
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:tag="After 3 Months"
                 android:text="After 3 Months"
 
                 />
@@ -177,7 +181,6 @@
             >
 
         <RadioButton
-            android:id="@+id/finance_yes"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="30"
@@ -186,7 +189,6 @@
             />
 
         <RadioButton
-            android:id="@+id/finance_no"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="50"

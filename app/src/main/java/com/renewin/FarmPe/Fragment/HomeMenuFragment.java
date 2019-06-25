@@ -2,9 +2,11 @@
 package com.renewin.FarmPe.Fragment;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -12,6 +14,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.NestedScrollView;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,6 +24,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -108,6 +112,7 @@ Fragment selectedFragment;
 
         drawer = (DrawerLayout)view.findViewById(R.id.drawer_layout);
 
+
         System.out.println("lajfdhsjkd");
 
 
@@ -186,13 +191,7 @@ Fragment selectedFragment;
                         transaction.addToBackStack("home_menu");
                         transaction.commit();
                         drawer.closeDrawers();
-                        DashboardFragment.scrollView.post(new Runnable() {
 
-                            @Override
-                            public void run() {
-                                DashboardFragment.scrollView.fullScroll(ScrollView.FOCUS_UP);
-                            }
-                        });
 
                     }
                 });
