@@ -276,9 +276,13 @@ public class SettingFragment extends Fragment {
         notification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                Bundle bundle = new Bundle();
+                bundle.putString("navigation_from", "setting");
                 selectedFragment = NotificationFragment.newInstance();
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.frame_layout, selectedFragment);
+                selectedFragment.setArguments(bundle);
                 transaction.addToBackStack("setting");
                 transaction.commit();
             }

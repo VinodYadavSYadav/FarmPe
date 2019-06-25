@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.text.InputFilter;
+import android.text.Spanned;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -60,6 +62,45 @@ public class FeedbackFragment extends Fragment {
         submit=view.findViewById(R.id.submit);
 
         sessionManager = new SessionManager(getActivity());
+
+        final InputFilter filter1 = new InputFilter() {
+            public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
+                //String filtered = "";
+                for (int i = start; i < end; i++) {
+                    char character = source.charAt(i);
+                    if (Character.isWhitespace(source.charAt(i))) {
+                        if (dstart == 0)
+                            return "";
+                    }
+                }
+                return null;
+            }
+
+        };
+
+        feedback_title.setFilters(new InputFilter[] {filter1,new InputFilter.LengthFilter(15) });
+        feedback_description.setFilters(new InputFilter[] {filter1,new InputFilter.LengthFilter(100) });
+
+
+        final InputFilter EMOJI_FILTER = new InputFilter() {
+
+            @Override
+
+            public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
+
+                for (int index = start; index < end; index++) {
+                    int type = Character.getType(source.charAt(index));
+                    if (type == Character.SURROGATE) {
+                        return "";
+                    }
+                }
+                return null;
+            }
+        };
+        feedback_title.setFilters(new InputFilter[]{EMOJI_FILTER});
+        feedback_description.setFilters(new InputFilter[]{EMOJI_FILTER});
+
+
 
         view.setFocusableInTouchMode(true);
         view.requestFocus();

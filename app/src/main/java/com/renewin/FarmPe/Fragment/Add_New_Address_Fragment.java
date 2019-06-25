@@ -8,6 +8,8 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.InputFilter;
+import android.text.Spanned;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -109,9 +111,9 @@ public class  Add_New_Address_Fragment extends Fragment {
        selected_id=RequestFormFragment.selectedId;
         selected_id_time=RequestFormFragment.selectedId_time_recent;
 
-      //  System.out.println("selecteddddd_iddd"+selected_id_time);
+            System.out.println("selecteddddd_iddd"+selected_id_time);
 
-            name.setText(getArguments().getString("Addr_name"));
+            /*name.setText(getArguments().getString("Addr_name"));
             mobile.setText(getArguments().getString("Addr_mobile"));
             pincode_no.setText(getArguments().getString("Addr_pincode"));
             house_numb.setText(getArguments().getString("Addr_Houseno"));
@@ -125,26 +127,53 @@ public class  Add_New_Address_Fragment extends Fragment {
             taluk.setText(getArguments().getString("Addr_taluk"));
             hobli.setText(getArguments().getString("Addr_hobli"));
             village.setText(getArguments().getString("Addr_village"));
-            select_address.setText(getArguments().getString("Addr_pickup_from"));
+            select_address.setText(getArguments().getString("Addr_pickup_from"));*/
 
-//
-//        InputFilter filter = new InputFilter() {
-//            public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
-//                String filtered = "";
-//                for (int i = start; i < end; i++) {
-//                    char character = source.charAt(i);
-//                    if (!Character.isWhitespace(character)) {
-//                        filtered += character;
-//                    }
-//                }
-//                return filtered;
-//            }
-//
-//        };
-//
-//        name.setFilters(new InputFilter[] { filter,new InputFilter.LengthFilter(30) });
-       // confimp.setFilters(new InputFilter[] { filter ,new InputFilter.LengthFilter(12)});
 
+
+        final InputFilter filter1 = new InputFilter() {
+            public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
+                //String filtered = "";
+                for (int i = start; i < end; i++) {
+                    char character = source.charAt(i);
+                    if (Character.isWhitespace(source.charAt(i))) {
+                        if (dstart == 0)
+                            return "";
+                    }
+                }
+                return null;
+            }
+
+        };
+
+        name.setFilters(new InputFilter[] {filter1,new InputFilter.LengthFilter(15) });
+       house_numb.setFilters(new InputFilter[] {filter1,new InputFilter.LengthFilter(100) });
+       street_name.setFilters(new InputFilter[] {filter1,new InputFilter.LengthFilter(30) });
+       landmrk.setFilters(new InputFilter[] {filter1,new InputFilter.LengthFilter(30) });
+       city.setFilters(new InputFilter[] {filter1,new InputFilter.LengthFilter(20) });
+
+
+
+        final InputFilter EMOJI_FILTER = new InputFilter() {
+
+            @Override
+
+            public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
+
+                for (int index = start; index < end; index++) {
+                    int type = Character.getType(source.charAt(index));
+                    if (type == Character.SURROGATE) {
+                        return "";
+                    }
+                }
+                return null;
+            }
+        };
+      name.setFilters(new InputFilter[]{EMOJI_FILTER});
+      house_numb.setFilters(new InputFilter[]{EMOJI_FILTER});
+      street_name.setFilters(new InputFilter[]{EMOJI_FILTER});
+      landmrk.setFilters(new InputFilter[]{EMOJI_FILTER});
+      city.setFilters(new InputFilter[]{EMOJI_FILTER});
 
         linear_name = view.findViewById(R.id.linea_name1);
         linear_mobile = view.findViewById(R.id.linea_mobile1);
@@ -180,12 +209,18 @@ public class  Add_New_Address_Fragment extends Fragment {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP) {
-                    if (You_Address_Fragment.address==null) {
+                    if (getArguments().getString("navigation_from").equals("yu_ads_frg")) {
+
+                        FragmentManager fm = getActivity().getSupportFragmentManager();
+                        fm.popBackStack("yu_ads_frg", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                    }else if(getArguments().getString("ADD_NAV").equals("your_add")){
+
+                        FragmentManager fm = getActivity().getSupportFragmentManager();
+                        fm.popBackStack("your_add", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+
+                    } else{
                         FragmentManager fm = getActivity().getSupportFragmentManager();
                         fm.popBackStack("request", FragmentManager.POP_BACK_STACK_INCLUSIVE);
-                    }else{
-                        FragmentManager fm = getActivity().getSupportFragmentManager();
-                        fm.popBackStack("addresss", FragmentManager.POP_BACK_STACK_INCLUSIVE);
                     }
 
                     return true;

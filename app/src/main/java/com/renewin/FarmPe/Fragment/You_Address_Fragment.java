@@ -122,11 +122,14 @@ public class You_Address_Fragment extends Fragment {
         add_new_address.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                address="your_address";
+               // address="your_address";
+                Bundle bundle = new Bundle();
+                bundle.putString("navigation_from", "yu_ads_frg");
                 selectedFragment = Add_New_Address_Fragment.newInstance();
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.frame_layout, selectedFragment);
-                transaction.addToBackStack("addresss");
+                selectedFragment.setArguments(bundle);
+                transaction.addToBackStack("yu_ads_frg");
                 transaction.commit();
 
             }

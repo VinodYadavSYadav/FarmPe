@@ -156,7 +156,7 @@
             android:id="@+id/submit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Click Here to Copy URL"
+            android:text="Submit"
             android:textSize="16dp"
             android:textColor="#fff"
             android:background="@drawable/border_filled_pink"
