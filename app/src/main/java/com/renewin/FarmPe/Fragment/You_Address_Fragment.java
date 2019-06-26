@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -48,7 +49,8 @@ public class You_Address_Fragment extends Fragment {
     public static String navigation_all;
    public static String item_list,address;
 
-
+    TextView toolbar_titletxt;
+    JSONObject lngObject;
 
     ArrayList<Add_New_Address_Bean> new_address_beanArrayList = new ArrayList<>();
     Add_New_Address_Bean add_new_address_bean;
@@ -56,8 +58,8 @@ public class You_Address_Fragment extends Fragment {
     LinearLayout back,select_add_address;
     String Id;
     ImageView b_arrow;
-TextView toolbar_titletxt;
-JSONObject lngObject;
+
+
     public static You_Address_Fragment newInstance() {
         You_Address_Fragment fragment = new You_Address_Fragment();
         return fragment;
@@ -79,20 +81,19 @@ JSONObject lngObject;
 //        street_addrss= view.findViewById(R.id.street_address1);
 //        landmrk= view.findViewById(R.id.landmark1);
         back_feed = view.findViewById(R.id.back_feed);
-        toolbar_titletxt = view.findViewById(R.id.toolbar_title);
         add_new_address=view.findViewById(R.id.new_address);
         select_add_address = view.findViewById(R.id.select_address);
         select_address_type = view.findViewById(R.id.address_type1);
         recyclerView = view.findViewById(R.id.recycler_2);
         address_list= view.findViewById(R.id.items);
-
+        toolbar_titletxt = view.findViewById(R.id.toolbar_title);
 
 
         sessionManager = new SessionManager(getActivity());
 
 
 
-       /* view.setFocusableInTouchMode(true);
+        view.setFocusableInTouchMode(true);
         view.requestFocus();
         view.setOnKeyListener(new View.OnKeyListener() {
 
@@ -101,12 +102,12 @@ JSONObject lngObject;
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP) {
                     FragmentManager fm = getActivity().getSupportFragmentManager();
-                    fm.popBackStack ("you_c", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                    fm.popBackStack ("setting", FragmentManager.POP_BACK_STACK_INCLUSIVE);
                     return true;
                 }
                 return false;
             }
-        });*/
+        });
 
 
 
@@ -123,11 +124,14 @@ JSONObject lngObject;
         add_new_address.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                address="your_address";
+               // address="your_address";
+                Bundle bundle = new Bundle();
+                bundle.putString("navigation_from", "yu_ads_frg");
                 selectedFragment = Add_New_Address_Fragment.newInstance();
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.frame_layout, selectedFragment);
-                transaction.addToBackStack("addresss");
+                selectedFragment.setArguments(bundle);
+                transaction.addToBackStack("yu_ads_frg");
                 transaction.commit();
 
             }
@@ -161,7 +165,7 @@ JSONObject lngObject;
                     @Override
                     public void onClick(View view) {
                         select_address_type.setText(home.getText().toString());
-                       // gettingAddress("Home");
+                        gettingAddress("Home");
                         dialog.dismiss();
                     }
                 });
@@ -171,7 +175,7 @@ JSONObject lngObject;
                     public void onClick(View view) {
                         select_address_type.setText(barn.getText().toString());
                         dialog.dismiss();
-                     //   gettingAddress("Barn");
+                       gettingAddress("Barn");
 
                     }
                 });
@@ -181,7 +185,7 @@ JSONObject lngObject;
                     public void onClick(View view) {
                         select_address_type.setText(ware_house.getText().toString());
                         dialog.dismiss();
-                      //  gettingAddress("Warehouse");
+                        gettingAddress("Warehouse");
 
 
                     }
@@ -193,7 +197,7 @@ JSONObject lngObject;
                         select_address_type.setText(farm.getText().toString());
                         dialog.dismiss();
 
-                      //  gettingAddress("Farm");
+                        gettingAddress("Farm");
 
 
                     }
@@ -205,7 +209,7 @@ JSONObject lngObject;
                     public void onClick(View view) {
                         select_address_type.setText(others.getText().toString());
                         dialog.dismiss();
-                       // gettingAddress("Others");
+                       gettingAddress("Others");
 
 
                     }
@@ -222,20 +226,20 @@ JSONObject lngObject;
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(mAdapter);
+
+        gettingAddress("Home");
+
         try {
             lngObject = new JSONObject(sessionManager.getRegId("language"));
             toolbar_titletxt.setText(lngObject.getString("SelectYourAdress"));
             add_new_address.setText(lngObject.getString("AddNewAddress"));
             select_address_type.setText(lngObject.getString("Home"));
 
-
-
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
 
-       // gettingAddress("Home");
 
 
         return view;
@@ -269,7 +273,7 @@ JSONObject lngObject;
                         }
 
                         item_list = String.valueOf(new_address_beanArrayList.size());
-                        address_list.setText(item_list + " Addresses are added in " + pickUPFrom);
+                        address_list.setText(item_list + " Addresses  are added in " + pickUPFrom);
 
 
                         mAdapter.notifyDataSetChanged();

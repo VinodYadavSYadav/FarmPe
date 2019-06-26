@@ -29,6 +29,7 @@ import com.renewin.FarmPe.Utils;
 import com.renewin.FarmPe.Volly_class.Crop_Post;
 import com.renewin.FarmPe.Volly_class.VoleyJsonObjectCallback;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Date;
@@ -48,7 +49,7 @@ public class You_Address_Adapter extends RecyclerView.Adapter<You_Address_Adapte
     public static String add_id;
 
     public static CardView cardView;
-
+JSONObject lngObject;
 
 
     public You_Address_Adapter(List<Add_New_Address_Bean> moviesList, Activity activity) {
@@ -155,12 +156,13 @@ public class You_Address_Adapter extends RecyclerView.Adapter<You_Address_Adapte
                 bundle.putString("Addr_village",products.getAdd_village());
                 bundle.putString("Addr_pickup_from",products.getAdd_pickup_frm());
 
-                bundle.putString("ADD_NAV","your_add");
+                bundle.putString("navigation_from","your_add");
 
                 selectedFragment = Add_New_Address_Fragment.newInstance();
                 FragmentTransaction transaction = ((FragmentActivity) activity).getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.frame_layout_home, selectedFragment);
+                transaction.replace(R.id.frame_layout, selectedFragment);
                 selectedFragment.setArguments(bundle);
+                transaction.addToBackStack("your_add");
                 transaction.commit();
 
             }
@@ -298,6 +300,14 @@ public class You_Address_Adapter extends RecyclerView.Adapter<You_Address_Adapte
 
             }
         });
+
+        try {
+            lngObject = new JSONObject(sessionManager.getRegId("language"));
+           holder.edit_1.setText(lngObject.getString("Edit"));
+            holder.delete_1.setText(lngObject.getString("Delete"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
 
     }
