@@ -133,19 +133,13 @@ public class AddModelFragment extends Fragment {
                         System.out.println("e     e e ddd"+cropsListArray.length());
                         for (int i=0;i<cropsListArray.length();i++){
                             JSONObject jsonObject1=cropsListArray.getJSONObject(i);
-
                             String model=jsonObject1.getString("Model");
                             System.out.println("madels"+model);
                             String image=jsonObject1.getString("ModelImage");
-
                             String id=jsonObject1.getString("Id");
                             System.out.println("madelslistt"+newOrderBeansList.size());
-
                            AddTractorBean crops = new AddTractorBean(R.drawable.tractor_green, model,id);
                             newOrderBeansList.add(crops);
-
-
-
                           /*  if(!latts.equals("") | !langgs.equals("")) {
 
                                 CropListBean crops = new CropListBean(cropName, crop_variety, location, crop_grade,

@@ -68,7 +68,7 @@ public class SelectLanguageActivity extends AppCompatActivity {
             newOrderBeansList.clear();
             JSONObject userRequestjsonObject = new JSONObject();
             JSONObject postjsonObject = new JSONObject();
-            userRequestjsonObject.put("TalukId", 5495);
+            userRequestjsonObject.put("TalukId",5495);
             postjsonObject.putOpt("Hobliobj", userRequestjsonObject);
             Login_post.login_posting(SelectLanguageActivity.this, Urls.Languages,postjsonObject,new VoleyJsonObjectCallback() {
                 @Override
@@ -91,14 +91,10 @@ public class SelectLanguageActivity extends AppCompatActivity {
                     }
                 }
             });
-
-
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
-
     @Override
     public void onBackPressed() {
         //super.onBackPressed();

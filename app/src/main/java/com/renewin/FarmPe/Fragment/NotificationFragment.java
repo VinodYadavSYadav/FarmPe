@@ -18,6 +18,10 @@ import com.renewin.FarmPe.Adapter.NotificationAdapter;
 import com.renewin.FarmPe.Bean.FarmsImageBean;
 import com.renewin.FarmPe.Bean.NotificationBean;
 import com.renewin.FarmPe.R;
+import com.renewin.FarmPe.SessionManager;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +34,9 @@ public class NotificationFragment extends Fragment {
     TextView toolbar_title;
     LinearLayout back_feed;
     Fragment selectedFragment;
+    SessionManager sessionManager;
 
+    JSONObject lngObject;
 
     public static NotificationFragment newInstance() {
         NotificationFragment fragment = new NotificationFragment();
@@ -41,10 +47,10 @@ public class NotificationFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.notification_recy, container, false);
         recyclerView=view.findViewById(R.id.recycler_noti);
-        //toolbar_title=view.findViewById(R.id.toolbar_title);
+      toolbar_title=view.findViewById(R.id.toolbar_title);
         back_feed=view.findViewById(R.id.back_feed);
 
-
+        sessionManager = new SessionManager(getActivity());
         back_feed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,7 +80,12 @@ public class NotificationFragment extends Fragment {
 
         farmadapter=new NotificationAdapter(getActivity(),newOrderBeansList);
         recyclerView.setAdapter(farmadapter);
-
+        try {
+            lngObject = new JSONObject(sessionManager.getRegId("language"));
+            toolbar_title.setText(lngObject.getString("Notifications"));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
         return view;
     }
 

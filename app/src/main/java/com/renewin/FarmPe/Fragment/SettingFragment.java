@@ -4,7 +4,6 @@ import android.app.Dialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -28,16 +27,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SettingFragment extends Fragment {
-
     public static List<FarmsImageBean> newOrderBeansList = new ArrayList<>();
     public static RecyclerView recyclerView;
-    LinearLayout back_feed,logout_layout,noti_setting,refer_earn,feedback,change_lang,policy,notification,acc_info,your_address;
+    LinearLayout back_feed,logout_layout,noti_setting,refer_earn,feedback,change_lang,policy,acc_info,your_address;
     Fragment selectedFragment;
     TextView notificatn,change_language,your_addresss,acc_info1,refer_ern,feedbk,help_1,abt_frmpe,polic_1,logot,setting_tittle;
     SessionManager sessionManager;
-
     JSONObject lngObject;
-
     public static SettingFragment newInstance() {
         SettingFragment fragment = new SettingFragment();
         return fragment;
@@ -54,7 +50,6 @@ public class SettingFragment extends Fragment {
         change_lang=view.findViewById(R.id.change_lang);
         policy=view.findViewById(R.id.policy);
         setting_tittle=view.findViewById(R.id.setting_tittle);
-        notification=view.findViewById(R.id.notification);
         acc_info=view.findViewById(R.id.acc_info);
         your_address=view.findViewById(R.id.ur_address);
 
@@ -164,16 +159,26 @@ public class SettingFragment extends Fragment {
        logout_layout.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
-               final TextView yes1,no1;
+               final TextView yes1,no1,text_desctxt,popup_headingtxt;
                final LinearLayout close_layout;
                System.out.println("aaaaaaaaaaaa");
                final Dialog dialog = new Dialog(getContext());
                dialog.setContentView(R.layout.logout_layout);
+               text_desctxt =  dialog.findViewById(R.id.text_desc);
                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                dialog.setCancelable(false);
-
-
+               yes1 =  dialog.findViewById(R.id.yes_1);
                no1 =  dialog.findViewById(R.id.no_1);
+               popup_headingtxt =  dialog.findViewById(R.id.popup_heading);
+               try {
+                   lngObject = new JSONObject(sessionManager.getRegId("language"));
+                   text_desctxt.setText(lngObject.getString("AreyousureyouwanttoLogout"));
+                   yes1.setText(lngObject.getString("Confirm"));
+                   no1.setText(lngObject.getString("Cancel"));
+                   popup_headingtxt.setText(lngObject.getString("Logout"));
+               } catch (JSONException e) {
+                   e.printStackTrace();
+               }
                close_layout =  dialog.findViewById(R.id.close_layout);
                no1.setOnClickListener(new View.OnClickListener() {
 
@@ -189,15 +194,11 @@ public class SettingFragment extends Fragment {
                        dialog.dismiss();
                    }
                });
-
-               yes1 =  dialog.findViewById(R.id.yes_1);
                yes1.setOnClickListener(new View.OnClickListener() {
-
                    @Override
                    public void onClick(View v) {
                        sessionManager.logoutUser();
                        getActivity().finish();
-
                        dialog.dismiss();
                    }
                });
@@ -207,31 +208,24 @@ public class SettingFragment extends Fragment {
 
            }
        });
-        abt_frmpe.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int color=0;
-                color = Color.RED;
-                Snackbar snackbar = Snackbar.make(getView(), "Coming Soon", Snackbar.LENGTH_LONG);
-                View sbView = snackbar.getView();
-                TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
-                textView.setTextColor(color);
-                snackbar.show();
-
-            }
-        });
-
         help_1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int color=0;
-                color = Color.RED;
-                Snackbar snackbar = Snackbar.make(getView(), "Coming Soon", Snackbar.LENGTH_LONG);
-                View sbView = snackbar.getView();
-                TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
-                textView.setTextColor(color);
-                snackbar.show();
-
+                selectedFragment = HelpandSupportFragment.newInstance();
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.frame_layout, selectedFragment);
+                transaction.addToBackStack("setting");
+                transaction.commit();
+            }
+        });
+        abt_frmpe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectedFragment = AboutfarmpeFragment.newInstance();
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.frame_layout, selectedFragment);
+                transaction.addToBackStack("setting");
+                transaction.commit();
             }
         });
         acc_info.setOnClickListener(new View.OnClickListener() {
@@ -244,7 +238,6 @@ public class SettingFragment extends Fragment {
                 transaction.commit();
             }
         });
-
        noti_setting.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
@@ -265,7 +258,6 @@ public class SettingFragment extends Fragment {
                 transaction.commit();
             }
         });
-
         feedback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -276,7 +268,6 @@ public class SettingFragment extends Fragment {
                 transaction.commit();
             }
         });
-
         change_lang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -287,22 +278,10 @@ public class SettingFragment extends Fragment {
                 transaction.commit();
             }
         });
-
         policy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 selectedFragment = PrivacyPolicyFragment.newInstance();
-                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.frame_layout, selectedFragment);
-                transaction.addToBackStack("setting");
-                transaction.commit();
-            }
-        });
-
-        notification.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                selectedFragment = NotificationFragment.newInstance();
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.frame_layout, selectedFragment);
                 transaction.addToBackStack("setting");
@@ -320,14 +299,8 @@ public class SettingFragment extends Fragment {
                 selectedFragment.setArguments(bundle);
                 transaction.addToBackStack("you_c");
                 transaction.commit();
-
-
             }
         });
-
-
-
-
         return view;
     }
 
