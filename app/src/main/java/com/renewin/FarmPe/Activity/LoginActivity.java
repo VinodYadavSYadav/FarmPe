@@ -70,7 +70,7 @@ public class LoginActivity extends AppCompatActivity {
      public static CheckBox remember_me;
      DatabaseHelper myDb;
      TextInputLayout textInputLayout,textInputLayout_pass;
-     public static   String password,mob_toast,mobile_string,pass_toast,toast_invalid;
+     public static  String password,mob_toast,mobile_string,pass_toast,toast_invalid,toast_click_back;
      EditText spn_localize;
      public static   JSONObject lngObject;
      JSONArray lng_array;
@@ -78,7 +78,7 @@ public class LoginActivity extends AppCompatActivity {
     String mob_no;
     SessionManager sessionManager;
     public static  Dialog dialog;
-    public static TextView welcome_back, createaccount, change_lang, enterPassword, forgotPassword;
+    public static TextView welcome_back, createaccount, change_lang,farmPe_title ,enterPassword, forgotPassword;
 
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -97,6 +97,7 @@ public class LoginActivity extends AppCompatActivity {
         log_in = findViewById(R.id.login_button);
         // setLocale("kn");
         forgot_pass =findViewById(R.id.forgot_pass_login);
+        farmPe_title =findViewById(R.id.farmPe_title);
         mobile_no = findViewById(R.id.mob_no);
         pass = findViewById(R.id.pass);
         //back_xlogin = view.findViewById(R.id.arrow_layout);
@@ -176,11 +177,13 @@ public class LoginActivity extends AppCompatActivity {
                 log_in.setText(lngObject.getString("Login"));
                 welcome_back.setText(lngObject.getString("Login"));
                 createaccount.setText(lngObject.getString("Register"));
+                farmPe_title.setText(lngObject.getString("FarmPe"));
 
 
                 pass_toast = lngObject.getString("EnterPassword");
                 mob_toast = lngObject.getString("EnterPhoneNo");
                 toast_invalid = lngObject.getString("InvalidCredentials");
+                toast_click_back = lngObject.getString("PleaseclickBACKagaintoexit");
 
 
             }
@@ -471,10 +474,12 @@ public class LoginActivity extends AppCompatActivity {
                         String log_remember_me = result.getString("RememberMe");
                         String log_forgot_passwrd = result.getString("ForgotPassword");
                         String log_register = result.getString("Register");
+                        String log_title = result.getString("FarmPe");
 
                         mob_toast = result.getString("EnterPhoneNo");
                         pass_toast = result.getString("EnterPassword");
                         toast_invalid = result.getString("InvalidCredentials");
+                        toast_click_back = result.getString("PleaseclickBACKagaintoexit");
 
 
 
@@ -482,6 +487,8 @@ public class LoginActivity extends AppCompatActivity {
                         remember_me.setText(log_remember_me);
                         log_in.setText(log_login);
                         mobile_no.setHint(log_mobile);
+                        farmPe_title.setText(log_title);
+
                         forgot_pass.setText(log_forgot_passwrd);
                          pass.setHint(log_password);
                         welcome_back.setText(log_login);
@@ -517,7 +524,7 @@ public class LoginActivity extends AppCompatActivity {
             System.exit(0);                    }
 
         doubleBackToExitPressedOnce = true;
-        Toast.makeText(getApplicationContext(), "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), toast_click_back, Toast.LENGTH_SHORT).show();
 
         new Handler().postDelayed(new Runnable() {
 

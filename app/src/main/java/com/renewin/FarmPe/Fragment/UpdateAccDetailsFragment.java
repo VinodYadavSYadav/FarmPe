@@ -269,9 +269,6 @@ public class UpdateAccDetailsFragment extends Fragment {
                                   .into(prod_img);
 
 
-
-
-
                     }catch (Exception e){
                         e.printStackTrace();
                     }
@@ -289,52 +286,72 @@ public class UpdateAccDetailsFragment extends Fragment {
         update_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//
-//                if(profile_name.getText().toString().equals("")&& profile_mail.getText().toString().equals("")&& profile_phone.getText().toString().equals("")&& profile_passwrd.getText().toString().equals("")){
-//
-//                    Snackbar snackbar = Snackbar
-//                            .make(linearLayout,"Update Your Required Fields", Snackbar.LENGTH_LONG);
-//                    View snackbarView = snackbar.getView();
-//                    TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-//                    tv.setTextColor(Color.RED);
-//                    snackbar.show();
-//                }else if(profile_name.length()<2) {
-//
-//                    Snackbar snackbar = Snackbar
-//                            .make(linearLayout, "Name should contain minimum 2 characters", Snackbar.LENGTH_LONG);
-//                    View snackbarView = snackbar.getView();
-//                    TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-//                    tv.setTextColor(Color.RED);
-//                    snackbar.show();
-//
-//                }else if(profile_phone.length()<10){
-//
-//
-//                    Snackbar snackbar = Snackbar
-//                            .make(linearLayout, "Enter a valid mobile number", Snackbar.LENGTH_LONG);
-//                    View snackbarView = snackbar.getView();
-//                    TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-//                    tv.setTextColor(Color.RED);
-//                    snackbar.show();
-//
-//
-//                }else if(profile_passwrd.length()<6){
-//
-//
-//                    Snackbar snackbar = Snackbar
-//                            .make(linearLayout, "Enter a password of minimum 6 characters", Snackbar.LENGTH_LONG);
-//                    View snackbarView = snackbar.getView();
-//                    TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-//                    tv.setTextColor(Color.RED);
-//                    snackbar.show();
-//                }else {
+
+            System.out.println("nnbchcxbhchvcvccgcv"+profile_passwrd.getText().toString());
+
+                if(profile_name.getText().toString().equals("")) {
+
+                    Snackbar snackbar = Snackbar
+                            .make(linearLayout, "Enter Your Name", Snackbar.LENGTH_LONG);
+                    View snackbarView = snackbar.getView();
+                    TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+                    tv.setTextColor(Color.RED);
+                    snackbar.show();
+
+
+                } else if(profile_name.getText().toString().length()<2) {
+
+                    Snackbar snackbar = Snackbar
+                            .make(linearLayout, "Name should contain minimum 2 characters", Snackbar.LENGTH_LONG);
+                    View snackbarView = snackbar.getView();
+                    TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+                    tv.setTextColor(Color.RED);
+                    snackbar.show();
+
+
+                }else if(profile_phone.getText().toString().equals("")) {
+
+
+                    Snackbar snackbar = Snackbar
+                            .make(linearLayout, "Enter Your Mobile Number", Snackbar.LENGTH_LONG);
+                    View snackbarView = snackbar.getView();
+                    TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+                    tv.setTextColor(Color.RED);
+                    snackbar.show();
+
+
+                }else if(profile_phone.getText().toString().length()<10) {
+
+
+                     Snackbar snackbar = Snackbar
+                             .make(linearLayout, "Enter a Valid Mobile Number", Snackbar.LENGTH_LONG);
+                     View snackbarView = snackbar.getView();
+                     TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+                     tv.setTextColor(Color.RED);
+                     snackbar.show();
+
+                 }else if((!profile_passwrd.getText().toString().equals("")&&(profile_passwrd.getText().toString().length()<6))){
+
+
+                         Snackbar snackbar = Snackbar
+                                 .make(linearLayout, "Enter a password of minimum 6 characters", Snackbar.LENGTH_LONG);
+                         View snackbarView = snackbar.getView();
+                         TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+                         tv.setTextColor(Color.RED);
+                         snackbar.show();
+
+
+
+                 }
+
+                 else {
 
 
                     // update_profile_details();
 
                     uploadImage(selectedImage);
 
-
+                }
             }
         });
 
