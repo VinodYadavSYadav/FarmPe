@@ -1,16 +1,20 @@
 package com.renewin.FarmPe.Fragment;
 
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.renewin.FarmPe.Adapter.AddBrandAdapter;
 import com.renewin.FarmPe.Adapter.AddModelAdapter;
+import com.renewin.FarmPe.Adapter.FarmsHomeAdapter;
 import com.renewin.FarmPe.Adapter.FarmsImageAdapter;
 import com.renewin.FarmPe.Bean.AddTractorBean;
 import com.renewin.FarmPe.Bean.FarmsImageBean;
@@ -26,9 +30,13 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.renewin.FarmPe.Fragment.HomeMenuFragment.searchView;
+
 public class LookingForFragment extends Fragment {
 
     public static List<FarmsImageBean> newOrderBeansList = new ArrayList<>();
+    private List<FarmsImageBean> searchresultAraaylist = new ArrayList<>();
+
     public static RecyclerView recyclerView;
     public static FarmsImageAdapter farmadapter;
     boolean doubleBackToExitPressedOnce = false;
@@ -71,6 +79,36 @@ public class LookingForFragment extends Fragment {
         farmadapter=new FarmsImageAdapter(getActivity(),newOrderBeansList);
         recyclerView.setAdapter(farmadapter);
 */
+
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+
+                searchView.clearFocus();
+                System.out.println("lknkknknknknknknknnk");
+             /*   if(list.contains(query)){
+                    adapter.getFilter().filter(query);
+                }else{
+                    Toast.makeText(MainActivity.this, "No Match found",Toast.LENGTH_LONG).show();
+                }*/
+                return false;
+
+            }
+
+            @RequiresApi(api = Build.VERSION_CODES.N)
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                // back_feed.setVisibility(View.GONE);
+                //title.setVisibility(View.GONE);
+                System.out.println("lknkknknknknknknknnk"+newText);
+                sorting(newText);
+
+
+                return false;
+            }
+        });
+
 
         return view;
     }
@@ -145,5 +183,23 @@ public class LookingForFragment extends Fragment {
 
     }
 
+
+    public  void sorting(String filter_text){
+
+        searchresultAraaylist.clear();
+        for (FarmsImageBean composeMsgOrderSecondBean: newOrderBeansList) {
+            System.out.println("llllllllllllllll"+composeMsgOrderSecondBean.getProd_price());
+            final String text = composeMsgOrderSecondBean.getProd_price().toLowerCase();
+
+            if (text.contains(filter_text)) {
+
+                searchresultAraaylist.add(composeMsgOrderSecondBean);
+            }
+        }
+
+        farmadapter=new FarmsImageAdapter(getActivity(),searchresultAraaylist);
+        recyclerView.setAdapter(farmadapter);
+
+    }
 
 }

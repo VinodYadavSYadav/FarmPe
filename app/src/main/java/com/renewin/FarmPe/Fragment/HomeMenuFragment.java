@@ -5,9 +5,11 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
@@ -15,6 +17,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.NestedScrollView;
+import android.support.v7.widget.SearchView;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -58,6 +61,7 @@ Fragment selectedFragment;
     RelativeLayout notification_bell;
     JSONObject lngObject;
      static boolean fragloaded;
+   public static SearchView searchView;
 
    static Fragment myloadingfragment;
     public static NestedScrollView scrollView;
@@ -75,8 +79,8 @@ Fragment selectedFragment;
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.activity_navigation_menu_home, container, false);
 
-
         menu=view.findViewById(R.id.menu);
+        searchView=view.findViewById(R.id.search1);
        //scrollView=view.findViewById(R.id.scroll);
         home = view.findViewById(R.id.home);
         phone_no = view.findViewById(R.id.phone_no);
@@ -107,6 +111,29 @@ Fragment selectedFragment;
         sessionManager = new SessionManager(getActivity());
         userid=sessionManager.getRegId("userId");
 
+       // searchView.setBackgroundColor(Color.parseColor("#1ba261"));
+
+
+        searchView.setOnSearchClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               // back_feed.setVisibility(View.GONE);
+               // title.setVisibility(View.GONE);
+                searchView.setMaxWidth(Integer.MAX_VALUE);
+                searchView.setBackgroundColor(Color.WHITE);
+            }
+        });
+
+
+        searchView.setOnCloseListener(new SearchView.OnCloseListener() {
+            @Override
+            public boolean onClose() {
+               // back_feed.setVisibility(View.VISIBLE);
+                //title.setVisibility(View.VISIBLE);
+                searchView.setBackgroundColor(Color.parseColor("#000000"));
+                return false;
+            }
+        });
 
 //        user_name_menu.setText(sessionManager.getRegId("name"));
 //        phone_no.setText(sessionManager.getRegId("phone"));
@@ -115,6 +142,17 @@ Fragment selectedFragment;
         
 
         System.out.println("lajfdhsjkd");
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -342,5 +380,8 @@ Fragment selectedFragment;
     public void onMapReady(GoogleMap googleMap) {
 
     }
+
+
+
 }
 
