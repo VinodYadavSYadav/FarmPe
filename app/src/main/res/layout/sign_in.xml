@@ -125,7 +125,7 @@
             android:hint="Password"
             android:background="@drawable/border_empty"
             android:layout_marginHorizontal="20dp"
-            android:inputType="textCapSentences|textAutoCorrect|textMultiLine|textShortMessage"
+            android:inputType="textPassword"
             android:maxLength="12"
             android:padding="15dp"
             android:textStyle="normal"

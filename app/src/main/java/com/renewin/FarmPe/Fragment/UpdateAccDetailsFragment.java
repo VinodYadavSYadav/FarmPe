@@ -1,13 +1,17 @@
 package com.renewin.FarmPe.Fragment;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -16,9 +20,13 @@ import android.text.InputFilter;
 import android.text.Spanned;
 import android.util.Base64;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -33,6 +41,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.renewin.FarmPe.Activity.SignUpActivity;
 import com.renewin.FarmPe.Adapter.AddHpAdapter;
 import com.renewin.FarmPe.Bean.FarmsImageBean;
 import com.renewin.FarmPe.R;
@@ -59,6 +68,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 import static android.app.Activity.RESULT_OK;
 import static android.content.Context.MODE_PRIVATE;
 import static com.android.volley.VolleyLog.TAG;
+import static com.android.volley.VolleyLog.e;
 import static com.renewin.FarmPe.Volly_class.Crop_Post.progressDialog;
 
 public class UpdateAccDetailsFragment extends Fragment {
@@ -68,7 +78,7 @@ public class UpdateAccDetailsFragment extends Fragment {
     public static AddHpAdapter farmadapter;
     SessionManager sessionManager;
     TextView toolbar_title;
-    LinearLayout update_btn;
+    LinearLayout update_btn,linearLayout;
     private static int RESULT_LOAD_IMG = 1;
     Bitmap selectedImage,imageB;
     EditText profile_name,profile_phone,profile_mail,profile_passwrd;
@@ -87,6 +97,8 @@ public class UpdateAccDetailsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.update_acc_details, container, false);
+        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+
         recyclerView=view.findViewById(R.id.recycler_what_looking);
         toolbar_title=view.findViewById(R.id.toolbar_title);
         back_feed=view.findViewById(R.id.back_feed);
@@ -96,8 +108,13 @@ public class UpdateAccDetailsFragment extends Fragment {
         profile_passwrd=view.findViewById(R.id.profile_passwrd);
         prod_img=view.findViewById(R.id.prod_img);
         update_btn=view.findViewById(R.id.update_btn);
+        linearLayout=view.findViewById(R.id.main_layout);
 
         sessionManager = new SessionManager(getActivity());
+
+        setupUI(linearLayout);
+
+
         prod_img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -122,20 +139,27 @@ public class UpdateAccDetailsFragment extends Fragment {
                 transaction.commit();*/
             }
         });
-       /* view.setFocusableInTouchMode(true);
-        view.requestFocus(View.FOCUS_UP);
+
+        view.setFocusableInTouchMode(true);
+        view.requestFocus();
         view.setOnKeyListener(new View.OnKeyListener() {
+
+
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
-                if( keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP) {
+                if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP) {
                     FragmentManager fm = getActivity().getSupportFragmentManager();
-                    fm.popBackStack("brand", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                    fm.popBackStack("setting", FragmentManager.POP_BACK_STACK_INCLUSIVE);
 
+
+                    return true;
                 }
                 return false;
             }
         });
-*/
+
+
+
 
 
         final InputFilter EMOJI_FILTER = new InputFilter() {
@@ -153,19 +177,25 @@ public class UpdateAccDetailsFragment extends Fragment {
                 return null;
             }
         };
-     //   pass.setFilters(new InputFilter[]{EMOJI_FILTER});
 
 
 
-        final InputFilter filter = new InputFilter() {
+        profile_passwrd.setFilters(new InputFilter[]{EMOJI_FILTER});
+
+       // profile_name.setFilters(new InputFilter[]{EMOJI_FILTER});
+
+
+
+        final InputFilter filter1 = new InputFilter() {
             public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
                 String filtered = "";
                 for (int i = start; i < end; i++) {
                     char character = source.charAt(i);
                     if (!Character.isWhitespace(character)) {
                         filtered += character;
+
+                        }
                     }
-                }
                 return filtered;
             }
 
@@ -173,7 +203,29 @@ public class UpdateAccDetailsFragment extends Fragment {
 
 
 
-       // pass.setFilters(new InputFilter[] {filter,new InputFilter.LengthFilter(12) });
+        profile_passwrd.setFilters(new InputFilter[] {filter1,new InputFilter.LengthFilter(12) });
+        profile_mail.setFilters(new InputFilter[] {filter1,new InputFilter.LengthFilter(30) });
+       // profile_name.setFilters(new InputFilter[] {filter1,new InputFilter.LengthFilter(30) });
+
+
+
+//        final InputFilter filter11 = new InputFilter() {
+//            public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
+//                //String filtered = "";
+//                for (int i = start; i < end; i++) {
+//                    char character = source.charAt(i);
+//                    if (Character.isWhitespace(source.charAt(i))) {
+//                        if (dstart == 0)
+//                            return "";
+//                    }
+//                }
+//                return null;
+//            }
+//
+//        };
+//
+//
+//        profile_name.setFilters(new InputFilter[] {filter11,new InputFilter.LengthFilter(30) });
 
 
         try{
@@ -193,21 +245,25 @@ public class UpdateAccDetailsFragment extends Fragment {
                     try{
 
                         JSONObject jsonObject1 = result.getJSONObject("user");
-                        String ProfileName = jsonObject1.getString("FullName");
+                        String ProfileName1 = jsonObject1.getString("FullName");
+                        System.out.println("11111" + jsonObject1.getString("FullName"));
                         String ProfilePhone = jsonObject1.getString("PhoneNo");
                         String ProfileEmail = jsonObject1.getString("EmailId");
                         String ProfileImage = jsonObject1.getString("ProfilePic");
+                        System.out.println("11111" + ProfileName1);
 
 
-                        profile_name.setText(ProfileName);
+
+                        profile_name.setText(ProfileName1);
                         profile_phone.setText(ProfilePhone);
                         profile_mail.setText(ProfileEmail);
+
 
 
                           Glide.with(getActivity()).load(ProfileImage)
 
                                   .thumbnail(0.5f)
-                                  .crossFade()
+                                //  .crossFade()
                                   .diskCacheStrategy(DiskCacheStrategy.ALL)
                                   .error(R.drawable.avatarmale)
                                   .into(prod_img);
@@ -229,13 +285,54 @@ public class UpdateAccDetailsFragment extends Fragment {
         }
 
 
+
         update_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+//
+//                if(profile_name.getText().toString().equals("")&& profile_mail.getText().toString().equals("")&& profile_phone.getText().toString().equals("")&& profile_passwrd.getText().toString().equals("")){
+//
+//                    Snackbar snackbar = Snackbar
+//                            .make(linearLayout,"Update Your Required Fields", Snackbar.LENGTH_LONG);
+//                    View snackbarView = snackbar.getView();
+//                    TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+//                    tv.setTextColor(Color.RED);
+//                    snackbar.show();
+//                }else if(profile_name.length()<2) {
+//
+//                    Snackbar snackbar = Snackbar
+//                            .make(linearLayout, "Name should contain minimum 2 characters", Snackbar.LENGTH_LONG);
+//                    View snackbarView = snackbar.getView();
+//                    TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+//                    tv.setTextColor(Color.RED);
+//                    snackbar.show();
+//
+//                }else if(profile_phone.length()<10){
+//
+//
+//                    Snackbar snackbar = Snackbar
+//                            .make(linearLayout, "Enter a valid mobile number", Snackbar.LENGTH_LONG);
+//                    View snackbarView = snackbar.getView();
+//                    TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+//                    tv.setTextColor(Color.RED);
+//                    snackbar.show();
+//
+//
+//                }else if(profile_passwrd.length()<6){
+//
+//
+//                    Snackbar snackbar = Snackbar
+//                            .make(linearLayout, "Enter a password of minimum 6 characters", Snackbar.LENGTH_LONG);
+//                    View snackbarView = snackbar.getView();
+//                    TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+//                    tv.setTextColor(Color.RED);
+//                    snackbar.show();
+//                }else {
 
-              // update_profile_details();
 
-                uploadImage(selectedImage);
+                    // update_profile_details();
+
+                    uploadImage(selectedImage);
 
 
             }
@@ -261,20 +358,21 @@ public class UpdateAccDetailsFragment extends Fragment {
     public void onActivityResult(int reqCode, int resultCode, Intent data) {
         super.onActivityResult(reqCode, resultCode, data);
         if (resultCode == RESULT_OK) {
+        Uri imageUri = data.getData();
+            final InputStream imageStream;
             try {
-                final Uri imageUri = data.getData();
-                final InputStream imageStream =getActivity().getContentResolver().openInputStream(imageUri);
-                selectedImage = BitmapFactory.decodeStream(imageStream);
+                imageStream = getActivity().getContentResolver().openInputStream(imageUri);
+
+            selectedImage = BitmapFactory.decodeStream(imageStream);
                 prod_img.setImageBitmap(selectedImage);
-
-
 
 
 
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
-                Toast.makeText(getActivity(), "Something went wrong", Toast.LENGTH_LONG).show();
             }
+
+
         }else {
             Toast.makeText(getActivity(), "You haven't picked Image",Toast.LENGTH_LONG).show();
         }
@@ -283,8 +381,15 @@ public class UpdateAccDetailsFragment extends Fragment {
 
     public byte[] getFileDataFromDrawable(Bitmap bitmap) {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 80, byteArrayOutputStream);
-        return byteArrayOutputStream.toByteArray();
+
+            bitmap.compress(Bitmap.CompressFormat.PNG, 80, byteArrayOutputStream);
+
+            return byteArrayOutputStream.toByteArray();
+
+
+
+        //System.out.println("jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj"+byteArrayOutputStream.toByteArray());
+
     }
 
     private void uploadImage(final Bitmap bitmap){
@@ -294,6 +399,7 @@ public class UpdateAccDetailsFragment extends Fragment {
                     public void onResponse(NetworkResponse response) {
                         //Toast.makeText(getActivity(), obj.getString("message"), Toast.LENGTH_SHORT).show();
                       //  String resultResponse = new String(response.data);
+                        selectedImage=null;
 
                         Toast.makeText(getActivity(), "Your Details Updated Successfully", Toast.LENGTH_SHORT).show();
                         selectedFragment = SettingFragment.newInstance();
@@ -301,35 +407,9 @@ public class UpdateAccDetailsFragment extends Fragment {
                         ft.replace(R.id.frame_layout,selectedFragment);
                         ft.commit();
 
-                   /*     try{
-                            //progressDialog.cancel();
-                            System.out.println("qqqqq"+response.data);
-
-                            JSONObject jsonObject = new JSONObject(response.data.toString());
-                            JSONObject jsonObject1 = jsonObject.getJSONObject("Response");
-                            String status = jsonObject1.getString("Status");
-
-                            if(status.equals("2")){
-
-                                Toast.makeText(getActivity(), "Your Details Updated Successfully", Toast.LENGTH_SHORT).show();
-                                selectedFragment = SettingFragment.newInstance();
-                                FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-                                ft.replace(R.id.frame_layout,selectedFragment);
-                                ft.commit();
-
-                            }else{
-
-                                Toast.makeText(getActivity(), "Your Details Not Updated Successfully", Toast.LENGTH_SHORT).show();
-
-                            }
-
-
-                        }catch (Exception e){
-                            e.printStackTrace();
-                        }
-*/
-                    }
+                           }
                 },
+
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
@@ -344,7 +424,6 @@ public class UpdateAccDetailsFragment extends Fragment {
                 Map<String, String> params = new HashMap<>();
               //  params.put("UserId",sessionManager.getRegId("userId") );
 
-
                 params.put("UserId",sessionManager.getRegId("userId"));
                 params.put("FullName",profile_name.getText().toString());
                 params.put("PhoneNo",profile_phone.getText().toString());
@@ -353,11 +432,21 @@ public class UpdateAccDetailsFragment extends Fragment {
                 Log.e(TAG,"afaeftagsparams"+params);
                 return params;
             }
+
+
             @Override
             protected Map<String, VolleyMultipartRequest.DataPart> getByteData() {
                 Map<String, DataPart> params = new HashMap<>();
                 long imagename = System.currentTimeMillis();
-                params.put("File", new DataPart(imagename + ".png", getFileDataFromDrawable(bitmap)));
+               // params.put("File", new DataPart(imagename + ".png", getFileDataFromDrawable(bitmap)));
+                Log.e(TAG,"Imhereafaeftagsparams Imhereafaeftagsparams "+bitmap);
+
+                if (bitmap==null){
+
+                }else {
+                    params.put("File", new DataPart(imagename + ".png", getFileDataFromDrawable(bitmap)));
+
+                }
                 Log.e(TAG,"Imhereafaeftagsparams "+params);
                 return params;
             }
@@ -467,6 +556,57 @@ public class UpdateAccDetailsFragment extends Fragment {
         }
 
     }
+
+
+
+    public void setupUI(View view) {
+
+        //Set up touch listener for non-text box views to hide keyboard.
+        if (!(view instanceof EditText)) {
+
+            view.setOnTouchListener(new View.OnTouchListener() {
+
+                public boolean onTouch(View v, MotionEvent event) {
+                    hideSoftKeyboard(getActivity());
+                    return false;
+                }
+
+            });
+        }
+
+        //If a layout container, iterate over children and seed recursion.
+        if (view instanceof ViewGroup) {
+
+            for (int i = 0; i < ((ViewGroup) view).getChildCount(); i++) {
+
+                View innerView = ((ViewGroup) view).getChildAt(i);
+
+                setupUI(innerView);
+            }
+        }
+    }
+
+    public static void hideSoftKeyboard(Activity activity) {
+        /*InputMethodManager inputMethodManager = (InputMethodManager)  activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowToken(), 0);*/
+
+        InputMethodManager inputManager = (InputMethodManager)
+                activity.getSystemService(
+                        Context.INPUT_METHOD_SERVICE);
+        View focusedView = activity.getCurrentFocus();
+
+        if (focusedView != null) {
+
+            try {
+                assert inputManager != null;
+                inputManager.hideSoftInputFromWindow(focusedView.getWindowToken(),
+                        InputMethodManager.HIDE_NOT_ALWAYS);
+            } catch (AssertionError e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
 
 
 }
