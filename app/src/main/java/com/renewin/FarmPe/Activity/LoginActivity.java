@@ -279,22 +279,7 @@ public class LoginActivity extends AppCompatActivity {
 //
 //                SelectLanguageBean bean1 = new SelectLanguageBean("Hindi", 2, "");
 //                newOrderBeansList.add(bean1);
-//
-//                SelectLanguageBean bean2 = new SelectLanguageBean("Kannada", 3, "");
-//                newOrderBeansList.add(bean2);
-//
-//                SelectLanguageBean bean3 = new SelectLanguageBean("Telugu", 4, "");
-//                newOrderBeansList.add(bean3);
-//
-//                SelectLanguageBean bean4 = new SelectLanguageBean("Tamil", 5, "");
-//                newOrderBeansList.add(bean4);
-//
-//                SelectLanguageBean bean5 = new SelectLanguageBean("Malayalam", 6, "");
-//                newOrderBeansList.add(bean5);
-//
-//                SelectLanguageBean bean6 = new SelectLanguageBean("Marathi", 7, "");
-//                newOrderBeansList.add(bean6);
-//
+
 
 
 
@@ -363,13 +348,6 @@ public class LoginActivity extends AppCompatActivity {
                     tv.setTextColor(Color.RED);
                     snackbar.show();
 
-                    //Toast.makeText(LoginActivity.this, "Enter Your Password", Toast.LENGTH_LONG).show();
-//                    Snackbar snackbar = Snackbar
-//                            .make(coordinatorLayout, pass_toast, Snackbar.LENGTH_LONG);
-//                    View snackbarView = snackbar.getView();
-//                    TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-//                    tv.setTextColor(Color.RED);
-//                    snackbar.show();
                 } else if (password.contains(" ")) {
                     pass.requestFocus();
 
@@ -380,13 +358,7 @@ public class LoginActivity extends AppCompatActivity {
                     tv.setTextColor(Color.RED);
                     snackbar.show();
 
-                    //    Toast.makeText(LoginActivity.this, "Password should not contain spaces", Toast.LENGTH_LONG).show();
-//                    Snackbar snackbar = Snackbar
-//                            .make(coordinatorLayout, "Password should not contain spaces", Snackbar.LENGTH_LONG);
-//                    View snackbarView = snackbar.getView();
-//                    TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-//                    tv.setTextColor(Color.RED);
-//                    snackbar.show();
+
                 } else {
 
 
@@ -427,13 +399,7 @@ public class LoginActivity extends AppCompatActivity {
 
                                             sessionManager.save_name(userObject.getString("FullName"),userObject.getString("PhoneNo"));
                                             sessionManager.saveUserId(userObject.getString("Id"));
-                                           /* if(remember_me.isChecked()){
 
-                                                if(!myDb.isEmailExists(mobile_no.getText().toString())){
-
-                                                    AddData(mobile_no.getText().toString(),password);
-                                                }
-                                            }*/
 
                                             if(remember_me.isChecked()){
 
@@ -548,7 +514,6 @@ public class LoginActivity extends AppCompatActivity {
             intent1.addCategory(Intent.CATEGORY_HOME);
             intent1.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);//***Change Here***
             startActivity(intent1);
-            finish();
             System.exit(0);                    }
 
         doubleBackToExitPressedOnce = true;

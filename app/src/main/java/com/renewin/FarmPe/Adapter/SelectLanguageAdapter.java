@@ -16,6 +16,7 @@ import com.renewin.FarmPe.Activity.LoginActivity;
 import com.renewin.FarmPe.Activity.SignUpActivity;
 import com.renewin.FarmPe.Activity.XLoginNew;
 import com.renewin.FarmPe.Bean.SelectLanguageBean;
+import com.renewin.FarmPe.Fragment.ChangeLanguageFragment;
 import com.renewin.FarmPe.R;
 import com.renewin.FarmPe.SessionManager;
 import com.renewin.FarmPe.Urls;
@@ -77,9 +78,10 @@ public class SelectLanguageAdapter extends RecyclerView.Adapter<SelectLanguageAd
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
         final SelectLanguageBean products = productList.get(position);
 
-        if (selected_position==position){
+        if (sessionManager.getRegId("language_name").equals(products.getVendor())){
             holder.right_img.setImageResource(R.drawable.ic_verified_filled_grey_white);
             //  holder.lng_rad_but.setBackgroundColor(Color.GREEN);
+
 
         }else {
 
@@ -111,7 +113,6 @@ public class SelectLanguageAdapter extends RecyclerView.Adapter<SelectLanguageAd
 
     }
 
-
     private void getLang(int id) {
 
         try{
@@ -133,8 +134,9 @@ public class SelectLanguageAdapter extends RecyclerView.Adapter<SelectLanguageAd
 
                         sessionManager.saveLanguage(result.toString());
 
+                        String lang_title1 = result.getString("ChangeLanguage");
 
-
+                        ChangeLanguageFragment.lang_title.setText(lang_title1);
 
 
                     }catch (Exception e){

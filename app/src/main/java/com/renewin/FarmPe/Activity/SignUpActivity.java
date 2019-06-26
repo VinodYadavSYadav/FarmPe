@@ -2,6 +2,7 @@ package com.renewin.FarmPe.Activity;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.app.FragmentManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -19,6 +20,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.InputFilter;
 import android.text.Spanned;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -161,13 +163,17 @@ public class SignUpActivity extends AppCompatActivity {
 
 
 
-                back_feed.setOnClickListener(new View.OnClickListener() {
+
+
+        back_feed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
                 startActivity(intent);
             }
         });
+
+
         final InputFilter EMOJI_FILTER = new InputFilter() {
 
             @Override
@@ -281,27 +287,6 @@ public class SignUpActivity extends AppCompatActivity {
                 }
 
 
-//                SelectLanguageBean bean = new SelectLanguageBean("English", 1, "");
-//                newOrderBeansList.add(bean);
-//
-//                SelectLanguageBean bean1 = new SelectLanguageBean("Hindi", 2, "");
-//                newOrderBeansList.add(bean1);
-//
-//                SelectLanguageBean bean2 = new SelectLanguageBean("Kannada", 3, "");
-//                newOrderBeansList.add(bean2);
-//
-//                SelectLanguageBean bean3 = new SelectLanguageBean("Telugu", 4, "");
-//                newOrderBeansList.add(bean3);
-//
-//                SelectLanguageBean bean4 = new SelectLanguageBean("Tamil", 5, "");
-//                newOrderBeansList.add(bean4);
-//
-//                SelectLanguageBean bean5 = new SelectLanguageBean("Malayalam", 6, "");
-//                newOrderBeansList.add(bean5);
-//
-//                SelectLanguageBean bean6 = new SelectLanguageBean("Marathi", 7, "");
-//                newOrderBeansList.add(bean6);
-
 
                 close_layout.setOnClickListener(new View.OnClickListener() {
 
@@ -378,6 +363,7 @@ public class SignUpActivity extends AppCompatActivity {
 
 
         password.setFilters(new InputFilter[]{filter, new InputFilter.LengthFilter(12)});
+
         continue_sign_up.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -636,7 +622,7 @@ public class SignUpActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         //System.exit(0);
-        activity.finish();
+        finish();
 
         Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
         startActivity(intent);
