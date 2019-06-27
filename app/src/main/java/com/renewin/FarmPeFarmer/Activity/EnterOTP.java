@@ -150,9 +150,10 @@ public class EnterOTP extends AppCompatActivity {
             lngObject = new JSONObject(sessionManager.getRegId("language"));
 
             submit.setText(lngObject.getString("SendOTP"));
-            otp_title.setText(lngObject.getString("OTP"));
+            otp_title.setText(lngObject.getString("OneTimePassword"));
             otp_text.setText(lngObject.getString("EnterOTP"));
             resendotp.setText(lngObject.getString("Resend"));
+            otpedittext.setHint(lngObject.getString("EntertheOTP"));
 
             toast_otp = lngObject.getString("EntertheOTP");
             toast_invalid_otp = lngObject.getString("InvalidOTP");

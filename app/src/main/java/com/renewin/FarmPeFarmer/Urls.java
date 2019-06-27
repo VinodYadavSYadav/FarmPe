@@ -75,12 +75,14 @@ public class Urls {
     public static final String Edit_Address = ROOT_URL3 + "MasterTable/UpdateUserDefaultAddress";
 
 
-
+//feedback
+public static final String AddFeedback = ROOT_URL3 + "MasterTable/AddFeedback";
 
 
      //profile details
     public static final String Get_Profile_Details= ROOT_URL + "GetUserDetails";
     public static final String Update_Profile_Details= ROOT_URL + "UpdateUserProfile";
+
 
 
 

@@ -31,7 +31,7 @@ public class Thank_U_New extends AppCompatActivity {
 
    LinearLayout back_thank_u;
    TextView thanktu_submit,otp_text,thank_title;
-   EditText enter_otp;
+   EditText enter_otp,otp_forgot_pass;
     JSONObject lngObject;
     public  static String toast_otp,toast_invalid_otp;
     public  static String otp_get_text,sessionId;
@@ -76,6 +76,7 @@ public class Thank_U_New extends AppCompatActivity {
             thanktu_submit.setText(lngObject.getString("SendOTP"));
             thank_title.setText(lngObject.getString("OneTimePassword"));
             otp_text.setText(lngObject.getString("PleaseentertheOTPbelowtoresetpassword"));
+            enter_otp.setHint(lngObject.getString("EntertheOTP"));
             toast_otp = lngObject.getString("EntertheOTP");
             toast_invalid_otp = lngObject.getString(" InvalidOTP");
 

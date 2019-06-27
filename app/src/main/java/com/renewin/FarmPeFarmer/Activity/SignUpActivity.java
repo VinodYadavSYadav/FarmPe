@@ -53,7 +53,7 @@ public class SignUpActivity extends AppCompatActivity {
     JSONArray lng_array;
     Activity activity;
     JSONObject lngObject;
-    public static String mob_toast,passwrd_toast,minimum_character_toast,enter_all_toast;
+    public static String mob_toast,passwrd_toast,minimum_character_toast,enter_all_toast,name_toast,mobile_registered_toast;
 
     List<SelectLanguageBean>language_arrayBeanList = new ArrayList<>();
     SelectLanguageBean selectLanguageBean;
@@ -146,6 +146,8 @@ public class SignUpActivity extends AppCompatActivity {
                 mob_toast = lngObject.getString("Entervalidmobilenumber");
                 minimum_character_toast = lngObject.getString("NameShouldContainMinimum2Characters");
                 enter_all_toast = lngObject.getString("EnterAllTextFields");
+                name_toast = lngObject.getString("Enteryourname");
+                mobile_registered_toast = lngObject.getString("Thismobilehasalreadyregistered");
 
 
 
@@ -165,6 +167,7 @@ public class SignUpActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -392,7 +395,7 @@ public class SignUpActivity extends AppCompatActivity {
 
                     //Toast.makeText(SignUp.this, "Enter Your Name", Toast.LENGTH_SHORT).show();
                     Snackbar snackbar = Snackbar
-                            .make(linearLayout, "Enter Your Name", Snackbar.LENGTH_LONG);
+                            .make(linearLayout, name_toast, Snackbar.LENGTH_LONG);
                     View snackbarView = snackbar.getView();
                     TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
                     tv.setTextColor(Color.RED);
@@ -592,6 +595,8 @@ public class SignUpActivity extends AppCompatActivity {
 
                         passwrd_toast = result.getString("Enterpasswordoflength6characters");
                         mob_toast = result.getString("Entervalidmobilenumber");
+                        name_toast = result.getString("Enteryourname");
+                       mobile_registered_toast = result.getString("Thismobilehasalreadyregistered");
 
 
 
@@ -616,12 +621,10 @@ public class SignUpActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        //System.exit(0);
-        finish();
 
         Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
         startActivity(intent);
-
+        finish();
     }
 
     public void setupUI(View view) {
@@ -785,7 +788,7 @@ public class SignUpActivity extends AppCompatActivity {
                             jsonObject_resp = result.getJSONObject("Response");
                             status_resp = jsonObject_resp.getString("Status");
                             Snackbar snackbar = Snackbar
-                                    .make(linearLayout, "This Mobile has already registered", Snackbar.LENGTH_LONG);
+                                    .make(linearLayout,mobile_registered_toast, Snackbar.LENGTH_LONG);
                             View snackbarView = snackbar.getView();
                             TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
                             tv.setTextColor(Color.RED);

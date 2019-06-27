@@ -266,6 +266,7 @@ public class SettingFragment extends Fragment {
                 transaction.commit();
             }
         });
+
         change_lang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -276,6 +277,7 @@ public class SettingFragment extends Fragment {
                 transaction.commit();
             }
         });
+
         policy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -286,16 +288,15 @@ public class SettingFragment extends Fragment {
                 transaction.commit();
             }
         });
+
         your_address.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Bundle bundle = new Bundle();
-                bundle.putString("navigation_from", "you_c");
+
                 selectedFragment = You_Address_Fragment.newInstance();
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.frame_layout, selectedFragment);
-                selectedFragment.setArguments(bundle);
-                transaction.addToBackStack("you_c");
+                transaction.addToBackStack("setting");
                 transaction.commit();
             }
         });

@@ -1,5 +1,7 @@
 package com.renewin.FarmPeFarmer.Adapter;
 
+
+
 import android.app.Activity;
 import android.app.Dialog;
 import android.graphics.Color;
@@ -49,7 +51,7 @@ public class You_Address_Adapter extends RecyclerView.Adapter<You_Address_Adapte
     public static String add_id;
 
     public static CardView cardView;
-JSONObject lngObject;
+    JSONObject lngObject;
 
 
     public You_Address_Adapter(List<Add_New_Address_Bean> moviesList, Activity activity) {
@@ -80,7 +82,7 @@ JSONObject lngObject;
             delete_1 = view.findViewById(R.id.delete_1);
             default_1 = view.findViewById(R.id.default_1);
             default_add = view.findViewById(R.id.default_add);
-          //  view1 = view.findViewById(R.id.view1);
+            //  view1 = view.findViewById(R.id.view1);
 
             add_new_adress = view.findViewById(R.id.linear_frame);
 
@@ -110,7 +112,7 @@ JSONObject lngObject;
 
             holder.default_add.setVisibility(View.VISIBLE);
             holder.default_1.setVisibility(View.GONE);
-           // holder.view1.setVisibility(View.GONE);
+            // holder.view1.setVisibility(View.GONE);
 
         }else{
 
@@ -122,7 +124,7 @@ JSONObject lngObject;
 
         add_id =products.getAdd_id();
 
-          System.out.println("1123213213" + products.getAdd_id() );
+        System.out.println("1123213213" + products.getAdd_id() );
 
 
 
@@ -229,18 +231,18 @@ JSONObject lngObject;
                                             notifyDataSetChanged();
                                             You_Address_Fragment.address_list.setText(productList.size() + " Addresses are added in " + products.getAdd_pickup_frm());
 
-                                    }
+                                        }
 
                                     }catch (Exception e){
                                         e.printStackTrace();
                                     }
                                 }
-                    });
+                            });
 
 
-                }catch (Exception e){
-                    e.printStackTrace();
-                }
+                        }catch (Exception e){
+                            e.printStackTrace();
+                        }
 
                         dialog.dismiss();
                     }
@@ -282,7 +284,7 @@ JSONObject lngObject;
 
                                     selectedFragment = You_Address_Fragment.newInstance();
                                     FragmentTransaction transaction = ((FragmentActivity) activity).getSupportFragmentManager().beginTransaction();
-                                    transaction.replace(R.id.frame_layout_home, selectedFragment);
+                                    transaction.replace(R.id.frame_layout, selectedFragment);
                                     transaction.commit();
                                 }
 
@@ -303,7 +305,7 @@ JSONObject lngObject;
 
         try {
             lngObject = new JSONObject(sessionManager.getRegId("language"));
-           holder.edit_1.setText(lngObject.getString("Edit"));
+            holder.edit_1.setText(lngObject.getString("Edit"));
             holder.delete_1.setText(lngObject.getString("Delete"));
         } catch (JSONException e) {
             e.printStackTrace();

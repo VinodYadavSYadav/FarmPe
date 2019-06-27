@@ -16,7 +16,9 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.RecyclerView;
 import android.text.InputFilter;
+import android.text.SpannableString;
 import android.text.Spanned;
+import android.text.TextUtils;
 import android.util.Base64;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -50,6 +52,7 @@ import com.renewin.FarmPeFarmer.Volly_class.VoleyJsonObjectCallback;
 import com.renewin.FarmPeFarmer.Volly_class.VolleySingletonQuee;
 import com.renewin.FarmPeFarmer.volleypost.VolleyMultipartRequest;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
@@ -73,7 +76,9 @@ public class UpdateAccDetailsFragment extends Fragment {
     public static RecyclerView recyclerView;
     public static AddHpAdapter farmadapter;
     SessionManager sessionManager;
-    TextView toolbar_title;
+    TextView toolbar_title,update_btn_txt;
+    JSONObject lngObject;
+    String toast_name,toast_mobile,toast_passwrd,toast_new_mobile,toast_minimum_toast;
     LinearLayout update_btn,linearLayout;
     private static int RESULT_LOAD_IMG = 1;
     Bitmap selectedImage,imageB;
@@ -95,16 +100,17 @@ public class UpdateAccDetailsFragment extends Fragment {
         View view = inflater.inflate(R.layout.update_acc_details, container, false);
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 
-        recyclerView=view.findViewById(R.id.recycler_what_looking);
-        toolbar_title=view.findViewById(R.id.toolbar_title);
-        back_feed=view.findViewById(R.id.back_feed);
-        profile_name=view.findViewById(R.id.profile_name);
-        profile_phone=view.findViewById(R.id.profile_phone);
-        profile_mail=view.findViewById(R.id.profile_mail);
-        profile_passwrd=view.findViewById(R.id.profile_passwrd);
-        prod_img=view.findViewById(R.id.prod_img);
-        update_btn=view.findViewById(R.id.update_btn);
-        linearLayout=view.findViewById(R.id.main_layout);
+        recyclerView = view.findViewById(R.id.recycler_what_looking);
+        toolbar_title = view.findViewById(R.id.toolbar_title);
+        update_btn_txt = view.findViewById(R.id.update_btn_txt);
+        back_feed = view.findViewById(R.id.back_feed);
+        profile_name = view.findViewById(R.id.profile_name);
+        profile_phone = view.findViewById(R.id.profile_phone);
+        profile_mail = view.findViewById(R.id.profile_mail);
+        profile_passwrd = view.findViewById(R.id.profile_passwrd);
+        prod_img = view.findViewById(R.id.prod_img);
+        update_btn = view.findViewById(R.id.update_btn);
+        linearLayout = view.findViewById(R.id.main_layout);
 
         sessionManager = new SessionManager(getActivity());
 
@@ -119,7 +125,6 @@ public class UpdateAccDetailsFragment extends Fragment {
                 startActivityForResult(photoPickerIntent, RESULT_LOAD_IMG);
             }
         });
-
 
 
         back_feed.setOnClickListener(new View.OnClickListener() {
@@ -155,28 +160,33 @@ public class UpdateAccDetailsFragment extends Fragment {
         });
 
 
+        try {
+            lngObject = new JSONObject(sessionManager.getRegId("language"));
+
+            toolbar_title.setText(lngObject.getString("UpdateYourAccountDetails"));
+            update_btn_txt.setText(lngObject.getString("Update"));
+            profile_name.setHint(lngObject.getString("Enteryourname"));
+            profile_phone.setHint(lngObject.getString("EnterPhoneNo"));
+
+            //   profile_mail.setHint(lngObject.getString("Enteryourname"));
+
+            profile_passwrd.setHint(lngObject.getString("Password"));
+            toast_name = (lngObject.getString("Enteryourname"));
+            toast_mobile = (lngObject.getString("Pleaseenter10digitsmobilenumber"));
+            toast_passwrd = (lngObject.getString("Enterpasswordoflength6characters"));
+            toast_new_mobile = (lngObject.getString("EnterPhoneNo"));
+            toast_minimum_toast = (lngObject.getString("NameShouldContainMinimum2Characters"));
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
 
 
-        final InputFilter EMOJI_FILTER = new InputFilter() {
-
-            @Override
-
-            public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
-
-                for (int index = start; index < end; index++) {
-                    int type = Character.getType(source.charAt(index));
-                    if (type == Character.SURROGATE) {
-                        return "";
-                    }
-                }
-                return null;
-            }
-        };
 
 
-
-        profile_passwrd.setFilters(new InputFilter[]{EMOJI_FILTER});
+      //  profile_passwrd.setFilters(new InputFilter[]{EMOJI_FILTER});
 
        // profile_name.setFilters(new InputFilter[]{EMOJI_FILTER});
 
@@ -254,7 +264,10 @@ public class UpdateAccDetailsFragment extends Fragment {
                         profile_phone.setText(ProfilePhone);
                         profile_mail.setText(ProfileEmail);
 
-
+                        profile_name.setFilters(new InputFilter[]{EMOJI_FILTER});
+                        profile_phone.setFilters(new InputFilter[]{EMOJI_FILTER});
+                        profile_mail.setFilters(new InputFilter[]{EMOJI_FILTER});
+                        profile_passwrd.setFilters(new InputFilter[]{EMOJI_FILTER});
 
                           Glide.with(getActivity()).load(ProfileImage)
 
@@ -272,11 +285,9 @@ public class UpdateAccDetailsFragment extends Fragment {
                 }
             });
 
-
         }catch (Exception e){
             e.printStackTrace();
         }
-
 
 
         update_btn.setOnClickListener(new View.OnClickListener() {
@@ -288,7 +299,7 @@ public class UpdateAccDetailsFragment extends Fragment {
                 if(profile_name.getText().toString().equals("")) {
 
                     Snackbar snackbar = Snackbar
-                            .make(linearLayout, "Enter Your Name", Snackbar.LENGTH_LONG);
+                            .make(linearLayout, toast_name, Snackbar.LENGTH_LONG);
                     View snackbarView = snackbar.getView();
                     TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
                     tv.setTextColor(Color.RED);
@@ -298,7 +309,7 @@ public class UpdateAccDetailsFragment extends Fragment {
                 } else if(profile_name.getText().toString().length()<2) {
 
                     Snackbar snackbar = Snackbar
-                            .make(linearLayout, "Name should contain minimum 2 characters", Snackbar.LENGTH_LONG);
+                            .make(linearLayout, toast_minimum_toast, Snackbar.LENGTH_LONG);
                     View snackbarView = snackbar.getView();
                     TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
                     tv.setTextColor(Color.RED);
@@ -309,7 +320,7 @@ public class UpdateAccDetailsFragment extends Fragment {
 
 
                     Snackbar snackbar = Snackbar
-                            .make(linearLayout, "Enter Your Mobile Number", Snackbar.LENGTH_LONG);
+                            .make(linearLayout, toast_new_mobile, Snackbar.LENGTH_LONG);
                     View snackbarView = snackbar.getView();
                     TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
                     tv.setTextColor(Color.RED);
@@ -320,7 +331,7 @@ public class UpdateAccDetailsFragment extends Fragment {
 
 
                      Snackbar snackbar = Snackbar
-                             .make(linearLayout, "Enter a Valid Mobile Number", Snackbar.LENGTH_LONG);
+                             .make(linearLayout, toast_mobile, Snackbar.LENGTH_LONG);
                      View snackbarView = snackbar.getView();
                      TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
                      tv.setTextColor(Color.RED);
@@ -330,7 +341,7 @@ public class UpdateAccDetailsFragment extends Fragment {
 
 
                          Snackbar snackbar = Snackbar
-                                 .make(linearLayout, "Enter a password of minimum 6 characters", Snackbar.LENGTH_LONG);
+                                 .make(linearLayout, toast_passwrd, Snackbar.LENGTH_LONG);
                          View snackbarView = snackbar.getView();
                          TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
                          tv.setTextColor(Color.RED);
@@ -359,7 +370,42 @@ public class UpdateAccDetailsFragment extends Fragment {
 */
         return view;
     }
-
+    public static InputFilter EMOJI_FILTER = new InputFilter() {
+        @Override
+        public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
+            boolean keepOriginal = true;
+            StringBuilder sb = new StringBuilder(end - start);
+            for (int index = start; index < end; index++) {
+                int type = Character.getType(source.charAt(index));
+                if (type == Character.SURROGATE || type == Character.OTHER_SYMBOL) {
+                    return "";
+                }
+                for (int i = start; i < end; i++) {
+                    if (Character.isWhitespace(source.charAt(i))) {
+                        if (dstart == 0)
+                            return "";
+                    }
+                }
+                return null;
+          /*  char c = source.charAt(index);
+            if (isCharAllowed(c))
+                sb.append(c);
+            else
+                keepOriginal = false;*/
+            }
+            if (keepOriginal)
+                return null;
+            else {
+                if (source instanceof Spanned) {
+                    SpannableString sp = new SpannableString(sb);
+                    TextUtils.copySpansFrom((Spanned) source, start, sb.length(), null, sp, 0);
+                    return sp;
+                } else {
+                    return sb;
+                }
+            }
+        }
+    };
     private Bitmap decodeToBase64(String input) {
 
         byte[] decodedByte = Base64.decode(input, 0);
@@ -378,7 +424,6 @@ public class UpdateAccDetailsFragment extends Fragment {
 
             selectedImage = BitmapFactory.decodeStream(imageStream);
                 prod_img.setImageBitmap(selectedImage);
-
 
 
             } catch (FileNotFoundException e) {
@@ -406,7 +451,7 @@ public class UpdateAccDetailsFragment extends Fragment {
     }
 
     private void uploadImage(final Bitmap bitmap){
-        VolleyMultipartRequest volleyMultipartRequest = new VolleyMultipartRequest(Request.Method.POST, "http://3.17.6.57:8686/api/Auth/UpdateUserProfile",
+        VolleyMultipartRequest volleyMultipartRequest = new VolleyMultipartRequest(Request.Method.POST,Urls.Update_Profile_Details,
                 new Response.Listener<NetworkResponse>(){
                     @Override
                     public void onResponse(NetworkResponse response) {

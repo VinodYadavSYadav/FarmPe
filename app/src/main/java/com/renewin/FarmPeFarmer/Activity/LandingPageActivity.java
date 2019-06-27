@@ -17,7 +17,6 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.renewin.FarmPeFarmer.Fragment.HomeMenuFragment;
 import com.renewin.FarmPeFarmer.R;
 

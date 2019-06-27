@@ -17,7 +17,8 @@
         android:roundIcon="@drawable/farm_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.renewin.FarmPeFarmer.Activity.LoginActivity">
+        <activity android:name="com.renewin.FarmPeFarmer.Activity.LoginActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -25,22 +26,34 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.renewin.FarmPeFarmer.Activity.ForgotPasswordNew" />
 
-        <activity android:name="com.renewin.FarmPeFarmer.Activity.SelectLanguageActivity"/>
-        <activity android:name="com.renewin.FarmPeFarmer.Activity.EnterOTP" />
-        <activity android:name="com.renewin.FarmPeFarmer.Activity.Thank_U_New" />
+        <activity android:name="com.renewin.FarmPeFarmer.Activity.ForgotPasswordNew"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name="com.renewin.FarmPeFarmer.Activity.SelectLanguageActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name="com.renewin.FarmPeFarmer.Activity.EnterOTP"
+            android:screenOrientation="portrait"/>
+        <activity android:name="com.renewin.FarmPeFarmer.Activity.Thank_U_New"
+            android:screenOrientation="portrait"/>
 
         <activity android:name="com.renewin.FarmPeFarmer.Activity.LandingPageActivity"
             android:screenOrientation="portrait"
             android:resizeableActivity="false"
             />
 
-        <activity android:name="com.renewin.FarmPeFarmer.Activity.ResetPasswordNew" />
-        <activity android:name="com.renewin.FarmPeFarmer.Activity.FarmerUser" />
-        <activity android:name="com.renewin.FarmPeFarmer.Activity.FarmerActivity" />
-        <activity android:name="com.renewin.FarmPeFarmer.Activity.SignUpActivity" />
-        <activity android:name="com.renewin.FarmPeFarmer.Activity.FarmerActivityNext" />
+        <activity android:name="com.renewin.FarmPeFarmer.Activity.ResetPasswordNew"
+            android:screenOrientation="portrait"/>
+        <activity android:name="com.renewin.FarmPeFarmer.Activity.FarmerUser"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name="com.renewin.FarmPeFarmer.Activity.FarmerActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name="com.renewin.FarmPeFarmer.Activity.SignUpActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name="com.renewin.FarmPeFarmer.Activity.FarmerActivityNext"
+            android:screenOrientation="portrait"/>
 
 
     </application>

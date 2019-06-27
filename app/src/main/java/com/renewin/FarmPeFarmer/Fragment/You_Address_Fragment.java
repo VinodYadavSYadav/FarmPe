@@ -1,5 +1,7 @@
 package com.renewin.FarmPeFarmer.Fragment;
 
+
+
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.os.Bundle;
@@ -47,7 +49,7 @@ public class You_Address_Fragment extends Fragment {
     ImageView back_arrow;
     SessionManager sessionManager;
     public static String navigation_all;
-   public static String item_list,address;
+    public static String item_list,address;
 
     TextView toolbar_titletxt;
     JSONObject lngObject;
@@ -74,7 +76,7 @@ public class You_Address_Fragment extends Fragment {
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 
 
-       // getActivity().getActionBar().hide();
+        // getActivity().getActionBar().hide();
 
         name = view.findViewById(R.id.name1);
 //        mobile_no= view.findViewById(R.id.mobile_no1);
@@ -124,7 +126,7 @@ public class You_Address_Fragment extends Fragment {
         add_new_address.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               // address="your_address";
+                // address="your_address";
                 Bundle bundle = new Bundle();
                 bundle.putString("navigation_from", "yu_ads_frg");
                 selectedFragment = Add_New_Address_Fragment.newInstance();
@@ -152,6 +154,19 @@ public class You_Address_Fragment extends Fragment {
                 final TextView ware_house = (TextView)dialog.findViewById(R.id.ware_hus) ;
                 final TextView farm = (TextView)dialog.findViewById(R.id.farm) ;
                 final TextView others = (TextView)dialog.findViewById(R.id.othrs) ;
+
+                final TextView popuptxt = (TextView)dialog.findViewById(R.id.popup_heading) ;
+                try {
+                    lngObject = new JSONObject(sessionManager.getRegId("language"));
+                    popuptxt.setText(lngObject.getString("SelectanAddressType"));
+                    home.setText(lngObject.getString("Home"));
+                    barn.setText(lngObject.getString("Barn"));
+                    ware_house.setText(lngObject.getString("Warehouse"));
+                    farm.setText(lngObject.getString("Farm"));
+                    others.setText(lngObject.getString("Others"));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
                 ImageView image = (ImageView) dialog.findViewById(R.id.close_popup);
                 image.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -175,7 +190,7 @@ public class You_Address_Fragment extends Fragment {
                     public void onClick(View view) {
                         select_address_type.setText(barn.getText().toString());
                         dialog.dismiss();
-                       gettingAddress("Barn");
+                        gettingAddress("Barn");
 
                     }
                 });
@@ -209,7 +224,7 @@ public class You_Address_Fragment extends Fragment {
                     public void onClick(View view) {
                         select_address_type.setText(others.getText().toString());
                         dialog.dismiss();
-                       gettingAddress("Others");
+                        gettingAddress("Others");
 
 
                     }

@@ -137,9 +137,7 @@
 
                 </LinearLayout>
 
-
-
-
+                
             </LinearLayout>
 
             <LinearLayout
@@ -182,7 +180,7 @@
                         android:gravity="center">
 
                         <TextView
-                            android:id="@+id/actninfo"
+                            android:id="@+id/actninfo1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
@@ -258,7 +256,7 @@
                         android:gravity="center">
 
                         <TextView
-                            android:id="@+id/actninfo"
+                            android:id="@+id/actninfo2"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
@@ -334,7 +332,7 @@
                         android:gravity="center">
 
                         <TextView
-                            android:id="@+id/actninfo"
+                            android:id="@+id/actninfo3"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"

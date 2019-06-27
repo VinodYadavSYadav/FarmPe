@@ -18,7 +18,6 @@ import com.renewin.FarmPeFarmer.R;
 import com.renewin.FarmPeFarmer.Urls;
 import com.renewin.FarmPeFarmer.Volly_class.Login_post;
 import com.renewin.FarmPeFarmer.Volly_class.VoleyJsonObjectCallback;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;

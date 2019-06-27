@@ -1,14 +1,18 @@
 package com.renewin.FarmPeFarmer.Fragment;
 
+
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 
 import com.renewin.FarmPeFarmer.Bean.FarmsImageBean;
 import com.renewin.FarmPeFarmer.R;
@@ -27,8 +31,10 @@ public class NotificationSettingFragment extends Fragment {
     LinearLayout back_feed,logout_layout;
     Fragment selectedFragment;
     SessionManager sessionManager;
-    TextView notificatn_set,accountinfo;
+    TextView notificatn_set,accountinfo,accountinfo1,accountinfo2,accountinfo3;
     JSONObject lngObject;
+
+
     public static NotificationSettingFragment newInstance() {
         NotificationSettingFragment fragment = new NotificationSettingFragment();
         return fragment;
@@ -40,6 +46,9 @@ public class NotificationSettingFragment extends Fragment {
         back_feed=view.findViewById(R.id.back_feed);
         logout_layout=view.findViewById(R.id.logout_layout);
         accountinfo=view.findViewById(R.id.actninfo);
+        accountinfo1=view.findViewById(R.id.actninfo1);
+        accountinfo2=view.findViewById(R.id.actninfo2);
+        accountinfo3=view.findViewById(R.id.actninfo3);
         notificatn_set=view.findViewById(R.id.toolbar_title);
 
         sessionManager = new SessionManager(getActivity());
@@ -51,30 +60,36 @@ public class NotificationSettingFragment extends Fragment {
                 fm.popBackStack("setting", FragmentManager.POP_BACK_STACK_INCLUSIVE);
             }
         });
-       /* view.setFocusableInTouchMode(true);
-        view.requestFocus(View.FOCUS_UP);
+
+
+        view.setFocusableInTouchMode(true);
+        view.requestFocus();
         view.setOnKeyListener(new View.OnKeyListener() {
+
+
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
-                if( keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP) {
+                if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP) {
                     FragmentManager fm = getActivity().getSupportFragmentManager();
-                    fm.popBackStack("brand", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                    fm.popBackStack("setting", FragmentManager.POP_BACK_STACK_INCLUSIVE);
 
+
+                    return true;
                 }
                 return false;
             }
         });
-*/
 
         try {
             lngObject = new JSONObject(sessionManager.getRegId("language"));
             notificatn_set.setText(lngObject.getString("NotificationSetting"));
             accountinfo.setText(lngObject.getString("AccountInfo"));
+            accountinfo1.setText(lngObject.getString("AccountInfo"));
+            accountinfo2.setText(lngObject.getString("AccountInfo"));
+            accountinfo3.setText(lngObject.getString("AccountInfo"));
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
-
 
 
 

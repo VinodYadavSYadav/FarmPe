@@ -107,6 +107,7 @@ public class ForgotPasswordNew extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(ForgotPasswordNew.this, LoginActivity.class);
                 startActivity(intent);
+                finish();
 
             }
         });
@@ -217,6 +218,7 @@ public class ForgotPasswordNew extends AppCompatActivity {
 
         Intent intent=new Intent(ForgotPasswordNew.this,LoginActivity.class);
         startActivity(intent);
+        finish();
     }
 
 

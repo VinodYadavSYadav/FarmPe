@@ -135,18 +135,6 @@ Fragment selectedFragment;
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
         try {
 
             lngObject = new JSONObject(sessionManager.getRegId("language"));
@@ -193,16 +181,87 @@ Fragment selectedFragment;
             }
         });
 
+
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                selectedFragment = ComingSoonFragment.newInstance();
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.frame_layout, selectedFragment);
+                transaction.addToBackStack("home");
+                transaction.commit();
+
+            }
+        });
+
+        your_requests.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                selectedFragment = ComingSoonFragment.newInstance();
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.frame_layout, selectedFragment);
+                transaction.addToBackStack("home");
+                transaction.commit();
+
+            }
+        });
+
+        list_farm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                selectedFragment = ComingSoonFragment.newInstance();
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.frame_layout, selectedFragment);
+                transaction.addToBackStack("home");
+                transaction.commit();
+
+            }
+        });
+
+        nw_request.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                selectedFragment = ComingSoonFragment.newInstance();
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.frame_layout, selectedFragment);
+                transaction.addToBackStack("home");
+                transaction.commit();
+
+            }
+        });
+
+        connection_nw.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                selectedFragment = ComingSoonFragment.newInstance();
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.frame_layout, selectedFragment);
+                transaction.addToBackStack("home");
+                transaction.commit();
+
+            }
+        });
+
         notification_bell.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                bundle.putString("navigation_from", "home");
                 selectedFragment = NotificationFragment.newInstance();
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.frame_layout, selectedFragment);
-                transaction.addToBackStack("looking");
+                selectedFragment.setArguments(bundle);
+                transaction.addToBackStack("home");
                 transaction.commit();
             }
         });
+
+
 
 
         menu.setOnClickListener(new View.OnClickListener() {
