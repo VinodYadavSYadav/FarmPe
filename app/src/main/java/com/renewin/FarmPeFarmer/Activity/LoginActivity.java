@@ -512,7 +512,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
 
-        finish();
+      //  finish();
 
         if (doubleBackToExitPressedOnce) {
 
@@ -520,7 +520,8 @@ public class LoginActivity extends AppCompatActivity {
             intent1.addCategory(Intent.CATEGORY_HOME);
             intent1.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);//***Change Here***
             startActivity(intent1);
-            System.exit(0);                    }
+              finish();                   }
+
 
         doubleBackToExitPressedOnce = true;
         Toast.makeText(getApplicationContext(), toast_click_back, Toast.LENGTH_SHORT).show();

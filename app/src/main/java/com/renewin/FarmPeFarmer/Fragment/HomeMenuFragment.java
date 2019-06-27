@@ -250,14 +250,21 @@ Fragment selectedFragment;
         notification_bell.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Bundle bundle = new Bundle();
-                bundle.putString("navigation_from", "home");
-                selectedFragment = NotificationFragment.newInstance();
+
+                selectedFragment = ComingSoonFragment.newInstance();
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.frame_layout, selectedFragment);
-                selectedFragment.setArguments(bundle);
                 transaction.addToBackStack("home");
                 transaction.commit();
+//
+//  Bundle bundle = new Bundle();
+//                bundle.putString("navigation_from", "home");
+//                selectedFragment = NotificationFragment.newInstance();
+//                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+//                transaction.replace(R.id.frame_layout, selectedFragment);
+//                selectedFragment.setArguments(bundle);
+//                transaction.addToBackStack("home");
+//                transaction.commit();
             }
         });
 

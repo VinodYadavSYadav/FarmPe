@@ -36,11 +36,11 @@ public class FarmsDetailsFragment extends Fragment {
 
 
 
-
     public static FarmsDetailsFragment newInstance() {
         FarmsDetailsFragment fragment = new FarmsDetailsFragment();
         return fragment;
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
