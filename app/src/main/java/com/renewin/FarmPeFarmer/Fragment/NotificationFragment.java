@@ -16,11 +16,18 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 
+import com.renewin.FarmPeFarmer.Adapter.FarmsImageAdapter;
 import com.renewin.FarmPeFarmer.Adapter.NotificationAdapter;
+import com.renewin.FarmPeFarmer.Bean.Add_New_Address_Bean;
+import com.renewin.FarmPeFarmer.Bean.FarmsImageBean;
 import com.renewin.FarmPeFarmer.Bean.NotificationBean;
 import com.renewin.FarmPeFarmer.R;
 import com.renewin.FarmPeFarmer.SessionManager;
+import com.renewin.FarmPeFarmer.Urls;
+import com.renewin.FarmPeFarmer.Volly_class.Crop_Post;
+import com.renewin.FarmPeFarmer.Volly_class.VoleyJsonObjectCallback;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -29,7 +36,7 @@ import java.util.List;
 
 public class NotificationFragment extends Fragment {
 
-    public static List<NotificationBean> newOrderBeansList = new ArrayList<>();
+    public static List<FarmsImageBean> newOrderBeansList = new ArrayList<>();
     public static RecyclerView recyclerView;
     public static NotificationAdapter farmadapter;
     TextView toolbar_title;
@@ -37,6 +44,7 @@ public class NotificationFragment extends Fragment {
     Fragment selectedFragment;
     SessionManager sessionManager;
     JSONObject lngObject;
+    String location;
 
     public static NotificationFragment newInstance() {
         NotificationFragment fragment = new NotificationFragment();
@@ -100,7 +108,7 @@ public class NotificationFragment extends Fragment {
         GridLayoutManager mLayoutManager_farm = new GridLayoutManager(getActivity(), 1, GridLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(mLayoutManager_farm);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-
+/*
         NotificationBean img1=new NotificationBean("Lorem ipsum dolor sit amet, consectetur adipiscing elit.");
         newOrderBeansList.add(img1);
         newOrderBeansList.add(img1);
@@ -108,7 +116,7 @@ public class NotificationFragment extends Fragment {
         newOrderBeansList.add(img1);
         newOrderBeansList.add(img1);
         newOrderBeansList.add(img1);
-        newOrderBeansList.add(img1);
+        newOrderBeansList.add(img1);*/
 
        /* newOrderBeansList.add(img6);
         newOrderBeansList.add(img6);*/
@@ -119,10 +127,79 @@ public class NotificationFragment extends Fragment {
 
         try {
             lngObject = new JSONObject(sessionManager.getRegId("language"));
-            toolbar_title.setText(lngObject.getString("Notifications"));
+          //  toolbar_title.setText(lngObject.getString("Notifications"));
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
+
+        try{
+            final JSONObject jsonObject = new JSONObject();
+            jsonObject.put("UserId",sessionManager.getRegId("userId"));
+            System.out.println("aaaaaaaaaaaaadddd" + sessionManager.getRegId("userId"));
+
+            Crop_Post.crop_posting(getActivity(), Urls.YourRequest, jsonObject, new VoleyJsonObjectCallback() {
+                @Override
+                public void onSuccessResponse(JSONObject result) {
+                    System.out.println("YourRequestttttttttttttttttt"+result);
+                    JSONArray cropsListArray=null;
+
+                    try {
+                        cropsListArray=result.getJSONArray("LookingForList");
+                        System.out.println("e     e e ddd"+cropsListArray.length());
+                        for (int i=0;i<cropsListArray.length();i++){
+                            JSONObject jsonObject1=cropsListArray.getJSONObject(i);
+                            JSONObject jsonObject2=jsonObject1.getJSONObject("Address");
+
+                            String model=jsonObject1.getString("Model");
+                            String purchaseTimeline=jsonObject1.getString("PurchaseTimeline");
+                            String image=jsonObject1.getString("ModelImage");
+                            String id=jsonObject1.getString("CreatedBy");
+                            String name=jsonObject2.getString("Name");
+                            String city=jsonObject2.getString("City");
+                            String state=jsonObject2.getString("State");
+                            String hp_range=jsonObject1.getString("HorsePowerRange");
+                            location=city+", "+state;
+
+                         /*   if (city.equals("")){
+                                location="Bangalore"+", "+state;
+                            }else{
+                                location=city+", "+state;
+                            }
+*/
+
+
+                            System.out.println("madelslistt"+newOrderBeansList.size());
+
+                            FarmsImageBean crops = new FarmsImageBean(image,"Tractor Price",model,hp_range,purchaseTimeline,name,location,id);
+                            newOrderBeansList.add(crops);
+
+
+
+                          /*  if(!latts.equals("") | !langgs.equals("")) {
+
+                                CropListBean crops = new CropListBean(cropName, crop_variety, location, crop_grade,
+                                        crop_quantity, crop_uom, crop_price, id, farmerId,
+                                        UserName,latts,langgs,CropImg,category);
+                                newOrderBeansList.add(crops);
+                            }*/
+                        }
+                        farmadapter=new NotificationAdapter(getActivity(),newOrderBeansList);
+                        recyclerView.setAdapter(farmadapter);
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+
+
 
 
 

@@ -1,6 +1,10 @@
 package com.renewin.FarmPeFarmer.Fragment;
 
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.RecyclerView;
@@ -10,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -31,7 +36,7 @@ public class FarmerDetailsFragment extends Fragment {
     public static List<NearByHorizontalBean> newOrderBeansList_horizontal = new ArrayList<>();
     public static RecyclerView recyclerView,recyclerView_horizontal;
     TextView toolbar_title,farmer_name,farmer_phone,farmer_email,farmer_loc;
-    LinearLayout back_feed;
+    LinearLayout back_feed,farmer_connect;
     RelativeLayout menu;
     CircleImageView prod_img;
     NearByHorizontalAdapter madapter;
@@ -57,6 +62,7 @@ public class FarmerDetailsFragment extends Fragment {
         farmer_email=view.findViewById(R.id.email);
         farmer_loc=view.findViewById(R.id.loc);
         prod_img=view.findViewById(R.id.prod_img);
+        farmer_connect=view.findViewById(R.id.farmer_connect);
 
         Glide.with(getActivity()).load(FarmerImageAdapter.farmer_image)
 
@@ -80,7 +86,25 @@ public class FarmerDetailsFragment extends Fragment {
             }
         });
 
+        farmer_connect.setOnClickListener(new View.OnClickListener() {
 
+
+            @Override
+            public void onClick(View v) {
+                Intent callIntent = new Intent(Intent.ACTION_CALL);
+                callIntent.setData(Uri.parse("8861326072"));
+                //startActivity(callIntent);
+                try {
+                    startActivity(callIntent);
+                   // finish();
+                   // Log.i("Finished making a call", "");
+                } catch (android.content.ActivityNotFoundException ex) {
+                    Toast.makeText(getActivity(), "Call faild, please try again later.", Toast.LENGTH_SHORT).show();
+                }
+
+
+            }
+        });
 
 
 

@@ -125,9 +125,10 @@ public class AddBrandFragment extends Fragment {
                             String brand_name=jsonObject1.getString("BrandName");
 
                             String id=jsonObject1.getString("Id");
+                            String BrandIcon=jsonObject1.getString("BrandIcon");
 
 
-                           AddTractorBean crops = new AddTractorBean(R.drawable.tractor_green, brand_name,id);
+                           AddTractorBean crops = new AddTractorBean(BrandIcon, brand_name,id);
                            newOrderBeansList.add(crops);
 
                           /*  if(!latts.equals("") | !langgs.equals("")) {
