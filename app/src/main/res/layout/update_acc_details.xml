@@ -191,7 +191,7 @@
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_gravity="center_vertical"
-                    android:src="@drawable/user_black"
+                    android:src="@drawable/ic_phone_call"
 
                     />
 
@@ -265,7 +265,7 @@
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_gravity="center_vertical"
-                    android:src="@drawable/user_black"
+                    android:src="@drawable/ic_mail"
 
                     />
 
@@ -339,7 +339,7 @@
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_gravity="center_vertical"
-                    android:src="@drawable/user_black"
+                    android:src="@drawable/ic_change_password"
 
                     />
 

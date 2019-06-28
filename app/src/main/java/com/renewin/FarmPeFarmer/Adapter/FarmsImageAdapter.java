@@ -2,6 +2,8 @@ package com.renewin.FarmPeFarmer.Adapter;
 
 import android.app.Activity;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -14,6 +16,8 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.renewin.FarmPeFarmer.Bean.FarmsImageBean;
+import com.renewin.FarmPeFarmer.Fragment.FarmerDetailsFragment;
+import com.renewin.FarmPeFarmer.Fragment.LokingForDetailsFragment;
 import com.renewin.FarmPeFarmer.R;
 
 import java.util.List;
@@ -25,7 +29,7 @@ public class FarmsImageAdapter extends RecyclerView.Adapter<FarmsImageAdapter.My
 
     public LinearLayout linearLayout;
    public static LinearLayout next_arw;
-    public static String first;
+    public static String first,looking_forId;
     //    SessionManager session;
     public static CardView cardView;
     public FarmsImageAdapter(Activity activity, List<FarmsImageBean> moviesList) {
@@ -85,6 +89,19 @@ public class FarmsImageAdapter extends RecyclerView.Adapter<FarmsImageAdapter.My
                 .crossFade()
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(holder.image);
+
+        holder.connect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                looking_forId=products.getId();
+
+                selectedFragment = LokingForDetailsFragment.newInstance();
+                FragmentTransaction transaction = ((FragmentActivity)activity).getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.frame_layout, selectedFragment);
+                transaction.addToBackStack("farmer");
+                transaction.commit();
+            }
+        });
 
 
     }

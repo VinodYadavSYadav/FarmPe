@@ -36,7 +36,7 @@ public class DashboardFragment extends Fragment {
         looking_view=view.findViewById(R.id.looking_view);
         farms_view=view.findViewById(R.id.farms_view);
         farmer1=view.findViewById(R.id.farmer1);
-        farm1=view.findViewById(R.id.farms_view);
+       // farm1=view.findViewById(R.id.farms_view);
         farmer_view=view.findViewById(R.id.farmer_view);
 
 //

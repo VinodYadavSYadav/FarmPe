@@ -49,8 +49,8 @@ public class Urls {
 
 
      //profile details
-    public static final String Get_Profile_Details= ROOT_URL + "GetUserDetails";
-    public static final String Update_Profile_Details= ROOT_URL + "UpdateUserProfile";
+    public static final String Get_Profile_Details= ROOT_URL + "Auth/GetUserDetails";
+    public static final String Update_Profile_Details= ROOT_URL + "Auth/UpdateUserProfile";
 
 
 
