@@ -104,7 +104,7 @@ public class FarmsDetailsFragment extends Fragment {
         recyclerView.setLayoutManager(mLayoutManager_farm);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 
-        NotificationBean img1=new NotificationBean("Lorem ipsum dolor sit amet, consectetur adipiscing elit.");
+   /*     NotificationBean img1=new NotificationBean("Lorem ipsum dolor sit amet, consectetur adipiscing elit.");
         newOrderBeansList.add(img1);
         newOrderBeansList.add(img1);
         newOrderBeansList.add(img1);
@@ -113,13 +113,13 @@ public class FarmsDetailsFragment extends Fragment {
         newOrderBeansList.add(img1);
         newOrderBeansList.add(img1);
 
-       /* newOrderBeansList.add(img6);
-        newOrderBeansList.add(img6);*/
+       *//* newOrderBeansList.add(img6);
+        newOrderBeansList.add(img6);*//*
 
 
         farmadapter=new NotificationAdapter(getActivity(),newOrderBeansList);
         recyclerView.setAdapter(farmadapter);
-
+*/
 
 
         return view;

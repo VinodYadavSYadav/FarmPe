@@ -69,4 +69,6 @@ public class Urls {
     public static final String GetLookingForItems = ROOT_URL+"MasterTable/GetLookingForDetails";
     public static final String GetLookingForFirst = ROOT_URL+"MasterTable/GetLookingFor";
     public static final String GetLookingForList = ROOT_URL+"MasterTable/GetLookingForLists";
+    public static final String YourRequest = ROOT_URL+"MasterTable/GetLookingForListsById";
+
 }

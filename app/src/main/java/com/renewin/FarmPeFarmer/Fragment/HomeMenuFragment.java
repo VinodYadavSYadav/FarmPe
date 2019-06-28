@@ -199,7 +199,7 @@ Fragment selectedFragment;
             @Override
             public void onClick(View view) {
 
-                selectedFragment = LookingForFragment.newInstance();
+                selectedFragment = NotificationFragment.newInstance();
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.frame_layout, selectedFragment);
                 transaction.addToBackStack("home");
