@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:paddingVertical="20dp"
+    android:paddingVertical="25dp"
     android:background="#fff"
     android:layout_marginLeft="10dp"
     android:layout_marginTop="10dp"
@@ -61,16 +61,16 @@
 
                   <TextView
                       android:id="@+id/prod_price"
-                      android:layout_width="wrap_content"
+                      android:layout_width="match_parent"
                       android:layout_height="wrap_content"
                       android:fontFamily="@font/segoeui"
-                      android:layout_gravity="center"
+                      android:gravity="center"
                       android:text="Tracter Price"
                       android:textColor="#000"
                       android:textSize="14dp"
                       android:textStyle="bold" />
 
-                  <TextView
+                <!--  <TextView
                       android:id="@+id/prod_name"
                       android:layout_width="match_parent"
                       android:layout_height="wrap_content"
@@ -79,9 +79,9 @@
                       android:text="Mahindra Jivo mahi"
                       android:textColor="#000"
                       android:textSize="12dp"
-                      />
+                      />-->
 
-                  <TextView
+                  <!--<TextView
                       android:id="@+id/duration"
                       android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
@@ -90,19 +90,19 @@
                       android:text="Immediately"
                       android:textColor="#000"
                       android:textSize="14dp"
-                       />
+                       />-->
 
-                  <TextView
+                 <!-- <TextView
                       android:id="@+id/farmer_name"
                       android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
                       android:fontFamily="@font/segoeui"
                       android:layout_gravity="center"
                       android:text="Farmer Name"
-                      android:layout_marginTop="20dp"
+
                       android:textColor="#000"
                       android:textSize="12dp"
-                     />
+                     />-->
 
                   <TextView
                       android:id="@+id/location"
@@ -130,7 +130,7 @@
                       android:paddingVertical="8dp"
                       android:paddingHorizontal="30dp"
                       android:gravity="center"
-                      android:layout_marginTop="15dp"
+                      android:layout_marginTop="35dp"
                       android:textColor="#000"
                       android:textSize="14dp"
                       android:textStyle="bold" />

@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,10 @@ import com.renewin.FarmPeFarmer.Bean.NearByHorizontalBean;
 import com.renewin.FarmPeFarmer.Bean.NotificationBean;
 import com.renewin.FarmPeFarmer.R;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,8 +36,10 @@ public class FarmsDetailsFragment extends Fragment {
     TextView toolbar_title;
     LinearLayout back_feed;
     RelativeLayout menu;
+    public static String farms;
     NearByHorizontalAdapter madapter;
     public static NotificationAdapter farmadapter;
+
 
 
 
@@ -40,7 +47,6 @@ public class FarmsDetailsFragment extends Fragment {
         FarmsDetailsFragment fragment = new FarmsDetailsFragment();
         return fragment;
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -68,6 +74,8 @@ public class FarmsDetailsFragment extends Fragment {
         back_feed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+              //  FarmerDetailsFragment.farmer=null;
+                farms="farm_back";
                 FragmentManager fm = getActivity().getSupportFragmentManager();
                 fm.popBackStack("connect", FragmentManager.POP_BACK_STACK_INCLUSIVE);
             }

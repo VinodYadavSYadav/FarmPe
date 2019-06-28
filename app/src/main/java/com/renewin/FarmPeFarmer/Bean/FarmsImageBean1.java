@@ -2,24 +2,25 @@ package com.renewin.FarmPeFarmer.Bean;
 
 public class FarmsImageBean1 {
 
-    private int image;
-    private String prod_price,modelname,duration,farmer_name,location,id,hp;
+   // private int image;
+    private String image,prod_price,modelname,mobile_no,farmer_name,location,id,hp,email;
    // private  int imageid;
 
-    public FarmsImageBean1(int image, String prod_price, String modelname, String hp, String duration, String farmer_name, String location, String id) {
+    public FarmsImageBean1(String image, String prod_price, String modelname, String hp, String mobile_no, String farmer_name, String location, String id,String email) {
 
         this.image = image;
         this.prod_price = prod_price;
         this.modelname = modelname;
-        this.duration = duration;
+        this.mobile_no = mobile_no;
         this.farmer_name = farmer_name;
         this.location = location;
         this.id = id;
         this.hp = hp;
+        this.email = email;
 
     }
 
-    public int getImage() {
+    public String getImage() {
         return image;
     }
 
@@ -36,7 +37,7 @@ public class FarmsImageBean1 {
     }
 
     public String getDuration() {
-        return duration;
+        return mobile_no;
     }
 
     public String getFarmer_name() {
@@ -49,5 +50,13 @@ public class FarmsImageBean1 {
 
     public String getId() {
         return id;
+    }
+
+    public String getMobile_no() {
+        return mobile_no;
+    }
+
+    public String getEmail() {
+        return email;
     }
 }

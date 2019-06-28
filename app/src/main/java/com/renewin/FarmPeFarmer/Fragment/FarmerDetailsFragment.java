@@ -11,6 +11,9 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.renewin.FarmPeFarmer.Adapter.FarmerImageAdapter;
 import com.renewin.FarmPeFarmer.Adapter.NearByHorizontalAdapter;
 import com.renewin.FarmPeFarmer.Adapter.NotificationAdapter;
 import com.renewin.FarmPeFarmer.Bean.NearByHorizontalBean;
@@ -20,14 +23,17 @@ import com.renewin.FarmPeFarmer.R;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class FarmerDetailsFragment extends Fragment {
 
     public static List<NotificationBean> newOrderBeansList = new ArrayList<>();
     public static List<NearByHorizontalBean> newOrderBeansList_horizontal = new ArrayList<>();
     public static RecyclerView recyclerView,recyclerView_horizontal;
-    TextView toolbar_title;
+    TextView toolbar_title,farmer_name,farmer_phone,farmer_email,farmer_loc;
     LinearLayout back_feed;
     RelativeLayout menu;
+    CircleImageView prod_img;
     NearByHorizontalAdapter madapter;
     public static NotificationAdapter farmadapter;
 
@@ -46,6 +52,24 @@ public class FarmerDetailsFragment extends Fragment {
         toolbar_title=view.findViewById(R.id.toolbar_title);
         back_feed=view.findViewById(R.id.back_feed);
         menu=view.findViewById(R.id.menu);
+        farmer_name=view.findViewById(R.id.farmer_name);
+        farmer_phone=view.findViewById(R.id.phone_no);
+        farmer_email=view.findViewById(R.id.email);
+        farmer_loc=view.findViewById(R.id.loc);
+        prod_img=view.findViewById(R.id.prod_img);
+
+        Glide.with(getActivity()).load(FarmerImageAdapter.farmer_image)
+
+                .thumbnail(0.5f)
+                .crossFade()
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .error(R.drawable.avatarmale)
+                .into(prod_img);
+
+        farmer_name.setText(FarmerImageAdapter.farmer_name1);
+        farmer_phone.setText(FarmerImageAdapter.farmer_phn);
+        farmer_email.setText(FarmerImageAdapter.farmer_emil);
+        farmer_loc.setText(FarmerImageAdapter.farmer_loc);
 
 
         back_feed.setOnClickListener(new View.OnClickListener() {

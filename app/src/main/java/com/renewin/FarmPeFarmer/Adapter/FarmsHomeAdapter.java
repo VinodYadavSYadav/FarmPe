@@ -83,7 +83,7 @@ public class FarmsHomeAdapter extends RecyclerView.Adapter<FarmsHomeAdapter.MyVi
         holder.farmer_name.setText(products.getFarmer_name());
         holder.location.setText(products.getLocation()+", "+"Karnataka");
 
-        holder.connect.setOnClickListener(new View.OnClickListener() {
+      /*  holder.connect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Bundle bundle=new Bundle();
@@ -95,7 +95,7 @@ public class FarmsHomeAdapter extends RecyclerView.Adapter<FarmsHomeAdapter.MyVi
                 selectedFragment.setArguments(bundle);
                 transaction.commit();
             }
-        });
+        });*/
 
 
 

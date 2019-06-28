@@ -29,7 +29,7 @@ public class FarmerImageAdapter extends RecyclerView.Adapter<FarmerImageAdapter.
 
     public LinearLayout linearLayout;
    public static LinearLayout next_arw;
-    public static String first;
+    public static String first,farmer_name1,farmer_phn,farmer_loc,farmer_emil,farmer_image;
     //    SessionManager session;
     public static CardView cardView;
     public FarmerImageAdapter(Activity activity, List<FarmsImageBean1> moviesList) {
@@ -53,9 +53,9 @@ public class FarmerImageAdapter extends RecyclerView.Adapter<FarmerImageAdapter.
             //agri_text=view.findViewById(R.id.store_agri);
            // item_2=view.findViewById(R.id.item_2);
             prod_price=view.findViewById(R.id.prod_price);
-            prod_name=view.findViewById(R.id.prod_name);
-            duration=view.findViewById(R.id.duration);
-            farmer_name=view.findViewById(R.id.farmer_name);
+          //  prod_name=view.findViewById(R.id.prod_name);
+          //  duration=view.findViewById(R.id.duration);
+           // farmer_name=view.findViewById(R.id.farmer_name);
             location=view.findViewById(R.id.location);
             connect=view.findViewById(R.id.connect);
             image=view.findViewById(R.id.prod_img);
@@ -78,22 +78,39 @@ public class FarmerImageAdapter extends RecyclerView.Adapter<FarmerImageAdapter.
         final FarmsImageBean1 products = productList.get(position);
       //holder.agri_text.setText(products.getAgri_text());
         holder.prod_price.setText(products.getProd_price());
-        holder.prod_name.setText(products.getModelname());
-        holder.duration.setText(products.getDuration());
-        holder.farmer_name.setText(products.getFarmer_name());
-        holder.location.setText(products.getLocation());
+      //  holder.prod_name.setText(products.getModelname());
+      //  holder.duration.setText(products.getDuration());
+       // holder.farmer_name.setText(products.getFarmer_name());
+        holder.location.setText(products.getHp()+", "+products.getModelname());
 
-        holder.duration.setVisibility(View.GONE);
-        Glide.with(activity).load(products.getImage())
+       // holder.duration.setVisibility(View.GONE);
+
+        String imageeeee=products.getImage();
+        System.out.println("imageeee"+imageeeee);
+       /* Glide.with(activity).load("https://renewin.sharepoint.com/:i:/s/WarehouseXD/EScFH2v3KU9FgBBt69aJF0kBJQP45yrm8xGX5TcD-7MgLw?e=mWhwOc")
 
                 .thumbnail(0.5f)
                 .crossFade()
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(holder.image);
+*/
+
+        Glide.with(activity).load(products.getImage())
+
+                .thumbnail(0.5f)
+                .crossFade()
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .error(R.drawable.avatarmale)
+                .into(holder.image);
 
         holder.connect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                farmer_name1=products.getProd_price();
+                farmer_phn=products.getMobile_no();
+                farmer_emil=products.getEmail();
+                farmer_loc=products.getLocation();
+                farmer_image=products.getImage();
                 selectedFragment = FarmerDetailsFragment.newInstance();
                 FragmentTransaction transaction = ((FragmentActivity)activity).getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.frame_layout, selectedFragment);
