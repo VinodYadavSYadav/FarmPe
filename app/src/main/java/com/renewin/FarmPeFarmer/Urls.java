@@ -7,7 +7,7 @@ public class Urls {
    // private static final String ROOT_URL = "http://3.17.6.57:8888//api/";//PRO
 
     public static final String Add_New_Address = ROOT_URL+"MasterTable/AddUserAddress";
-
+ public static final String GetFarmerDetailsList = ROOT_URL+"MasterTable/GetFarmersList";
 
     public static final String LOGIN=ROOT_URL+"Auth/ValidateUser";
     public static final String SIGNUP=ROOT_URL+"Auth/RegisterUser";
