@@ -8,6 +8,7 @@ import android.content.IntentFilter;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
@@ -78,7 +79,7 @@ public class Thank_U_New extends AppCompatActivity {
             otp_text.setText(lngObject.getString("PleaseentertheOTPbelowtoresetpassword"));
             enter_otp.setHint(lngObject.getString("EntertheOTP"));
             toast_otp = lngObject.getString("EntertheOTP");
-            toast_invalid_otp = lngObject.getString(" InvalidOTP");
+            toast_invalid_otp = lngObject.getString("InvalidOTP");
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -119,8 +120,10 @@ public class Thank_U_New extends AppCompatActivity {
                             .make(linearLayout,toast_otp, Snackbar.LENGTH_LONG);
                     View snackbarView = snackbar.getView();
                     TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-                    tv.setTextColor(Color.RED);
+                    tv.setBackgroundColor(ContextCompat.getColor(Thank_U_New.this,R.color.orange));
+                    tv.setTextColor(Color.WHITE);
                     snackbar.show();
+
                 }else {
                     if (otp_get_text.equals(sessionId)){
                         Intent intent=new Intent(Thank_U_New.this,ResetPasswordNew.class);
@@ -130,7 +133,8 @@ public class Thank_U_New extends AppCompatActivity {
                                 .make(linearLayout,toast_invalid_otp, Snackbar.LENGTH_LONG);
                         View snackbarView = snackbar.getView();
                         TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-                        tv.setTextColor(Color.RED);
+                        tv.setBackgroundColor(ContextCompat.getColor(Thank_U_New.this,R.color.orange));
+                        tv.setTextColor(Color.WHITE);
                         snackbar.show();
                     }
                 }

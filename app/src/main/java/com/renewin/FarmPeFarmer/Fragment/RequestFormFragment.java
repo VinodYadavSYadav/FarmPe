@@ -91,7 +91,7 @@ public class RequestFormFragment extends Fragment {
 
         // String addId=bundle.getString("add_id");
 
-        check_box.setText("I agree that by clicking 'Request for Tractor Price' button, I am explicitly soliciting a call from Xohri App users on my 'Mobile' in order to assist me with my tractor purchase.");
+        check_box.setText("I agree that by clicking 'Request for Tractor Price' button, I am explicitly soliciting a call from FarmPe Farmer App users on my 'Mobile' in order to assist me with my tractor purchase.");
 
         back_feed.setOnClickListener(new View.OnClickListener() {
             @Override

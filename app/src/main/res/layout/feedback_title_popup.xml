@@ -105,7 +105,7 @@
 
                 android:background="#fff"
                 android:fontFamily="@font/segoeui"
-                android:text="Tractor"
+                android:text="App Suggestion and Feedback"
                 android:textSize="14dp"
                 android:padding="10dp"
                 android:gravity="start"
@@ -133,7 +133,7 @@
                 android:layout_weight="10"
                 android:background="#fff"
                 android:fontFamily="@font/segoeui"
-                android:text="Bus"
+                android:text="App Technical Problem"
                 android:textSize="14dp"
                 android:padding="10dp"
                 android:gravity="start"
@@ -149,26 +149,7 @@
             />
 
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            >
-            <TextView
-                android:id="@+id/truck"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="10"
-                android:background="#fff"
-                android:fontFamily="@font/segoeui"
-                android:text="Truck"
-                android:textSize="14dp"
-                android:padding="10dp"
-                android:gravity="start"
-                android:textColor="#000000"
-                />
 
-        </LinearLayout>
 
         <View
             android:layout_width="match_parent"
@@ -177,31 +158,7 @@
             />
 
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            >
-            <TextView
-                android:id="@+id/car"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="10"
-                android:background="#fff"
-                android:fontFamily="@font/segoeui"
-                android:text="Car"
-                android:textSize="14dp"
-                android:padding="10dp"
-                android:gravity="start"
-                android:textColor="#000000"
-                />
 
-        </LinearLayout>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#e5e5e5"
-            />
 
 
         <LinearLayout

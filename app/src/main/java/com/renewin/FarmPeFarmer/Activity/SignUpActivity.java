@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -331,24 +332,27 @@ public class SignUpActivity extends AppCompatActivity {
         });*/
 
        //with space in between nt in starting
+//
+//        final InputFilter filter1 = new InputFilter() {
+//            public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
+//                //String filtered = "";
+//                for (int i = start; i < end; i++) {
+//                    char character = source.charAt(i);
+//                    if (Character.isWhitespace(source.charAt(i))) {
+//                        if (dstart == 0)
+//                            return "";
+//                    }
+//                }
+//                return null;
+//            }
+//
+//        };
+//
+//
+//        name.setFilters(new InputFilter[] {filter1,new InputFilter.LengthFilter(30) });
 
-        final InputFilter filter1 = new InputFilter() {
-            public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
-                //String filtered = "";
-                for (int i = start; i < end; i++) {
-                    char character = source.charAt(i);
-                    if (Character.isWhitespace(source.charAt(i))) {
-                        if (dstart == 0)
-                            return "";
-                    }
-                }
-                return null;
-            }
+      name.setFilters(new InputFilter[]{EMOJI_FILTER});
 
-        };
-
-
-        name.setFilters(new InputFilter[] {filter1,new InputFilter.LengthFilter(30) });
 
        //without space
         final InputFilter filter = new InputFilter() {
@@ -395,7 +399,8 @@ public class SignUpActivity extends AppCompatActivity {
                             .make(linearLayout, enter_all_toast, Snackbar.LENGTH_LONG);
                     View snackbarView = snackbar.getView();
                     TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-                    tv.setTextColor(Color.RED);
+                    tv.setBackgroundColor(ContextCompat.getColor(SignUpActivity.this,R.color.orange));
+                    tv.setTextColor(Color.WHITE);
                     snackbar.show();
                 } else if (name_text.equals("")) {
 
@@ -404,21 +409,26 @@ public class SignUpActivity extends AppCompatActivity {
                             .make(linearLayout, name_toast, Snackbar.LENGTH_LONG);
                     View snackbarView = snackbar.getView();
                     TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-                    tv.setTextColor(Color.RED);
+                    tv.setBackgroundColor(ContextCompat.getColor(SignUpActivity.this,R.color.orange));
+                    tv.setTextColor(Color.WHITE);
                     snackbar.show();
+
                 } else if (name_text.length() < 2) {
                     Snackbar snackbar = Snackbar
                             .make(linearLayout, minimum_character_toast, Snackbar.LENGTH_LONG);
                     View snackbarView = snackbar.getView();
                     TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-                    tv.setTextColor(Color.RED);
+                    tv.setBackgroundColor(ContextCompat.getColor(SignUpActivity.this,R.color.orange));
+                    tv.setTextColor(Color.WHITE);
                     snackbar.show();
+
                 } else if (name_text.startsWith(" ")) {
                     Snackbar snackbar = Snackbar
                             .make(linearLayout, "Name should not starts with space", Snackbar.LENGTH_LONG);
                     View snackbarView = snackbar.getView();
                     TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-                    tv.setTextColor(Color.RED);
+                    tv.setBackgroundColor(ContextCompat.getColor(SignUpActivity.this,R.color.orange));
+                    tv.setTextColor(Color.WHITE);
                     snackbar.show();
 
 
@@ -429,7 +439,8 @@ public class SignUpActivity extends AppCompatActivity {
                             .make(linearLayout, passwrd_toast, Snackbar.LENGTH_LONG);
                     View snackbarView = snackbar.getView();
                     TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-                    tv.setTextColor(Color.RED);
+                    tv.setBackgroundColor(ContextCompat.getColor(SignUpActivity.this,R.color.orange));
+                    tv.setTextColor(Color.WHITE);
                     snackbar.show();
                 } else if (!(contact.length() == 13)) {
 
@@ -438,7 +449,8 @@ public class SignUpActivity extends AppCompatActivity {
                             .make(linearLayout, mob_toast, Snackbar.LENGTH_LONG);
                     View snackbarView = snackbar.getView();
                     TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-                    tv.setTextColor(Color.RED);
+                    tv.setBackgroundColor(ContextCompat.getColor(SignUpActivity.this,R.color.orange));
+                    tv.setTextColor(Color.WHITE);
                     snackbar.show();
 
                 }/*else if (contact.equals(sessionManager.getRegId("phone"))){
@@ -456,8 +468,10 @@ public class SignUpActivity extends AppCompatActivity {
                             .make(linearLayout, "Enter Your Password", Snackbar.LENGTH_LONG);
                     View snackbarView = snackbar.getView();
                     TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-                    tv.setTextColor(Color.RED);
+                    tv.setBackgroundColor(ContextCompat.getColor(SignUpActivity.this,R.color.orange));
+                    tv.setTextColor(Color.WHITE);
                     snackbar.show();
+
                 } else if (password.length() < 6) {
                     // Sign_Up.this.pass.requestFocus();
                     //Toast.makeText(SignUp.this, "Enter password of length 6 characters", Toast.LENGTH_SHORT).show();
@@ -465,15 +479,18 @@ public class SignUpActivity extends AppCompatActivity {
                             .make(linearLayout, passwrd_toast, Snackbar.LENGTH_LONG);
                     View snackbarView = snackbar.getView();
                     TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-                    tv.setTextColor(Color.RED);
+                    tv.setBackgroundColor(ContextCompat.getColor(SignUpActivity.this,R.color.orange));
+                    tv.setTextColor(Color.WHITE);
                     snackbar.show();
+
                 } else if (password_text.contains(" ")) {
 
                     Snackbar snackbar = Snackbar
                             .make(linearLayout, "Password should not contain spaces", Snackbar.LENGTH_LONG);
                     View snackbarView = snackbar.getView();
                     TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-                    tv.setTextColor(Color.RED);
+                    tv.setBackgroundColor(ContextCompat.getColor(SignUpActivity.this,R.color.orange));
+                    tv.setTextColor(Color.WHITE);
                     snackbar.show();
                 } else {
 
@@ -613,6 +630,9 @@ public class SignUpActivity extends AppCompatActivity {
                         create_acc.setText(log_regi);
                         continue_sign_up.setText(log_register);
 
+                        name.setFilters(new InputFilter[]{EMOJI_FILTER});
+
+
 
 
 
@@ -628,7 +648,7 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
 
-  /*  public static InputFilter EMOJI_FILTER = new InputFilter() {
+    public static InputFilter EMOJI_FILTER = new InputFilter() {
         @Override
         public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
             boolean keepOriginal = true;
@@ -640,17 +660,14 @@ public class SignUpActivity extends AppCompatActivity {
                 }
                 for (int i = start; i < end; i++) {
                     if (Character.isWhitespace(source.charAt(i))) {
-                        if (dstart == 0)
+                   if (dstart == 0)
                             return "";
                     }
                 }
                 return null;
-          *//*  char c = source.charAt(index);
-            if (isCharAllowed(c))
-                sb.append(c);
-            else
-                keepOriginal = false;*//*
+
             }
+
             if (keepOriginal)
                 return null;
             else {
@@ -663,7 +680,7 @@ public class SignUpActivity extends AppCompatActivity {
                 }
             }
         }
-    };*/
+    };
 
     @Override
     public void onBackPressed() {
@@ -837,7 +854,8 @@ public class SignUpActivity extends AppCompatActivity {
                                     .make(linearLayout,mobile_registered_toast, Snackbar.LENGTH_LONG);
                             View snackbarView = snackbar.getView();
                             TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-                            tv.setTextColor(Color.RED);
+                            tv.setBackgroundColor(ContextCompat.getColor(SignUpActivity.this,R.color.orange));
+                            tv.setTextColor(Color.WHITE);
                             snackbar.show();
 
 

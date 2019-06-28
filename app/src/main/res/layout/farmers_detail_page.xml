@@ -85,7 +85,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Send Connection Request"
+            android:text="Farmer Details"
             android:textSize="20dp"
             android:gravity="center"
             android:textColor="#fff"
@@ -132,7 +132,7 @@
                     android:id="@+id/farmer_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Jagdish Kumar"
+                    android:text=""
                     android:textSize="14dp"
                     android:layout_gravity="center_vertical"
                     android:textColor="#000"
@@ -204,7 +204,7 @@
                     android:id="@+id/phone_no"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="9891490506"
+                    android:text=""
                     android:textSize="14dp"
                     android:background="@drawable/border_transperent"
 
@@ -238,6 +238,7 @@
 
 
         <LinearLayout
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -267,6 +268,7 @@
             </LinearLayout>
 
             <LinearLayout
+
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="70"
@@ -349,7 +351,7 @@
                     android:id="@+id/loc"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Bangalore, Karnataka"
+                    android:text=""
                     android:textSize="14dp"
                     android:layout_gravity="center_vertical"
                     android:textColor="#000"
@@ -395,7 +397,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/border_filled_pink"
+                android:background="@drawable/border_filled_red"
                 android:drawableLeft="@drawable/ic_air_conditioner"
                 android:drawablePadding="10dp"
                 android:gravity="center_vertical"

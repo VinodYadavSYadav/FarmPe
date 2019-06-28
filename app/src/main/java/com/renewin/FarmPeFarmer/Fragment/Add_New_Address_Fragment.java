@@ -9,6 +9,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -29,6 +30,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.renewin.FarmPeFarmer.Activity.EnterOTP;
 import com.renewin.FarmPeFarmer.Adapter.DistrictAdapter;
 import com.renewin.FarmPeFarmer.Adapter.HoblisAdapter;
 import com.renewin.FarmPeFarmer.Adapter.Sell_Location_Adapter;
@@ -757,7 +759,8 @@ public class  Add_New_Address_Fragment extends Fragment {
                             .make(linearLayout, s_addtype, Snackbar.LENGTH_LONG);
                     View snackbarView = snackbar.getView();
                     TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-                    tv.setTextColor(Color.RED);
+                    tv.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.orange));
+                    tv.setTextColor(Color.WHITE);
                     snackbar.show();
                     //Toast.makeText(getActivity(), "Select Address Type", Toast.LENGTH_SHORT).show();
 
@@ -767,7 +770,8 @@ public class  Add_New_Address_Fragment extends Fragment {
                             .make(linearLayout, entername, Snackbar.LENGTH_LONG);
                     View snackbarView = snackbar.getView();
                     TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-                    tv.setTextColor(Color.RED);
+                    tv.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.orange));
+                    tv.setTextColor(Color.WHITE);
                     snackbar.show();
                     //Toast.makeText(getActivity(), "Enter Name", Toast.LENGTH_SHORT).show();
 
@@ -779,7 +783,8 @@ public class  Add_New_Address_Fragment extends Fragment {
                             .make(linearLayout, entermno, Snackbar.LENGTH_LONG);
                     View snackbarView = snackbar.getView();
                     TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-                    tv.setTextColor(Color.RED);
+                    tv.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.orange));
+                    tv.setTextColor(Color.WHITE);
                     snackbar.show();
 
                 }else if(mobile.length()<10){
@@ -788,7 +793,8 @@ public class  Add_New_Address_Fragment extends Fragment {
                             .make(linearLayout, inncrtmno, Snackbar.LENGTH_LONG);
                     View snackbarView = snackbar.getView();
                     TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-                    tv.setTextColor(Color.RED);
+                    tv.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.orange));
+                    tv.setTextColor(Color.WHITE);
                     snackbar.show();
 
                 }else if(house_numb.getText().toString().equals("")){
@@ -797,7 +803,8 @@ public class  Add_New_Address_Fragment extends Fragment {
                             .make(linearLayout, enterhno, Snackbar.LENGTH_LONG);
                     View snackbarView = snackbar.getView();
                     TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-                    tv.setTextColor(Color.RED);
+                    tv.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.orange));
+                    tv.setTextColor(Color.WHITE);
                     snackbar.show();
 
 
@@ -807,7 +814,8 @@ public class  Add_New_Address_Fragment extends Fragment {
                             .make(linearLayout, enterstreetad, Snackbar.LENGTH_LONG);
                     View snackbarView = snackbar.getView();
                     TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-                    tv.setTextColor(Color.RED);
+                    tv.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.orange));
+                    tv.setTextColor(Color.WHITE);
                     snackbar.show();
 
 
@@ -817,7 +825,8 @@ public class  Add_New_Address_Fragment extends Fragment {
                             .make(linearLayout, enterlandmark, Snackbar.LENGTH_LONG);
                     View snackbarView = snackbar.getView();
                     TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-                    tv.setTextColor(Color.RED);
+                    tv.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.orange));
+                    tv.setTextColor(Color.WHITE);
                     snackbar.show();
 
                 }else if(city.getText().toString().equals("")) {
@@ -826,7 +835,8 @@ public class  Add_New_Address_Fragment extends Fragment {
                             .make(linearLayout, entercity, Snackbar.LENGTH_LONG);
                     View snackbarView = snackbar.getView();
                     TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-                    tv.setTextColor(Color.RED);
+                    tv.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.orange));
+                    tv.setTextColor(Color.WHITE);
                     snackbar.show();
 
 
@@ -836,7 +846,8 @@ public class  Add_New_Address_Fragment extends Fragment {
                             .make(linearLayout, enterpincode, Snackbar.LENGTH_LONG);
                     View snackbarView = snackbar.getView();
                     TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-                    tv.setTextColor(Color.RED);
+                    tv.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.orange));
+                    tv.setTextColor(Color.WHITE);
                     snackbar.show();
 
 
@@ -846,8 +857,10 @@ public class  Add_New_Address_Fragment extends Fragment {
                             .make(linearLayout, enterpincode, Snackbar.LENGTH_LONG);
                     View snackbarView = snackbar.getView();
                     TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-                    tv.setTextColor(Color.RED);
+                    tv.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.orange));
+                    tv.setTextColor(Color.WHITE);
                     snackbar.show();
+
 
                 }else if(state.getText().toString().equals("")) {
                     // Toast.makeText(getActivity(), "Select State", Toast.LENGTH_SHORT).show();
@@ -855,7 +868,8 @@ public class  Add_New_Address_Fragment extends Fragment {
                             .make(linearLayout, selectstate, Snackbar.LENGTH_LONG);
                     View snackbarView = snackbar.getView();
                     TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-                    tv.setTextColor(Color.RED);
+                    tv.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.orange));
+                    tv.setTextColor(Color.WHITE);
                     snackbar.show();
 
 
@@ -865,7 +879,8 @@ public class  Add_New_Address_Fragment extends Fragment {
                             .make(linearLayout, selectdistrict, Snackbar.LENGTH_LONG);
                     View snackbarView = snackbar.getView();
                     TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-                    tv.setTextColor(Color.RED);
+                    tv.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.orange));
+                    tv.setTextColor(Color.WHITE);
                     snackbar.show();
 
 
@@ -875,7 +890,8 @@ public class  Add_New_Address_Fragment extends Fragment {
                             .make(linearLayout, selecttaluk, Snackbar.LENGTH_LONG);
                     View snackbarView = snackbar.getView();
                     TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-                    tv.setTextColor(Color.RED);
+                    tv.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.orange));
+                    tv.setTextColor(Color.WHITE);
                     snackbar.show();
 
 
@@ -885,7 +901,8 @@ public class  Add_New_Address_Fragment extends Fragment {
                             .make(linearLayout, selecthobli, Snackbar.LENGTH_LONG);
                     View snackbarView = snackbar.getView();
                     TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-                    tv.setTextColor(Color.RED);
+                    tv.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.orange));
+                    tv.setTextColor(Color.WHITE);
                     snackbar.show();
 
 
@@ -895,7 +912,8 @@ public class  Add_New_Address_Fragment extends Fragment {
                             .make(linearLayout, selectvillage, Snackbar.LENGTH_LONG);
                     View snackbarView = snackbar.getView();
                     TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-                    tv.setTextColor(Color.RED);
+                    tv.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.orange));
+                    tv.setTextColor(Color.WHITE);
                     snackbar.show();
 
                 }else {
@@ -1000,7 +1018,8 @@ public class  Add_New_Address_Fragment extends Fragment {
                                     .make(linearLayout, newaddressadded, Snackbar.LENGTH_LONG);
                             View snackbarView = snackbar.getView();
                             TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-                            tv.setTextColor(Color.RED);
+                            tv.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.orange));
+                            tv.setTextColor(Color.WHITE);
                             snackbar.show();
 
 
@@ -1040,7 +1059,8 @@ public class  Add_New_Address_Fragment extends Fragment {
                                     .make(linearLayout, addnotadded, Snackbar.LENGTH_LONG);
                             View snackbarView = snackbar.getView();
                             TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-                            tv.setTextColor(Color.RED);
+                            tv.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.orange));
+                            tv.setTextColor(Color.WHITE);
                             snackbar.show();
 
 

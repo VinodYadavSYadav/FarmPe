@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
@@ -110,11 +111,12 @@ public class EnterOTP extends AppCompatActivity {
 
                                 if (status==2){
                                     Snackbar snackbar = Snackbar
-                                            .make(linearLayout, result.getString("Message"), Snackbar.LENGTH_LONG);
+                                            .make(linearLayout,Message, Snackbar.LENGTH_LONG);
                                     //snackbar.setActionTextColor(R.color.colorAccent);
                                     View snackbarView = snackbar.getView();
                                     TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-                                    tv.setTextColor(Color.RED);
+                                    tv.setBackgroundColor(ContextCompat.getColor(EnterOTP.this,R.color.orange));
+                                    tv.setTextColor(Color.WHITE);
                                     snackbar.show();
                                 }
                                 else {
@@ -223,7 +225,8 @@ public class EnterOTP extends AppCompatActivity {
                             .make(linearLayout,toast_otp, Snackbar.LENGTH_LONG);
                     View snackbarView = snackbar.getView();
                     TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-                    tv.setTextColor(Color.RED);
+                    tv.setBackgroundColor(ContextCompat.getColor(EnterOTP.this,R.color.orange));
+                    tv.setTextColor(Color.WHITE);
                     snackbar.show();
                 }
 
@@ -255,7 +258,8 @@ public class EnterOTP extends AppCompatActivity {
                                                 .make(linearLayout, "User Registered Successfully", Snackbar.LENGTH_LONG);
                                         View snackbarView = snackbar.getView();
                                         TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-                                        tv.setTextColor(Color.RED);
+                                        tv.setBackgroundColor(ContextCompat.getColor(EnterOTP.this,R.color.orange));
+                                        tv.setTextColor(Color.WHITE);
                                         snackbar.show();
 
 
@@ -289,7 +293,8 @@ public class EnterOTP extends AppCompatActivity {
                             .make(linearLayout,toast_invalid_otp, Snackbar.LENGTH_LONG);
                     View snackbarView = snackbar.getView();
                     TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-                    tv.setTextColor(Color.RED);
+                    tv.setBackgroundColor(ContextCompat.getColor(EnterOTP.this,R.color.orange));
+                    tv.setTextColor(Color.WHITE);
                     snackbar.show();
                 }
             }

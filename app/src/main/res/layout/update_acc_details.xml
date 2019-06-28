@@ -278,7 +278,6 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="70"
-                android:visibility=""
                 android:gravity="center"
                 >
 
@@ -412,7 +411,7 @@
                 android:text="Update"
                 android:textSize="16dp"
                 android:textColor="#fff"
-                android:background="@drawable/border_filled_pink"
+                android:background="@drawable/border_filled_red"
                 android:paddingVertical="20dp"
                 android:gravity="center"
                 android:paddingHorizontal="20dp"

@@ -20,12 +20,12 @@ import com.renewin.FarmPeFarmer.R;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class ComingSoonFragment extends Fragment {
+public class Coming_soon2_Fragment extends Fragment {
     Fragment selectedFragment;
     LinearLayout backfeed;
 
-    public static ComingSoonFragment newInstance() {
-        ComingSoonFragment fragment = new ComingSoonFragment();
+    public static Coming_soon2_Fragment newInstance() {
+        Coming_soon2_Fragment fragment = new Coming_soon2_Fragment();
         return fragment;
     }
 
@@ -46,7 +46,7 @@ public class ComingSoonFragment extends Fragment {
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP) {
                     FragmentManager fm = getActivity().getSupportFragmentManager();
-                    fm.popBackStack("home", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                    fm.popBackStack("setting", FragmentManager.POP_BACK_STACK_INCLUSIVE);
 
 
                     return true;
@@ -60,7 +60,7 @@ public class ComingSoonFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 FragmentManager fm = getActivity().getSupportFragmentManager();
-                fm.popBackStack("home", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                fm.popBackStack("setting", FragmentManager.POP_BACK_STACK_INCLUSIVE);
 
 
             }

@@ -119,10 +119,9 @@ public class FeedbackFragment extends Fragment {
 
                 final Dialog dialog = new Dialog(getActivity());
                 dialog.setContentView(R.layout.feedback_title_popup);
-                final TextView tractor = (TextView) dialog.findViewById(R.id.tractor);
-                final TextView bus = (TextView) dialog.findViewById(R.id.bus);
-                final TextView truck = (TextView)dialog.findViewById(R.id.truck) ;
-                final TextView car = (TextView)dialog.findViewById(R.id.car) ;
+                final TextView app_suggest = (TextView) dialog.findViewById(R.id.tractor);
+                final TextView app_technical = (TextView) dialog.findViewById(R.id.bus);
+
                 final TextView others = (TextView)dialog.findViewById(R.id.othrs) ;
                 ImageView image = (ImageView) dialog.findViewById(R.id.close_popup);
 
@@ -147,47 +146,25 @@ public class FeedbackFragment extends Fragment {
                 });
 
 
-                tractor.setOnClickListener(new View.OnClickListener() {
+                app_suggest.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        feedback_type.setText(tractor.getText().toString());
+                        feedback_type.setText(app_suggest.getText().toString());
                         // gettingAddress("Home");
                         dialog.dismiss();
                     }
                 });
 
-                bus.setOnClickListener(new View.OnClickListener() {
+                app_technical.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        feedback_type.setText(bus.getText().toString());
+                        feedback_type.setText(app_technical.getText().toString());
                         dialog.dismiss();
                         //   gettingAddress("Barn");
 
                     }
                 });
 
-                truck.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        feedback_type.setText(truck.getText().toString());
-                        dialog.dismiss();
-                        //  gettingAddress("Warehouse");
-
-
-                    }
-                });
-
-                car.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        feedback_type.setText(car.getText().toString());
-                        dialog.dismiss();
-
-                        //  gettingAddress("Farm");
-
-
-                    }
-                });
 
 
                 others.setOnClickListener(new View.OnClickListener() {

@@ -239,7 +239,7 @@ public class SettingFragment extends Fragment {
        noti_setting.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
-               selectedFragment = ComingSoonFragment.newInstance();
+               selectedFragment = Coming_soon2_Fragment.newInstance();
                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                transaction.replace(R.id.frame_layout, selectedFragment);
                transaction.addToBackStack("setting");

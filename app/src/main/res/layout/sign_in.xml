@@ -146,6 +146,7 @@
             android:inputType="textPassword"
             android:maxLength="12"
             android:paddingTop="5dp"
+            android:hint="Pasword"
             android:paddingBottom="20dp"
             android:textStyle="normal"
             android:background="@android:color/transparent"
@@ -153,7 +154,7 @@
             android:singleLine="true"
             android:textColor="#8c8c8c"
             android:textColorHint="#8c8c8c"
-            android:textSize="16dp"
+            android:textSize="14dp"
              />
         </android.support.design.widget.TextInputLayout>
         </LinearLayout>
@@ -273,6 +274,7 @@
                 android:drawablePadding="10dp"
                 android:paddingHorizontal="20dp"
                 android:paddingVertical="10dp"
+                android:drawableLeft="@drawable/ic_internet"
                 android:drawableRight="@drawable/ic_down_arrow"
                 android:fontFamily="@font/segoeui"
                 android:textSize="14dp"

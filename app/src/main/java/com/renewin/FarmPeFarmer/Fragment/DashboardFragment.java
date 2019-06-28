@@ -11,14 +11,22 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.renewin.FarmPeFarmer.R;
+import com.renewin.FarmPeFarmer.SessionManager;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class DashboardFragment extends Fragment {
     boolean doubleBackToExitPressedOnce = false;
     LinearLayout looking_for,farms,farmer;
     View looking_view,farms_view,farmer_view;
     Fragment selectedFragment;
+    JSONObject lngObject;
 
-    TextView farmer1,farm1,looking_for1;
+
+    SessionManager sessionManager;
+
+    TextView farmer1,farms1,looking_for1;
   public static NestedScrollView scrollView;
 
 
@@ -35,9 +43,13 @@ public class DashboardFragment extends Fragment {
         farmer=view.findViewById(R.id.farmer);
         looking_view=view.findViewById(R.id.looking_view);
         farms_view=view.findViewById(R.id.farms_view);
-        farmer1=view.findViewById(R.id.farmer1);
+
        // farm1=view.findViewById(R.id.farms_view);
         farmer_view=view.findViewById(R.id.farmer_view);
+        looking_for1 = view.findViewById(R.id.looking_for1);
+        farms1 = view.findViewById(R.id.farms1);
+        farmer1 = view.findViewById(R.id.farmer1);
+        sessionManager = new SessionManager(getActivity());
 
 //
 //        looking_for1=view.findViewById(R.id.looking_for1);
@@ -63,6 +75,22 @@ public class DashboardFragment extends Fragment {
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.frame_dashboard, selectedFragment);
         transaction.commit();
+
+
+
+        try {
+
+            lngObject = new JSONObject(sessionManager.getRegId("language"));
+
+            looking_for1.setText(lngObject.getString("Lookingfor"));
+            farms1.setText(lngObject.getString("Farms"));
+            farmer1.setText(lngObject.getString("Farmer"));
+
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
 
         looking_for.setOnClickListener(new View.OnClickListener() {

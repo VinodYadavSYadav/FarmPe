@@ -40,7 +40,7 @@ Fragment selectedFragment;
     public static DrawerLayout drawer;
     ImageView plus_sign_add;
     RelativeLayout menu,prof_tab;
-    LinearLayout update_acc_layout,near_by;
+    LinearLayout update_acc_layout,near_by,linear_connection;
     SessionManager sessionManager;
       CircleImageView prod_img,prod_img1;
     String userid;
@@ -73,6 +73,7 @@ Fragment selectedFragment;
        //scrollView=view.findViewById(R.id.scroll);
         home = view.findViewById(R.id.home);
         phone_no = view.findViewById(R.id.phone_no);
+        linear_connection = view.findViewById(R.id.linear_connection);
         //map=view.findViewById(R.id.map);
         update_acc_layout=view.findViewById(R.id.update_acc_layout);
         notification_bell=view.findViewById(R.id.notification_bell);
@@ -199,11 +200,11 @@ Fragment selectedFragment;
             @Override
             public void onClick(View view) {
 
-                selectedFragment = LookingForFragment.newInstance();
-                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.frame_layout, selectedFragment);
-                transaction.addToBackStack("home");
-                transaction.commit();
+//                selectedFragment = LookingForFragment.newInstance();
+//                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+//                transaction.replace(R.id.frame_layout, selectedFragment);
+//                transaction.addToBackStack("home");
+//                transaction.commit();
 
             }
         });
@@ -225,6 +226,13 @@ Fragment selectedFragment;
             @Override
             public void onClick(View view) {
 
+                selectedFragment = AddFirstLookingFor.newInstance();
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.frame_layout, selectedFragment);
+                transaction.addToBackStack("looking");
+                transaction.commit();
+                drawer.closeDrawers();
+
 //                selectedFragment = ComingSoonFragment.newInstance();
 //                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
 //                transaction.replace(R.id.frame_layout, selectedFragment);
@@ -235,7 +243,21 @@ Fragment selectedFragment;
         });
 
 
-        connections.setOnClickListener(new View.OnClickListener() {
+        near_by.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                selectedFragment = ComingSoonFragment.newInstance();
+                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.frame_layout, selectedFragment);
+                transaction.addToBackStack("home");
+                transaction.commit();
+
+            }
+        });
+
+
+        linear_connection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -333,9 +355,10 @@ Fragment selectedFragment;
                         selectedFragment = SettingFragment.newInstance();
                         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                         transaction.replace(R.id.frame_layout, selectedFragment);
+                        transaction.addToBackStack("home");
                         transaction.commit();
                         drawer.closeDrawers();
-                        transaction.addToBackStack("home");
+
                     }
                 });
 

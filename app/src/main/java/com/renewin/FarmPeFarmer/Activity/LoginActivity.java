@@ -322,7 +322,8 @@ public class LoginActivity extends AppCompatActivity {
                             .make(linearLayout, mob_toast, Snackbar.LENGTH_LONG);
                     View snackbarView = snackbar.getView();
                     TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-                    tv.setTextColor(Color.RED);
+                    tv.setBackgroundColor(ContextCompat.getColor(LoginActivity.this,R.color.orange));
+                    tv.setTextColor(Color.WHITE);
                     snackbar.show();
 //                    snackbar = Snackbar
 //                            .make(coordinatorLayout,toast_mob, Snackbar.LENGTH_LONG);
@@ -353,7 +354,8 @@ public class LoginActivity extends AppCompatActivity {
                             .make(linearLayout, pass_toast, Snackbar.LENGTH_LONG);
                     View snackbarView = snackbar.getView();
                     TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-                    tv.setTextColor(Color.RED);
+                    tv.setBackgroundColor(ContextCompat.getColor(LoginActivity.this,R.color.orange));
+                    tv.setTextColor(Color.WHITE);
                     snackbar.show();
 
                 } else if (password.contains(" ")) {
@@ -363,7 +365,8 @@ public class LoginActivity extends AppCompatActivity {
                             .make(linearLayout, "Password should not contain spaces", Snackbar.LENGTH_LONG);
                     View snackbarView = snackbar.getView();
                     TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-                    tv.setTextColor(Color.RED);
+                    tv.setBackgroundColor(ContextCompat.getColor(LoginActivity.this,R.color.orange));
+                    tv.setTextColor(Color.WHITE);
                     snackbar.show();
 
 
@@ -429,7 +432,8 @@ public class LoginActivity extends AppCompatActivity {
                                                 .make(coordinatorLayout, toast_invalid, Snackbar.LENGTH_LONG);
                                         View snackbarView = snackbar.getView();
                                         TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-                                        tv.setTextColor(Color.RED);
+                                        tv.setBackgroundColor(ContextCompat.getColor(LoginActivity.this,R.color.orange));
+                                        tv.setTextColor(Color.WHITE);
                                         snackbar.show();
 
 

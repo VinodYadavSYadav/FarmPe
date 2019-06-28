@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
@@ -121,7 +122,8 @@ public class ForgotPasswordNew extends AppCompatActivity {
                                     .make(coordinatorLayout,toast_mobile, Snackbar.LENGTH_LONG);
                             View snackbarView = snackbar.getView();
                             TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-                            tv.setTextColor(Color.RED);
+                            tv.setBackgroundColor(ContextCompat.getColor(ForgotPasswordNew.this,R.color.orange));
+                            tv.setTextColor(Color.WHITE);
                             snackbar.show();
                           //  Toast.makeText(ForgotPasswordNew.this, "Enter Mobile Number", Toast.LENGTH_SHORT).show();
                         } else if (mobileno.length() <= 9) {
@@ -131,7 +133,8 @@ public class ForgotPasswordNew extends AppCompatActivity {
                             //snackbar.setActionTextColor(R.color.colorAccent);
                             View snackbarView = snackbar.getView();
                             TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-                            tv.setTextColor(Color.RED);
+                            tv.setBackgroundColor(ContextCompat.getColor(ForgotPasswordNew.this,R.color.orange));
+                            tv.setTextColor(Color.WHITE);
                             snackbar.show();
 
                         } else {
@@ -158,21 +161,33 @@ public class ForgotPasswordNew extends AppCompatActivity {
                                                 //snackbar.setActionTextColor(R.color.colorAccent);
                                                 View snackbarView = snackbar.getView();
                                                 TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-                                                tv.setTextColor(Color.RED);
+                                                tv.setBackgroundColor(ContextCompat.getColor(ForgotPasswordNew.this,R.color.orange));
+                                                tv.setTextColor(Color.WHITE);
                                                 snackbar.show();
 
                                             }else if (status==2){
                                                 Snackbar snackbar = Snackbar
-                                                        .make(coordinatorLayout, result.getString("Message"), Snackbar.LENGTH_LONG);
+                                                        .make(coordinatorLayout, toast_number_exceeded, Snackbar.LENGTH_LONG);
                                                 //snackbar.setActionTextColor(R.color.colorAccent);
                                                 View snackbarView = snackbar.getView();
                                                 TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-                                                tv.setTextColor(Color.RED);
+                                                tv.setBackgroundColor(ContextCompat.getColor(ForgotPasswordNew.this,R.color.orange));
+                                                tv.setTextColor(Color.WHITE);
                                                 snackbar.show();
                                             }
 
                                             else{
-                                                Toast.makeText(ForgotPasswordNew.this,Message,Toast.LENGTH_LONG).show();
+
+                                                Snackbar snackbar = Snackbar
+                                                        .make(coordinatorLayout, toast_number_exceeded, Snackbar.LENGTH_LONG);
+                                                System.out.println("sfdsfds" + Message);
+                                                //snackbar.setActionTextColor(R.color.colorAccent);
+                                                View snackbarView = snackbar.getView();
+                                                TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+                                                tv.setBackgroundColor(ContextCompat.getColor(ForgotPasswordNew.this,R.color.orange));
+                                                tv.setTextColor(Color.WHITE);
+                                                snackbar.show();
+
                                                 System.out.println("ffffff" + Message);
                                                 Intent intent = new Intent(ForgotPasswordNew.this, Thank_U_New.class);
                                                 intent.putExtra("otp_forgot", otp);

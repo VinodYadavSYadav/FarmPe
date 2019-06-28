@@ -8,10 +8,13 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.InputFilter;
+import android.text.SpannableString;
 import android.text.Spanned;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.MotionEvent;
 import android.view.View;
@@ -80,12 +83,10 @@ public class ResetPasswordNew extends AppCompatActivity {
             pass_submit.setText(lngObject.getString("Submit"));
             passwd_txt.setHint(lngObject.getString("NewPassword"));
             conf_pass_txt.setHint(lngObject.getString("Confirmthepassword"));
-
             passwrd_toast = lngObject.getString("EnterPassword");
             passwrd_length_toast = lngObject.getString("Enterpasswordoflength6characters");
             pass_not_matching_toast = lngObject.getString("Yourpasswordisnotmatching");
             confirm_passwrd_toast = lngObject.getString("Confirmthepassword");
-
 
 
         } catch (JSONException e) {
@@ -104,6 +105,11 @@ public class ResetPasswordNew extends AppCompatActivity {
         });
 
 
+
+
+        passwd.setFilters(new InputFilter[]{EMOJI_FILTER});
+
+
         final InputFilter filter = new InputFilter() {
             public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
                 String filtered = "";
@@ -117,8 +123,9 @@ public class ResetPasswordNew extends AppCompatActivity {
             }
         };
 
-        passwd.setFilters(new InputFilter[] {filter,new InputFilter.LengthFilter(12) });
+       // passwd.setFilters(new InputFilter[] {filter,new InputFilter.LengthFilter(12) });
         conf_pass.setFilters(new InputFilter[] {filter,new InputFilter.LengthFilter(12) });
+
 
         pass_submit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -131,7 +138,8 @@ public class ResetPasswordNew extends AppCompatActivity {
                             .make(linearLayout, passwrd_toast, Snackbar.LENGTH_LONG);
                     View snackbarView=snackbar.getView();
                     TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-                    tv.setTextColor(Color.RED);
+                    tv.setBackgroundColor(ContextCompat.getColor(ResetPasswordNew.this,R.color.orange));
+                    tv.setTextColor(Color.WHITE);
                     snackbar.show();
                     //Toast.makeText(ResetPassword.this, "Enter The Password", Toast.LENGTH_LONG).show();
                     // passwrd.setError("Enter The Password");
@@ -142,7 +150,8 @@ public class ResetPasswordNew extends AppCompatActivity {
                             .make(linearLayout, "Password should not contain spaces", Snackbar.LENGTH_LONG);
                     View snackbarView=snackbar.getView();
                     TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-                    tv.setTextColor(Color.RED);
+                    tv.setBackgroundColor(ContextCompat.getColor(ResetPasswordNew.this,R.color.orange));
+                    tv.setTextColor(Color.WHITE);
                     snackbar.show();
                 }
 
@@ -152,7 +161,8 @@ public class ResetPasswordNew extends AppCompatActivity {
                             .make(linearLayout, passwrd_length_toast, Snackbar.LENGTH_LONG);
                     View snackbarView=snackbar.getView();
                     TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-                    tv.setTextColor(Color.RED);
+                    tv.setBackgroundColor(ContextCompat.getColor(ResetPasswordNew.this,R.color.orange));
+                    tv.setTextColor(Color.WHITE);
                     snackbar.show();
                     //Toast.makeText(ResetPassword.this, "Enter Minimum 6 Characters", Toast.LENGTH_LONG).show();
                     // passwrd.setError("Enter Minimum 6 Character");
@@ -164,7 +174,8 @@ public class ResetPasswordNew extends AppCompatActivity {
                             .make(linearLayout, confirm_passwrd_toast, Snackbar.LENGTH_LONG);
                     View snackbarView=snackbar.getView();
                     TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-                    tv.setTextColor(Color.RED);
+                    tv.setBackgroundColor(ContextCompat.getColor(ResetPasswordNew.this,R.color.orange));
+                    tv.setTextColor(Color.WHITE);
                     snackbar.show();
                     //Toast.makeText(ResetPassword.this, "Confirm Your Password", Toast.LENGTH_LONG).show();
                     // confpass.setError("Confirm Your Password");
@@ -175,7 +186,8 @@ public class ResetPasswordNew extends AppCompatActivity {
                             .make(linearLayout, pass_not_matching_toast, Snackbar.LENGTH_LONG);
                     View snackbarView=snackbar.getView();
                     TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-                    tv.setTextColor(Color.RED);
+                    tv.setBackgroundColor(ContextCompat.getColor(ResetPasswordNew.this,R.color.orange));
+                    tv.setTextColor(Color.WHITE);
                     snackbar.show();
                     //Toast.makeText(ResetPassword.this, "Password Not Matching", Toast.LENGTH_LONG).show();
                     // Snackbar snackbar=Snackbar.make(v,"Password Not Matching",Snackbar.LENGTH_LONG);
@@ -263,6 +275,44 @@ public class ResetPasswordNew extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
+
+
+
+
+    public static InputFilter EMOJI_FILTER = new InputFilter() {
+        @Override
+        public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
+            boolean keepOriginal = true;
+            StringBuilder sb = new StringBuilder(end - start);
+            for (int index = start; index < end; index++) {
+                int type = Character.getType(source.charAt(index));
+                if (type == Character.SURROGATE || type == Character.OTHER_SYMBOL) {
+                    return "";
+                }
+                for (int i = start; i < end; i++) {
+                    if (Character.isWhitespace(source.charAt(i))) {
+                        if (dstart == 0)
+                            return "";
+                    }
+                }
+                return null;
+
+            }
+
+            if (keepOriginal)
+                return null;
+            else {
+                if (source instanceof Spanned) {
+                    SpannableString sp = new SpannableString(sb);
+                    TextUtils.copySpansFrom((Spanned) source, start, sb.length(), null, sp, 0);
+                    return sp;
+                } else {
+                    return sb;
+                }
+            }
+        }
+    };
+
     public void edittext_move(final EditText et1, final EditText et2) {
         et1.addTextChangedListener(new TextWatcher() {
 
