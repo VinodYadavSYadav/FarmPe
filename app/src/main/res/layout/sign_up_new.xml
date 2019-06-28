@@ -36,12 +36,14 @@
                 android:id="@+id/back_feed"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:gravity="left">
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="@drawable/ripple_effect">
 
 
                 <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
                     android:layout_gravity="center_vertical"
                     android:src="@drawable/ic_go_back_left_arrow_"
 
@@ -70,21 +72,6 @@
         android:textColor="#161823"
         android:textSize="20dp" />
 -->
-    <TextView
-        android:id="@+id/change_lang"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="10dp"
-        android:text="English"
-        android:drawableRight="@drawable/ic_down_arrow"
-        android:gravity="right"
-        android:drawablePadding="5dp"
-        android:fontFamily="@font/segoeui"
-        android:textSize="14dp"
-        android:textColor="#fff"
-        android:padding="10dp"
-        android:focusableInTouchMode="true"
-        />
 
 
     <LinearLayout
@@ -92,23 +79,39 @@
         android:layout_height="0dp"
         android:orientation="vertical"
         android:weightSum="100"
-        android:background="#fff"
+        android:background="#BF000000"
         android:layout_marginTop="10dp"
-        android:gravity="center"
-        android:layout_marginHorizontal="10dp"
-        android:layout_weight="60"
+        android:layout_weight="80"
         >
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Register"
             android:textSize="18dp"
-            android:paddingBottom="15dp"
-            android:textColor="#000"
-            android:layout_gravity="center"
-            android:layout_marginHorizontal="10dp"
+            android:textColor="#fff"
+            android:padding="5dp"
+            android:layout_marginHorizontal="20dp"
             android:id="@+id/toolbar_title" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+
+            android:layout_marginHorizontal="20dp"
+            android:background="@drawable/border_empty"
+            >
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/sign_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/segoeui"
+                android:textCursorDrawable="@drawable/cursor_color"
+                app:theme="@style/MyStyle"
+                android:textColorHint="#8c8c8c">
+
 
         <EditText
             android:id="@+id/name"
@@ -118,40 +121,65 @@
             android:hint="Name"
             android:inputType="text"
             android:cursorVisible="true"
-            android:digits="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ "
-            android:textColorHint="@color/dot_dark_screen1"
-            android:background="@drawable/border_empty"
+            android:background="@android:color/transparent"
             android:textCursorDrawable="@drawable/cursor_color"
-            android:layout_marginHorizontal="20dp"
-            android:maxLength="12"
-            android:padding="15dp"
+            android:layout_marginHorizontal="10dp"
+            android:maxLength="50"
+            android:paddingTop="5dp"
+            android:paddingBottom="15dp"
             android:textStyle="normal"
             android:scrollHorizontally="true"
             android:singleLine="true"
-            android:textColor="#21232d"
+            android:textColor="#fff"
+            android:textColorHint="#fff"
             android:textSize="15dp"
             />
+            </android.support.design.widget.TextInputLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/border_empty"
+            >
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/sign_mobile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/segoeui"
+                android:textCursorDrawable="@drawable/cursor_color"
+                app:theme="@style/MyStyle"
+                android:textColorHint="#8c8c8c">
+
         <EditText
             android:id="@+id/mobilesignup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/segoeui"
-            android:layout_marginTop="10dp"
             android:hint="10 Digit Mobile Number "
-            android:layout_marginHorizontal="20dp"
             android:inputType="number"
             android:maxLength="10"
-            android:textColorHint="@color/dot_dark_screen1"
+            android:layout_marginHorizontal="10dp"
             android:cursorVisible="true"
-            android:background="@drawable/border_empty"
+            android:background="@android:color/transparent"
             android:textCursorDrawable="@drawable/cursor_color"
-            android:padding="15dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="15dp"
             android:singleLine="true"
-            android:textColor="#21232d"
+            android:textColor="#fff"
+            android:textColorHint="#fff"
             android:textSize="15dp"
             android:textStyle="normal"
             />
 
+
+            </android.support.design.widget.TextInputLayout>
+
+        </LinearLayout>
     <!--    <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -273,18 +301,26 @@
                  </android.support.design.widget.TextInputLayout>
      &ndash;&gt;
         </LinearLayout>-->
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/text_pass"
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
             android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="20dp"
+            android:background="@drawable/border_empty"
+            >
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/sign_pass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:fontFamily="@font/segoeui"
-            android:textColorHint="#8a8b91"
+            android:textColorHint="#8c8c8c"
             app:theme="@style/MyStyle"
-            app:hintEnabled="false"
-            app:hintAnimationEnabled="false"
+            app:hintEnabled="true"
+            app:hintAnimationEnabled="true"
             app:passwordToggleEnabled="true"
-            app:passwordToggleTint="#8a8b91">
+            app:passwordToggleTint="#8c8c8c">
 
 
             <EditText
@@ -294,20 +330,21 @@
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/segoeui"
                 android:hint="Password"
-                android:textColorHint="@color/dot_dark_screen1"
-                android:background="@drawable/border_empty"
-                android:layout_marginHorizontal="20dp"
+                android:background="@android:color/transparent"
+                android:layout_marginHorizontal="10dp"
                 android:inputType="textPassword"
                 android:maxLength="12"
-                android:padding="15dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="15dp"
                 android:textStyle="normal"
                 android:scrollHorizontally="true"
                 android:singleLine="true"
-                android:textColor="#21232d"
+                android:textColor="#fff"
+                android:textColorHint="#8c8c8c"
                 android:textSize="15dp"
                 />
         </android.support.design.widget.TextInputLayout>
-
+        </LinearLayout>
        <!-- <TextView
             android:id="@+id/referal_text"
             android:layout_width="match_parent"
@@ -345,28 +382,61 @@
             android:id="@+id/sign_up_continue"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="30dp"
-            android:background="@drawable/border_filled_pink"
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/border_filled_red"
             android:fontFamily="@font/segoeui"
             android:gravity="center"
-            android:padding="15dp"
+            android:paddingHorizontal="15dp"
+            android:paddingVertical="20dp"
             android:text="REGISTER"
             android:textColor="#fff"
-            android:textSize="14dp" />
+            android:textSize="16dp" />
 
-<!--
-        <TextView
+
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/segoeui"
-            android:gravity="center"
-            android:text="OR"
-            android:textColor="#161823"
-            android:textSize="14dp" />
--->
+            android:layout_height="match_parent"
+            android:weightSum="100"
+            android:gravity="bottom|center"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal"
+            >
+
+
+            <TextView
+                android:id="@+id/change_lang"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="English"
+                android:background="@drawable/border_filled_grey_black"
+                android:drawablePadding="10dp"
+                android:paddingHorizontal="20dp"
+                android:paddingVertical="10dp"
+                android:drawableRight="@drawable/ic_down_arrow"
+                android:fontFamily="@font/segoeui"
+                android:textSize="14dp"
+
+                android:textColor="#fff"
+                />
+
+
+        </LinearLayout>
+
+
+        <!--
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/segoeui"
+                    android:gravity="center"
+                    android:text="OR"
+                    android:textColor="#161823"
+                    android:textSize="14dp" />
+        -->
 
 <!--
         <TextView

@@ -49,24 +49,22 @@ public class AboutfarmpeFragment extends Fragment {
         privacypolicytxt=view.findViewById(R.id.toolbar_title);
         privacypolicytxt.setText("About FarmPe");
         privacypolicytxt1=view.findViewById(R.id.txt);
-        privacypolicytxt1.setText("Revisions to this FarmPe");
+        privacypolicytxt1.setText("The main functionalities of the app are :");
         first_text=view.findViewById(R.id.first_text);
         second_text=view.findViewById(R.id.second_text);
         sessionManager = new SessionManager(getActivity());
-        first_text.setText("Lorem ipsum dolor sit amet, consectetur adipiscing elit, " +
-                "sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, " +
-                "quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat." +
-                "quis nostrud exercitation ullamco laboris nisi ut aliquip." +
-                "quis nostrud exercitation ullamco laboris nisi ut ." +
-                "quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.");
-        second_text.setText("Lorem ipsum dolor sit amet, consectetur adipiscing elit, " +
-                "sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." +
-                " Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo" +
-                " consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur." +
-                " Excepteur sint occaecat cupidatat non proident," +
-                " sunt in culpa qui officia deserunt mollit anim id est laborum.sunt in culpa qui officia deserunt mollit anim id est laborum." +
-                "sunt in culpa qui officia deserunt mollit anim id est laborum." +
-                "sunt in culpa qui officia deserunt mollit anim id est laborum.");
+        first_text.setText("FarmPe is an omnibus mobile app which provides valuable" +
+                "and relevant information quickly to the farming community to make their way easier to generate" +
+                "their connectivity and business with plenty of agriculture stakeholders." +
+                "\nWe stand as pioneers when it comes to connect farms and farmers and committed to provide best services to farmers." +
+                "\nFarmPe for a better tomorrow, looking forward to make farmers use their phones for business purposes," +
+                "beyond just talking or texting, there is a lot that a mobile app is capable of doing.");
+        second_text.setText("1. Get Tractors and tools information:Brand-wise,"+
+                "Model-wise and HP-wise details are available, user can request for quotation on a finger-tip." +
+                "2. Get Farms information such as Dairy, Poultry, Goat." +
+                "3. Get Farmers information: \nConnect with farmers." +
+                "4. Search and get information of nearby farms and farmers and connect with them for the quick transactions." +
+                "5. Request for price quotation, Agriculture finance and Insurance.");
 
         view.setFocusableInTouchMode(true);
         view.requestFocus();

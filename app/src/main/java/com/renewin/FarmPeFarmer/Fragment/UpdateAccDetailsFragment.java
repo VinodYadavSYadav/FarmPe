@@ -78,7 +78,7 @@ public class UpdateAccDetailsFragment extends Fragment {
     SessionManager sessionManager;
     TextView toolbar_title,update_btn_txt;
     JSONObject lngObject;
-    String toast_name,toast_mobile,toast_passwrd,toast_new_mobile,toast_minimum_toast;
+    String toast_name,toast_mobile,toast_passwrd,toast_new_mobile,toast_minimum_toast,toast_update,toast_image;
     LinearLayout update_btn,linearLayout;
     private static int RESULT_LOAD_IMG = 1;
     Bitmap selectedImage,imageB;
@@ -167,6 +167,7 @@ public class UpdateAccDetailsFragment extends Fragment {
             update_btn_txt.setText(lngObject.getString("Update"));
             profile_name.setHint(lngObject.getString("Enteryourname"));
             profile_phone.setHint(lngObject.getString("EnterPhoneNo"));
+            profile_mail.setHint(lngObject.getString("Enteryourmailid"));
 
             //   profile_mail.setHint(lngObject.getString("Enteryourname"));
 
@@ -176,6 +177,8 @@ public class UpdateAccDetailsFragment extends Fragment {
             toast_passwrd = (lngObject.getString("Enterpasswordoflength6characters"));
             toast_new_mobile = (lngObject.getString("EnterPhoneNo"));
             toast_minimum_toast = (lngObject.getString("NameShouldContainMinimum2Characters"));
+            toast_update = (lngObject.getString("YourDetailsUpdatedSuccessfully"));
+            toast_image = (lngObject.getString("YouhaventpickedImage"));
 
 
         } catch (JSONException e) {
@@ -432,7 +435,7 @@ public class UpdateAccDetailsFragment extends Fragment {
 
 
         }else {
-            Toast.makeText(getActivity(), "You haven't picked Image",Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(),toast_image,Toast.LENGTH_LONG).show();
         }
     }
 
@@ -459,7 +462,7 @@ public class UpdateAccDetailsFragment extends Fragment {
                       //  String resultResponse = new String(response.data);
                         selectedImage=null;
 
-                        Toast.makeText(getActivity(), "Your Details Updated Successfully", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(),toast_update, Toast.LENGTH_SHORT).show();
                         selectedFragment = SettingFragment.newInstance();
                         FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
                         ft.replace(R.id.frame_layout,selectedFragment);

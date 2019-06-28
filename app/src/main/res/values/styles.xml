@@ -19,7 +19,7 @@
     </style>
 
     <style name="MyStyle">
-        <item name="colorAccent">#26a541</item>
+        <item name="colorAccent">#8c8c8c</item>
     </style>
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>

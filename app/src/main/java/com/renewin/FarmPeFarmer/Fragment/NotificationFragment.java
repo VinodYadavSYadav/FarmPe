@@ -94,7 +94,7 @@ public class NotificationFragment extends Fragment {
             }
         });
 
-
+//
 
         newOrderBeansList.clear();
         GridLayoutManager mLayoutManager_farm = new GridLayoutManager(getActivity(), 1, GridLayoutManager.VERTICAL, false);

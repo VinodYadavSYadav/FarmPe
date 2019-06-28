@@ -124,8 +124,8 @@ Fragment selectedFragment;
             }
         });
 
-//        user_name_menu.setText(sessionManager.getRegId("name"));
-//        phone_no.setText(sessionManager.getRegId("phone"));
+       user_name_menu.setText(sessionManager.getRegId("name"));
+      phone_no.setText(sessionManager.getRegId("phone"));
 
         drawer = (DrawerLayout)view.findViewById(R.id.drawer_layout);
         

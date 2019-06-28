@@ -53,6 +53,7 @@ public class SignUpActivity extends AppCompatActivity {
     JSONArray lng_array;
     Activity activity;
     JSONObject lngObject;
+    public static TextInputLayout sign_name,sign_mobile,sign_pass;
     public static String mob_toast,passwrd_toast,minimum_character_toast,enter_all_toast,name_toast,mobile_registered_toast;
 
     List<SelectLanguageBean>language_arrayBeanList = new ArrayList<>();
@@ -81,11 +82,14 @@ public class SignUpActivity extends AppCompatActivity {
         setContentView(R.layout.sign_up_new);
 
 
-
         linearLayout = findViewById(R.id.linear_login);
         back_feed = findViewById(R.id.back_feed);
+        //back_feed = findViewById(R.id.back_feed);
         //  spn_localize=findViewById(R.id.spn_localize);
         create_acc = findViewById(R.id.toolbar_title);
+        sign_mobile = findViewById(R.id.sign_mobile);
+        sign_name = findViewById(R.id.sign_name);
+        sign_pass = findViewById(R.id.sign_pass);
         continue_sign_up = findViewById(R.id.sign_up_continue);
         name = findViewById(R.id.name);
         // backtologin=findViewById(R.id.create_acc);
@@ -133,9 +137,9 @@ public class SignUpActivity extends AppCompatActivity {
                 lngObject=new JSONObject(sessionManager.getRegId("language"));
 
                 create_acc.setText(lngObject.getString("Register"));
-                name.setHint(lngObject.getString("FullName"));
-                mobile_no.setHint(lngObject.getString("DigitMobileNumber"));
-                password.setHint(lngObject.getString("Password"));
+                sign_name.setHint(lngObject.getString("FullName"));
+                sign_mobile.setHint(lngObject.getString("DigitMobileNumber"));
+                sign_pass.setHint(lngObject.getString("Password"));
                // textInputLayout_name.setHint(lngObject.getString("FullName"));
               //  textInputLayout_pass.setHint(lngObject.getString("EnterPassword"));
                 continue_sign_up.setText(lngObject.getString("Register"));
@@ -187,8 +191,7 @@ public class SignUpActivity extends AppCompatActivity {
                 return null;
             }
         };
-        password.setFilters(new InputFilter[]{EMOJI_FILTER});
-        name.setFilters(new InputFilter[]{EMOJI_FILTER});
+
 
      /*  linearLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -601,11 +604,13 @@ public class SignUpActivity extends AppCompatActivity {
 
 
 
-                        name.setHint(log_name);
-                        mobile_no.setHint(log_mobile);
-                        password.setHint(log_password);
+                        sign_name.setHint(log_name);
+                        sign_mobile.setHint(log_mobile);
+                        sign_pass.setHint(log_password);
                         create_acc.setText(log_regi);
                         continue_sign_up.setText(log_register);
+
+
 
 
                     }catch (Exception e){

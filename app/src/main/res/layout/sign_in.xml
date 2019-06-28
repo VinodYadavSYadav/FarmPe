@@ -3,6 +3,7 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -17,59 +18,48 @@
         android:orientation="vertical"
         android:weightSum="100"
         android:gravity="center"
+        android:layout_marginTop="30dp"
         android:layout_weight="20"
         >
 
-     <!-- <ImageView
-          android:layout_width="150dp"
+      <ImageView
+          android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:src="@drawable/xohri_logo_white_"
-          />-->
+          android:src="@drawable/android_logo_red"
 
-                <TextView
-                    android:id="@+id/farmPe_title"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="50dp"
-                    android:text="FarmPe"
-                    android:fontFamily="@font/segoeui"
-                    android:gravity="center"
-                    android:layout_marginTop="10dp"
-                    android:textSize="36dp"
-                    android:textStyle="bold"
-                    android:textColor="#fff"
-                    />
+          />
 
+        <!--<TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="50dp"
+            android:text="FarmPe"
+            android:fontFamily="@font/segoeui"
+            android:gravity="center"
+            android:layout_marginTop="10dp"
+            android:textSize="36dp"
+            android:textStyle="bold"
+            android:textColor="#fff"
+            />
+-->
             </LinearLayout>
 
 
-    <TextView
-        android:id="@+id/change_lang"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="10dp"
-        android:text="English"
-        android:drawableRight="@drawable/ic_down_arrow"
-        android:gravity="right"
-        android:drawablePadding="5dp"
-        android:fontFamily="@font/segoeui"
-        android:textSize="14dp"
-        android:textColor="#fff"
-        />
+
 
 
 
 
     <LinearLayout
+        android:id="@+id/login_layout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="vertical"
         android:weightSum="100"
-        android:background="#fff"
-        android:gravity="center_vertical"
-        android:layout_marginTop="10dp"
-        android:layout_marginHorizontal="10dp"
-        android:layout_weight="55"
+        android:background="#BF000000"
+        android:gravity="start"
+        android:layout_marginTop="20dp"
+        android:layout_weight="80"
         >
 
         <TextView
@@ -77,80 +67,126 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
-            android:text="Login"
+            android:text="Sign in"
             android:fontFamily="@font/segoeui"
-            android:gravity="center"
+            android:paddingVertical="5dp"
             android:textSize="18dp"
-            android:paddingBottom="15dp"
+            android:paddingLeft="5dp"
             android:textStyle="bold"
-            android:textColor="#161823"
+            android:textColor="#fff"
             />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginHorizontal="20dp"
+            android:background="@drawable/border_empty"
+            >
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/text_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/segoeui"
+            android:textCursorDrawable="@drawable/cursor_color"
+            app:theme="@style/MyStyle"
+            android:textColorHint="#8c8c8c">
 
         <EditText
             android:id="@+id/mob_no"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/segoeui"
-            android:hint="10 Digit Mobile Number "
+            android:hint="Mobile Number "
             android:layout_marginHorizontal="20dp"
             android:inputType="number"
             android:maxLength="10"
+            android:paddingTop="10dp"
+            android:paddingBottom="20dp"
+            android:textColorHint="#8c8c8c"
             android:cursorVisible="true"
-            android:background="@drawable/border_empty"
-            android:textCursorDrawable="@drawable/cursor_color"
-            android:padding="15dp"
+            android:background="@android:color/transparent"
             android:singleLine="true"
-            android:textColor="#21232d"
-            android:textSize="15dp"
+            android:textColor="#8c8c8c"
+            android:textSize="14dp"
             android:textStyle="normal"
             />
+        </android.support.design.widget.TextInputLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="20dp"
+            android:background="@drawable/border_empty"
+            >
+
         <android.support.design.widget.TextInputLayout
             android:id="@+id/text_pass"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:fontFamily="@font/segoeui"
             android:textColorHint="#8a8b91"
             app:theme="@style/MyStyle"
-            app:hintEnabled="false"
-            app:hintAnimationEnabled="false"
+            app:hintEnabled="true"
+            app:hintAnimationEnabled="true"
             app:passwordToggleEnabled="true"
             app:passwordToggleTint="#8a8b91">
+
 
         <EditText
             android:id="@+id/pass"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:fontFamily="@font/segoeui"
-            android:hint="Password"
-            android:background="@drawable/border_empty"
             android:layout_marginHorizontal="20dp"
             android:inputType="textPassword"
             android:maxLength="12"
-            android:padding="15dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="20dp"
             android:textStyle="normal"
+            android:background="@android:color/transparent"
             android:scrollHorizontally="true"
             android:singleLine="true"
-            android:textColor="#21232d"
-            android:textSize="15dp"
-
+            android:textColor="#8c8c8c"
+            android:textColorHint="#8c8c8c"
+            android:textSize="16dp"
              />
         </android.support.design.widget.TextInputLayout>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/login_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/border_filled_grey_black"
+            android:fontFamily="@font/segoeui"
+            android:gravity="center"
+            android:paddingHorizontal="15dp"
+            android:paddingVertical="20dp"
+            android:text="LOGIN"
+            android:textColor="#fff"
+            android:textSize="16dp" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="15dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="20dp"
             android:weightSum="100"
+            android:orientation="horizontal"
             >
 
             <CheckBox
                 android:id="@+id/remember_me"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:buttonTint="#999999"
-                android:layout_weight="50"
                 android:fontFamily="@font/segoeui"
                 android:text="Remember me"
                 android:textColor="#8a8b91"
@@ -158,44 +194,109 @@
 
             <TextView
                 android:id="@+id/forgot_pass_login"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/segoeui"
-                android:gravity="right|center"
-                android:layout_weight="50"
-                android:textColor="#064a8e"
+                android:gravity="right"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="5dp"
                 android:text="Forgot Password?"
+                android:textColor="#8a8b91"
                 android:textSize="15dp" />
+
+
+                   </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="100"
+            android:layout_marginTop="50dp"
+            android:layout_marginLeft="60dp"
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New to FarmPe? "
+                android:fontFamily="@font/segoeui"
+                android:textSize="22dp"
+                android:textStyle="bold"
+                android:textColor="#8a8b91"
+                />
+
+        <TextView
+            android:id="@+id/create_acc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="SignUp"
+            android:fontFamily="@font/segoeui"
+            android:textSize="22dp"
+            android:textStyle="bold"
+            android:layout_marginLeft="5dp"
+            android:textColor="#fff"
+            />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="100"
+            android:gravity="bottom|center"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal"
+            >
+
+           <!-- <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="40"
+                android:text="Change Language"
+                android:drawablePadding="5dp"
+                android:fontFamily="@font/segoeui"
+                android:textSize="14dp"
+                android:layout_marginLeft="5dp"
+                android:textColor="#8a8b91"
+                />-->
+
+
+            <TextView
+                android:id="@+id/change_lang"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="English"
+                android:background="@drawable/border_filled_grey_black"
+                android:drawablePadding="10dp"
+                android:paddingHorizontal="20dp"
+                android:paddingVertical="10dp"
+                android:drawableRight="@drawable/ic_down_arrow"
+                android:fontFamily="@font/segoeui"
+                android:textSize="14dp"
+
+                android:textColor="#fff"
+                />
+
 
         </LinearLayout>
 
 
-        <TextView
-            android:id="@+id/login_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="30dp"
-            android:background="@drawable/border_filled_pink"
-            android:fontFamily="@font/segoeui"
-            android:gravity="center"
-            android:padding="15dp"
-            android:text="LOGIN"
-            android:textColor="#ffffff"
-            android:textSize="14dp" />
 
-<!--
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/segoeui"
-            android:gravity="center"
-            android:text="OR"
-            android:textColor="#161823"
-            android:textSize="14dp" />
--->
+
+
+        <!--
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="20dp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/segoeui"
+                    android:gravity="center"
+                    android:text="OR"
+                    android:textColor="#161823"
+                    android:textSize="14dp" />
+        -->
 
 
 <!--
@@ -229,19 +330,7 @@
         >
 
 
-        <TextView
-            android:id="@+id/create_acc"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="20dp"
-            android:text="Register"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/segoeui"
-            android:gravity="center"
-            android:textSize="14dp"
-            android:padding="15dp"
-            android:textColor="#fff"
-            />
+
 
 
     </LinearLayout>

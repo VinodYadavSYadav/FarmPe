@@ -117,10 +117,10 @@ public class SelectLanguageAdapter_SignUP extends RecyclerView.Adapter<SelectLan
 
 
 
-                        SignUpActivity.name.setHint(log_name);
+                        SignUpActivity.sign_name.setHint(log_name);
                         SignUpActivity.create_acc.setText(log_register);
-                        SignUpActivity.mobile_no.setHint(log_mobile);
-                        SignUpActivity.password.setHint(log_password);
+                        SignUpActivity.sign_mobile.setHint(log_mobile);
+                        SignUpActivity.sign_pass.setHint(log_password);
                         SignUpActivity.continue_sign_up.setText(log_register);
 
                         SignUpActivity.mob_toast = result.getString("Entervalidmobilenumber");

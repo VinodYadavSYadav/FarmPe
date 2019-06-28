@@ -63,6 +63,8 @@ public class LoginActivity extends AppCompatActivity {
      SelectLanguageBean selectLanguageBean;
     SelectLanguageAdapter2 mAdapter;
 
+    public static TextInputLayout text_mobile,text_pass;
+
 
      LinearLayout back_xlogin;
      LinearLayout coordinatorLayout;
@@ -91,12 +93,15 @@ public class LoginActivity extends AppCompatActivity {
         welcome_back = findViewById(R.id.welcome_back);
         createaccount = findViewById(R.id.create_acc);
         change_lang = findViewById(R.id.change_lang);
+        text_mobile = findViewById(R.id.text_name);
+        text_pass = findViewById(R.id.text_pass);
+
         sessionManager = new SessionManager(this);
         sessionManager.checkLogin();
         log_in = findViewById(R.id.login_button);
         // setLocale("kn");
         forgot_pass =findViewById(R.id.forgot_pass_login);
-        farmPe_title =findViewById(R.id.farmPe_title);
+        //farmPe_title =findViewById(R.id.farmPe_title);
         mobile_no = findViewById(R.id.mob_no);
         pass = findViewById(R.id.pass);
         //back_xlogin = view.findViewById(R.id.arrow_layout);
@@ -169,14 +174,14 @@ public class LoginActivity extends AppCompatActivity {
                 //  createaccount.setHint(lngObject.getString("Createanaccount"));
                 //mob_text_signin.setHint(lngObject.getString("Signintoyouraccount"));
 
-                mobile_no.setHint(lngObject.getString("DigitMobileNumber"));
-                pass.setHint(lngObject.getString("Password"));
+                text_mobile.setHint(lngObject.getString("DigitMobileNumber"));
+                text_pass.setHint(lngObject.getString("Password"));
                 remember_me.setText(lngObject.getString("RememberMe"));
                 forgot_pass.setText(lngObject.getString("ForgotPassword") + "?");
                 log_in.setText(lngObject.getString("Login"));
                 welcome_back.setText(lngObject.getString("Login"));
                 createaccount.setText(lngObject.getString("Register"));
-                farmPe_title.setText(lngObject.getString("FarmPe"));
+              //  farmPe_title.setText(lngObject.getString("FarmPe"));
 
 
                 pass_toast = lngObject.getString("EnterPassword");
@@ -473,7 +478,7 @@ public class LoginActivity extends AppCompatActivity {
                         String log_remember_me = result.getString("RememberMe");
                         String log_forgot_passwrd = result.getString("ForgotPassword");
                         String log_register = result.getString("Register");
-                        String log_title = result.getString("FarmPe");
+                      //  String log_title = result.getString("FarmPe");
 
                         mob_toast = result.getString("EnterPhoneNo");
                         pass_toast = result.getString("EnterPassword");
@@ -485,11 +490,11 @@ public class LoginActivity extends AppCompatActivity {
 
                         remember_me.setText(log_remember_me);
                         log_in.setText(log_login);
-                        mobile_no.setHint(log_mobile);
-                        farmPe_title.setText(log_title);
+                        text_mobile.setHint(log_mobile);
+                        //farmPe_title.setText(log_title);
 
                         forgot_pass.setText(log_forgot_passwrd);
-                         pass.setHint(log_password);
+                        text_pass.setHint(log_password);
                         welcome_back.setText(log_login);
                         createaccount.setText(log_register);
 

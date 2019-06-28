@@ -57,7 +57,7 @@ public class Thank_U_New extends AppCompatActivity {
         thanktu_submit=findViewById(R.id.thanktu_submit);
         enter_otp=findViewById(R.id.otp_forgot_pass);
         otp_text=findViewById(R.id.thanktu);
-        thank_title=findViewById(R.id.thank_title);
+      //  thank_title=findViewById(R.id.thank_title);
 
 
         setupUI(linearLayout);
@@ -74,7 +74,7 @@ public class Thank_U_New extends AppCompatActivity {
 
 
             thanktu_submit.setText(lngObject.getString("SendOTP"));
-            thank_title.setText(lngObject.getString("OneTimePassword"));
+           // thank_title.setText(lngObject.getString("OneTimePassword"));
             otp_text.setText(lngObject.getString("PleaseentertheOTPbelowtoresetpassword"));
             enter_otp.setHint(lngObject.getString("EntertheOTP"));
             toast_otp = lngObject.getString("EntertheOTP");
