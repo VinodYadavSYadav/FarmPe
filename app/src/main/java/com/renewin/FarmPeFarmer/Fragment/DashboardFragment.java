@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.renewin.FarmPeFarmer.R;
 
@@ -16,6 +17,8 @@ public class DashboardFragment extends Fragment {
     LinearLayout looking_for,farms,farmer;
     View looking_view,farms_view,farmer_view;
     Fragment selectedFragment;
+
+    TextView farmer1,farm1,looking_for1;
   public static NestedScrollView scrollView;
 
 
@@ -32,7 +35,16 @@ public class DashboardFragment extends Fragment {
         farmer=view.findViewById(R.id.farmer);
         looking_view=view.findViewById(R.id.looking_view);
         farms_view=view.findViewById(R.id.farms_view);
+        farmer1=view.findViewById(R.id.farmer1);
+        farm1=view.findViewById(R.id.farms_view);
         farmer_view=view.findViewById(R.id.farmer_view);
+
+//
+//        looking_for1=view.findViewById(R.id.looking_for1);
+//        farm1=view.findViewById(R.id.farm1);
+//        farmer1=view.findViewById(R.id.farmer1);
+//
+
        scrollView=view.findViewById(R.id.scroll);
 
         farms_view.setVisibility(View.INVISIBLE);

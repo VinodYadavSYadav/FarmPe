@@ -17,7 +17,9 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.InputFilter;
+import android.text.SpannableString;
 import android.text.Spanned;
+import android.text.TextUtils;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -345,7 +347,7 @@ public class SignUpActivity extends AppCompatActivity {
 
         };
 
-        name.setFilters(new InputFilter[] {filter1,new InputFilter.LengthFilter(12) });
+        name.setFilters(new InputFilter[] {filter1,new InputFilter.LengthFilter(50) });
 
        //without space
         final InputFilter filter = new InputFilter() {
@@ -623,6 +625,44 @@ public class SignUpActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
+
+    public static InputFilter EMOJI_FILTER = new InputFilter() {
+        @Override
+        public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
+            boolean keepOriginal = true;
+            StringBuilder sb = new StringBuilder(end - start);
+            for (int index = start; index < end; index++) {
+                int type = Character.getType(source.charAt(index));
+                if (type == Character.SURROGATE || type == Character.OTHER_SYMBOL) {
+                    return "";
+                }
+                for (int i = start; i < end; i++) {
+                    if (Character.isWhitespace(source.charAt(i))) {
+                        if (dstart == 0)
+                            return "";
+                    }
+                }
+                return null;
+          /*  char c = source.charAt(index);
+            if (isCharAllowed(c))
+                sb.append(c);
+            else
+                keepOriginal = false;*/
+            }
+            if (keepOriginal)
+                return null;
+            else {
+                if (source instanceof Spanned) {
+                    SpannableString sp = new SpannableString(sb);
+                    TextUtils.copySpansFrom((Spanned) source, start, sb.length(), null, sp, 0);
+                    return sp;
+                } else {
+                    return sb;
+                }
+            }
+        }
+    };
 
     @Override
     public void onBackPressed() {

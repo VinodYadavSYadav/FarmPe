@@ -121,6 +121,7 @@
             android:hint="Name"
             android:inputType="text"
             android:cursorVisible="true"
+            android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
             android:background="@android:color/transparent"
             android:textCursorDrawable="@drawable/cursor_color"
             android:layout_marginHorizontal="10dp"

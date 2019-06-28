@@ -13,6 +13,7 @@ import android.os.Handler;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -529,7 +530,15 @@ public class LoginActivity extends AppCompatActivity {
 
 
         doubleBackToExitPressedOnce = true;
-        Toast.makeText(getApplicationContext(), toast_click_back, Toast.LENGTH_SHORT).show();
+
+        Snackbar snackbar = Snackbar
+                .make(coordinatorLayout,toast_click_back, Snackbar.LENGTH_LONG);
+        View snackbarView = snackbar.getView();
+        TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+        tv.setBackgroundColor(ContextCompat.getColor(LoginActivity.this,R.color.orange));
+        tv.setTextColor(Color.WHITE);
+        snackbar.show();
+     //   Toast.makeText(getApplicationContext(), toast_click_back, Toast.LENGTH_SHORT).show();
 
         new Handler().postDelayed(new Runnable() {
 

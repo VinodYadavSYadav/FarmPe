@@ -126,7 +126,7 @@ public class SelectLanguageAdapter2 extends RecyclerView.Adapter<SelectLanguageA
                           String log_remember_me = result.getString("RememberMe");
                           String log_forgot_passwrd = result.getString("ForgotPassword");
                           String log_register = result.getString("Register");
-                          String log_title = result.getString("FarmPe");
+
 
 
 
@@ -139,7 +139,6 @@ public class SelectLanguageAdapter2 extends RecyclerView.Adapter<SelectLanguageA
                            LoginActivity.welcome_back.setText(log_login);
                            LoginActivity.createaccount.setText(log_register);
                            LoginActivity.text_mobile.setHint(log_mobile);
-                           LoginActivity.farmPe_title.setText(log_title);
                            LoginActivity.mob_toast = result.getString("EnterPhoneNo");
                            LoginActivity.pass_toast = result.getString("EnterPassword");
                            LoginActivity.toast_invalid = result.getString("InvalidCredentials");

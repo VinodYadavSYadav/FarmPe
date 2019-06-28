@@ -193,7 +193,7 @@
                                 android:textSize="16dp"
                                 android:gravity="center_vertical"
                                 android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
-                                android:maxLength="30"
+                                android:maxLength="50"
                                 android:selectAllOnFocus="true"
                                 android:textCursorDrawable="@drawable/cursor_color"
                                 android:padding="10dp"

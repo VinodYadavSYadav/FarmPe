@@ -65,6 +65,7 @@ public class EnterOTP extends AppCompatActivity {
         super.onPause();
         LocalBroadcastManager.getInstance(getApplicationContext()).unregisterReceiver(receiver);
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -140,6 +141,7 @@ public class EnterOTP extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent=new Intent(EnterOTP.this,SignUpActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
         sessionManager = new SessionManager(this);
@@ -292,6 +294,7 @@ public class EnterOTP extends AppCompatActivity {
 
         Intent intent=new Intent(EnterOTP.this,SignUpActivity.class);
         startActivity(intent);
+        finish();
     }
 
 //    private  boolean checkAndRequestPermissions() {

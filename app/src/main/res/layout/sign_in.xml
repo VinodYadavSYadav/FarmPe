@@ -184,9 +184,10 @@
 
             <CheckBox
                 android:id="@+id/remember_me"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:buttonTint="#999999"
+                android:layout_weight="45"
                 android:fontFamily="@font/segoeui"
                 android:text="Remember me"
                 android:textColor="#8a8b91"
@@ -194,10 +195,11 @@
 
             <TextView
                 android:id="@+id/forgot_pass_login"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/segoeui"
                 android:gravity="right"
+                android:layout_weight="55"
                 android:layout_marginRight="10dp"
                 android:layout_marginLeft="5dp"
                 android:text="Forgot Password?"

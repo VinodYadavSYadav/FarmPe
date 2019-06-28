@@ -213,7 +213,7 @@ public class UpdateAccDetailsFragment extends Fragment {
 
 
         profile_passwrd.setFilters(new InputFilter[] {filter1,new InputFilter.LengthFilter(12) });
-        profile_mail.setFilters(new InputFilter[] {filter1,new InputFilter.LengthFilter(30) });
+        profile_mail.setFilters(new InputFilter[] {filter1,new InputFilter.LengthFilter(50) });
        // profile_name.setFilters(new InputFilter[] {filter1,new InputFilter.LengthFilter(30) });
 
 

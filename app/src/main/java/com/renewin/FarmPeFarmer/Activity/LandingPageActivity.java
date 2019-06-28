@@ -2,11 +2,14 @@ package com.renewin.FarmPeFarmer.Activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.BottomSheetBehavior;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
@@ -19,6 +22,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.renewin.FarmPeFarmer.Fragment.HomeMenuFragment;
 import com.renewin.FarmPeFarmer.R;
+import com.renewin.FarmPeFarmer.SessionManager;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 
 public class LandingPageActivity extends AppCompatActivity {
@@ -27,40 +34,23 @@ public class LandingPageActivity extends AppCompatActivity {
     public static ImageView cart_img;
     public static BottomSheetBehavior mBottomSheetBehavior6;
     View Profile;
+    JSONObject lngObject;
+    CoordinatorLayout coordinate_layout;
+    SessionManager sessionManager;
+
     public  static Activity activity;
+    public static String toast_click_back;
     boolean doubleBackToExitPressedOnce = false;
 
 
-   @Override
-    public void onBackPressed() {
-        if (doubleBackToExitPressedOnce) {
 
-            Intent intent = new Intent(Intent.ACTION_MAIN);
-            intent.addCategory(Intent.CATEGORY_HOME);
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);//***Change Here***
-            startActivity(intent);
-           activity.
-                    finish();
-            System.exit(0);                    }
-
-        doubleBackToExitPressedOnce = true;
-        Toast.makeText(activity, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
-
-        new Handler().postDelayed(new Runnable() {
-
-            @Override
-            public void run() {
-                doubleBackToExitPressedOnce=false;
-            }
-        }, 3000);
-
-    }
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.test);
         name=findViewById(R.id.selling_item_name);
+        coordinate_layout=findViewById(R.id.coordinator);
        // loc=findViewById(R.id.loc);
        // quantity=findViewById(R.id.quantity);
         price=findViewById(R.id.price);
@@ -69,6 +59,7 @@ public class LandingPageActivity extends AppCompatActivity {
        // prof_name=findViewById(R.id.prof_name);
         cart_img=findViewById(R.id.cart_img);
 
+        sessionManager = new SessionManager(this);
         activity= this;
 
         System.out.println("landiiiiiing");
@@ -78,6 +69,21 @@ public class LandingPageActivity extends AppCompatActivity {
         Window window = activity.getWindow();
         window.setStatusBarColor(ContextCompat.getColor(activity,R.color.colorPrimaryDark));
         LandingPageActivity.this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+
+
+
+
+        try {
+            lngObject = new JSONObject(sessionManager.getRegId("language"));
+
+
+            toast_click_back = lngObject.getString("PleaseclickBACKagaintoexit");
+
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
 
 
@@ -117,6 +123,37 @@ public class LandingPageActivity extends AppCompatActivity {
             }
 
         });
+
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+
+            Intent intent = new Intent(Intent.ACTION_MAIN);
+            intent.addCategory(Intent.CATEGORY_HOME);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);//***Change Here***
+            startActivity(intent);
+            activity.
+                    finish();
+            System.exit(0);                    }
+
+        doubleBackToExitPressedOnce = true;
+        Snackbar snackbar = Snackbar
+                .make(coordinate_layout,toast_click_back, Snackbar.LENGTH_LONG);
+        View snackbarView = snackbar.getView();
+        TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+        tv.setBackgroundColor(ContextCompat.getColor(LandingPageActivity.this,R.color.orange));
+        tv.setTextColor(Color.WHITE);
+        snackbar.show();
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce=false;
+            }
+        }, 3000);
 
     }
 

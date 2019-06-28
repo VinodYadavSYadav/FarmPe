@@ -10,6 +10,8 @@ import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
+import android.text.InputFilter;
+import android.text.Spanned;
 import android.text.TextWatcher;
 import android.view.MotionEvent;
 import android.view.View;
@@ -37,6 +39,7 @@ public class ResetPasswordNew extends AppCompatActivity {
     EditText passwd,conf_pass;
     SessionManager sessionManager;
     DatabaseHelper myDb;
+    TextInputLayout conf_pass_txt,passwd_txt;
     String passwrd_toast,passwrd_length_toast,confirm_passwrd_toast,pass_not_matching_toast;
     TextInputLayout passwd1_text_input,conf_pass_textinput;
     String forgot_username,localize_text;
@@ -50,6 +53,8 @@ public class ResetPasswordNew extends AppCompatActivity {
         pass_submit=findViewById(R.id.password_submit);
         passwd=findViewById(R.id.passwd1);
         conf_pass=findViewById(R.id.conf_pass1);
+        passwd_txt=findViewById(R.id.passwd_txt);
+        conf_pass_txt=findViewById(R.id.conf_pass_txt);
         linearLayout=findViewById(R.id.main_layout);
         reset_text=findViewById(R.id.reset);
         to_continue_text=findViewById(R.id.tocnt);
@@ -72,9 +77,9 @@ public class ResetPasswordNew extends AppCompatActivity {
 
 
             reset_text.setText(lngObject.getString("ResetPassword"));
-            to_continue_text.setText(lngObject.getString("Continue"));
-            passwd.setHint(lngObject.getString("NewPassword"));
-            conf_pass.setHint(lngObject.getString("Confirmthepassword"));
+            pass_submit.setText(lngObject.getString("Submit"));
+            passwd_txt.setHint(lngObject.getString("NewPassword"));
+            conf_pass_txt.setHint(lngObject.getString("Confirmthepassword"));
 
             passwrd_toast = lngObject.getString("EnterPassword");
             passwrd_length_toast = lngObject.getString("Enterpasswordoflength6characters");
@@ -94,8 +99,27 @@ public class ResetPasswordNew extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent=new Intent(ResetPasswordNew.this,Thank_U_New.class);
                 startActivity(intent);
+                finish();
             }
         });
+
+
+        final InputFilter filter = new InputFilter() {
+            public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
+                String filtered = "";
+                for (int i = start; i < end; i++) {
+                    char character = source.charAt(i);
+                    if (!Character.isWhitespace(character)) {
+                        filtered += character;
+                    }
+                }
+                return filtered;
+            }
+        };
+
+        passwd.setFilters(new InputFilter[] {filter,new InputFilter.LengthFilter(12) });
+        conf_pass.setFilters(new InputFilter[] {filter,new InputFilter.LengthFilter(12) });
+
         pass_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -237,6 +261,7 @@ public class ResetPasswordNew extends AppCompatActivity {
         //System.exit(0);
         Intent intent=new Intent(ResetPasswordNew.this,Thank_U_New.class);
         startActivity(intent);
+        finish();
     }
     public void edittext_move(final EditText et1, final EditText et2) {
         et1.addTextChangedListener(new TextWatcher() {
