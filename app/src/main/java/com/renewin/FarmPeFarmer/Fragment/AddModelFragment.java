@@ -136,7 +136,7 @@ public class AddModelFragment extends Fragment {
                             String image=jsonObject1.getString("ModelImage");
                             String id=jsonObject1.getString("Id");
                             System.out.println("madelslistt"+newOrderBeansList.size());
-                           AddTractorBean crops = new AddTractorBean(R.drawable.tractor_green, model,id);
+                            AddTractorBean crops = new AddTractorBean(image, model,id);
                             newOrderBeansList.add(crops);
                           /*  if(!latts.equals("") | !langgs.equals("")) {
 

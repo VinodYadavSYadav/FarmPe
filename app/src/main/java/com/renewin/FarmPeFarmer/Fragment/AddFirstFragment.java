@@ -127,12 +127,13 @@ public class AddFirstFragment extends Fragment {
                             JSONObject jsonObject1=cropsListArray.getJSONObject(i);
 
                             String getPrice=jsonObject1.getString("LookingForDetails");
+                            String LookingForDetailsIcon=jsonObject1.getString("LookingForDetailsIcon");
 
                             // String lookingForId=jsonObject1.getString("LookingForId");
                             String lookingForId=jsonObject1.getString("Id");
 
 
-                            AddTractorBean crops = new AddTractorBean(R.drawable.tractor_green, getPrice,lookingForId);
+                            AddTractorBean crops = new AddTractorBean(LookingForDetailsIcon, getPrice,lookingForId);
                             newOrderBeansList.add(crops);
 
                           /*  if(!latts.equals("") | !langgs.equals("")) {

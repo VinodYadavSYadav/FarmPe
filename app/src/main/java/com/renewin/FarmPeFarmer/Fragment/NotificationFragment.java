@@ -127,7 +127,7 @@ public class NotificationFragment extends Fragment {
 
         try {
             lngObject = new JSONObject(sessionManager.getRegId("language"));
-            toolbar_title.setText(lngObject.getString("Notifications"));
+          //  toolbar_title.setText(lngObject.getString("Notifications"));
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -150,7 +150,6 @@ public class NotificationFragment extends Fragment {
                         for (int i=0;i<cropsListArray.length();i++){
                             JSONObject jsonObject1=cropsListArray.getJSONObject(i);
                             JSONObject jsonObject2=jsonObject1.getJSONObject("Address");
-
 
                             String model=jsonObject1.getString("Model");
                             String purchaseTimeline=jsonObject1.getString("PurchaseTimeline");

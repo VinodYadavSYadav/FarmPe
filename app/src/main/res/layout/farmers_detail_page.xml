@@ -384,6 +384,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/farmer_connect"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"

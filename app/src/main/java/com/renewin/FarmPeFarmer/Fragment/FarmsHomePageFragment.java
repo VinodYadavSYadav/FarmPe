@@ -198,7 +198,7 @@ public class FarmsHomePageFragment extends Fragment {
                             pagination_list=newOrderBeansList.subList(0,newOrderBeansList.size());
                             farmadapter=new FarmsHomeAdapter(getActivity(),pagination_list);
                             recyclerView.setAdapter(farmadapter);
-                            ;
+
 
                         }else {
                             pagination_list=newOrderBeansList.subList(0,6);

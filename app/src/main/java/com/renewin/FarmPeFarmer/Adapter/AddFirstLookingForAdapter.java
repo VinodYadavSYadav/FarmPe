@@ -76,7 +76,7 @@ public class AddFirstLookingForAdapter extends RecyclerView.Adapter<AddFirstLook
       //holder.agri_text.setText(products.getAgri_text());
         holder.prod_price.setText(products.getProd_name());
 
-        Glide.with(activity).load(products.getImage())
+        Glide.with(activity).load("https://xohricontentimages.s3.us-east-2.amazonaws.com/Tractors/Mahindra/MAHINDRA+JIVO+225+DI+2WD.jpg")
 
                 .thumbnail(0.5f)
                 .crossFade()

@@ -2,11 +2,11 @@ package com.renewin.FarmPeFarmer.Bean;
 
 public class AddTractorBean {
 
-  //  private String image;
+   private String image;
     private String prod_name,id;
-    private  int image;
+   /// private  int image;
 
-    public AddTractorBean(int image, String prod_name, String id) {
+    public AddTractorBean(String image, String prod_name, String id) {
 
         this.image = image;
         this.prod_name = prod_name;
@@ -23,7 +23,7 @@ public class AddTractorBean {
         return id;
     }
 
-    public int getImage() {
+    public String getImage() {
         return image;
     }
 

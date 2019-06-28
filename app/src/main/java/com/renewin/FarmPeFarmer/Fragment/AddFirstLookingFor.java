@@ -139,7 +139,7 @@ public class AddFirstLookingFor extends Fragment {
                             String id=jsonObject1.getString("Id");
 
 
-                              AddTractorBean crops = new AddTractorBean(R.drawable.tractor_green, lookingfor,id);
+                              AddTractorBean crops = new AddTractorBean("", lookingfor,id);
                               newOrderBeansList.add(crops);
 
                           /*  if(!latts.equals("") | !langgs.equals("")) {
