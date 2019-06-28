@@ -50,7 +50,7 @@ public class LookingForFragment extends Fragment {
         recyclerView=view.findViewById(R.id.recycler_looking);
         LookingForList();
         newOrderBeansList.clear();
-        GridLayoutManager mLayoutManager_farm = new GridLayoutManager(getActivity(), 2, GridLayoutManager.VERTICAL, false);
+        GridLayoutManager mLayoutManager_farm = new GridLayoutManager(getActivity(), 1, GridLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(mLayoutManager_farm);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
 /*

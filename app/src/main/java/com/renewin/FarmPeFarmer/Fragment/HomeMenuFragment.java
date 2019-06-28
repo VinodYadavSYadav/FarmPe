@@ -199,7 +199,7 @@ Fragment selectedFragment;
             @Override
             public void onClick(View view) {
 
-                selectedFragment = ComingSoonFragment.newInstance();
+                selectedFragment = LookingForFragment.newInstance();
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.frame_layout, selectedFragment);
                 transaction.addToBackStack("home");
@@ -222,6 +222,20 @@ Fragment selectedFragment;
         });
 
         nw_request.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+//                selectedFragment = ComingSoonFragment.newInstance();
+//                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+//                transaction.replace(R.id.frame_layout, selectedFragment);
+//                transaction.addToBackStack("home");
+//                transaction.commit();
+
+            }
+        });
+
+
+        connections.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -328,11 +342,13 @@ Fragment selectedFragment;
                 near_by.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        selectedFragment = NearByFragment.newInstance();
+                        selectedFragment = ComingSoonFragment.newInstance();
                         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                        transaction.replace(R.id.first_full_frame, selectedFragment);
+                        transaction.replace(R.id.frame_layout, selectedFragment);
+                        transaction.addToBackStack("home");
                         transaction.commit();
                         drawer.closeDrawers();
+
                         /*NearByFragment.scrollView.post(new Runnable() {
 
                             @Override

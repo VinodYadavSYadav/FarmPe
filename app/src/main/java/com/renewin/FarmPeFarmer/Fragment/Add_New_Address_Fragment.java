@@ -3,7 +3,9 @@ package com.renewin.FarmPeFarmer.Fragment;
 
 
 import android.app.Dialog;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -74,7 +76,8 @@ public class  Add_New_Address_Fragment extends Fragment {
     public static TextView add_new_address;
     Fragment selectedFragment = null;
     JSONObject lngObject;
-
+    LinearLayout linearLayout;
+    String s_addtype,entername,entermno,inncrtmno,enterhno,enterstreetad,enterlandmark,entercity,enterpincode,entervalidpin,selectstate,selectdistrict,selecttaluk,selecthobli,selectvillage,newaddressadded,addnotadded,adddeleted ;
     public static EditText name,mobile,pincode_no,house_numb,street_name,landmrk,city,state,taluk,hobli,district,village,select_address;
     String status,message;
     String Id;
@@ -116,6 +119,8 @@ public class  Add_New_Address_Fragment extends Fragment {
         taluk = view.findViewById(R.id.taluk_1);
         hobli = view.findViewById(R.id.hobli_1);
         village = view.findViewById(R.id.village_1);
+
+        linearLayout = view.findViewById(R.id.profile_view);
 
         toolbar_titletxt=view.findViewById(R.id.toolbar_title);
 
@@ -748,73 +753,150 @@ public class  Add_New_Address_Fragment extends Fragment {
 
 
                 if(select_address.getText().toString().equals("")){
-                    Toast.makeText(getActivity(), "Select Address Type", Toast.LENGTH_SHORT).show();
+                    Snackbar snackbar = Snackbar
+                            .make(linearLayout, s_addtype, Snackbar.LENGTH_LONG);
+                    View snackbarView = snackbar.getView();
+                    TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+                    tv.setTextColor(Color.RED);
+                    snackbar.show();
+                    //Toast.makeText(getActivity(), "Select Address Type", Toast.LENGTH_SHORT).show();
 
 
                 }else if(name.getText().toString().equals("")) {
-                    Toast.makeText(getActivity(), "Enter Name", Toast.LENGTH_SHORT).show();
+                    Snackbar snackbar = Snackbar
+                            .make(linearLayout, entername, Snackbar.LENGTH_LONG);
+                    View snackbarView = snackbar.getView();
+                    TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+                    tv.setTextColor(Color.RED);
+                    snackbar.show();
+                    //Toast.makeText(getActivity(), "Enter Name", Toast.LENGTH_SHORT).show();
 
 
 
                 }else if(mobile.getText().toString().equals("")){
-                    Toast.makeText(getActivity(), "Enter Mobile Number", Toast.LENGTH_SHORT).show();
-
+                    // Toast.makeText(getActivity(), "Enter Mobile Number", Toast.LENGTH_SHORT).show();
+                    Snackbar snackbar = Snackbar
+                            .make(linearLayout, entermno, Snackbar.LENGTH_LONG);
+                    View snackbarView = snackbar.getView();
+                    TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+                    tv.setTextColor(Color.RED);
+                    snackbar.show();
 
                 }else if(mobile.length()<10){
-                    Toast.makeText(getActivity(), "Incorrect Mobile Number", Toast.LENGTH_SHORT).show();
-
+                    //Toast.makeText(getActivity(), "Incorrect Mobile Number", Toast.LENGTH_SHORT).show();
+                    Snackbar snackbar = Snackbar
+                            .make(linearLayout, inncrtmno, Snackbar.LENGTH_LONG);
+                    View snackbarView = snackbar.getView();
+                    TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+                    tv.setTextColor(Color.RED);
+                    snackbar.show();
 
                 }else if(house_numb.getText().toString().equals("")){
-                    Toast.makeText(getActivity(), "Enter House No/Floor/building", Toast.LENGTH_SHORT).show();
-
+                    // Toast.makeText(getActivity(), "Enter House No/Floor/building", Toast.LENGTH_SHORT).show();
+                    Snackbar snackbar = Snackbar
+                            .make(linearLayout, enterhno, Snackbar.LENGTH_LONG);
+                    View snackbarView = snackbar.getView();
+                    TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+                    tv.setTextColor(Color.RED);
+                    snackbar.show();
 
 
                 }else if(street_name.getText().toString().equals("")) {
-                    Toast.makeText(getActivity(), "Enter Street Address", Toast.LENGTH_SHORT).show();
-
+                    //Toast.makeText(getActivity(), "Enter Street Address", Toast.LENGTH_SHORT).show();
+                    Snackbar snackbar = Snackbar
+                            .make(linearLayout, enterstreetad, Snackbar.LENGTH_LONG);
+                    View snackbarView = snackbar.getView();
+                    TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+                    tv.setTextColor(Color.RED);
+                    snackbar.show();
 
 
                 }else if(landmrk.getText().toString().equals("")) {
-                    Toast.makeText(getActivity(), "Enter Landmark", Toast.LENGTH_SHORT).show();
-
+                    //Toast.makeText(getActivity(), "Enter Landmark", Toast.LENGTH_SHORT).show();
+                    Snackbar snackbar = Snackbar
+                            .make(linearLayout, enterlandmark, Snackbar.LENGTH_LONG);
+                    View snackbarView = snackbar.getView();
+                    TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+                    tv.setTextColor(Color.RED);
+                    snackbar.show();
 
                 }else if(city.getText().toString().equals("")) {
-                    Toast.makeText(getActivity(), "Enter City", Toast.LENGTH_SHORT).show();
-
+                    //Toast.makeText(getActivity(), "Enter City", Toast.LENGTH_SHORT).show();
+                    Snackbar snackbar = Snackbar
+                            .make(linearLayout, entercity, Snackbar.LENGTH_LONG);
+                    View snackbarView = snackbar.getView();
+                    TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+                    tv.setTextColor(Color.RED);
+                    snackbar.show();
 
 
                 }else if(pincode_no.getText().toString().equals("")) {
-                    Toast.makeText(getActivity(), "Enter Pincode", Toast.LENGTH_SHORT).show();
-
+                    // Toast.makeText(getActivity(), "Enter Pincode", Toast.LENGTH_SHORT).show();
+                    Snackbar snackbar = Snackbar
+                            .make(linearLayout, enterpincode, Snackbar.LENGTH_LONG);
+                    View snackbarView = snackbar.getView();
+                    TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+                    tv.setTextColor(Color.RED);
+                    snackbar.show();
 
 
                 }else if(pincode_no.length()<6){
-                    Toast.makeText(getActivity(), "Enter a valid Pincode", Toast.LENGTH_SHORT).show();
-
+                    // Toast.makeText(getActivity(), "Enter a valid Pincode", Toast.LENGTH_SHORT).show();
+                    Snackbar snackbar = Snackbar
+                            .make(linearLayout, enterpincode, Snackbar.LENGTH_LONG);
+                    View snackbarView = snackbar.getView();
+                    TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+                    tv.setTextColor(Color.RED);
+                    snackbar.show();
 
                 }else if(state.getText().toString().equals("")) {
-                    Toast.makeText(getActivity(), "Select State", Toast.LENGTH_SHORT).show();
-
+                    // Toast.makeText(getActivity(), "Select State", Toast.LENGTH_SHORT).show();
+                    Snackbar snackbar = Snackbar
+                            .make(linearLayout, selectstate, Snackbar.LENGTH_LONG);
+                    View snackbarView = snackbar.getView();
+                    TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+                    tv.setTextColor(Color.RED);
+                    snackbar.show();
 
 
                 }else if(district.getText().toString().equals("")) {
-                    Toast.makeText(getActivity(), "Select District", Toast.LENGTH_SHORT).show();
-
+                    //Toast.makeText(getActivity(), "Select District", Toast.LENGTH_SHORT).show();
+                    Snackbar snackbar = Snackbar
+                            .make(linearLayout, selectdistrict, Snackbar.LENGTH_LONG);
+                    View snackbarView = snackbar.getView();
+                    TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+                    tv.setTextColor(Color.RED);
+                    snackbar.show();
 
 
                 }else if(taluk.getText().toString().equals("")) {
-                    Toast.makeText(getActivity(), "Select Taluk", Toast.LENGTH_SHORT).show();
-
+                    //Toast.makeText(getActivity(), "Select Taluk", Toast.LENGTH_SHORT).show();
+                    Snackbar snackbar = Snackbar
+                            .make(linearLayout, selecttaluk, Snackbar.LENGTH_LONG);
+                    View snackbarView = snackbar.getView();
+                    TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+                    tv.setTextColor(Color.RED);
+                    snackbar.show();
 
 
                 }else if(hobli.getText().toString().equals("")) {
-                    Toast.makeText(getActivity(), "Select Hobli", Toast.LENGTH_SHORT).show();
-
+                    //Toast.makeText(getActivity(), "Select Hobli", Toast.LENGTH_SHORT).show();
+                    Snackbar snackbar = Snackbar
+                            .make(linearLayout, selecthobli, Snackbar.LENGTH_LONG);
+                    View snackbarView = snackbar.getView();
+                    TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+                    tv.setTextColor(Color.RED);
+                    snackbar.show();
 
 
                 }else if(village.getText().toString().equals("")) {
-                    Toast.makeText(getActivity(), "Select Village", Toast.LENGTH_SHORT).show();
-
+                    //Toast.makeText(getActivity(), "Select Village", Toast.LENGTH_SHORT).show();
+                    Snackbar snackbar = Snackbar
+                            .make(linearLayout, selectvillage, Snackbar.LENGTH_LONG);
+                    View snackbarView = snackbar.getView();
+                    TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+                    tv.setTextColor(Color.RED);
+                    snackbar.show();
 
                 }else {
 
@@ -846,6 +928,23 @@ public class  Add_New_Address_Fragment extends Fragment {
             village.setHint(lngObject.getString("Village"));
             village.setHint(lngObject.getString("Village"));
             add_new_address.setText(lngObject.getString("AddAddress"));
+
+            s_addtype = lngObject.getString("SelectanAddressType");
+            entername = lngObject.getString("Enteryourname");
+            entermno = lngObject.getString("EnterPhoneNo");
+            inncrtmno = lngObject.getString("Entervalidmobilenumber");
+            enterhno = lngObject.getString("EnterhouseNoFloorbuilding");
+            enterstreetad = lngObject.getString("EnterStreetaddress");
+            enterlandmark = lngObject.getString("Enterlandmark");
+            entercity = lngObject.getString("Entercity");
+            enterpincode = lngObject.getString("Enterpincode");
+            selectstate = lngObject.getString("Selectstate");
+            selectdistrict = lngObject.getString("SelectDistrict");
+            selecttaluk = lngObject.getString("SelectTaluk");
+            selecthobli = lngObject.getString("Selecthobli");
+            selectvillage = lngObject.getString("SelectVilage");
+            newaddressadded = lngObject.getString("NewAddressaddedsuccessfully");
+            addnotadded = lngObject.getString("YourAddressnotAdded");
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -896,7 +995,14 @@ public class  Add_New_Address_Fragment extends Fragment {
                         bundle.putString("add_id",status);*/
 
                         if(!(status.equals("0"))){
-                            Toast.makeText(getActivity(),message,Toast.LENGTH_SHORT).show();
+                           // Toast.makeText(getActivity(),message,Toast.LENGTH_SHORT).show();
+                            Snackbar snackbar = Snackbar
+                                    .make(linearLayout, newaddressadded, Snackbar.LENGTH_LONG);
+                            View snackbarView = snackbar.getView();
+                            TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+                            tv.setTextColor(Color.RED);
+                            snackbar.show();
+
 
                             //if (getArguments().getString("request_for")==null){
                             selectedFragment = You_Address_Fragment.newInstance();
@@ -929,7 +1035,16 @@ public class  Add_New_Address_Fragment extends Fragment {
 
                         }else{
 
-                            Toast.makeText(getActivity(),"Your Address not Added ",Toast.LENGTH_SHORT).show();
+                           // Toast.makeText(getActivity(),"Your Address not Added ",Toast.LENGTH_SHORT).show();
+                            Snackbar snackbar = Snackbar
+                                    .make(linearLayout, addnotadded, Snackbar.LENGTH_LONG);
+                            View snackbarView = snackbar.getView();
+                            TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+                            tv.setTextColor(Color.RED);
+                            snackbar.show();
+
+
+
                         }
 
 

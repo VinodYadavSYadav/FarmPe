@@ -33,6 +33,7 @@
              android:id="@+id/prod_img"
              android:layout_width="wrap_content"
              android:layout_height="100dp"
+             android:paddingTop="5dp"
              android:src="@drawable/avatarmale"
              app:civ_border_color="#ffffff"
              app:civ_border_width="0.5dp" />
@@ -101,7 +102,7 @@
          <TextView
              android:layout_width="match_parent"
              android:layout_height="wrap_content"
-             android:text="276"
+             android:text="0"
              android:textSize="16dp"
              android:gravity="center"
              android:paddingBottom="5dp"
@@ -230,11 +231,12 @@
           android:textColor="#000"
           />
 
+
       <TextView
-          android:id="@+id/your_requests"
+          android:id="@+id/list_farm"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:text="Your Requests"
+          android:text="List your Farm"
           android:layout_marginTop="20dp"
           android:textSize="16dp"
           android:drawableLeft="@drawable/ic_settings"
@@ -242,11 +244,14 @@
           android:fontFamily="@font/segoeui"
           android:textColor="#000"
           />
+
+
+
       <TextView
-          android:id="@+id/list_farm"
+          android:id="@+id/your_requests"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:text="List your Farm"
+          android:text="Your Requests"
           android:layout_marginTop="20dp"
           android:textSize="16dp"
           android:drawableLeft="@drawable/ic_settings"

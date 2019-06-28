@@ -5,7 +5,9 @@ package com.renewin.FarmPeFarmer.Fragment;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -39,7 +41,7 @@ import org.json.JSONObject;
 public class FeedbackFragment extends Fragment {
     Fragment selectedFragment;
     TextView send_otp, referal_code,feedback_type,submit,feedbacktxt;;
-    LinearLayout back, more, whatsapp, insta, facebook, back_feed, twitter;
+    LinearLayout back, more, whatsapp, insta, facebook, back_feed, twitter,linearLayout;
     public static String status,message;
     Intent intent;
     private ArrayAdapter<AgriBean> arrayAdapter;
@@ -48,7 +50,7 @@ public class FeedbackFragment extends Fragment {
     SessionManager sessionManager;
     EditText feedback_title,feedback_description;
     JSONObject lngObject;
-
+    String fedback_title,feedtype,feeddesc,fd_sucess,fd_failure;
     public static String refer_code;
 
 
@@ -69,6 +71,7 @@ public class FeedbackFragment extends Fragment {
         feedback_description.setFilters(new InputFilter[]{EMOJI_FILTER});
         feedback_type=view.findViewById(R.id.fd_type);
         submit=view.findViewById(R.id.submit);
+        linearLayout=view.findViewById(R.id.main_layout);
 
         feedbacktxt=view.findViewById(R.id.toolbar_title);
         //clickcopyurltxt=view.findViewById(R.id.clickcopyurl);
@@ -122,6 +125,19 @@ public class FeedbackFragment extends Fragment {
                 final TextView car = (TextView)dialog.findViewById(R.id.car) ;
                 final TextView others = (TextView)dialog.findViewById(R.id.othrs) ;
                 ImageView image = (ImageView) dialog.findViewById(R.id.close_popup);
+
+                final TextView popuptxt = (TextView)dialog.findViewById(R.id.popup_heading) ;
+
+
+                try {
+                    lngObject = new JSONObject(sessionManager.getRegId("language"));
+                    popuptxt.setText(lngObject.getString("FeedbackType"));
+                    others.setText(lngObject.getString("Others"));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
 
                 image.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -196,17 +212,32 @@ public class FeedbackFragment extends Fragment {
             public void onClick(View view) {
 
                 if(feedback_type.getText().toString().equals("")){
-                    Toast.makeText(getActivity(), "Select Feedback Type", Toast.LENGTH_SHORT).show();
-
+                    //Toast.makeText(getActivity(), "Select Feedback Type", Toast.LENGTH_SHORT).show();
+                    Snackbar snackbar = Snackbar
+                            .make(linearLayout, feedtype, Snackbar.LENGTH_LONG);
+                    View snackbarView = snackbar.getView();
+                    TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+                    tv.setTextColor(Color.RED);
+                    snackbar.show();
 
                 }else if(feedback_title.getText().toString().equals("")) {
-                    Toast.makeText(getActivity(), "Enter Feedback Title", Toast.LENGTH_SHORT).show();
 
+                    Snackbar snackbar = Snackbar
+                            .make(linearLayout, fedback_title, Snackbar.LENGTH_LONG);
+                    View snackbarView = snackbar.getView();
+                    TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+                    tv.setTextColor(Color.RED);
+                    snackbar.show();
 
 
                 }else if(feedback_description.getText().toString().equals("")){
-                    Toast.makeText(getActivity(), "Enter Feedback Description", Toast.LENGTH_SHORT).show();
 
+                    Snackbar snackbar = Snackbar
+                            .make(linearLayout, feeddesc, Snackbar.LENGTH_LONG);
+                    View snackbarView = snackbar.getView();
+                    TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+                    tv.setTextColor(Color.RED);
+                    snackbar.show();
 
                 }else {
 
@@ -224,6 +255,13 @@ public class FeedbackFragment extends Fragment {
             feedback_type.setHint(lngObject.getString("FeedbackType"));
             feedback_title.setHint(lngObject.getString("FeedbackTitle"));
             feedback_description.setHint(lngObject.getString("FeedbackDescription"));
+
+            feedtype=lngObject.getString("Selectfeedbacktype");
+            fedback_title=lngObject.getString("Enterfeedbacktitle");
+            feeddesc=lngObject.getString("Enterfeedbackdescription");
+            fd_sucess=lngObject.getString("Feedbacksubmitttedsuccessfully");
+            fd_failure=lngObject.getString("YourFeedbacknotSubmitted");
+
         } catch (
                 JSONException e) {
             e.printStackTrace();
@@ -292,7 +330,13 @@ public class FeedbackFragment extends Fragment {
                         message = result.getString("Message");
 
                         if(!(status.equals("0"))){
-                            Toast.makeText(getActivity(),message,Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(getActivity(),message,Toast.LENGTH_SHORT).show();
+                            Snackbar snackbar = Snackbar
+                                    .make(linearLayout, fd_sucess, Snackbar.LENGTH_LONG);
+                            View snackbarView = snackbar.getView();
+                            TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+                            tv.setTextColor(Color.RED);
+                            snackbar.show();
 
                             selectedFragment = SettingFragment.newInstance();
                             FragmentTransaction transaction = (getActivity()).getSupportFragmentManager().beginTransaction();
@@ -302,8 +346,18 @@ public class FeedbackFragment extends Fragment {
 
                         }else{
 
-                            Toast.makeText(getActivity(),"Your Feedback not Submitted ",Toast.LENGTH_SHORT).show();
+                           // Toast.makeText(getActivity(),"Your Feedback not Submitted ",Toast.LENGTH_SHORT).show();
+                            Snackbar snackbar = Snackbar
+                                    .make(linearLayout, fd_failure, Snackbar.LENGTH_LONG);
+                            View snackbarView = snackbar.getView();
+                            TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+                            tv.setTextColor(Color.RED);
+                            snackbar.show();
+
+
                         }
+
+
 
 
 

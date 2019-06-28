@@ -236,7 +236,6 @@ public class UpdateAccDetailsFragment extends Fragment {
 //
 //        profile_name.setFilters(new InputFilter[] {filter11,new InputFilter.LengthFilter(30) });
 
-
         try{
 
             JSONObject jsonObject = new JSONObject();
@@ -396,6 +395,7 @@ public class UpdateAccDetailsFragment extends Fragment {
             else
                 keepOriginal = false;*/
             }
+
             if (keepOriginal)
                 return null;
             else {

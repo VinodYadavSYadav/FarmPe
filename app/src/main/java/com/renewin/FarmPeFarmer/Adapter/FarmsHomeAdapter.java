@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.renewin.FarmPeFarmer.Bean.FarmsImageBean;
+import com.renewin.FarmPeFarmer.Fragment.ComingSoonFragment;
 import com.renewin.FarmPeFarmer.Fragment.FarmsDetailsFragment;
 import com.renewin.FarmPeFarmer.R;
 
@@ -83,19 +84,30 @@ public class FarmsHomeAdapter extends RecyclerView.Adapter<FarmsHomeAdapter.MyVi
         holder.farmer_name.setText(products.getFarmer_name());
         holder.location.setText(products.getLocation()+", "+"Karnataka");
 
-      /*  holder.connect.setOnClickListener(new View.OnClickListener() {
+
+
+        holder.connect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Bundle bundle=new Bundle();
-                bundle.putString("farm_name",products.getProd_price());
-                selectedFragment = FarmsDetailsFragment.newInstance();
+
+
+
+                selectedFragment = ComingSoonFragment.newInstance();
                 FragmentTransaction transaction = ((FragmentActivity)activity).getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.frame_layout, selectedFragment);
-                transaction.addToBackStack("connect");
-                selectedFragment.setArguments(bundle);
+                transaction.addToBackStack("home");
                 transaction.commit();
+
+//                Bundle bundle=new Bundle();
+//                bundle.putString("farm_name",products.getProd_price());
+//                selectedFragment = FarmsDetailsFragment.newInstance();
+//                FragmentTransaction transaction = ((FragmentActivity)activity).getSupportFragmentManager().beginTransaction();
+//                transaction.replace(R.id.frame_layout, selectedFragment);
+//                transaction.addToBackStack("connect");
+//                selectedFragment.setArguments(bundle);
+//                transaction.commit();
             }
-        });*/
+        });
 
 
 

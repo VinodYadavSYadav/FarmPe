@@ -135,7 +135,7 @@
                     android:layout_height="wrap_content"
                     android:hint="Enter Your Name"
                     android:textSize="14dp"
-                    android:maxLength="50"
+                    android:maxLength="30"
                     android:textColorHint="@color/dot_dark_screen1"
                     android:digits="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ"
                     android:layout_gravity="center_vertical"
@@ -220,6 +220,8 @@
 
             </LinearLayout>
 
+
+
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -248,6 +250,7 @@
             android:orientation="horizontal"
             android:background="#fff"
             android:padding="10dp"
+            android:visibility="gone"
             android:layout_marginTop="10dp"
             android:layout_marginHorizontal="20dp"
             android:weightSum="100"
@@ -275,6 +278,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="70"
+                android:visibility=""
                 android:gravity="center"
                 >
 

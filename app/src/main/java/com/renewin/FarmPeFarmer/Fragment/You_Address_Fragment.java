@@ -58,7 +58,7 @@ public class You_Address_Fragment extends Fragment {
     Add_New_Address_Bean add_new_address_bean;
     JSONArray get_address_array;
     LinearLayout back,select_add_address;
-    String Id;
+    String Id,ad_list;
     ImageView b_arrow;
 
 
@@ -218,7 +218,6 @@ public class You_Address_Fragment extends Fragment {
                     }
                 });
 
-
                 others.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -249,6 +248,8 @@ public class You_Address_Fragment extends Fragment {
             toolbar_titletxt.setText(lngObject.getString("SelectYourAdress"));
             add_new_address.setText(lngObject.getString("AddNewAddress"));
             select_address_type.setText(lngObject.getString("Home"));
+            ad_list=(lngObject.getString("addressesareaddedin"));
+
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -288,7 +289,7 @@ public class You_Address_Fragment extends Fragment {
                         }
 
                         item_list = String.valueOf(new_address_beanArrayList.size());
-                        address_list.setText(item_list + " Addresses  are added in " + pickUPFrom);
+                        address_list.setText(item_list+" " + ad_list );
 
 
                         mAdapter.notifyDataSetChanged();

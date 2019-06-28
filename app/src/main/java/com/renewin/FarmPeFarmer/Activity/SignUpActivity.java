@@ -178,7 +178,7 @@ public class SignUpActivity extends AppCompatActivity {
         });
 
 
-        final InputFilter EMOJI_FILTER = new InputFilter() {
+       /* final InputFilter EMOJI_FILTER = new InputFilter() {
 
             @Override
 
@@ -192,7 +192,7 @@ public class SignUpActivity extends AppCompatActivity {
                 }
                 return null;
             }
-        };
+        };*/
 
 
      /*  linearLayout.setOnClickListener(new View.OnClickListener() {
@@ -347,7 +347,8 @@ public class SignUpActivity extends AppCompatActivity {
 
         };
 
-        name.setFilters(new InputFilter[] {filter1,new InputFilter.LengthFilter(50) });
+
+        name.setFilters(new InputFilter[] {filter1,new InputFilter.LengthFilter(30) });
 
        //without space
         final InputFilter filter = new InputFilter() {
@@ -627,7 +628,7 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
 
-    public static InputFilter EMOJI_FILTER = new InputFilter() {
+  /*  public static InputFilter EMOJI_FILTER = new InputFilter() {
         @Override
         public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
             boolean keepOriginal = true;
@@ -644,11 +645,11 @@ public class SignUpActivity extends AppCompatActivity {
                     }
                 }
                 return null;
-          /*  char c = source.charAt(index);
+          *//*  char c = source.charAt(index);
             if (isCharAllowed(c))
                 sb.append(c);
             else
-                keepOriginal = false;*/
+                keepOriginal = false;*//*
             }
             if (keepOriginal)
                 return null;
@@ -662,7 +663,7 @@ public class SignUpActivity extends AppCompatActivity {
                 }
             }
         }
-    };
+    };*/
 
     @Override
     public void onBackPressed() {

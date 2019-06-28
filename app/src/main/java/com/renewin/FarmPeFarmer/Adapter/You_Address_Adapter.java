@@ -7,6 +7,7 @@ import android.app.Dialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
@@ -52,6 +53,8 @@ public class You_Address_Adapter extends RecyclerView.Adapter<You_Address_Adapte
 
     public static CardView cardView;
     JSONObject lngObject;
+    LinearLayout linearLayout;
+    String deleted,addlist ;
 
 
     public You_Address_Adapter(List<Add_New_Address_Bean> moviesList, Activity activity) {
@@ -202,6 +205,18 @@ public class You_Address_Adapter extends RecyclerView.Adapter<You_Address_Adapte
                 });
 
                 yes1 =  dialog.findViewById(R.id.yes_1);
+
+                try {
+                    lngObject = new JSONObject(sessionManager.getRegId("language"));
+                    // popuptxt.setText(lngObject.getString("SelectanAddressType"));
+                    yes1.setText(lngObject.getString("Confirm"));
+                    no1.setText(lngObject.getString("Cancel"));
+                    deleted=lngObject.getString("Addressdeletedsuccessfully");
+                    addlist=lngObject.getString("addressesareaddedin");
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
                 yes1.setOnClickListener(new View.OnClickListener() {
 
                     @Override
@@ -226,10 +241,16 @@ public class You_Address_Adapter extends RecyclerView.Adapter<You_Address_Adapte
 
                                         if(status.equals("1")){
 
-                                            Toast.makeText(activity, message, Toast.LENGTH_SHORT).show();
+                                            Snackbar snackbar = Snackbar
+                                                    .make(linearLayout, deleted, Snackbar.LENGTH_LONG);
+                                            View snackbarView = snackbar.getView();
+                                            TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+                                            tv.setTextColor(Color.RED);
+                                            snackbar.show();
                                             productList.remove(position);
                                             notifyDataSetChanged();
-                                            You_Address_Fragment.address_list.setText(productList.size() + " Addresses are added in " + products.getAdd_pickup_frm());
+
+                                            You_Address_Fragment.address_list.setText(productList.size() + addlist);
 
                                         }
 
@@ -303,14 +324,16 @@ public class You_Address_Adapter extends RecyclerView.Adapter<You_Address_Adapte
             }
         });
 
+
         try {
             lngObject = new JSONObject(sessionManager.getRegId("language"));
             holder.edit_1.setText(lngObject.getString("Edit"));
             holder.delete_1.setText(lngObject.getString("Delete"));
+            holder.default_1.setText(lngObject.getString("setasdefault"));
+            holder.default_add .setText(lngObject.getString("defaultaddressfordelivery"));
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
 
     }
 

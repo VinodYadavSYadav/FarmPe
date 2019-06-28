@@ -248,11 +248,20 @@ public class EnterOTP extends AppCompatActivity {
                                     String message=response.getString("Message");
 
                                     if (status.equals("0")){
-                                        Toast.makeText(EnterOTP.this,toast_invalid_otp,Toast.LENGTH_SHORT).show();
+                                       // Toast.makeText(EnterOTP.this,"User Registered Successfully",Toast.LENGTH_SHORT).show();
+
+
+                                        Snackbar snackbar = Snackbar
+                                                .make(linearLayout, "User Registered Successfully", Snackbar.LENGTH_LONG);
+                                        View snackbarView = snackbar.getView();
+                                        TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+                                        tv.setTextColor(Color.RED);
+                                        snackbar.show();
+
 
                                         System.out.println("fgddgdfgdfgffffffffff"+ message);
 
-                                       Intent intent=new Intent(EnterOTP.this, LoginActivity.class);
+                                       Intent intent=new Intent(EnterOTP.this, LandingPageActivity.class);
                                         startActivity(intent);
                                   /*  selectedFragment = TabLayoutFragmentTrending.newInstance();
                                     FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
