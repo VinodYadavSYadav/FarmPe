@@ -129,6 +129,7 @@
                 >
 
                 <TextView
+                    android:id="@+id/farmer_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Jagdish Kumar"
@@ -200,6 +201,7 @@
                 >
 
                 <TextView
+                    android:id="@+id/phone_no"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="9891490506"
@@ -272,6 +274,7 @@
                 >
 
                 <TextView
+                    android:id="@+id/email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="9876543210@farmpe"
@@ -343,6 +346,7 @@
                 >
 
                 <TextView
+                    android:id="@+id/loc"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Bangalore, Karnataka"

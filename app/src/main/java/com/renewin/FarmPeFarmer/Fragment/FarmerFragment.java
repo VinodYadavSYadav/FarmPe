@@ -95,6 +95,8 @@ public class FarmerFragment extends Fragment {
                             String village=jsonObject1.getString("Village");
                             String district=jsonObject1.getString("District");
                             String image=jsonObject1.getString("FarmerPhoto");
+                            String phone_no=jsonObject1.getString("MobileNumber");
+                            String email=jsonObject1.getString("EmailId");
                             System.out.println("farmer_photo"+image);
                             String id=jsonObject1.getString("Id");
 
@@ -102,7 +104,7 @@ public class FarmerFragment extends Fragment {
                             System.out.println("madelslistt"+newOrderBeansList.size());
 
                             if (!(village.equals("")||district.equals(""))){
-                                FarmsImageBean1 crops = new FarmsImageBean1(image,farmer_name,district,village,"","","",id);
+                                FarmsImageBean1 crops = new FarmsImageBean1(image,farmer_name,district,village,phone_no,"","",id,email);
                                 newOrderBeansList.add(crops);
                             }
 

@@ -29,7 +29,7 @@ public class FarmerImageAdapter extends RecyclerView.Adapter<FarmerImageAdapter.
 
     public LinearLayout linearLayout;
    public static LinearLayout next_arw;
-    public static String first,farmer_name1,farmer_phn,farmer_loc,farmer_emil;
+    public static String first,farmer_name1,farmer_phn,farmer_loc,farmer_emil,farmer_image;
     //    SessionManager session;
     public static CardView cardView;
     public FarmerImageAdapter(Activity activity, List<FarmsImageBean1> moviesList) {
@@ -106,8 +106,11 @@ public class FarmerImageAdapter extends RecyclerView.Adapter<FarmerImageAdapter.
         holder.connect.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                farmer_name1=products.getFarmer_name();
-
+                farmer_name1=products.getProd_price();
+                farmer_phn=products.getMobile_no();
+                farmer_emil=products.getEmail();
+                farmer_loc=products.getLocation();
+                farmer_image=products.getImage();
                 selectedFragment = FarmerDetailsFragment.newInstance();
                 FragmentTransaction transaction = ((FragmentActivity)activity).getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.frame_layout, selectedFragment);
