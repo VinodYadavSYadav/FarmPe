@@ -24,6 +24,9 @@ import com.renewin.FarmPeFarmer.Adapter.NotificationAdapter;
 import com.renewin.FarmPeFarmer.Bean.NearByHorizontalBean;
 import com.renewin.FarmPeFarmer.Bean.NotificationBean;
 import com.renewin.FarmPeFarmer.R;
+import com.renewin.FarmPeFarmer.SessionManager;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,10 +38,12 @@ public class FarmerDetailsFragment extends Fragment {
     public static List<NotificationBean> newOrderBeansList = new ArrayList<>();
     public static List<NearByHorizontalBean> newOrderBeansList_horizontal = new ArrayList<>();
     public static RecyclerView recyclerView,recyclerView_horizontal;
-    TextView toolbar_title,farmer_name,farmer_phone,farmer_email,farmer_loc;
+    TextView toolbar_title,farmer_name,farmer_phone,farmer_email,farmer_loc,connect_btn;
     LinearLayout back_feed,farmer_connect;
     RelativeLayout menu;
     CircleImageView prod_img;
+    JSONObject lngObject;
+    SessionManager session;
     NearByHorizontalAdapter madapter;
     public static NotificationAdapter farmadapter;
 
@@ -60,9 +65,12 @@ public class FarmerDetailsFragment extends Fragment {
         farmer_name=view.findViewById(R.id.farmer_name);
         farmer_phone=view.findViewById(R.id.phone_no);
         farmer_email=view.findViewById(R.id.email);
+        connect_btn=view.findViewById(R.id.connect_btn);
         farmer_loc=view.findViewById(R.id.loc);
         prod_img=view.findViewById(R.id.prod_img);
         farmer_connect=view.findViewById(R.id.farmer_connect);
+
+        session = new SessionManager(getActivity());
 
         Glide.with(getActivity()).load(FarmerImageAdapter.farmer_image)
 
@@ -76,6 +84,21 @@ public class FarmerDetailsFragment extends Fragment {
         farmer_phone.setText(FarmerImageAdapter.farmer_phn);
         farmer_email.setText(FarmerImageAdapter.farmer_emil);
         farmer_loc.setText(FarmerImageAdapter.farmer_loc);
+
+        try{
+
+
+            lngObject = new JSONObject(session.getRegId("language"));
+
+
+            connect_btn.setText(lngObject.getString("connect"));
+
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+
 
 
         back_feed.setOnClickListener(new View.OnClickListener() {
@@ -105,6 +128,9 @@ public class FarmerDetailsFragment extends Fragment {
 
             }
         });
+
+
+
 
 
 

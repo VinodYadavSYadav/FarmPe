@@ -13,7 +13,6 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-
 import com.renewin.FarmPeFarmer.Bean.AgriBean;
 import com.renewin.FarmPeFarmer.R;
 import com.renewin.FarmPeFarmer.SessionManager;

@@ -37,6 +37,7 @@ import com.renewin.FarmPeFarmer.Adapter.Sell_Location_Adapter;
 import com.renewin.FarmPeFarmer.Adapter.StateApdater;
 import com.renewin.FarmPeFarmer.Adapter.TalukAdapter;
 import com.renewin.FarmPeFarmer.Adapter.VillageAdapter;
+import com.renewin.FarmPeFarmer.Adapter.You_Address_Adapter;
 import com.renewin.FarmPeFarmer.Bean.StateBean;
 import com.renewin.FarmPeFarmer.R;
 import com.renewin.FarmPeFarmer.SessionManager;
@@ -74,6 +75,7 @@ public class  Add_New_Address_Fragment extends Fragment {
     TextView toolbar_titletxt;
     JSONArray jsonArray,state_array,tal_array,hobli_array,village_array;
     StateBean stateBean;
+    String new_add_toast;
 
     public static TextView add_new_address;
     Fragment selectedFragment = null;
@@ -83,6 +85,7 @@ public class  Add_New_Address_Fragment extends Fragment {
     public static EditText name,mobile,pincode_no,house_numb,street_name,landmrk,city,state,taluk,hobli,district,village,select_address;
     String status,message;
     String Id;
+
     SessionManager sessionManager;
     public static Dialog grade_dialog;
     int selected_id,selected_id_time;
@@ -104,7 +107,6 @@ public class  Add_New_Address_Fragment extends Fragment {
         name.setFilters(new InputFilter[]{EMOJI_FILTER});
         mobile = view.findViewById(R.id.mobile_no);
         back_feed = view.findViewById(R.id.back_feed);
-
         pincode_no = view.findViewById(R.id.pincode);
         house_numb = view.findViewById(R.id.house_no);
         house_numb.setFilters(new InputFilter[]{EMOJI_FILTER});
@@ -113,7 +115,6 @@ public class  Add_New_Address_Fragment extends Fragment {
         landmrk = view.findViewById(R.id.landmark_1);
         landmrk.setFilters(new InputFilter[]{EMOJI_FILTER});
         add_new_address = view.findViewById(R.id.add_address);
-
         state = view.findViewById(R.id.state);
         city = view.findViewById(R.id.city_1);
         city.setFilters(new InputFilter[]{EMOJI_FILTER});
@@ -304,6 +305,9 @@ public class  Add_New_Address_Fragment extends Fragment {
                     ware_house.setText(lngObject.getString("Warehouse"));
                     farm.setText(lngObject.getString("Farm"));
                     others.setText(lngObject.getString("Others"));
+                    new_add_toast = (lngObject.getString("NewAddressaddedsuccessfully"));
+
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -989,6 +993,7 @@ public class  Add_New_Address_Fragment extends Fragment {
             jsonObject.put("StreeAddress",house_numb.getText().toString());
             jsonObject.put("StreeAddress1",street_name.getText().toString());
             jsonObject.put("UserId",sessionManager.getRegId("userId"));
+            jsonObject.put("Id", You_Address_Adapter.add_id);
 
             System.out.println("nnnnnnnnnnnnnnnaaaaaaaaa"+jsonObject);
 
@@ -1013,22 +1018,49 @@ public class  Add_New_Address_Fragment extends Fragment {
                         bundle.putString("add_id",status);*/
 
                         if(!(status.equals("0"))){
-                           // Toast.makeText(getActivity(),message,Toast.LENGTH_SHORT).show();
-                            Snackbar snackbar = Snackbar
-                                    .make(linearLayout, newaddressadded, Snackbar.LENGTH_LONG);
-                            View snackbarView = snackbar.getView();
-                            TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-                            tv.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.orange));
-                            tv.setTextColor(Color.WHITE);
-                            snackbar.show();
 
 
-                            //if (getArguments().getString("request_for")==null){
+                            if (getArguments().getString("navigation_from").equals("yu_ads_frg")) {
+
+
+                                Snackbar snackbar = Snackbar
+                                        .make(linearLayout, newaddressadded, Snackbar.LENGTH_LONG);
+                                View snackbarView = snackbar.getView();
+                                TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+                                tv.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.orange));
+                                tv.setTextColor(Color.WHITE);
+                                snackbar.show();
+
                             selectedFragment = You_Address_Fragment.newInstance();
                             FragmentTransaction transaction = (getActivity()).getSupportFragmentManager().beginTransaction();
                             transaction.replace(R.id.frame_layout, selectedFragment);
                             transaction.commit();
-                           /* }else{
+
+                            }else if(getArguments().getString("navigation_from").equals("your_add")){
+
+                                Snackbar snackbar = Snackbar
+                                        .make(linearLayout, "Your Address updated Successfully", Snackbar.LENGTH_LONG);
+                                View snackbarView = snackbar.getView();
+                                TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+                                tv.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.orange));
+                                tv.setTextColor(Color.WHITE);
+                                snackbar.show();
+
+                                selectedFragment = You_Address_Fragment.newInstance();
+                                FragmentTransaction transaction = (getActivity()).getSupportFragmentManager().beginTransaction();
+                                transaction.replace(R.id.frame_layout, selectedFragment);
+                                transaction.commit();
+
+                            }
+                           else{
+                                Snackbar snackbar = Snackbar
+                                        .make(linearLayout, newaddressadded, Snackbar.LENGTH_LONG);
+                                View snackbarView = snackbar.getView();
+                                TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+                                tv.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.orange));
+                                tv.setTextColor(Color.WHITE);
+                                snackbar.show();
+
                                 bundle.putString("add_id",status);
                                 bundle.putString("city",city.getText().toString());
                                 bundle.putInt("selected_id2",selected_id);
@@ -1038,7 +1070,7 @@ public class  Add_New_Address_Fragment extends Fragment {
                                 transaction.replace(R.id.frame_layout, selectedFragment);
                                 transaction.commit();
                                 selectedFragment.setArguments(bundle);
-                            }*/
+                            }
 
 
 

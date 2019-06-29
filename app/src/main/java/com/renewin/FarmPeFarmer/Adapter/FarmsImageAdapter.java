@@ -19,6 +19,10 @@ import com.renewin.FarmPeFarmer.Bean.FarmsImageBean;
 import com.renewin.FarmPeFarmer.Fragment.FarmerDetailsFragment;
 import com.renewin.FarmPeFarmer.Fragment.LokingForDetailsFragment;
 import com.renewin.FarmPeFarmer.R;
+import com.renewin.FarmPeFarmer.SessionManager;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.List;
 
@@ -26,16 +30,16 @@ public class FarmsImageAdapter extends RecyclerView.Adapter<FarmsImageAdapter.My
     private List<FarmsImageBean> productList;
     Activity activity;
     Fragment selectedFragment;
-
+    JSONObject lngObject;
     public LinearLayout linearLayout;
    public static LinearLayout next_arw;
     public static String first,looking_forId;
-    //    SessionManager session;
+ SessionManager session;
     public static CardView cardView;
     public FarmsImageAdapter(Activity activity, List<FarmsImageBean> moviesList) {
         this.productList = moviesList;
         this.activity=activity;
-//        session=new SessionManager(activity);
+    session=new SessionManager(activity);
 
     }
 
@@ -103,6 +107,13 @@ public class FarmsImageAdapter extends RecyclerView.Adapter<FarmsImageAdapter.My
             }
         });
 
+        try {
+            lngObject = new JSONObject(session.getRegId("language"));
+            holder.connect.setText(lngObject.getString("connect"));
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
     }
 

@@ -2,8 +2,10 @@ package com.renewin.FarmPeFarmer.Volly_class;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Handler;
+import android.widget.TextView;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -29,9 +31,18 @@ public class Crop_Post {
 
     public static void crop_posting(Activity activity, String url, JSONObject postObject, final VoleyJsonObjectCallback callback) {
         final ProgressDialog progressDialog = ProgressDialog.show(activity, "",
-                null, true);
-        progressDialog.setContentView(R.layout.small_progress_bar);
-        progressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+                "Loading....Please wait.");
+
+//        final ProgressDialog progressDialog = new ProgressDialog(activity ,R.style.MyAlertDialogStyle);
+//        progressDialog.setMessage(" Loading....Please wait");
+//        progressDialog.show();
+
+
+
+        // progressDialog.setContentView(R.layout.small_progress_bar);
+
+
+       // progressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         System.out.println("ggggggggggggggggggggBookingAppointmentObj" + postObject);
 
         JsonObjectRequest jobReq = new JsonObjectRequest(Request.Method.POST, url, postObject,

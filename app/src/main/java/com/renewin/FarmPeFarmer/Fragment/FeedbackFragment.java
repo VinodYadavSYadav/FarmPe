@@ -11,6 +11,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.text.InputFilter;
 import android.text.SpannableString;
 import android.text.Spanned;
@@ -28,6 +29,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.renewin.FarmPeFarmer.Activity.SignUpActivity;
 import com.renewin.FarmPeFarmer.Bean.AgriBean;
 import com.renewin.FarmPeFarmer.R;
 import com.renewin.FarmPeFarmer.SessionManager;
@@ -194,7 +196,8 @@ public class FeedbackFragment extends Fragment {
                             .make(linearLayout, feedtype, Snackbar.LENGTH_LONG);
                     View snackbarView = snackbar.getView();
                     TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-                    tv.setTextColor(Color.RED);
+                    tv.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.orange));
+                    tv.setTextColor(Color.WHITE);
                     snackbar.show();
 
                 }else if(feedback_title.getText().toString().equals("")) {
@@ -203,7 +206,8 @@ public class FeedbackFragment extends Fragment {
                             .make(linearLayout, fedback_title, Snackbar.LENGTH_LONG);
                     View snackbarView = snackbar.getView();
                     TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-                    tv.setTextColor(Color.RED);
+                    tv.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.orange));
+                    tv.setTextColor(Color.WHITE);
                     snackbar.show();
 
 
@@ -213,7 +217,8 @@ public class FeedbackFragment extends Fragment {
                             .make(linearLayout, feeddesc, Snackbar.LENGTH_LONG);
                     View snackbarView = snackbar.getView();
                     TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-                    tv.setTextColor(Color.RED);
+                    tv.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.orange));
+                    tv.setTextColor(Color.WHITE);
                     snackbar.show();
 
                 }else {

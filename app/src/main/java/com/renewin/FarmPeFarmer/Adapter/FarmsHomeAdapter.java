@@ -20,6 +20,10 @@ import com.renewin.FarmPeFarmer.Bean.FarmsImageBean;
 import com.renewin.FarmPeFarmer.Fragment.ComingSoonFragment;
 import com.renewin.FarmPeFarmer.Fragment.FarmsDetailsFragment;
 import com.renewin.FarmPeFarmer.R;
+import com.renewin.FarmPeFarmer.SessionManager;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.List;
 
@@ -27,7 +31,8 @@ public class FarmsHomeAdapter extends RecyclerView.Adapter<FarmsHomeAdapter.MyVi
     private List<FarmsImageBean> productList;
     Activity activity;
     Fragment selectedFragment;
-
+    JSONObject lngObject;
+    SessionManager session;
     public LinearLayout linearLayout;
    public static LinearLayout next_arw;
     public static String first;
@@ -60,8 +65,12 @@ public class FarmsHomeAdapter extends RecyclerView.Adapter<FarmsHomeAdapter.MyVi
             location=view.findViewById(R.id.location);
             connect=view.findViewById(R.id.connect);
             image=view.findViewById(R.id.prod_img);
+            session=new SessionManager(activity);
             //linearLayout=view.findViewById(R.id.dialog_list);
             //confirmbutton=view.findViewById(R.id.delivery2);
+
+
+
         }
 
     }
@@ -110,6 +119,16 @@ public class FarmsHomeAdapter extends RecyclerView.Adapter<FarmsHomeAdapter.MyVi
         });
 
 
+
+        try {
+            lngObject = new JSONObject(session.getRegId("language"));
+
+
+            holder.connect.setText(lngObject.getString("connect"));
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
      //   holder.duration.setVisibility(View.GONE);
         Glide.with(activity).load(products.getImage())

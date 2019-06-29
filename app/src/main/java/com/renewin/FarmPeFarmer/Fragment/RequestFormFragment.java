@@ -102,13 +102,18 @@ public class RequestFormFragment extends Fragment {
         });
 
         view.setFocusableInTouchMode(true);
-        view.requestFocus(View.FOCUS_UP);
+        view.requestFocus();
         view.setOnKeyListener(new View.OnKeyListener() {
+
+
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
-                if( keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP) {
+                if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP) {
                     FragmentManager fm = getActivity().getSupportFragmentManager();
                     fm.popBackStack("model", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+
+
+                    return true;
                 }
                 return false;
             }
@@ -119,7 +124,7 @@ public class RequestFormFragment extends Fragment {
             public void onClick(View v) {
                 System.out.println("hrrrjjkj");
                 Bundle bundle1=new Bundle();
-                bundle1.putString("request_for","request1");
+                bundle1.putString("navigation_from","request");
                 selectedFragment = Add_New_Address_Fragment.newInstance();
                 FragmentTransaction transaction = (getActivity()).getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.frame_layout, selectedFragment);

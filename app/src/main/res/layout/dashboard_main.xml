@@ -35,7 +35,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:layout_weight="30">
+                        android:layout_weight="33">
                         <TextView
                             android:id="@+id/looking_for1"
                             android:layout_width="wrap_content"
@@ -62,7 +62,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:layout_weight="20">
+                        android:layout_weight="33">
 
                         <TextView
                             android:id="@+id/farms1"
@@ -88,7 +88,7 @@
                         android:id="@+id/farmer"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="20"
+                        android:layout_weight="33"
                         android:orientation="vertical">
 
                         <TextView

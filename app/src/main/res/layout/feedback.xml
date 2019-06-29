@@ -161,7 +161,7 @@
                 android:text="Submit"
                 android:textSize="16dp"
                 android:textColor="#fff"
-                android:background="@drawable/border_filled_pink"
+                android:background="@drawable/border_filled_red"
                 android:paddingVertical="20dp"
                 android:gravity="center"
                 android:layout_marginVertical="20dp"

@@ -17,6 +17,10 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.renewin.FarmPeFarmer.Bean.FarmsImageBean1;
 import com.renewin.FarmPeFarmer.Fragment.FarmerDetailsFragment;
 import com.renewin.FarmPeFarmer.R;
+import com.renewin.FarmPeFarmer.SessionManager;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.List;
 
@@ -26,6 +30,8 @@ public class FarmerImageAdapter extends RecyclerView.Adapter<FarmerImageAdapter.
     private List<FarmsImageBean1> productList;
     Activity activity;
     Fragment selectedFragment;
+    JSONObject lngObject;
+    SessionManager session;
 
     public LinearLayout linearLayout;
    public static LinearLayout next_arw;
@@ -61,6 +67,9 @@ public class FarmerImageAdapter extends RecyclerView.Adapter<FarmerImageAdapter.
             image=view.findViewById(R.id.prod_img);
             //linearLayout=view.findViewById(R.id.dialog_list);
             //confirmbutton=view.findViewById(R.id.delivery2);
+
+
+            session=new SessionManager(activity);
         }
 
     }
@@ -94,6 +103,18 @@ public class FarmerImageAdapter extends RecyclerView.Adapter<FarmerImageAdapter.
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(holder.image);
 */
+
+
+
+        try {
+            lngObject = new JSONObject(session.getRegId("language"));
+
+
+            holder.connect.setText(lngObject.getString("connect"));
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
         Glide.with(activity).load(products.getImage())
 

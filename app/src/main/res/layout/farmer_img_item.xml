@@ -125,7 +125,7 @@
                       android:fontFamily="@font/segoeui"
                       android:layout_gravity="center"
                       android:text="Connect"
-                      android:background="@drawable/border_empty"
+                      android:background="@drawable/border_2_empty"
                       android:paddingVertical="8dp"
                       android:paddingHorizontal="30dp"
                       android:gravity="center"

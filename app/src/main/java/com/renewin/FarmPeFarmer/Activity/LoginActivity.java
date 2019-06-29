@@ -62,9 +62,9 @@ public class LoginActivity extends AppCompatActivity {
 
      List<SelectLanguageBean>language_arrayBeanList = new ArrayList<>();
      SelectLanguageBean selectLanguageBean;
-    SelectLanguageAdapter2 mAdapter;
+     SelectLanguageAdapter2 mAdapter;
 
-    public static TextInputLayout text_mobile,text_pass;
+     public static TextInputLayout text_mobile,text_pass;
 
 
      LinearLayout back_xlogin;
@@ -88,7 +88,6 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sign_in);
-
 
         linearLayout=findViewById(R.id.main_layout);
         welcome_back = findViewById(R.id.welcome_back);

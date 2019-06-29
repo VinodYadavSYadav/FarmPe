@@ -2,6 +2,8 @@ package com.renewin.FarmPeFarmer.Volly_class;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.widget.ProgressBar;
 
@@ -28,10 +30,10 @@ public class Login_post {
 
 
         final ProgressDialog progressDialog = ProgressDialog.show(activity, "",
-                null,true);
-        progressDialog.setContentView(R.layout.small_progress_bar);
+                "Loading....Please wait.");
+     //   progressDialog.setContentView(R.layout.small_progress_bar);
 
-        progressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+   //     progressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
 
 
         JsonObjectRequest jobReq = new JsonObjectRequest(Request.Method.POST, url, jsonObject,
@@ -74,10 +76,10 @@ public class Login_post {
 
 
         final ProgressDialog progressDialog = ProgressDialog.show(activity, "",
-                null,true);
-        progressDialog.setContentView(R.layout.small_progress_bar);
+                "Loading....Please wait.");
+      //  progressDialog.setContentView(R.layout.small_progress_bar);
 
-        progressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+      //  progressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
 
 
         JsonObjectRequest jobReq = new JsonObjectRequest(Request.Method.POST, Urls.Forgot_Password, jsonObject,
@@ -120,10 +122,10 @@ public class Login_post {
 
 
         final ProgressDialog progressDialog = ProgressDialog.show(activity, "",
-                null,true);
-        progressDialog.setContentView(R.layout.small_progress_bar);
+                "Loading....Please wait.");
+       // progressDialog.setContentView(R.layout.small_progress_bar);
 
-        progressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+   //     progressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
 
 
         JsonObjectRequest jobReq = new JsonObjectRequest(Request.Method.POST, Urls.                                                                                                                                                                                                                                                                                                                                                             VerifyOTPNewUser, jsonObject,
@@ -167,10 +169,9 @@ public class Login_post {
 
 
         final ProgressDialog progressDialog = ProgressDialog.show(activity, "",
-                null,true);
-        progressDialog.setContentView(R.layout.small_progress_bar);
-
-        progressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+                "Loading....Please wait.");
+      //  progressDialog.setContentView(R.layout.small_progress_bar);
+     //   progressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
 
 
         JsonObjectRequest jobReq = new JsonObjectRequest(Request.Method.POST, Urls.ChangePassword, jsonObject,
@@ -214,10 +215,11 @@ public class Login_post {
 
 
         final ProgressDialog progressDialog = ProgressDialog.show(activity, "",
-                null,true);
-        progressDialog.setContentView(R.layout.small_progress_bar);
+                "Loading....Please wait.");
+       // progressDialog.set(ColorStateList.valueOf(Color.RED));
+      //  progressDialog.setContentView(R.layout.small_progress_bar);
 
-        progressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+      //  progressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
 
 
         JsonObjectRequest jobReq = new JsonObjectRequest(Request.Method.POST, Urls.SIGNUP, jsonObject,
