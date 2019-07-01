@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.FarmPe.Farmer">
+    package="com.FarmPe.India">
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permisssion.ACCESS_COARSE_LOCATION" />
@@ -18,7 +18,7 @@
         android:roundIcon="@drawable/nandi_icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.FarmPe.Farmer.Activity.LoginActivity"
+        <activity android:name="com.FarmPe.India.Activity.LoginActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,45 +28,45 @@
         </activity>
 
 
-        <activity android:name="com.FarmPe.Farmer.Activity.ForgotPasswordNew"
+        <activity android:name="com.FarmPe.India.Activity.ForgotPasswordNew"
             android:screenOrientation="portrait"/>
 
-        <activity android:name="com.FarmPe.Farmer.Activity.SelectLanguageActivity"
+        <activity android:name="com.FarmPe.India.Activity.SelectLanguageActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name="com.FarmPe.Farmer.Activity.EnterOTP"
+        <activity android:name="com.FarmPe.India.Activity.EnterOTP"
             android:screenOrientation="portrait"/>
-        <activity android:name="com.FarmPe.Farmer.Activity.Thank_U_New"
+        <activity android:name="com.FarmPe.India.Activity.Thank_U_New"
             android:screenOrientation="portrait"/>
 
-        <activity android:name="com.FarmPe.Farmer.Activity.LandingPageActivity"
+        <activity android:name="com.FarmPe.India.Activity.LandingPageActivity"
             android:screenOrientation="portrait"
             android:resizeableActivity="false"
             />
 
-        <activity android:name="com.FarmPe.Farmer.Activity.ResetPasswordNew"
+        <activity android:name="com.FarmPe.India.Activity.ResetPasswordNew"
             android:screenOrientation="portrait"/>
-        <activity android:name="com.FarmPe.Farmer.Activity.FarmerUser"
-            android:screenOrientation="portrait"/>
-
-        <activity android:name="com.FarmPe.Farmer.Activity.FarmerActivity"
+        <activity android:name="com.FarmPe.India.Activity.FarmerUser"
             android:screenOrientation="portrait"/>
 
-        <activity android:name="com.FarmPe.Farmer.Activity.SignUpActivity"
+        <activity android:name="com.FarmPe.India.Activity.FarmerActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name="com.FarmPe.Farmer.Activity.FarmerActivityNext"
+
+        <activity android:name="com.FarmPe.India.Activity.SignUpActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name="com.FarmPe.India.Activity.FarmerActivityNext"
             android:screenOrientation="portrait"/>
 
 
 
 
         <!-- Firebase Notifications -->
-        <service android:name="com.FarmPe.Farmer.MyFirebaseMessagingService">
+        <service android:name="com.FarmPe.India.MyFirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
 
             </intent-filter>
         </service>
-        <service android:name="com.FarmPe.Farmer.MyFirebaseInstanceIDService">
+        <service android:name="com.FarmPe.India.MyFirebaseInstanceIDService">
             <intent-filter>
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
