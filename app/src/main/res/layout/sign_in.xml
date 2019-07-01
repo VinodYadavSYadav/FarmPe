@@ -191,6 +191,7 @@
                 android:layout_weight="45"
                 android:fontFamily="@font/segoeui"
                 android:text="Remember me"
+                android:textStyle="bold"
                 android:textColor="#8a8b91"
                 android:textSize="15dp" />
 
