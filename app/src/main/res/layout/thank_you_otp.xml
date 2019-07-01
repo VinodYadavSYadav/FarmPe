@@ -109,7 +109,7 @@
             android:layout_marginHorizontal="15dp"
             android:text="CONFIRM OTP"
             android:gravity="center"
-            android:textSize="14dp"
+            android:textSize="18dp"
             android:textStyle="bold"
             android:background="@drawable/border_filled_red"
             android:fontFamily="@font/segoeui"

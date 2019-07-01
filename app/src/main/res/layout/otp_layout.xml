@@ -128,7 +128,7 @@
                 android:paddingVertical="20dp"
                 android:text="CONFIRM OTP"
                 android:textColor="#fff"
-                android:textSize="14dp"
+                android:textSize="18dp"
                 android:textStyle="bold" />
 
         </LinearLayout>
