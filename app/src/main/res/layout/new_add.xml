@@ -531,7 +531,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/segoeui"
-                            android:hint="Hobli"
+                            android:hint="Area"
                             android:background="@drawable/border_grey_filled"
                             android:textSize="14dp"
                             android:editable="false"
@@ -554,6 +554,7 @@
                             />
 
 
+<!--
                         <EditText
                             android:id="@+id/village_1"
                             android:layout_width="match_parent"
@@ -574,6 +575,7 @@
                             android:paddingHorizontal="10dp"
                             android:textColor="#181818 "
                             />
+-->
 
                     </LinearLayout>
 

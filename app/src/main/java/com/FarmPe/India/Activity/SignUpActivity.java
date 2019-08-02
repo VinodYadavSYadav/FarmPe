@@ -11,16 +11,22 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.text.InputFilter;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.TextUtils;
+import android.view.ActionMode;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,6 +38,8 @@ import android.widget.Toast;
 
 import com.FarmPe.India.Adapter.SelectLanguageAdapter_SignUP;
 import com.FarmPe.India.Bean.SelectLanguageBean;
+import com.FarmPe.India.Fragment.NotificationList;
+import com.FarmPe.India.Fragment.PrivacyPolicyFragment;
 import com.FarmPe.India.R;
 import com.FarmPe.India.SessionManager;
 import com.FarmPe.India.Urls;
@@ -48,7 +56,7 @@ import java.util.List;
 
 public class SignUpActivity extends AppCompatActivity {
 
-   public static TextView create_acc, continue_sign_up, change_lang, backtologin, referal_text;
+    public static TextView create_acc, continue_sign_up, change_lang, backtologin, referal_text;
     LinearLayout back_feed;
     SessionManager sessionManager;
     public static EditText name, mobile_no, password, referal_code;
@@ -57,7 +65,7 @@ public class SignUpActivity extends AppCompatActivity {
     Activity activity;
     JSONObject lngObject;
     public static TextInputLayout sign_name,sign_mobile,sign_pass;
-    public static String mob_toast,passwrd_toast,minimum_character_toast,enter_all_toast,name_toast,mobile_registered_toast;
+    public static String mob_toast,passwrd_toast,minimum_character_toast,enter_all_toast,name_toast,mobile_registered_toast,privacy_policy;
 
     List<SelectLanguageBean>language_arrayBeanList = new ArrayList<>();
     SelectLanguageBean selectLanguageBean;
@@ -67,11 +75,10 @@ public class SignUpActivity extends AppCompatActivity {
     BroadcastReceiver receiver;
     EditText spn_localize;
     String localize_text;
-    TextInputLayout textInputLayout_name, textInputLayout_pass;
+    TextView privacy_terms;
     public static String contact, mob_contact;
     String refer;
-     public static   Dialog dialog;
-
+    public static   Dialog dialog;
 
     @Nullable
     @Override
@@ -99,11 +106,12 @@ public class SignUpActivity extends AppCompatActivity {
         mobile_no = findViewById(R.id.mobilesignup);
         password = findViewById(R.id.passsignup);
         change_lang = findViewById(R.id.change_lang);
+        privacy_terms = findViewById(R.id.privacy_terms);
         // referal_text=findViewById(R.id.referal_text);
         // referal_code=findViewById(R.id.referal_code);
         // textInputLayout_pass=findViewById(R.id.text_pass);
 
-
+        privacy_terms.setText(Html.fromHtml("By registering, you accept our <u><b> Privacy Policy</b> and <b>Terms of use.</b></u>"));
 
         sessionManager = new SessionManager(SignUpActivity.this);
 
@@ -121,6 +129,29 @@ public class SignUpActivity extends AppCompatActivity {
 
         setupUI(linearLayout);
         String[] localize = {"+91"};
+
+        password.setLongClickable(false);
+
+        password.setCustomSelectionActionModeCallback(new ActionMode.Callback() {
+
+            public boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
+                return false;
+            }
+
+            public boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
+                return false;
+            }
+
+            public boolean onActionItemClicked(ActionMode actionMode, MenuItem item) {
+                return false;
+            }
+
+            public void onDestroyActionMode(ActionMode actionMode) {
+            }
+        });
+
+        password.setLongClickable(false);
+        password.setTextIsSelectable(false);
 
        /* backtologin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -167,7 +198,14 @@ public class SignUpActivity extends AppCompatActivity {
 
 
 
-
+        privacy_terms.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                privacy_policy="privacy";
+                Intent intent = new Intent(SignUpActivity.this, LandingPageActivity.class);
+                startActivity(intent);
+            }
+        });
 
         back_feed.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -828,7 +866,7 @@ public class SignUpActivity extends AppCompatActivity {
 
             userRequestjsonObject.put("PhoneNo", contact);
             userRequestjsonObject.put("Password", password.getText().toString());
-            userRequestjsonObject.put("DeviceId", "123456789");
+            userRequestjsonObject.put("DeviceId", "123");
             userRequestjsonObject.put("DeviceType", "Android");
             userRequestjsonObject.put("FullName", name.getText().toString());
 
@@ -865,7 +903,7 @@ public class SignUpActivity extends AppCompatActivity {
                             String userid = jsonObject.getString("Id");
                             System.out.println("useerrrriidd" + userid);
                             sessionManager.saveUserId(userid);
-                            sessionManager.save_name(jsonObject.getString("FullName"), jsonObject.getString("PhoneNo"));
+                            sessionManager.save_name(jsonObject.getString("FullName"), jsonObject.getString("PhoneNo"),jsonObject.getString("ProfilePic"));
                             Intent intent = new Intent(SignUpActivity.this, EnterOTP.class);
                             intent.putExtra("otpnumber", status);
                             startActivity(intent);

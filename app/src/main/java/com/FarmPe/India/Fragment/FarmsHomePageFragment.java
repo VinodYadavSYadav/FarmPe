@@ -1,13 +1,10 @@
 package com.FarmPe.India.Fragment;
 
-import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,8 +21,6 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static com.FarmPe.India.Fragment.HomeMenuFragment.searchView;
 
 public class FarmsHomePageFragment extends Fragment {
 
@@ -58,6 +53,7 @@ public class FarmsHomePageFragment extends Fragment {
         FarmsList();
 
 
+
       /*  FarmsImageBean1 img1=new FarmsImageBean1(R.drawable.cow_dairy,"Amrutha Dairy Farm","Commertial Dairy Farming Training,Consulting Project Reporting","","","Jagdish Kumar","Halenahalli DoddaBallapura","");
         newOrderBeansList.add(img1);
         newOrderBeansList.add(img1);
@@ -77,33 +73,7 @@ public class FarmsHomePageFragment extends Fragment {
        /* farmadapter=new FarmsHomeAdapter(getActivity(),newOrderBeansList);
         recyclerView.setAdapter(farmadapter);
 */
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
 
-                searchView.clearFocus();
-                System.out.println("lknkknknknknknknknnk");
-             /*   if(list.contains(query)){
-                    adapter.getFilter().filter(query);
-                }else{
-                    Toast.makeText(MainActivity.this, "No Match found",Toast.LENGTH_LONG).show();
-                }*/
-                return false;
-
-            }
-
-            @RequiresApi(api = Build.VERSION_CODES.N)
-            @Override
-            public boolean onQueryTextChange(String newText) {
-               // back_feed.setVisibility(View.GONE);
-                //title.setVisibility(View.GONE);
-                System.out.println("lknkknknknknknknknnk"+newText);
-                sorting(newText);
-
-
-                return false;
-            }
-        });
 
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener()
         {
@@ -179,14 +149,16 @@ public class FarmsHomePageFragment extends Fragment {
                         for (int i=0;i<cropsListArray.length();i++){
                             JSONObject jsonObject1=cropsListArray.getJSONObject(i);
                             String farm_name=jsonObject1.getString("FarmName");
-                            String location=jsonObject1.getString("Location");
+                            //String location=jsonObject1.getString("Location");
                             String image=jsonObject1.getString("FarmImages");
+                            String name=jsonObject1.getString("ContactPersonName");
                             String id=jsonObject1.getString("Id");
+                            String createdby=jsonObject1.getString("CreatedBy");
 
 
-                            System.out.println("madelslistt"+newOrderBeansList.size());
+                            System.out.println("createdlidstt"+createdby);
 
-                            FarmsImageBean crops = new FarmsImageBean(image,farm_name,"","","Commertial Dairy Farming Training,Consulting Project Reporting","Jagdish Kumar",location,id);
+                            FarmsImageBean crops = new FarmsImageBean(image,farm_name,"","","Commertial Dairy Farming Training,Consulting Project Reporting",name,"",id,createdby,false);
                             newOrderBeansList.add(crops);
 
 

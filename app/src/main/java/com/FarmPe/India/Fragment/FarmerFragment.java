@@ -100,14 +100,19 @@ public class FarmerFragment extends Fragment {
                             String email=jsonObject1.getString("EmailId");
                             System.out.println("farmer_photo"+image);
                             String id=jsonObject1.getString("Id");
+                            String createdby=jsonObject1.getString("CreatedBy");
 
 
-                            System.out.println("madelslistt"+newOrderBeansList.size());
 
+
+                           // System.out.println("cccccccccccc"+createdby);
+
+/*
                             if (!(village.equals("")||district.equals(""))){
-                                FarmsImageBean1 crops = new FarmsImageBean1(image,farmer_name,district,village,phone_no,"","",id,email);
+*/
+                                FarmsImageBean1 crops = new FarmsImageBean1(image,farmer_name,district,village,phone_no,"","",id,email,createdby);
                                 newOrderBeansList.add(crops);
-                            }
+                           /* }*/
 
 
 

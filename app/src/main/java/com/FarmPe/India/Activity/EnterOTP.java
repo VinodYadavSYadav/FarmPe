@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.design.widget.Snackbar;
@@ -13,6 +14,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -88,20 +90,20 @@ public class EnterOTP extends AppCompatActivity {
 
         resendotp=findViewById(R.id.resend);
 
-        resendotp.setOnClickListener(new View.OnClickListener() {
+       /* resendotp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 try{
                     JSONObject postjsonObject = new JSONObject();
-                    postjsonObject.put("UserName", SignUpActivity.contact );
+                    postjsonObject.put("UserName",SignUpActivity.contact );
                     System.out.println("rrrrrrrrrrrrrrrrrrrr" + postjsonObject);
 
                     Login_post.login_posting(EnterOTP.this, Urls.ResendOTP, postjsonObject, new VoleyJsonObjectCallback() {
                         @Override
                         public void onSuccessResponse(JSONObject result) {
 
-                            System.out.println("kkkkkkkkkkkkkkkkkkkkkkkk" + result.toString());
+                            System.out.println("kkkkkkkkkkkkkkkkkkkkkkkk" + result);
                             try{
 
                                 String  Otp = result.getString("OTP");
@@ -135,6 +137,61 @@ public class EnterOTP extends AppCompatActivity {
             }
         });
 
+*/
+
+        resendotp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                try{
+                    JSONObject postjsonObject = new JSONObject();
+                    postjsonObject.put("UserName", SignUpActivity.contact );
+                    System.out.println("rrrrrrrrrrrrrrrrrrrr" + postjsonObject);
+
+                    Login_post.login_posting(EnterOTP.this, Urls.ResendOTP, postjsonObject, new VoleyJsonObjectCallback() {
+                        @Override
+                        public void onSuccessResponse(JSONObject result) {
+
+                            System.out.println("kkkkkkkkkkkkkkkkkkkkkkkk" + result.toString());
+
+                            try{
+
+                                String  Otp = result.getString("OTP");
+                                sessionId=Otp;
+                                String  Message = result.getString("Message");
+                                int  status= result.getInt("Status");
+
+                                if (status==2){
+                                    Snackbar snackbar = Snackbar
+                                            .make(linearLayout,Message, Snackbar.LENGTH_LONG);
+                                    //snackbar.setActionTextColor(R.color.colorAccent);
+                                    View snackbarView = snackbar.getView();
+                                    TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+                                    tv.setBackgroundColor(ContextCompat.getColor(EnterOTP.this,R.color.orange));
+                                    tv.setTextColor(Color.WHITE);
+                                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+                                        tv.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                                    } else {
+                                        tv.setGravity(Gravity.CENTER_HORIZONTAL);
+                                    }
+                                    snackbar.show();
+                                }
+
+                                else {
+                                    Toast.makeText(EnterOTP.this, Message, Toast.LENGTH_LONG).show();
+                                }
+                            }catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    });
+
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+
+            }
+        });
 
 
         setupUI(linearLayout);

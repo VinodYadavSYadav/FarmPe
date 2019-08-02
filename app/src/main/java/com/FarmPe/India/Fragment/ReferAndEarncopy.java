@@ -87,7 +87,6 @@ public class ReferAndEarncopy extends Fragment {
                     FragmentManager fm = getActivity().getSupportFragmentManager();
                     fm.popBackStack("setting", FragmentManager.POP_BACK_STACK_INCLUSIVE);
 
-
                     return true;
                 }
                 return false;

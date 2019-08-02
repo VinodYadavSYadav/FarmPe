@@ -16,7 +16,7 @@ public class SessionManager {
     // Shared Preferences
     SharedPreferences pref;
     SharedPreferences pref1;
-     SharedPreferences.Editor loginPrefsEditor;
+    SharedPreferences.Editor loginPrefsEditor;
 
     // Editor for Shared preferences
     SharedPreferences.Editor editor;
@@ -28,7 +28,7 @@ public class SessionManager {
     int PRIVATE_MODE = 0;
 
     // Sharedpref file name
-   // private static final String PREF_NAME = "ParentCraft";
+    // private static final String PREF_NAME = "ParentCraft";
     private static final String PREF_NAME = "Xohri";
 
     // All Shared Preferences Keys
@@ -45,6 +45,7 @@ public class SessionManager {
     public static final String KEY_USER_ID = "userId";
     public static final String KEY_LNG_SELECTED = "lng";
     public static final String KEY_LANGUAGE = "language";
+    public static final String KEY_IMAGE = "image";
     public static final String KEY_LANGUAGE_NAME = "language_name";
 
     // Constructor
@@ -104,13 +105,13 @@ public class SessionManager {
         loginPrefsEditor.commit();
     }
 
-    public void save_name(String name , String phone){
+    public void save_name(String name , String phone,String image){
 
         System.out.println("111111111111aaaa"+name);
         // Storing name in pref
         loginPrefsEditor.putString(KEY_NAME, name);
         loginPrefsEditor.putString(KEY_PHONE, phone);
-
+        loginPrefsEditor.putString(KEY_IMAGE, image);
 
 
         // commit changes

@@ -3,10 +3,10 @@ package com.FarmPe.India.Bean;
 public class FarmsImageBean1 {
 
    // private int image;
-    private String image,prod_price,modelname,mobile_no,farmer_name,location,id,hp,email;
+    private String image,prod_price,modelname,mobile_no,farmer_name,location,id,hp,email,createdby;
    // private  int imageid;
 
-    public FarmsImageBean1(String image, String prod_price, String modelname, String hp, String mobile_no, String farmer_name, String location, String id,String email) {
+    public FarmsImageBean1(String image, String prod_price, String modelname, String hp, String mobile_no, String farmer_name, String location, String id,String email,String createdby) {
 
         this.image = image;
         this.prod_price = prod_price;
@@ -17,6 +17,7 @@ public class FarmsImageBean1 {
         this.id = id;
         this.hp = hp;
         this.email = email;
+        this.createdby = createdby;
 
     }
 
@@ -58,5 +59,9 @@ public class FarmsImageBean1 {
 
     public String getEmail() {
         return email;
+    }
+
+    public String getCreatedby() {
+        return createdby;
     }
 }

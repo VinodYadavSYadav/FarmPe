@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_centerInParent="true"
+    android:orientation="vertical"
+    android:weightSum="100"
+    android:background="#fff">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="90"
+        android:fitsSystemWindows="true"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#fff"
+            android:orientation="vertical"
+            >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#fff"
+            android:orientation="vertical"
+            >
+
+
+                    <LinearLayout
+                        android:id="@+id/back_feed"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:layout_marginHorizontal="10dp"
+                        android:layout_marginTop="20dp"
+                        android:background="@drawable/ripple_effect"
+                        >
+
+
+                        <ImageView
+                            android:id="@+id/b_arrow"
+                            android:layout_width="15dp"
+                            android:layout_height="15dp"
+                            android:layout_gravity="center_vertical"
+                            android:src="@drawable/ic_close_black"
+                            style="@style/SelectableItemBackground"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+
+                            />
+
+                    </LinearLayout>
+
+
+
+
+
+
+        </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:layout_marginLeft="15dp"
+        android:orientation="vertical"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:orientation="vertical"
+            android:layout_marginTop="10dp"
+            android:background="#ffff"
+
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="How do you know Jagdish Kumar?"
+                android:textSize="18dp"
+                android:textColor="#000"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Invite to connect on FarmPe"
+                android:textSize="14dp"
+                android:fontFamily="@font/segoeui"
+                android:layout_marginTop="10dp"
+                android:textColor="#000"
+                />
+
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recy_network_type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#fff"
+                android:layout_marginTop="20dp"
+                >
+
+            </android.support.v7.widget.RecyclerView>
+
+
+
+<!--
+            <RadioGroup
+                android:id="@+id/radio_group_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="10dp"
+                android:weightSum="100"
+                >
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Friend"
+                    android:paddingLeft="10dp"
+
+                    />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:paddingLeft="10dp"
+                    android:text="Colleague"
+                    />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Classmate"
+                    android:layout_marginTop="5dp"
+                    android:paddingLeft="10dp"
+                    />
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="We have done business together"
+                    android:layout_marginTop="5dp"
+                    android:paddingLeft="10dp"
+                    />
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="We have done farming together"
+                    android:layout_marginTop="5dp"
+                    android:paddingLeft="10dp"
+                    />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Neighbouring Farmers"
+                    android:layout_marginTop="5dp"
+                    android:paddingLeft="10dp"
+                    />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Corporate Farming"
+                    android:layout_marginTop="5dp"
+                    android:paddingLeft="10dp"
+                    />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Farm Communities / Groups"
+                    android:layout_marginTop="5dp"
+                    android:paddingLeft="10dp"
+                    />
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Other"
+                    android:layout_marginTop="5dp"
+                    android:paddingLeft="10dp"
+                    />
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="I don't know"
+                    android:layout_marginTop="5dp"
+                    android:paddingLeft="10dp"
+                    />
+
+            </RadioGroup>
+-->
+
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/send"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:background="#fff"
+        android:layout_marginHorizontal="20dp"
+        android:orientation="horizontal"
+        >
+
+        <TextView
+            android:id="@+id/continue_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="SEND INVITATION"
+            android:gravity="center"
+            android:textColor="#fff"
+            android:background="@drawable/border_filled_red"
+            android:paddingVertical="15dp"
+            android:paddingHorizontal="20dp"
+            />
+    </LinearLayout>
+
+
+</LinearLayout>

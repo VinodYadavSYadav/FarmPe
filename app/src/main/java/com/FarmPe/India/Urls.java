@@ -3,21 +3,22 @@ package com.FarmPe.India;
 public class Urls {
 
 
-   private static final String ROOT_URL = "http://3.17.6.57:8686/api/";///DEV
+   private static final String ROOT_URL = "http://13.232.185.209:8080/api/";
    // private static final String ROOT_URL = "http://3.17.6.57:8888//api/";//PRO
 
     public static final String Add_New_Address = ROOT_URL+"MasterTable/AddUserAddress";
  public static final String GetFarmerDetailsList = ROOT_URL+"MasterTable/GetFarmersList";
 
     public static final String LOGIN=ROOT_URL+"Auth/ValidateUser";
-    public static final String SIGNUP=ROOT_URL+"Auth/RegisterUser";
+    //public static final String SIGNUP=ROOT_URL+"Auth/RegisterUser";
+    public static final String SIGNUP="http://13.232.185.209:8080/api/Auth/RegisterUser";
 
     public static final String GetAllCrops=ROOT_URL+"Crops/GetCrops";
     public static final String AddToCart=ROOT_URL+"Order/AddToCart";
     public static final String Languages=ROOT_URL+"MasterTable/GetLanguages";
     public static final String Forgot_Password=ROOT_URL+"Auth/ForgotPassword";
     public static final String ChangePassword=ROOT_URL+"Auth/ChangePassword";
-    public static final String ResendOTP=ROOT_URL+"ResendOTP";
+    public static final String ResendOTP=ROOT_URL+"Auth/ResendOTP";
     public static final String VerifyOTPNewUser=ROOT_URL+"Auth/VerifyOTPNewUser";
 
     public static final String GetUserDetails=ROOT_URL+"GetUserDetails";
@@ -73,5 +74,10 @@ public class Urls {
     public static final String GetLookingForFirst = ROOT_URL+"MasterTable/GetLookingFor";
     public static final String GetLookingForList = ROOT_URL+"MasterTable/GetLookingForLists";
     public static final String YourRequest = ROOT_URL+"MasterTable/GetLookingForListsById";
+    public static final String GetConnectionNetworkTypes = ROOT_URL+"MasterTable/GetConnectionNetworkTypes";
+    public static final String RequestConnection = ROOT_URL+"MasterTable/RequestConnection";
+    public static final String ConnectionCount = ROOT_URL+"MasterTable/GetConnectionCount";
+    public static final String ShortListRFQ = ROOT_URL+"MasterTable/ShortListRFQ";
+    public static final String GetConnectionList = ROOT_URL+"MasterTable/GetConnectionList";
 
 }

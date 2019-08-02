@@ -30,18 +30,37 @@
                 android:id="@+id/back_feed"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:gravity="left">
-
+                android:gravity="center"
+                android:background="@drawable/ic_filter_state">
 
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:id="@+id/b_arrow"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_marginRight="25dp"
                     android:layout_gravity="center_vertical"
                     android:src="@drawable/ic_close"
-
                     />
-
             </LinearLayout>
+
+
+            <!--<LinearLayout-->
+            <!--android:id="@+id/back_feed"-->
+            <!--android:layout_width="50dp"-->
+            <!--android:layout_height="50dp"-->
+            <!--android:background="@drawable/ripple_effect"-->
+            <!--android:gravity="left">-->
+
+
+            <!--<ImageView-->
+            <!--android:layout_width="20dp"-->
+            <!--android:layout_height="20dp"-->
+            <!--android:layout_gravity="center_vertical"-->
+            <!--android:src="@drawable/ic_close"-->
+
+            <!--/>-->
+
+            <!--</LinearLayout>-->
 
 
             <!--<TextView
@@ -67,12 +86,10 @@
         >
 
         <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/prod_img"
+            android:id="@+id/image_acc"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/avatarmale"
-            app:civ_border_color="#ffffff"
-            app:civ_border_width="0.1dp" />
+            android:src="@drawable/avatarmale" />
 
     </LinearLayout>
 
@@ -109,7 +126,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="15"
                 android:gravity="center"
-               >
+                >
 
 
                 <ImageView
@@ -155,6 +172,7 @@
 
 
                 <ImageView
+                    android:id="@+id/name_tick"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_gravity="center_vertical"
@@ -204,20 +222,24 @@
                 android:gravity="center"
                 >
 
+
                 <EditText
                     android:id="@+id/profile_phone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Enter Your Phone No"
                     android:textSize="14dp"
+                    android:focusable="false"
                     android:textColorHint="@color/dot_dark_screen1"
                     android:background="@drawable/border_transperent"
                     android:inputType="number"
-                    android:maxLength="10"
+                    android:maxLength="13"
+                    android:editable="false"
                     android:layout_gravity="center_vertical"
                     android:textColor="#000"
                     android:layout_marginHorizontal="10dp"
                     />
+
 
             </LinearLayout>
 
@@ -232,6 +254,7 @@
 
 
                 <ImageView
+                    android:id="@+id/phone_tick"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
                     android:layout_gravity="center_vertical"
@@ -240,7 +263,6 @@
                     />
 
             </LinearLayout>
-
 
         </LinearLayout>
 
@@ -305,7 +327,6 @@
                 android:layout_weight="15"
                 android:gravity="center"
                 >
-
 
                 <ImageView
                     android:layout_width="30dp"
@@ -383,8 +404,10 @@
 
 
                 <ImageView
+                    android:id="@+id/pass_tick"
                     android:layout_width="30dp"
                     android:layout_height="30dp"
+                    android:visibility="gone"
                     android:layout_gravity="center_vertical"
                     android:src="@drawable/success"
 

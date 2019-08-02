@@ -22,6 +22,9 @@ import android.text.Editable;
 import android.text.InputFilter;
 import android.text.Spanned;
 import android.text.TextWatcher;
+import android.view.ActionMode;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,30 +55,30 @@ import java.util.List;
 
 
 public class LoginActivity extends AppCompatActivity {
-     public static TextView register, log_in, forgot_pass,mob_text_signin;
-     public static EditText mobile_no, pass;
-     public static String mobile,loc_text;
-     LinearLayout linearLayout;
-     public String status,userId;
-     boolean doubleBackToExitPressedOnce = false;
+    public static TextView register, log_in, forgot_pass,mob_text_signin;
+    public static EditText mobile_no, pass;
+    public static String mobile,loc_text;
+    LinearLayout linearLayout;
+    public String status,userId;
+    boolean doubleBackToExitPressedOnce = false;
 
-     List<SelectLanguageBean>language_arrayBeanList = new ArrayList<>();
-     SelectLanguageBean selectLanguageBean;
-     SelectLanguageAdapter2 mAdapter;
+    List<SelectLanguageBean>language_arrayBeanList = new ArrayList<>();
+    SelectLanguageBean selectLanguageBean;
+    SelectLanguageAdapter2 mAdapter;
 
-     public static TextInputLayout text_mobile,text_pass;
+    public static TextInputLayout text_mobile,text_pass;
 
 
-     LinearLayout back_xlogin;
-     LinearLayout coordinatorLayout;
-     public static CheckBox remember_me;
-     DatabaseHelper myDb;
-     TextInputLayout textInputLayout,textInputLayout_pass;
-     public static  String password,mob_toast,mobile_string,pass_toast,toast_invalid,toast_click_back;
-     EditText spn_localize;
-     public static   JSONObject lngObject;
-     JSONArray lng_array;
-     Snackbar snackbar;
+    LinearLayout back_xlogin;
+    LinearLayout coordinatorLayout;
+    public static CheckBox remember_me;
+    DatabaseHelper myDb;
+    TextInputLayout textInputLayout,textInputLayout_pass;
+    public static  String password,mob_toast,mobile_string,pass_toast,toast_invalid,toast_click_back;
+    EditText spn_localize;
+    public static   JSONObject lngObject;
+    JSONArray lng_array;
+    Snackbar snackbar;
     String mob_no;
     SessionManager sessionManager;
     public static  Dialog dialog;
@@ -111,7 +114,30 @@ public class LoginActivity extends AppCompatActivity {
         myDb = new DatabaseHelper(this);
         edittext_move(mobile_no, pass);
 
+       // pass.setLongClickable(false);
 
+        pass.setCustomSelectionActionModeCallback(new ActionMode.Callback() {
+
+            public boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
+                return false;
+            }
+
+            public boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
+                return false;
+            }
+
+            public boolean onActionItemClicked(ActionMode actionMode, MenuItem item) {
+                return false;
+            }
+
+            public void onDestroyActionMode(ActionMode actionMode) {
+            }
+        });
+
+        pass.setLongClickable(false);
+        pass.setTextIsSelectable(false);
+
+        remember_me.setChecked(true);
 
         if( sessionManager.getRegId("language_name").equals("")){
 
@@ -121,7 +147,7 @@ public class LoginActivity extends AppCompatActivity {
 
             change_lang.setText(sessionManager.getRegId("language_name"));
         }
-       // if(sessionManager.getLanguage())
+        // if(sessionManager.getLanguage())
 
 
 
@@ -168,7 +194,7 @@ public class LoginActivity extends AppCompatActivity {
 
                 lngObject = new JSONObject(sessionManager.getRegId("language"));
 
-                System.out.println("llllllllllllkkkkkkkkkkkkkkk" +lngObject.getString("EnterPhoneNo"));
+                System.out.println("llllllllllllkkkkkkkkkkkkkkk" +lngObject);
 
                 //  createaccount.setHint(lngObject.getString("Createanaccount"));
                 //mob_text_signin.setHint(lngObject.getString("Signintoyouraccount"));
@@ -180,7 +206,7 @@ public class LoginActivity extends AppCompatActivity {
                 log_in.setText(lngObject.getString("Login"));
                 welcome_back.setText(lngObject.getString("Login"));
                 createaccount.setText(lngObject.getString("Register"));
-              //  farmPe_title.setText(lngObject.getString("FarmPe"));
+                //  farmPe_title.setText(lngObject.getString("FarmPe"));
 
 
                 pass_toast = lngObject.getString("EnterPassword");
@@ -223,7 +249,7 @@ public class LoginActivity extends AppCompatActivity {
                 final LinearLayout close_layout;
 
                 System.out.println("aaaaaaaaaaaa");
-                 dialog = new Dialog(LoginActivity.this);
+                dialog = new Dialog(LoginActivity.this);
                 dialog.setContentView(R.layout.change_lang_login);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.setCancelable(false);
@@ -242,42 +268,42 @@ public class LoginActivity extends AppCompatActivity {
                 try{
 
 
-                        JSONObject jsonObject = new JSONObject();
+                    JSONObject jsonObject = new JSONObject();
 
-                        Crop_Post.crop_posting(LoginActivity.this, Urls.Languages, jsonObject, new VoleyJsonObjectCallback() {
-                              @Override
-                              public void onSuccessResponse(JSONObject result) {
-                                  System.out.print("111111ang" + result);
-                                  try{
+                    Crop_Post.crop_posting(LoginActivity.this, Urls.Languages, jsonObject, new VoleyJsonObjectCallback() {
+                        @Override
+                        public void onSuccessResponse(JSONObject result) {
+                            System.out.print("111111ang" + result);
+                            try{
 
-                                       language_arrayBeanList.clear();
-                                          lng_array = result.getJSONArray("LanguagesList");
-                                          for(int i=0;i<lng_array.length();i++){
-                                              JSONObject  jsonObject1 = lng_array.getJSONObject(i);
+                                language_arrayBeanList.clear();
+                                lng_array = result.getJSONArray("LanguagesList");
+                                for(int i=0;i<lng_array.length();i++){
+                                    JSONObject  jsonObject1 = lng_array.getJSONObject(i);
 
-                                              selectLanguageBean = new SelectLanguageBean(jsonObject1.getString("Language"),jsonObject1.getInt("Id"),"");
-                                              language_arrayBeanList.add(selectLanguageBean);
-
-
-
-                                      }
-
-                                      mAdapter.notifyDataSetChanged();
+                                    selectLanguageBean = new SelectLanguageBean(jsonObject1.getString("Language"),jsonObject1.getInt("Id"),"");
+                                    language_arrayBeanList.add(selectLanguageBean);
 
 
 
+                                }
 
-                                  }catch (Exception e){
-                                      e.printStackTrace();
-                                  }
-
-                              }
-                          });
+                                mAdapter.notifyDataSetChanged();
 
 
-                      }catch (Exception e){
-                          e.printStackTrace();
-                      }
+
+
+                            }catch (Exception e){
+                                e.printStackTrace();
+                            }
+
+                        }
+                    });
+
+
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
 
 
 //                SelectLanguageBean bean = new SelectLanguageBean("English", 1, "");
@@ -406,7 +432,7 @@ public class LoginActivity extends AppCompatActivity {
                                             startActivity(intent);
                                             sessionManager.createLoginSession(password,mob_no);
 
-                                            sessionManager.save_name(userObject.getString("FullName"),userObject.getString("PhoneNo"));
+                                            sessionManager.save_name(userObject.getString("FullName"),userObject.getString("PhoneNo"),userObject.getString("ProfilePic"));
                                             sessionManager.saveUserId(userObject.getString("Id"));
 
 
@@ -481,7 +507,7 @@ public class LoginActivity extends AppCompatActivity {
                         String log_remember_me = result.getString("RememberMe");
                         String log_forgot_passwrd = result.getString("ForgotPassword");
                         String log_register = result.getString("Register");
-                      //  String log_title = result.getString("FarmPe");
+                        //  String log_title = result.getString("FarmPe");
 
                         mob_toast = result.getString("EnterPhoneNo");
                         pass_toast = result.getString("EnterPassword");
@@ -520,7 +546,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
 
-      //  finish();
+        //  finish();
 
         if (doubleBackToExitPressedOnce) {
 
@@ -528,7 +554,7 @@ public class LoginActivity extends AppCompatActivity {
             intent1.addCategory(Intent.CATEGORY_HOME);
             intent1.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);//***Change Here***
             startActivity(intent1);
-              finish();                   }
+            finish();                   }
 
 
         doubleBackToExitPressedOnce = true;
@@ -540,7 +566,7 @@ public class LoginActivity extends AppCompatActivity {
         tv.setBackgroundColor(ContextCompat.getColor(LoginActivity.this,R.color.orange));
         tv.setTextColor(Color.WHITE);
         snackbar.show();
-     //   Toast.makeText(getApplicationContext(), toast_click_back, Toast.LENGTH_SHORT).show();
+        //   Toast.makeText(getApplicationContext(), toast_click_back, Toast.LENGTH_SHORT).show();
 
         new Handler().postDelayed(new Runnable() {
 

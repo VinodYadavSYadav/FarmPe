@@ -118,7 +118,7 @@ public class  Add_New_Address_Fragment extends Fragment {
         district = view.findViewById(R.id.district_1);
         taluk = view.findViewById(R.id.taluk_1);
         hobli = view.findViewById(R.id.hobli_1);
-        village = view.findViewById(R.id.village_1);
+       // village = view.findViewById(R.id.village_1);
 
         linearLayout = view.findViewById(R.id.profile_view);
 
@@ -142,7 +142,7 @@ public class  Add_New_Address_Fragment extends Fragment {
         district.setText(getArguments().getString("Addr_district"));
         taluk.setText(getArguments().getString("Addr_taluk"));
         hobli.setText(getArguments().getString("Addr_hobli"));
-        village.setText(getArguments().getString("Addr_village"));
+       // village.setText(getArguments().getString("Addr_village"));
         select_address.setText(getArguments().getString("Addr_pickup_from"));
 
 
@@ -674,7 +674,7 @@ public class  Add_New_Address_Fragment extends Fragment {
 
 
 
-        village.setOnClickListener(new View.OnClickListener() {
+        /*village.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -746,7 +746,7 @@ public class  Add_New_Address_Fragment extends Fragment {
 
             }
         });
-
+*/
 
 
         add_new_address.setOnClickListener(new View.OnClickListener() {
@@ -907,7 +907,7 @@ public class  Add_New_Address_Fragment extends Fragment {
                     snackbar.show();
 
 
-                }else if(village.getText().toString().equals("")) {
+                }/*else if(village.getText().toString().equals("")) {
                     //Toast.makeText(getActivity(), "Select Village", Toast.LENGTH_SHORT).show();
                     Snackbar snackbar = Snackbar
                             .make(linearLayout, selectvillage, Snackbar.LENGTH_LONG);
@@ -917,7 +917,7 @@ public class  Add_New_Address_Fragment extends Fragment {
                     tv.setTextColor(Color.WHITE);
                     snackbar.show();
 
-                }else {
+                }*/else {
 
                     ComposeCategory();
 
@@ -944,8 +944,8 @@ public class  Add_New_Address_Fragment extends Fragment {
             hobli.setHint(lngObject.getString("Hobli"));
             district.setHint(lngObject.getString("District"));
             taluk.setHint(lngObject.getString("Taluk"));
-            village.setHint(lngObject.getString("Village"));
-            village.setHint(lngObject.getString("Village"));
+           // village.setHint(lngObject.getString("Village"));
+           // village.setHint(lngObject.getString("Village"));
             add_new_address.setText(lngObject.getString("AddAddress"));
 
             s_addtype = lngObject.getString("SelectanAddressType");
@@ -961,7 +961,7 @@ public class  Add_New_Address_Fragment extends Fragment {
             selectdistrict = lngObject.getString("SelectDistrict");
             selecttaluk = lngObject.getString("SelectTaluk");
             selecthobli = lngObject.getString("Selecthobli");
-            selectvillage = lngObject.getString("SelectVilage");
+            //selectvillage = lngObject.getString("SelectVilage");
             newaddressadded = lngObject.getString("NewAddressaddedsuccessfully");
             addnotadded = lngObject.getString("YourAddressnotAdded");
         } catch (JSONException e) {
@@ -986,7 +986,7 @@ public class  Add_New_Address_Fragment extends Fragment {
             jsonObject.put("Pincode",pincode_no.getText().toString());
             jsonObject.put("StateId",StateApdater.stateid);
             jsonObject.put("TalukId",TalukAdapter.talukid);
-            jsonObject.put("VillageId", VillageAdapter.villageid);
+           // jsonObject.put("VillageId", VillageAdapter.villageid);
             jsonObject.put("StreeAddress",house_numb.getText().toString());
             jsonObject.put("StreeAddress1",street_name.getText().toString());
             jsonObject.put("UserId",sessionManager.getRegId("userId"));

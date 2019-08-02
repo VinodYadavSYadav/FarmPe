@@ -1,15 +1,11 @@
 package com.FarmPe.India.Activity;
 
 import android.app.Activity;
-import android.content.Intent;
-import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.CoordinatorLayout;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
@@ -21,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.FarmPe.India.Fragment.HomeMenuFragment;
+import com.FarmPe.India.Fragment.PrivacyPolicyFragment;
 import com.FarmPe.India.R;
 import com.FarmPe.India.SessionManager;
 
@@ -39,7 +36,7 @@ public class LandingPageActivity extends AppCompatActivity {
     SessionManager sessionManager;
 
     public  static Activity activity;
-    public static String toast_click_back;
+    public static String toast_click_back,privacy_back;
     boolean doubleBackToExitPressedOnce = false;
 
 
@@ -90,11 +87,18 @@ public class LandingPageActivity extends AppCompatActivity {
 
         System.out.println("landiiiiiing");
 
-        selectedFragment = HomeMenuFragment.newInstance();
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.replace(R.id.frame_layout, selectedFragment);
-        transaction.commit();
-
+        if (SignUpActivity.privacy_policy==null){
+            selectedFragment = HomeMenuFragment.newInstance();
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.frame_layout, selectedFragment);
+            transaction.commit();
+        }else {
+            privacy_back="back_signup";
+            selectedFragment = PrivacyPolicyFragment.newInstance();
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.frame_layout, selectedFragment);
+            transaction.commit();
+        }
         Profile = findViewById(R.id.profile_view);
 
         mBottomSheetBehavior6 = BottomSheetBehavior.from(Profile);
@@ -126,6 +130,7 @@ public class LandingPageActivity extends AppCompatActivity {
 
     }
 
+/*
 
     @Override
     public void onBackPressed() {
@@ -157,5 +162,6 @@ public class LandingPageActivity extends AppCompatActivity {
 
     }
 
+*/
 
 }

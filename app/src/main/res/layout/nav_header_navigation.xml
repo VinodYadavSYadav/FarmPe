@@ -101,6 +101,7 @@
           >
 
          <TextView
+             android:id="@+id/conn_count"
              android:layout_width="match_parent"
              android:layout_height="wrap_content"
              android:text="0"
@@ -210,7 +211,7 @@
        android:id="@+id/home"
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
-       android:text="Messages"
+       android:text="Invitations"
           android:drawableLeft="@drawable/ic_settings"
           android:drawablePadding="10dp"
        android:layout_marginTop="15dp"
@@ -233,33 +234,10 @@
           />
 
 
-      <TextView
-          android:id="@+id/list_farm"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:text="List your Farm"
-          android:layout_marginTop="20dp"
-          android:textSize="16dp"
-          android:drawableLeft="@drawable/ic_settings"
-          android:drawablePadding="10dp"
-          android:fontFamily="@font/segoeui"
-          android:textColor="#000"
-          />
 
 
 
-      <TextView
-          android:id="@+id/your_requests"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:text="Your Requests"
-          android:layout_marginTop="20dp"
-          android:textSize="16dp"
-          android:drawableLeft="@drawable/ic_settings"
-          android:drawablePadding="10dp"
-          android:fontFamily="@font/segoeui"
-          android:textColor="#000"
-          />
+
 
 
       <TextView

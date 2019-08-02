@@ -1,6 +1,7 @@
 package com.FarmPe.India.Adapter;
 
 import android.app.Activity;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
@@ -13,10 +14,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.FarmPe.India.Fragment.InvitationConnectionFarmerFragment;
+import com.FarmPe.India.Fragment.InvitationConnectionFarmsFragment;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.FarmPe.India.Bean.FarmsImageBean;
-import com.FarmPe.India.Fragment.ComingSoonFragment;
 import com.FarmPe.India.R;
 import com.FarmPe.India.SessionManager;
 
@@ -97,12 +99,18 @@ public class FarmsHomeAdapter extends RecyclerView.Adapter<FarmsHomeAdapter.MyVi
             @Override
             public void onClick(View v) {
 
+                System.out.println("createdbyyyyyyyyyyyy"+products.getMain_id());
 
+                Bundle bundle=new Bundle();
+                bundle.putString("Dashboard_sta","farms");
+                bundle.putString("CreatedBy",products.getMain_id());
+                bundle.putString("MainId",products.getId());
 
-                selectedFragment = ComingSoonFragment.newInstance();
+                selectedFragment = InvitationConnectionFarmsFragment.newInstance();
                 FragmentTransaction transaction = ((FragmentActivity)activity).getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.frame_layout, selectedFragment);
-                transaction.addToBackStack("home");
+                selectedFragment.setArguments(bundle);
+                transaction.addToBackStack("farmsss");
                 transaction.commit();
 
 //                Bundle bundle=new Bundle();
@@ -130,7 +138,7 @@ public class FarmsHomeAdapter extends RecyclerView.Adapter<FarmsHomeAdapter.MyVi
 
      //   holder.duration.setVisibility(View.GONE);
        // Glide.with(activity).load(products.getImage())
-        Glide.with(activity).load(R.drawable.poultry)
+        Glide.with(activity).load(products.getImage())
 
                 .thumbnail(0.5f)
                 .crossFade()

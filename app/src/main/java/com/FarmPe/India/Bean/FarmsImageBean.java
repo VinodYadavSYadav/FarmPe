@@ -4,9 +4,10 @@ public class FarmsImageBean {
 
   //  private String image;
     private String prod_price,modelname,duration,farmer_name,location,id,hp;
-    private  String image;
+    private  String image,main_id;
+    boolean isShortlisted;
 
-    public FarmsImageBean(String image, String prod_price, String modelname,String hp,String duration,String farmer_name,String location,String id) {
+    public FarmsImageBean(String image, String prod_price, String modelname,String hp,String duration,String farmer_name,String location,String id,String main_id,boolean isShortlisted) {
 
         this.image = image;
         this.prod_price = prod_price;
@@ -16,6 +17,8 @@ public class FarmsImageBean {
         this.location = location;
         this.id = id;
         this.hp = hp;
+        this.main_id = main_id;
+        this.isShortlisted = isShortlisted;
 
     }
 
@@ -49,5 +52,13 @@ public class FarmsImageBean {
 
     public String getId() {
         return id;
+    }
+
+    public String getMain_id() {
+        return main_id;
+    }
+
+    public boolean isShortlisted() {
+        return isShortlisted;
     }
 }
