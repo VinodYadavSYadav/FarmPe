@@ -24,7 +24,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.FarmPe.India.Fragment.LoginFragment;
+
 import com.FarmPe.India.R;
 import com.FarmPe.India.SessionManager;
 
@@ -93,11 +93,6 @@ public class XLoginNew extends AppCompatActivity {
                /* Intent intent=new Intent(XLoginNew.this, LoginActivity.class);
                 startActivity(intent);*/
 
-                selectedFragment = LoginFragment.newInstance();
-                FragmentTransaction transaction =getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.frame_layout_full, selectedFragment);
-                transaction.addToBackStack("xlogin");
-                transaction.commit();
             }
         });
 

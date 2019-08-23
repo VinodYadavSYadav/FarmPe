@@ -6,6 +6,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
@@ -16,6 +17,7 @@ import android.text.InputFilter;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.TextUtils;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -315,7 +317,13 @@ public class FeedbackFragment extends Fragment {
                                     .make(linearLayout, fd_sucess, Snackbar.LENGTH_LONG);
                             View snackbarView = snackbar.getView();
                             TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-                            tv.setTextColor(Color.RED);
+                            tv.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.orange));
+                            tv.setTextColor(Color.WHITE);
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+                                tv.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                            } else {
+                                tv.setGravity(Gravity.CENTER_HORIZONTAL);
+                            }
                             snackbar.show();
 
                             selectedFragment = SettingFragment.newInstance();
@@ -331,7 +339,13 @@ public class FeedbackFragment extends Fragment {
                                     .make(linearLayout, fd_failure, Snackbar.LENGTH_LONG);
                             View snackbarView = snackbar.getView();
                             TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-                            tv.setTextColor(Color.RED);
+                            tv.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.orange));
+                            tv.setTextColor(Color.WHITE);
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+                                tv.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                            } else {
+                                tv.setGravity(Gravity.CENTER_HORIZONTAL);
+                            }
                             snackbar.show();
 
 

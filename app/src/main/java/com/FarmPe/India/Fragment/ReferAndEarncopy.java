@@ -51,7 +51,7 @@ public class ReferAndEarncopy extends Fragment {
     JSONObject lngObject;
     public static String refer_code;
 
-    TextView editText, wallet_balance,referal_code,getscratchtxt,winuptxt,wallet_blnctxtt,referearntxt;
+    TextView editText, wallet_balance,referal_code,getscratchtxt,winuptxt,wallet_blnctxtt,referearntxt,invite_now;
     private Context context;
 
     public static ReferAndEarncopy newInstance() {
@@ -72,6 +72,7 @@ public class ReferAndEarncopy extends Fragment {
         more = view.findViewById(R.id.more);
         getscratchtxt=view.findViewById(R.id.getscratch);
         winuptxt=view.findViewById(R.id.winup);
+        invite_now=view.findViewById(R.id.invite_now);
         wallet_blnctxtt=view.findViewById(R.id.wallet_blnctxt);
         referearntxt=view.findViewById(R.id.toolbar_title);
         sessionManager=new SessionManager(getActivity());
@@ -86,7 +87,6 @@ public class ReferAndEarncopy extends Fragment {
                 if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP) {
                     FragmentManager fm = getActivity().getSupportFragmentManager();
                     fm.popBackStack("setting", FragmentManager.POP_BACK_STACK_INCLUSIVE);
-
 
                     return true;
                 }
@@ -308,8 +308,9 @@ public class ReferAndEarncopy extends Fragment {
 
         try {
             lngObject = new JSONObject(sessionManager.getRegId("language"));
-            referearntxt.setText(lngObject.getString("Refer_Earn"));
+           // referearntxt.setText(lngObject.getString("Refer_Earn"));
             winuptxt.setText(lngObject.getString("Winupto1000"));
+            invite_now.setText(lngObject.getString("Invitenow"));
             getscratchtxt.setText(lngObject.getString("Getascratchcardmin100cashbackonyourfriendsfirstappsharing"));
             //copyhereurltxt.setText(lngObject.getString("ClickHeretoCopyURL"));
             wallet_blnctxtt.setText(lngObject.getString("WalletBalance"));

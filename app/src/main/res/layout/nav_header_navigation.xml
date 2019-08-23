@@ -9,24 +9,44 @@
 
     >
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="0dp"
-    android:layout_weight="40"
-    android:background="#000"
-    android:weightSum="100"
-    android:orientation="vertical"
-    >
    <LinearLayout
-       android:id="@+id/update_acc_layout"
        android:layout_width="match_parent"
        android:layout_height="0dp"
-       android:layout_weight="70"
-       android:layout_marginTop="5dp"
-       android:orientation="vertical"
-       android:gravity="center|bottom"
+       android:layout_weight="60"
        android:background="#000"
-       >
+       android:orientation="vertical"
+       android:weightSum="100">
+
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="0dp"
+          android:layout_weight="15"
+          >
+
+      <!-- <View
+           android:layout_width="match_parent"
+           android:layout_height="0.1dp"
+           android:background="#dcdcdc"
+           android:layout_gravity="bottom"
+           />-->
+
+      </LinearLayout>
+
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="0dp"
+          android:layout_weight="55"
+          android:gravity="center_vertical"
+          android:orientation="vertical"
+          >
+
+      <LinearLayout
+          android:id="@+id/update_acc_layout"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:background="#000"
+          android:gravity="center"
+          android:orientation="vertical">
 
 
          <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -39,169 +59,172 @@
              app:civ_border_width="0.5dp" />
 
 
-
-   </LinearLayout>
-
-
-   <LinearLayout
-       android:id="@+id/prof_tab"
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:orientation="vertical"
-       android:layout_weight="15"
-       android:gravity="center"
-       android:background="#000"
-       >
+      </LinearLayout>
 
 
-       <TextView
-           android:id="@+id/user_name_menu"
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:fontFamily="@font/segoeui"
-           android:gravity="center"
-           android:padding="5dp"
-           android:text="Jagdish Kumar"
-           android:textColor="#fff"
-           android:textSize="16dp"
-           android:textStyle="bold"
-            />
-
-      <TextView
-          android:id="@+id/phone_no"
+      <LinearLayout
+          android:id="@+id/prof_tab"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:text="+91 9891490506"
-          android:fontFamily="@font/segoeui"
-          android:textSize="14dp"
+          android:background="#000"
           android:gravity="center"
-          android:textColor="#fafafa"
+          android:orientation="vertical">
+
+
+         <TextView
+             android:id="@+id/user_name_menu"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:fontFamily="@font/segoeui"
+             android:gravity="center"
+             android:padding="5dp"
+             android:text="Jagdish Kumar"
+             android:textColor="#fff"
+             android:textSize="16dp"
+             android:textStyle="bold" />
+
+         <TextView
+             android:id="@+id/phone_no"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:fontFamily="@font/segoeui"
+             android:gravity="center"
+             android:text="+91 9891490506"
+             android:textColor="#fafafa"
+             android:textSize="14dp" />
+
+
+      </LinearLayout>
+
+      </LinearLayout>
+
+
+      <View
+          android:layout_width="match_parent"
+          android:layout_height="0.1dp"
+          android:background="#dcdcdc"
           />
 
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="0dp"
+          android:layout_weight="30"
+          >
+
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:background="#000"
+          android:orientation="horizontal"
+          android:layout_marginTop="30dp"
+          android:weightSum="100">
+
+         <LinearLayout
+             android:id="@+id/linear_connection"
+             android:layout_width="0dp"
+             android:layout_height="wrap_content"
+             android:layout_weight="33"
+             android:background="#000"
+             android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/conn_count"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingBottom="5dp"
+                android:text="0"
+                android:textColor="#fff"
+                android:textSize="16dp" />
+
+            <TextView
+                android:id="@+id/connections"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/segoeui"
+                android:gravity="center"
+                android:text="View Connections"
+                android:textColor="#fff"
+                android:textSize="14dp" />
+
+         </LinearLayout>
+
+
+         <LinearLayout
+             android:id="@+id/near_by"
+             android:layout_width="0dp"
+             android:layout_height="wrap_content"
+             android:layout_weight="33"
+             android:background="#000"
+             android:gravity="center"
+             android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/noti_count"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingBottom="5dp"
+                android:text="0"
+                android:textColor="#fff"
+                android:textSize="16dp" />
+
+            <TextView
+                android:id="@+id/nw_request"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/segoeui"
+                android:gravity="center"
+                android:text="Notifications"
+                android:textColor="#fff"
+                android:textSize="14dp" />
+
+         </LinearLayout>
+
+
+         <LinearLayout
+             android:layout_width="0dp"
+             android:layout_height="wrap_content"
+             android:layout_weight="33"
+             android:background="#000"
+             android:gravity="center"
+             android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:paddingBottom="5dp"
+                android:src="@drawable/ic_placeholder_sq" />
+
+            <TextView
+                android:id="@+id/nearby"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/segoeui"
+                android:gravity="center"
+                android:text="Near By"
+                android:textColor="#fff"
+                android:textSize="14dp" />
+
+         </LinearLayout>
+
+
+      </LinearLayout>
+      </LinearLayout>
 
    </LinearLayout>
-
-   <LinearLayout
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:orientation="horizontal"
-       android:weightSum="100"
-       android:gravity="center_vertical"
-       android:layout_weight="20"
-
-       android:background="#000"
-       >
-      <LinearLayout
-          android:id="@+id/linear_connection"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:orientation="vertical"
-          android:layout_weight="33"
-          android:background="#000"
-          >
-
-         <TextView
-             android:layout_width="match_parent"
-             android:layout_height="wrap_content"
-             android:text="0"
-             android:textSize="16dp"
-             android:gravity="center"
-             android:paddingBottom="5dp"
-             android:textColor="#fff"
-             />
-
-         <TextView
-             android:id="@+id/connections"
-             android:layout_width="match_parent"
-             android:layout_height="wrap_content"
-             android:text="Connections"
-             android:textSize="14dp"
-             android:gravity="center"
-             android:fontFamily="@font/segoeui"
-             android:textColor="#fff"
-             />
-
-      </LinearLayout>
-
-
-      <LinearLayout
-          android:id="@+id/near_by"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:orientation="vertical"
-          android:layout_weight="33"
-          android:gravity="center"
-          android:background="#000"
-          >
-
-        <ImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:paddingBottom="5dp"
-
-            android:src="@drawable/target"
-            />
-
-         <TextView
-             android:id="@+id/nearby"
-             android:layout_width="match_parent"
-             android:layout_height="wrap_content"
-             android:text="Near by"
-             android:textSize="14dp"
-             android:gravity="center"
-             android:fontFamily="@font/segoeui"
-             android:textColor="#fff"
-             />
-
-      </LinearLayout>
-
-
-      <LinearLayout
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:orientation="vertical"
-          android:layout_weight="33"
-          android:gravity="center"
-          android:background="#000"
-          >
-
-         <ImageView
-             android:layout_width="25dp"
-             android:layout_height="25dp"
-             android:paddingBottom="5dp"
-             android:src="@drawable/plus_sign_add"
-             />
-
-         <TextView
-             android:id="@+id/nw_request"
-             android:layout_width="match_parent"
-             android:layout_height="wrap_content"
-             android:text="New Request"
-             android:textSize="14dp"
-             android:gravity="center"
-             android:fontFamily="@font/segoeui"
-             android:textColor="#fff"
-             />
-
-      </LinearLayout>
-
-
-
-   </LinearLayout>
-
-
-</LinearLayout>
    <ScrollView
        android:layout_width="match_parent"
        android:layout_height="0dp"
-       android:layout_weight="60"
+       android:layout_weight="40"
        android:orientation="vertical"
        >
 
    <LinearLayout
        android:layout_width="match_parent"
-       android:layout_height="0dp"
+       android:layout_height="wrap_content"
        android:orientation="vertical"
+       android:layout_marginTop="10dp"
        android:paddingLeft="30dp"
        >
 
@@ -210,9 +233,9 @@
        android:id="@+id/home"
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
-       android:text="Messages"
-          android:drawableLeft="@drawable/ic_settings"
-          android:drawablePadding="10dp"
+       android:text="Invitations"
+          android:drawableLeft="@drawable/ic_invitation_menu"
+          android:drawablePadding="15dp"
        android:layout_marginTop="15dp"
        android:textSize="16dp"
        android:fontFamily="@font/segoeui"
@@ -226,259 +249,249 @@
           android:text="Connections"
           android:layout_marginTop="20dp"
           android:textSize="16dp"
-          android:drawableLeft="@drawable/ic_settings"
-          android:drawablePadding="10dp"
-          android:fontFamily="@font/segoeui"
-          android:textColor="#000"
-          />
-
-
-      <TextView
-          android:id="@+id/list_farm"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:text="List your Farm"
-          android:layout_marginTop="20dp"
-          android:textSize="16dp"
-          android:drawableLeft="@drawable/ic_settings"
-          android:drawablePadding="10dp"
+          android:drawableLeft="@drawable/ic_snowflakes_wh"
+          android:drawablePadding="15dp"
           android:fontFamily="@font/segoeui"
           android:textColor="#000"
           />
 
 
 
-      <TextView
-          android:id="@+id/your_requests"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:text="Your Requests"
-          android:layout_marginTop="20dp"
-          android:textSize="16dp"
-          android:drawableLeft="@drawable/ic_settings"
-          android:drawablePadding="10dp"
-          android:fontFamily="@font/segoeui"
-          android:textColor="#000"
-          />
+
+
+
 
 
       <TextView
           android:id="@+id/settings"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:text="Settings"
+          android:text="Your Profile"
           android:layout_marginTop="20dp"
           android:textSize="16dp"
-          android:drawableLeft="@drawable/ic_settings"
-          android:drawablePadding="10dp"
-          android:fontFamily="@font/segoeui"
-          android:textColor="#000"
-          />
-
-
-<!--
-      <TextView
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:text="My Farms"
-          android:layout_marginTop="15dp"
-          android:textSize="16dp"
+          android:drawableLeft="@drawable/user_black"
+          android:drawablePadding="15dp"
           android:fontFamily="@font/segoeui"
           android:textColor="#000"
           />
 
       <TextView
-          android:id="@+id/account"
+          android:id="@+id/shortlist"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:text="My Account"
-          android:layout_marginTop="25dp"
+          android:text="ShortLists"
+          android:layout_marginTop="20dp"
           android:textSize="16dp"
-          android:fontFamily="@font/segoeui"
-          android:textColor="#000"
-          />
-
-      <TextView
-          android:id="@+id/map"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:text="Map"
-          android:layout_marginTop="25dp"
-          android:textSize="16dp"
-          android:fontFamily="@font/segoeui"
-          android:textColor="#000"
-          />
-
-      <TextView
-          android:id="@+id/shop_cat"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:text="Logout"
-          android:layout_marginTop="25dp"
-          android:textSize="16dp"
-          android:fontFamily="@font/segoeui"
-          android:textColor="#000"
-          />
-
-      <TextView
-          android:id="@+id/todaydeal"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:text="Discover by Location"
-          android:layout_marginTop="25dp"
-          android:layout_marginBottom="15dp"
-          android:textSize="16dp"
-          android:fontFamily="@font/segoeui"
-          android:textColor="#000"
-          />
-
-      <View
-          android:layout_width="match_parent"
-          android:layout_height="1dp"
-          android:background="#dcdcdc"
-          />
-
-      <TextView
-          android:id="@+id/my_orders"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:text="My Orders"
-          android:layout_marginTop="15dp"
-          android:textSize="16dp"
-          android:fontFamily="@font/segoeui"
-          android:textColor="#000"
-          />
-
-      <TextView
-          android:id="@+id/wish_list"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:text="My Wish List"
-          android:layout_marginTop="25dp"
-          android:textSize="16dp"
+          android:drawableLeft="@drawable/ic_snowflakes_wh"
+          android:drawablePadding="15dp"
           android:fontFamily="@font/segoeui"
           android:textColor="#000"
           />
 
 
+      <!--
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="My Farms"
+                android:layout_marginTop="15dp"
+                android:textSize="16dp"
+                android:fontFamily="@font/segoeui"
+                android:textColor="#000"
+                />
+
+            <TextView
+                android:id="@+id/account"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="My Account"
+                android:layout_marginTop="25dp"
+                android:textSize="16dp"
+                android:fontFamily="@font/segoeui"
+                android:textColor="#000"
+                />
+
+            <TextView
+                android:id="@+id/map"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Map"
+                android:layout_marginTop="25dp"
+                android:textSize="16dp"
+                android:fontFamily="@font/segoeui"
+                android:textColor="#000"
+                />
+
+            <TextView
+                android:id="@+id/shop_cat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Logout"
+                android:layout_marginTop="25dp"
+                android:textSize="16dp"
+                android:fontFamily="@font/segoeui"
+                android:textColor="#000"
+                />
+
+            <TextView
+                android:id="@+id/todaydeal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Discover by Location"
+                android:layout_marginTop="25dp"
+                android:layout_marginBottom="15dp"
+                android:textSize="16dp"
+                android:fontFamily="@font/segoeui"
+                android:textColor="#000"
+                />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#dcdcdc"
+                />
+
+            <TextView
+                android:id="@+id/my_orders"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="My Orders"
+                android:layout_marginTop="15dp"
+                android:textSize="16dp"
+                android:fontFamily="@font/segoeui"
+                android:textColor="#000"
+                />
+
+            <TextView
+                android:id="@+id/wish_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="My Wish List"
+                android:layout_marginTop="25dp"
+                android:textSize="16dp"
+                android:fontFamily="@font/segoeui"
+                android:textColor="#000"
+                />
 
 
-      <TextView
-          android:id="@+id/cart"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:text="My Cart"
-          android:layout_marginTop="25dp"
-          android:textSize="16dp"
-          android:fontFamily="@font/segoeui"
-          android:textColor="#000"
-          />
-
-      <TextView
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:text="My Rewards"
-          android:layout_marginTop="25dp"
-          android:textSize="16dp"
-          android:fontFamily="@font/segoeui"
-          android:textColor="#000"
-          />
-      <TextView
-          android:id="@+id/account"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:text="My Account"
-          android:layout_marginTop="25dp"
-          android:layout_marginBottom="15dp"
-          android:textSize="16dp"
-          android:fontFamily="@font/segoeui"
-          android:textColor="#000"
-          />
-
-      <View
-          android:layout_width="match_parent"
-          android:layout_height="1dp"
-          android:background="#dcdcdc"
-          />
-      <TextView
-          android:id="@+id/wallet"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:text="Wallet"
-          android:textSize="16dp"
-          android:layout_marginTop="15dp"
-          android:fontFamily="@font/segoeui"
-          android:textColor="#000"
-          />
-
-      <TextView
-          android:id="@+id/sell_on_xohri"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:text="Sell on Xohri"
-          android:layout_marginTop="25dp"
-          android:textSize="16dp"
-          android:fontFamily="@font/segoeui"
-          android:textColor="#000"
-          />
 
 
-      <TextView
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:text="Language"
-          android:textSize="16dp"
-          android:layout_marginTop="25dp"
-          android:textColor="#000"
-          />
-      <TextView
-          android:id="@+id/notification"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:text="Notifications"
-          android:layout_marginTop="25dp"
-          android:textSize="16dp"
-          android:fontFamily="@font/segoeui"
-          android:textColor="#000"
-          />
-      <TextView
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:text="Settings"
-          android:textSize="16dp"
-          android:layout_marginBottom="15dp"
-          android:layout_marginTop="25dp"
-          android:fontFamily="@font/segoeui"
-          android:textColor="#000"
-          />
+            <TextView
+                android:id="@+id/cart"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="My Cart"
+                android:layout_marginTop="25dp"
+                android:textSize="16dp"
+                android:fontFamily="@font/segoeui"
+                android:textColor="#000"
+                />
 
-      <View
-          android:layout_width="match_parent"
-          android:layout_height="1dp"
-          android:background="#dcdcdc"
-          />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="My Rewards"
+                android:layout_marginTop="25dp"
+                android:textSize="16dp"
+                android:fontFamily="@font/segoeui"
+                android:textColor="#000"
+                />
+            <TextView
+                android:id="@+id/account"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="My Account"
+                android:layout_marginTop="25dp"
+                android:layout_marginBottom="15dp"
+                android:textSize="16dp"
+                android:fontFamily="@font/segoeui"
+                android:textColor="#000"
+                />
 
-      <TextView
-          android:id="@+id/help_center"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:text="Help Center"
-          android:layout_marginTop="15dp"
-          android:textSize="16dp"
-          android:textColor="#000"
-          android:fontFamily="@font/segoeui"
-          />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#dcdcdc"
+                />
+            <TextView
+                android:id="@+id/wallet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Wallet"
+                android:textSize="16dp"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/segoeui"
+                android:textColor="#000"
+                />
 
-      <TextView
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:text="Legal"
-          android:layout_marginTop="25dp"
-          android:textSize="16dp"
-          android:textColor="#000"
-          android:fontFamily="@font/segoeui"
-          />
--->
+            <TextView
+                android:id="@+id/sell_on_xohri"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sell on Xohri"
+                android:layout_marginTop="25dp"
+                android:textSize="16dp"
+                android:fontFamily="@font/segoeui"
+                android:textColor="#000"
+                />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Language"
+                android:textSize="16dp"
+                android:layout_marginTop="25dp"
+                android:textColor="#000"
+                />
+            <TextView
+                android:id="@+id/notification"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Notifications"
+                android:layout_marginTop="25dp"
+                android:textSize="16dp"
+                android:fontFamily="@font/segoeui"
+                android:textColor="#000"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Settings"
+                android:textSize="16dp"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="25dp"
+                android:fontFamily="@font/segoeui"
+                android:textColor="#000"
+                />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#dcdcdc"
+                />
+
+            <TextView
+                android:id="@+id/help_center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Help Center"
+                android:layout_marginTop="15dp"
+                android:textSize="16dp"
+                android:textColor="#000"
+                android:fontFamily="@font/segoeui"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Legal"
+                android:layout_marginTop="25dp"
+                android:textSize="16dp"
+                android:textColor="#000"
+                android:fontFamily="@font/segoeui"
+                />
+      -->
    </LinearLayout>
 
    </ScrollView>

@@ -147,11 +147,11 @@ public class Update_Address_Fragment extends Fragment {
 
         linear_name = view.findViewById(R.id.linea_name1);
         linear_mobile = view.findViewById(R.id.linea_mobile1);
-        linear_pincode= view.findViewById(R.id.linea_pincode1);
-        linear_house= view.findViewById(R.id.linear_houseno);
+       // linear_pincode= view.findViewById(R.id.linea_pincode1);
+      //  linear_house= view.findViewById(R.id.linear_houseno);
         linear_street= view.findViewById(R.id.linea_street);
-        linear_landmark= view.findViewById(R.id.linea_landmark);
-        linear_city= view.findViewById(R.id.linea_city);
+      //  linear_landmark= view.findViewById(R.id.linea_landmark);
+       // linear_city= view.findViewById(R.id.linea_city);
 
 
         sessionManager = new SessionManager(getActivity());

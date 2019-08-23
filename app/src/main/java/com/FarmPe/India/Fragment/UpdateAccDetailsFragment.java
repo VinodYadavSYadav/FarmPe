@@ -1,5 +1,6 @@
 package com.FarmPe.India.Fragment;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -7,20 +8,28 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.Matrix;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
+import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
 import android.text.InputFilter;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Base64;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -29,11 +38,22 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.FarmPe.India.Adapter.AddHpAdapter;
+import com.FarmPe.India.Bean.FarmsImageBean;
+import com.FarmPe.India.DB.DatabaseHelper;
+import com.FarmPe.India.R;
+import com.FarmPe.India.SessionManager;
+import com.FarmPe.India.Urls;
+import com.FarmPe.India.Volly_class.Crop_Post;
+import com.FarmPe.India.Volly_class.VoleyJsonObjectCallback;
+import com.FarmPe.India.volleypost.VolleyMultipartRequest;
 import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -41,22 +61,13 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.FarmPe.India.Adapter.AddHpAdapter;
-import com.FarmPe.India.Bean.FarmsImageBean;
-import com.FarmPe.India.R;
-import com.FarmPe.India.SessionManager;
-import com.FarmPe.India.Urls;
-import com.FarmPe.India.Volly_class.Crop_Post;
-import com.FarmPe.India.Volly_class.VoleyJsonObjectCallback;
-import com.FarmPe.India.Volly_class.VolleySingletonQuee;
-import com.FarmPe.India.volleypost.VolleyMultipartRequest;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -68,7 +79,6 @@ import de.hdodenhof.circleimageview.CircleImageView;
 import static android.app.Activity.RESULT_OK;
 import static com.android.volley.VolleyLog.TAG;
 import static com.android.volley.VolleyLog.e;
-import static com.FarmPe.India.Volly_class.Crop_Post.progressDialog;
 
 public class UpdateAccDetailsFragment extends Fragment {
 
@@ -80,12 +90,14 @@ public class UpdateAccDetailsFragment extends Fragment {
     JSONObject lngObject;
     String toast_name,toast_mobile,toast_passwrd,toast_new_mobile,toast_minimum_toast,toast_update,toast_image;
     LinearLayout update_btn,linearLayout;
-    private static int RESULT_LOAD_IMG = 1;
     Bitmap selectedImage,imageB;
     EditText profile_name,profile_phone,profile_mail,profile_passwrd;
     CircleImageView prod_img;
-
-
+    private static int RESULT_LOAD_IMG = 1;
+    private int PICK_IMAGE_REQUEST = 1;
+    Bitmap bitmap;
+    DatabaseHelper myDb;
+    ImageView name_tick,phone_tick,pass_tick;
     LinearLayout back_feed;
     Fragment selectedFragment;
 
@@ -95,11 +107,14 @@ public class UpdateAccDetailsFragment extends Fragment {
         return fragment;
     }
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.update_acc_details, container, false);
         getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
-
+        name_tick = view.findViewById(R.id.name_tick);
+        phone_tick = view.findViewById(R.id.phone_tick);
+        pass_tick = view.findViewById(R.id.pass_tick);
         recyclerView = view.findViewById(R.id.recycler_what_looking);
         toolbar_title = view.findViewById(R.id.toolbar_title);
         update_btn_txt = view.findViewById(R.id.update_btn_txt);
@@ -108,21 +123,21 @@ public class UpdateAccDetailsFragment extends Fragment {
         profile_phone = view.findViewById(R.id.profile_phone);
         profile_mail = view.findViewById(R.id.profile_mail);
         profile_passwrd = view.findViewById(R.id.profile_passwrd);
-        prod_img = view.findViewById(R.id.prod_img);
+        prod_img = view.findViewById(R.id.image_acc);
         update_btn = view.findViewById(R.id.update_btn);
         linearLayout = view.findViewById(R.id.main_layout);
 
         sessionManager = new SessionManager(getActivity());
+        myDb = new DatabaseHelper(getActivity());
 
         setupUI(linearLayout);
 
-
         prod_img.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("NewApi")
             @Override
             public void onClick(View view) {
-                Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
-                photoPickerIntent.setType("image/*");
-                startActivityForResult(photoPickerIntent, RESULT_LOAD_IMG);
+                Intent i = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI); // to go to gallery
+                startActivityForResult(i, 100); // on activity method will execute
             }
         });
 
@@ -160,9 +175,11 @@ public class UpdateAccDetailsFragment extends Fragment {
         });
 
 
+
+
+
         try {
             lngObject = new JSONObject(sessionManager.getRegId("language"));
-
             toolbar_title.setText(lngObject.getString("UpdateYourAccountDetails"));
             update_btn_txt.setText(lngObject.getString("Update"));
             profile_name.setHint(lngObject.getString("Enteryourname"));
@@ -189,11 +206,12 @@ public class UpdateAccDetailsFragment extends Fragment {
 
 
 
-      //  profile_passwrd.setFilters(new InputFilter[]{EMOJI_FILTER});
+       // profile_passwrd.setFilters(new InputFilter[]{EMOJI_FILTER});
 
-       // profile_name.setFilters(new InputFilter[]{EMOJI_FILTER});
+        // profile_name.setFilters(new InputFilter[]{EMOJI_FILTER});
 
 
+        // Adding textWatcher to name
 
         final InputFilter filter1 = new InputFilter() {
             public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
@@ -203,18 +221,19 @@ public class UpdateAccDetailsFragment extends Fragment {
                     if (!Character.isWhitespace(character)) {
                         filtered += character;
 
-                        }
                     }
+                }
                 return filtered;
             }
 
         };
 
-
-
         profile_passwrd.setFilters(new InputFilter[] {filter1,new InputFilter.LengthFilter(12) });
-        profile_mail.setFilters(new InputFilter[] {filter1,new InputFilter.LengthFilter(50) });
-       // profile_name.setFilters(new InputFilter[] {filter1,new InputFilter.LengthFilter(30) });
+
+
+        //   profile_passwrd.setFilters(new InputFilter[] {filter1,new InputFilter.LengthFilter(12) });
+        //  profile_mail.setFilters(new InputFilter[] {filter1,new InputFilter.LengthFilter(50) });
+        // profile_name.setFilters(new InputFilter[] {filter1,new InputFilter.LengthFilter(30) });
 
 
 
@@ -269,15 +288,22 @@ public class UpdateAccDetailsFragment extends Fragment {
                         profile_name.setFilters(new InputFilter[]{EMOJI_FILTER});
                         profile_phone.setFilters(new InputFilter[]{EMOJI_FILTER});
                         profile_mail.setFilters(new InputFilter[]{EMOJI_FILTER});
-                        profile_passwrd.setFilters(new InputFilter[]{EMOJI_FILTER});
 
-                          Glide.with(getActivity()).load(ProfileImage)
 
-                                  .thumbnail(0.5f)
+                        if (!(ProfileImage.equals(""))){
+                            Glide.with(getActivity()).load(ProfileImage)
+
+                                    .thumbnail(0.5f)
+                                    //  .crossFade()
+                                    .error(R.drawable.avatarmale)
+                                    .into(prod_img);
+                        }
+                       /* Glide.with(getActivity()).load(ProfileImage)
+
+                                .thumbnail(0.5f)
                                 //  .crossFade()
-                                  .diskCacheStrategy(DiskCacheStrategy.ALL)
-                                  .error(R.drawable.avatarmale)
-                                  .into(prod_img);
+                                .error(R.drawable.avatarmale)
+                                .into(prod_img);*/
 
 
                     }catch (Exception e){
@@ -292,78 +318,182 @@ public class UpdateAccDetailsFragment extends Fragment {
         }
 
 
-        update_btn.setOnClickListener(new View.OnClickListener() {
+
+
+        profile_passwrd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-            System.out.println("nnbchcxbhchvcvccgcv"+profile_passwrd.getText().toString());
-
-                if(profile_name.getText().toString().equals("")) {
-
-                    Snackbar snackbar = Snackbar
-                            .make(linearLayout, toast_name, Snackbar.LENGTH_LONG);
-                    View snackbarView = snackbar.getView();
-                    TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-                    tv.setTextColor(Color.RED);
-                    snackbar.show();
+                if(profile_passwrd.length()<6){
+                    pass_tick.setVisibility(View.GONE);
 
 
-                } else if(profile_name.getText().toString().length()<2) {
+                }else{
+                    pass_tick.setVisibility(View.VISIBLE);
 
-                    Snackbar snackbar = Snackbar
-                            .make(linearLayout, toast_minimum_toast, Snackbar.LENGTH_LONG);
-                    View snackbarView = snackbar.getView();
-                    TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-                    tv.setTextColor(Color.RED);
-                    snackbar.show();
+                }
 
+            }
+        });
 
-                }else if(profile_phone.getText().toString().equals("")) {
+        profile_name.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
+            }
 
-                    Snackbar snackbar = Snackbar
-                            .make(linearLayout, toast_new_mobile, Snackbar.LENGTH_LONG);
-                    View snackbarView = snackbar.getView();
-                    TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-                    tv.setTextColor(Color.RED);
-                    snackbar.show();
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
+            }
 
-                }else if(profile_phone.getText().toString().length()<10) {
+            @Override
+            public void afterTextChanged(Editable editable) {
+                if(profile_name.getText().toString().length()>=2){
+                    name_tick.setVisibility(View.VISIBLE);
+                }
 
+                else{
 
-                     Snackbar snackbar = Snackbar
-                             .make(linearLayout, toast_mobile, Snackbar.LENGTH_LONG);
-                     View snackbarView = snackbar.getView();
-                     TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-                     tv.setTextColor(Color.RED);
-                     snackbar.show();
-
-                 }else if((!profile_passwrd.getText().toString().equals("")&&(profile_passwrd.getText().toString().length()<6))){
-
-
-                         Snackbar snackbar = Snackbar
-                                 .make(linearLayout, toast_passwrd, Snackbar.LENGTH_LONG);
-                         View snackbarView = snackbar.getView();
-                         TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
-                         tv.setTextColor(Color.RED);
-                         snackbar.show();
-
-
-
-                 }
-
-                 else {
-
-
-                    // update_profile_details();
-
-                    uploadImage(selectedImage);
-
+                    name_tick.setVisibility(View.INVISIBLE);
                 }
             }
         });
 
+        profile_phone.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                if(profile_phone.getText().toString().length()!=13){
+                    phone_tick.setVisibility(View.INVISIBLE);
+                }
+                else{
+                    phone_tick.setVisibility(View.VISIBLE);
+
+
+                }
+
+                if (profile_phone.getText().toString().length()<3){
+                    profile_phone.setText("+91");
+                    profile_phone.setSelection(profile_phone.getText().toString().length());
+                }
+            }
+        });
+
+
+
+        profile_passwrd.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                if(profile_passwrd.getText().toString().length()<=12 && profile_passwrd.getText().toString().length()>=6){
+                    pass_tick.setVisibility(View.VISIBLE);
+                }
+                else{
+                    pass_tick.setVisibility(View.INVISIBLE);
+                }
+            }
+        });
+
+
+        update_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //   System.out.println("nnbchcxbhchvcvccgcv"+profile_passwrd.getText().toString());
+                if(profile_name.getText().toString().equals("")) {
+                    Snackbar snackbar = Snackbar
+                            .make(linearLayout, toast_name, Snackbar.LENGTH_LONG);
+                    View snackbarView = snackbar.getView();
+                    TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+                    tv.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.orange));
+                    tv.setTextColor(Color.WHITE);
+
+
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+                        tv.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                    } else {
+                        tv.setGravity(Gravity.CENTER_HORIZONTAL);
+                    }
+                    snackbar.show();
+                } else if(profile_name.getText().toString().length()<2) {
+                    Snackbar snackbar = Snackbar
+                            .make(linearLayout, toast_minimum_toast, Snackbar.LENGTH_LONG);
+                    View snackbarView = snackbar.getView();
+                    TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+                    tv.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.orange));
+                    tv.setTextColor(Color.WHITE);
+
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+                        tv.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                    } else {
+                        tv.setGravity(Gravity.CENTER_HORIZONTAL);
+                    }
+                    snackbar.show();
+                }else if(profile_phone.getText().toString().equals("")) {
+                    Snackbar snackbar = Snackbar
+                            .make(linearLayout, toast_new_mobile, Snackbar.LENGTH_LONG);
+                    View snackbarView = snackbar.getView();
+                    TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+                    tv.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.orange));
+                    tv.setTextColor(Color.WHITE);
+                    snackbar.show();
+                }else if(profile_phone.getText().toString().length()<10) {
+                    Snackbar snackbar = Snackbar
+                            .make(linearLayout, toast_mobile, Snackbar.LENGTH_LONG);
+                    View snackbarView = snackbar.getView();
+                    TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+                    tv.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.orange));
+                    tv.setTextColor(Color.WHITE);
+
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+                        tv.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                    } else {
+                        tv.setGravity(Gravity.CENTER_HORIZONTAL);
+                    }
+                    snackbar.show();
+
+                }else if((!profile_passwrd.getText().toString().equals("")&&(profile_passwrd.getText().toString().length()<6))){
+                    Snackbar snackbar = Snackbar
+                            .make(linearLayout, toast_passwrd, Snackbar.LENGTH_LONG);
+                    View snackbarView = snackbar.getView();
+                    TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+                    tv.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.orange));
+                    tv.setTextColor(Color.WHITE);
+
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+                        tv.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                    } else {
+                        tv.setGravity(Gravity.CENTER_HORIZONTAL);
+                    }
+                    snackbar.show();
+                    // imageUpload(filePath);
+                    //  uploadImage(bitmap);
+                } else  {
+                    // imageUpload(filePath);
+                    uploadImage(getResizedBitmap(bitmap,100,100));
+                }
+                // update_profile_details();
+                //     uploadImage(b);*/
+            }
+        });
 
       /*  SharedPreferences myPrefrence = getActivity().getPreferences(MODE_PRIVATE);
         String imageS = myPrefrence.getString("imagePreferance", "");
@@ -409,213 +539,157 @@ public class UpdateAccDetailsFragment extends Fragment {
             }
         }
     };
-    private Bitmap decodeToBase64(String input) {
-
-        byte[] decodedByte = Base64.decode(input, 0);
-        return BitmapFactory.decodeByteArray(decodedByte, 0, decodedByte.length);
-    }
-
 
     @Override
-    public void onActivityResult(int reqCode, int resultCode, Intent data) {
-        super.onActivityResult(reqCode, resultCode, data);
-        if (resultCode == RESULT_OK) {
-        Uri imageUri = data.getData();
-            final InputStream imageStream;
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 100 && resultCode == RESULT_OK && data != null) {
+
+            //getting the image Uri
+            Uri imageUri = data.getData();
             try {
-                imageStream = getActivity().getContentResolver().openInputStream(imageUri);
+                bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), imageUri);
 
-            selectedImage = BitmapFactory.decodeStream(imageStream);
-                prod_img.setImageBitmap(selectedImage);
+                System.out.println("biiiiiiiiiiiiiitttt"+bitmap);
+                prod_img.setImageBitmap(bitmap);
 
+                Snackbar snackbar = Snackbar
+                        .make(linearLayout, "Your Changed Your Profile Photo", Snackbar.LENGTH_LONG);
+                View snackbarView = snackbar.getView();
+                TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+                tv.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.orange));
+                tv.setTextColor(Color.WHITE);
 
-            } catch (FileNotFoundException e) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+                    tv.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                } else {
+                    tv.setGravity(Gravity.CENTER_HORIZONTAL);
+                }
+                snackbar.show();
+                //  Toast.makeText(getActivity(),"Your Changed Your Profile Photo", Toast.LENGTH_SHORT).show();
+
+            } catch (IOException e) {
                 e.printStackTrace();
             }
-
-
-        }else {
-            Toast.makeText(getActivity(),toast_image,Toast.LENGTH_LONG).show();
         }
     }
 
-
     public byte[] getFileDataFromDrawable(Bitmap bitmap) {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-
-            bitmap.compress(Bitmap.CompressFormat.PNG, 80, byteArrayOutputStream);
-
-            return byteArrayOutputStream.toByteArray();
-
-
-
-        //System.out.println("jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj"+byteArrayOutputStream.toByteArray());
-
+        bitmap.compress(Bitmap.CompressFormat.PNG, 80, byteArrayOutputStream);
+        return byteArrayOutputStream.toByteArray();
     }
-
     private void uploadImage(final Bitmap bitmap){
-        VolleyMultipartRequest volleyMultipartRequest = new VolleyMultipartRequest(Request.Method.POST,Urls.Update_Profile_Details,
+        final ProgressDialog progressDialog = ProgressDialog.show(getActivity(), "",
+                "Loading....Please wait.");
+
+        progressDialog.show();
+
+        VolleyMultipartRequest volleyMultipartRequest = new VolleyMultipartRequest(Request.Method.POST, Urls.Update_Profile_Details,
                 new Response.Listener<NetworkResponse>(){
                     @Override
                     public void onResponse(NetworkResponse response) {
-                        //Toast.makeText(getActivity(), obj.getString("message"), Toast.LENGTH_SHORT).show();
-                      //  String resultResponse = new String(response.data);
-                        selectedImage=null;
+                        Log.e(TAG,"afaeftagsbillvalue"+response);
+                        Log.e(TAG,"afaeftagsbillvalue"+response);
+                        progressDialog.dismiss();
 
-                        Toast.makeText(getActivity(),toast_update, Toast.LENGTH_SHORT).show();
+
+                        if(profile_passwrd.getText().toString().length()<=12 && profile_passwrd.getText().toString().length()>=6){
+
+                            if(!myDb.isEmailExists(profile_phone.getText().toString())) {
+
+                                AddData(profile_phone.getText().toString(), profile_passwrd.getText().toString());
+                            }
+                        }
+
+                        else{
+
+                        }
+
+                        HomeMenuFragment.prod_img.setImageBitmap(bitmap);
+                        HomeMenuFragment.prod_img1.setImageBitmap(bitmap);
+                        // sessionManager.save_name(userObject.getString("FullName"),userObject.getString("PhoneNo"),userObject.getString("ProfilePic"));
+
+
+
+                        Snackbar snackbar = Snackbar
+                                .make(linearLayout, "Profile Details Updated Successfully", Snackbar.LENGTH_LONG);
+                        View snackbarView = snackbar.getView();
+                        TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+                        tv.setBackgroundColor(ContextCompat.getColor(getActivity(),R.color.orange));
+                        tv.setTextColor(Color.WHITE);
+
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+                            tv.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                        } else {
+                            tv.setGravity(Gravity.CENTER_HORIZONTAL);
+                        }
+                        snackbar.show();
+
+
+                        //     Toast.makeText(getActivity(),"Profile Details Updated Successfully", Toast.LENGTH_SHORT).show();
                         selectedFragment = SettingFragment.newInstance();
                         FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
                         ft.replace(R.id.frame_layout,selectedFragment);
                         ft.commit();
-
-                           }
+                    }
                 },
 
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(),error.getMessage(), Toast.LENGTH_SHORT).show();
+                        progressDialog.dismiss();
                     }
                 }) {
-            /*
-             *pass files using below method
-             * */
+
+
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
-              //  params.put("UserId",sessionManager.getRegId("userId") );
-
                 params.put("UserId",sessionManager.getRegId("userId"));
                 params.put("FullName",profile_name.getText().toString());
                 params.put("PhoneNo",profile_phone.getText().toString());
-                params.put("EmailId",profile_mail.getText().toString());
+                params.put("EmailId","abcd@gmail.com");
+
+
                 params.put("Password",profile_passwrd.getText().toString());
                 Log.e(TAG,"afaeftagsparams"+params);
+
+
                 return params;
             }
-
-
             @Override
-            protected Map<String, VolleyMultipartRequest.DataPart> getByteData() {
+            protected Map<String, DataPart> getByteData() {
                 Map<String, DataPart> params = new HashMap<>();
                 long imagename = System.currentTimeMillis();
-               // params.put("File", new DataPart(imagename + ".png", getFileDataFromDrawable(bitmap)));
-                Log.e(TAG,"Imhereafaeftagsparams Imhereafaeftagsparams "+bitmap);
 
-                if (bitmap==null){
-
-                }else {
+                Log.e(TAG,"Im here " + params);
+                if (bitmap!=null) {
                     params.put("File", new DataPart(imagename + ".png", getFileDataFromDrawable(bitmap)));
 
                 }
-                Log.e(TAG,"Imhereafaeftagsparams "+params);
                 return params;
             }
         };
+        volleyMultipartRequest.setRetryPolicy(new DefaultRetryPolicy(1000 * 60, DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
         //adding the request to volley
         Volley.newRequestQueue(getActivity()).add(volleyMultipartRequest);
     }
 
 
-    private String encodeToBase64(Bitmap image) {
+    private void AddData(String userId,String pass) {
+        System.out.println("kkkkkkkkkkkkk"+userId);
+        System.out.println("sssssssssssss"+pass);
+        boolean isInserted = myDb.insertData(userId, pass);
 
-        Bitmap immage = image;
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        immage.compress(Bitmap.CompressFormat.PNG, 100, baos);
-        byte[] b = baos.toByteArray();
-        String imageEncoded = Base64.encodeToString(b, Base64.DEFAULT);
+        System.out.println("kkkkkkkkkkkkk"+userId);
+        System.out.println("sssssssssssss"+pass);
+        if (isInserted == true){
+        } else{
 
-        Log.d("Image Log:", imageEncoded);
-        return imageEncoded;
-    }
-
-    private void update_profile_details() {
-
-        try{
-
-            StringRequest postRequest = new StringRequest(Request.Method.POST, "http://3.17.6.57:8686/api/Auth/UpdateUserProfile",
-
-                    new Response.Listener<String>()
-
-                    {
-                        @Override
-                        public void onResponse(String response) {
-
-                            final ProgressDialog progressDialog = ProgressDialog.show(getActivity(), "",
-                                    null, true);
-                            progressDialog.setContentView(R.layout.small_progress_bar);
-                            progressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
-
-                            Log.d("Response", response);
-
-                            try{
-                                //progressDialog.cancel();
-
-                                JSONObject jsonObject = new JSONObject(response);
-
-                                JSONObject jsonObject1 = jsonObject.getJSONObject("Response");
-                                String status = jsonObject1.getString("Status");
-
-                                if(status.equals("2")){
-
-                                    Toast.makeText(getActivity(), "Your Details Updated Successfully", Toast.LENGTH_SHORT).show();
-                                    selectedFragment = SettingFragment.newInstance();
-                                    FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
-                                    ft.replace(R.id.frame_layout,selectedFragment);
-                                    ft.commit();
-
-                                }else{
-
-                                    Toast.makeText(getActivity(), "Your Details Not Updated Successfully", Toast.LENGTH_SHORT).show();
-
-                                }
-
-
-                            }catch (Exception e){
-                                e.printStackTrace();
-                            }
-
-                        }
-                    },
-                    new Response.ErrorListener()
-                    {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            progressDialog.cancel();
-                            // error
-                        }
-                    }
-            ) {
-                @Override
-                protected Map<String, String> getParams()
-                {
-                    Map<String, String>  params = new HashMap<String, String>();
-
-                    params.put("UserId",sessionManager.getRegId("userId"));
-                    params.put("FullName",profile_name.getText().toString());
-                    params.put("PhoneNo",profile_phone.getText().toString());
-                    params.put("EmailId",profile_mail.getText().toString());
-                    params.put("Password",profile_passwrd.getText().toString());
-
-                    return params;
-                }
-            };
-
-            VolleySingletonQuee.getInstance(getActivity()).addToRequestQueue(postRequest);
-
-//            StringRequest stringRequest=new StringRequest(new VoleyJsonObjectCallback() {
-//                @Override
-//                public void onSuccessResponse(JSONObject result) {
-//
-//                }
-//            })
-
-
-
-        }catch (Exception e){
-            e.printStackTrace();
         }
-
     }
 
 
@@ -670,4 +744,31 @@ public class UpdateAccDetailsFragment extends Fragment {
 
 
 
+
+
+
+    public Bitmap getResizedBitmap(Bitmap bm, int newWidth, int newHeight) {
+        if (bm==null){
+
+            return null;
+        }else {
+            int width = bm.getWidth();
+            int height = bm.getHeight();
+            float scaleWidth = ((float) newWidth) / width;
+            float scaleHeight = ((float) newHeight) / height;
+            // CREATE A MATRIX FOR THE MANIPULATION
+            Matrix matrix = new Matrix();
+            // RESIZE THE BIT MAP
+            matrix.postScale(scaleWidth, scaleHeight);
+
+            // "RECREATE" THE NEW BITMAP
+            Bitmap resizedBitmap = Bitmap.createBitmap(
+                    bm, 0, 0, width, height, matrix, false);
+            bm.recycle();
+            return resizedBitmap;
+        }
+
+    }
+
 }
+

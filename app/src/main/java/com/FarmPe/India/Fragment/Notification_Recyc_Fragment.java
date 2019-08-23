@@ -84,6 +84,14 @@ public class Notification_Recyc_Fragment extends Fragment {
             }
         });
 
+        back_feed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fm = getActivity().getSupportFragmentManager();
+                fm.popBackStack("setting", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+            }
+        });
+
 //        back_feed.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
@@ -109,8 +117,8 @@ public class Notification_Recyc_Fragment extends Fragment {
                 if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP) {
 
 
-                        FragmentManager fm = getActivity().getSupportFragmentManager();
-                        fm.popBackStack("home", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                    FragmentManager fm = getActivity().getSupportFragmentManager();
+                    fm.popBackStack("setting", FragmentManager.POP_BACK_STACK_INCLUSIVE);
 
 
 

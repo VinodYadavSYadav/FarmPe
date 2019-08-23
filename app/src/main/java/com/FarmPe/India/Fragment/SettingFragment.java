@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.RecyclerView;
 import android.view.KeyEvent;
@@ -72,11 +73,13 @@ public class SettingFragment extends Fragment {
         back_feed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                selectedFragment = HomeMenuFragment.newInstance();
+                /*selectedFragment = HomeMenuFragment.newInstance();
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.frame_layout, selectedFragment);
                 // transaction.addToBackStack("looking");
-                transaction.commit();
+                transaction.commit();*/
+                FragmentManager fm = getActivity().getSupportFragmentManager();
+                fm.popBackStack ("home_page", FragmentManager.POP_BACK_STACK_INCLUSIVE);
 
             }
         });
@@ -114,7 +117,7 @@ public class SettingFragment extends Fragment {
             setting_tittle.setText(lngObject.getString("Settings"));
             acc_info1.setText(lngObject.getString("AccountInfo"));
             your_addresss.setText(lngObject.getString("YourAddress"));
-            refer_ern.setText(lngObject.getString("Refer_Earn"));
+            refer_ern.setText(lngObject.getString("Refer"));
             change_language.setText(lngObject.getString("ChangeLanguage"));
             polic_1.setText(lngObject.getString("PrivacyPolicy"));
 

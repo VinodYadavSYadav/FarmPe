@@ -6,8 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#fff"
     android:weightSum="100"
-    android:background="#000"
     >
 
 
@@ -15,10 +15,6 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_looking"
         android:layout_width="match_parent"
-        android:background="#000"
-        android:paddingRight="10dp"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="10dp"
         android:layout_height="wrap_content">
 
     </android.support.v7.widget.RecyclerView>

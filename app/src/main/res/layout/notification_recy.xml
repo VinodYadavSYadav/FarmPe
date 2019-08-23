@@ -7,13 +7,13 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="100"
-    android:background="#000"
     >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:background="#E5E9EC"
         tools:ignore="MissingConstraints">
 
         <android.support.v7.widget.Toolbar
@@ -24,6 +24,7 @@
             app:titleTextColor="@android:color/white"
             >
 
+<!--
 
             <LinearLayout
                 android:id="@+id/back_feed"
@@ -41,15 +42,15 @@
                     />
 
             </LinearLayout>
+-->
 
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Your Requests"
+                android:text="Notifications"
                 android:textSize="20dp"
-                android:layout_gravity="center"
-                android:textColor="#fff"
+                android:textColor="#000"
                 android:layout_marginHorizontal="10dp"
                 android:id="@+id/toolbar_title" />
 
@@ -62,8 +63,7 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_noti"
         android:layout_width="match_parent"
-        android:background="#000"
-        android:layout_marginBottom="20dp"
+        android:background="#E5E9EC"
         android:layout_height="wrap_content">
 
     </android.support.v7.widget.RecyclerView>

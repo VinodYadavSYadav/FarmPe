@@ -95,19 +95,6 @@
             android:textCursorDrawable="@drawable/cursor_color"
             android:textSize="18sp" />
 
-        <TextView
-            android:id="@+id/resend"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="20dp"
-            android:fontFamily="@font/segoeui"
-            android:paddingVertical="5dp"
-            android:text="Resend"
-
-            android:textColor="#8c8c8c"
-            android:textSize="14dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -132,6 +119,19 @@
                 android:textStyle="bold" />
 
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/resend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/segoeui"
+            android:paddingVertical="5dp"
+            android:text="Resend"
+            android:layout_marginTop="40dp"
+            android:textColor="#fff"
+            android:textSize="14dp" />
+
 
     </LinearLayout>
 

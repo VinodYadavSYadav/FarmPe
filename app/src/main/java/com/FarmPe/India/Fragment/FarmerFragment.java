@@ -48,10 +48,19 @@ public class FarmerFragment extends Fragment {
         FarmersList();
 
 
-       /* FarmsImageBean1 img1=new FarmsImageBean1(R.drawable.jk,"Jagdish Kumar","","","","","Rampura Bahjoi","");
+      /*  FarmsImageBean1 img1=new FarmsImageBean1("","Jagdish Kumar","Gadag","Lingadal","9898989898","","","","","");
         newOrderBeansList.add(img1);
+        newOrderBeansList.add(img1);
+        newOrderBeansList.add(img1);
+        newOrderBeansList.add(img1);
+        newOrderBeansList.add(img1);
+        newOrderBeansList.add(img1);
+        newOrderBeansList.add(img1);
+        newOrderBeansList.add(img1);
+        newOrderBeansList.add(img1);
+        newOrderBeansList.add(img1);*/
 
-        FarmsImageBean1 img2=new FarmsImageBean1(R.drawable.ragi_sir,"Mallikarjun Ragi","","","","","Naregal,Ron","");
+       /* FarmsImageBean1 img2=new FarmsImageBean1(R.drawable.ragi_sir,"Mallikarjun Ragi","","","","","Naregal,Ron","");
         newOrderBeansList.add(img2);
 
         FarmsImageBean1 img3=new FarmsImageBean1(R.drawable.ravi,"Ravi Kumar Hattikal","","","","","Rampura Bahjoi","");
@@ -60,12 +69,11 @@ public class FarmerFragment extends Fragment {
         FarmsImageBean1 img4=new FarmsImageBean1(R.drawable.manoj,"Manoj Kumar","","","","","Rampura Bahjoi","");
         newOrderBeansList.add(img4);
         newOrderBeansList.add(img4);
-        newOrderBeansList.add(img4);
+        newOrderBeansList.add(img4);*/
 
 
-        farmadapter=new FarmerImageAdapter(getActivity(),newOrderBeansList);
-        recyclerView.setAdapter(farmadapter);
-*/
+       /* farmadapter=new FarmerImageAdapter(getActivity(),newOrderBeansList);
+        recyclerView.setAdapter(farmadapter);*/
         return view;
     }
 
@@ -100,14 +108,19 @@ public class FarmerFragment extends Fragment {
                             String email=jsonObject1.getString("EmailId");
                             System.out.println("farmer_photo"+image);
                             String id=jsonObject1.getString("Id");
+                            String createdby=jsonObject1.getString("CreatedBy");
 
 
-                            System.out.println("madelslistt"+newOrderBeansList.size());
 
+
+                           // System.out.println("cccccccccccc"+createdby);
+
+/*
                             if (!(village.equals("")||district.equals(""))){
-                                FarmsImageBean1 crops = new FarmsImageBean1(image,farmer_name,district,village,phone_no,"","",id,email);
+*/
+                                FarmsImageBean1 crops = new FarmsImageBean1(image,farmer_name,district,village,phone_no,"","",id,email,createdby);
                                 newOrderBeansList.add(crops);
-                            }
+                           /* }*/
 
 
 

@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.design.widget.Snackbar;
@@ -13,6 +15,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Html;
+import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,12 +39,12 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 
-public class EnterOTP extends AppCompatActivity {
+public class EnterOTP extends AppCompatActivity implements ConnectivityReceiver.ConnectivityReceiverListener{
     TextView submit,otp_title,otp_text;
     LinearLayout close;
     String otp;
     EditText otpedittext;
-    public  static String sessionId,otp_get_text,toast_otp,toast_invalid_otp;
+    public  static String sessionId,otp_get_text,toast_otp,toast_invalid_otp,toast_internet,toast_nointernet;
     public static String contact;
     BroadcastReceiver receiver;
     Vibrator vibe;
@@ -55,11 +59,96 @@ public class EnterOTP extends AppCompatActivity {
 
 
 
+    public static boolean connectivity_check;
+
+    ConnectivityReceiver connectivityReceiver;
+    @Override
+    protected void onStop()
+    {
+        unregisterReceiver(connectivityReceiver);
+        super.onStop();
+    }
+
+
+
+    private void checkConnection() {
+        boolean isConnected = ConnectivityReceiver.isConnected();
+        showSnack(isConnected);
+    }
+
+
+    private void showSnack(boolean isConnected) {
+        String message = null;
+        int color=0;
+        if (isConnected) {
+            if(connectivity_check) {
+                message = "Good! Connected to Internet";
+                color = Color.WHITE;
+                Snackbar snackbar = Snackbar.make(linearLayout,toast_internet, Snackbar.LENGTH_LONG);
+                View sbView = snackbar.getView();
+                TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+                textView.setBackgroundColor(ContextCompat.getColor(EnterOTP.this,R.color.orange));
+                textView.setTextColor(Color.WHITE);
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+                    textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                } else {
+                    textView.setGravity(Gravity.CENTER_HORIZONTAL);
+                }
+
+                snackbar.show();
+
+                //setting connectivity to false only on executing "Good! Connected to Internet"
+                connectivity_check=false;
+            }
+
+        } else {
+            message = "No Internet Connection";
+            color = Color.RED;
+            //setting connectivity to true only on executing "Sorry! Not connected to internet"
+            connectivity_check=true;
+            // Snackbar snackbar = Snackbar.make(coordinatorLayout,message, Snackbar.LENGTH_LONG);
+            Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), toast_nointernet, Snackbar.LENGTH_LONG);
+            View sb = snackbar.getView();
+            TextView textView = (TextView) sb.findViewById(android.support.design.R.id.snackbar_text);
+            textView.setBackgroundColor(ContextCompat.getColor(EnterOTP.this, R.color.orange));
+            textView.setTextColor(Color.WHITE);
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+                textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+            } else {
+                textView.setGravity(Gravity.CENTER_HORIZONTAL);
+            }
+
+
+            snackbar.show();
+          /*  View sbView = snackbar.getView();
+            TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+            textView.setTextColor(color);
+            snackbar.show();*/
+        }
+    }
+
+
+
+
     @Override
     public void onResume() {
         LocalBroadcastManager.getInstance(getApplicationContext()).registerReceiver(receiver, new IntentFilter("otp"));
         super.onResume();
+
+        final IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
+        connectivityReceiver = new ConnectivityReceiver();
+        registerReceiver(connectivityReceiver, intentFilter);
+        // register connection status listener
+        MyApplication.getInstance().setConnectivityListener(this);
+
     }
+
+
+
+
 
     @Override
     public void onPause() {
@@ -71,6 +160,9 @@ public class EnterOTP extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.otp_layout);
+
+        checkConnection();
+
         vibe = (Vibrator) getApplication().getSystemService(Context.VIBRATOR_SERVICE);
         // name_back=findViewById(R.id.name_back);
         submit=findViewById(R.id.otp_submit);
@@ -88,20 +180,20 @@ public class EnterOTP extends AppCompatActivity {
 
         resendotp=findViewById(R.id.resend);
 
-        resendotp.setOnClickListener(new View.OnClickListener() {
+       /* resendotp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 try{
                     JSONObject postjsonObject = new JSONObject();
-                    postjsonObject.put("UserName", SignUpActivity.contact );
+                    postjsonObject.put("UserName",SignUpActivity.contact );
                     System.out.println("rrrrrrrrrrrrrrrrrrrr" + postjsonObject);
 
                     Login_post.login_posting(EnterOTP.this, Urls.ResendOTP, postjsonObject, new VoleyJsonObjectCallback() {
                         @Override
                         public void onSuccessResponse(JSONObject result) {
 
-                            System.out.println("kkkkkkkkkkkkkkkkkkkkkkkk" + result.toString());
+                            System.out.println("kkkkkkkkkkkkkkkkkkkkkkkk" + result);
                             try{
 
                                 String  Otp = result.getString("OTP");
@@ -135,6 +227,60 @@ public class EnterOTP extends AppCompatActivity {
             }
         });
 
+*/
+        resendotp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                try{
+                    JSONObject postjsonObject = new JSONObject();
+                    postjsonObject.put("UserName", SignUpActivity.contact );
+                    System.out.println("rrrrrrrrrrrrrrrrrrrr" + postjsonObject);
+
+                    Login_post.login_posting(EnterOTP.this, Urls.ResendOTP, postjsonObject, new VoleyJsonObjectCallback() {
+                        @Override
+                        public void onSuccessResponse(JSONObject result) {
+
+                            System.out.println("kkkkkkkkkkkkkkkkkkkkkkkk" + result.toString());
+
+                            try{
+
+                                String  Otp = result.getString("OTP");
+                                sessionId=Otp;
+                                String  Message = result.getString("Message");
+                                int  status= result.getInt("Status");
+
+                                if (status==2){
+                                    Snackbar snackbar = Snackbar
+                                            .make(linearLayout,Message, Snackbar.LENGTH_LONG);
+                                    //snackbar.setActionTextColor(R.color.colorAccent);
+                                    View snackbarView = snackbar.getView();
+                                    TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
+                                    tv.setBackgroundColor(ContextCompat.getColor(EnterOTP.this,R.color.orange));
+                                    tv.setTextColor(Color.WHITE);
+                                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+                                        tv.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                                    } else {
+                                        tv.setGravity(Gravity.CENTER_HORIZONTAL);
+                                    }
+                                    snackbar.show();
+                                }
+
+                                else {
+                                    Toast.makeText(EnterOTP.this, Message, Toast.LENGTH_LONG).show();
+                                }
+                            }catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    });
+
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+
+            }
+        });
 
 
         setupUI(linearLayout);
@@ -153,14 +299,16 @@ public class EnterOTP extends AppCompatActivity {
         try {
             lngObject = new JSONObject(sessionManager.getRegId("language"));
 
-            submit.setText(lngObject.getString("SendOTP"));
+            submit.setText(lngObject.getString("Submit"));
             otp_title.setText(lngObject.getString("OneTimePassword"));
             otp_text.setText(lngObject.getString("EnterOTP"));
-            resendotp.setText(lngObject.getString("Resend"));
+            resendotp.setText(Html.fromHtml("<u>"+lngObject.getString("Resend")+"</u>"));
             otpedittext.setHint(lngObject.getString("EntertheOTP"));
 
             toast_otp = lngObject.getString("EntertheOTP");
             toast_invalid_otp = lngObject.getString("InvalidOTP");
+            toast_internet = lngObject.getString("GoodConnectedtoInternet");
+            toast_nointernet = lngObject.getString("NoInternetConnection");
 
 
         } catch (JSONException e) {
@@ -382,6 +530,12 @@ inputMethodManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowT
                 e.printStackTrace();
             }
         }
+    }
+
+    @Override
+    public void onNetworkConnectionChanged(boolean isConnected) {
+        showSnack(isConnected);
+
     }
 
 

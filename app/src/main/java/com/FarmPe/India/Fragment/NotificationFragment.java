@@ -165,7 +165,7 @@ public class NotificationFragment extends Fragment {
 
                             System.out.println("madelslistt"+newOrderBeansList.size());
 
-                            FarmsImageBean crops = new FarmsImageBean(image,"Tractor Price",model,hp_range,purchaseTimeline,name,location,id);
+                            FarmsImageBean crops = new FarmsImageBean(image,"Tractor Price",model,hp_range,purchaseTimeline,name,location,id,"",false);
                             newOrderBeansList.add(crops);
 
 

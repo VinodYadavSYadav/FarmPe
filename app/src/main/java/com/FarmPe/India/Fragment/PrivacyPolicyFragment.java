@@ -15,6 +15,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 
+import com.FarmPe.India.Activity.LandingPageActivity;
+import com.FarmPe.India.Activity.SignUpActivity;
 import com.FarmPe.India.Bean.AgriBean;
 import com.FarmPe.India.R;
 import com.FarmPe.India.SessionManager;
@@ -71,8 +73,14 @@ public class PrivacyPolicyFragment extends Fragment {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP) {
-                    FragmentManager fm = getActivity().getSupportFragmentManager();
-                    fm.popBackStack("setting", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                    if (LandingPageActivity.privacy_back==null){
+                        FragmentManager fm = getActivity().getSupportFragmentManager();
+                        fm.popBackStack("setting", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                    }else{
+                        Intent intent = new Intent(getActivity(), SignUpActivity.class);
+                        startActivity(intent);
+                    }
+
 
 
                     return true;
@@ -85,8 +93,13 @@ public class PrivacyPolicyFragment extends Fragment {
         back_feed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentManager fm = getActivity().getSupportFragmentManager();
-                fm.popBackStack("setting", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                if (LandingPageActivity.privacy_back==null){
+                    FragmentManager fm = getActivity().getSupportFragmentManager();
+                    fm.popBackStack("setting", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                }else{
+                    Intent intent = new Intent(getActivity(), SignUpActivity.class);
+                    startActivity(intent);
+                }
 
 
             }

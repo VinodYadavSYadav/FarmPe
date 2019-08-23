@@ -4,9 +4,11 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -22,6 +24,10 @@ import android.text.Editable;
 import android.text.InputFilter;
 import android.text.Spanned;
 import android.text.TextWatcher;
+import android.view.ActionMode;
+import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,35 +57,123 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class LoginActivity extends AppCompatActivity {
-     public static TextView register, log_in, forgot_pass,mob_text_signin;
-     public static EditText mobile_no, pass;
-     public static String mobile,loc_text;
-     LinearLayout linearLayout;
-     public String status,userId;
-     boolean doubleBackToExitPressedOnce = false;
+public class LoginActivity extends AppCompatActivity  implements ConnectivityReceiver.ConnectivityReceiverListener{
+    public static TextView register, log_in, forgot_pass,new_to_fp;
+    public static EditText mobile_no, pass;
+    public static String mobile,loc_text;
+    LinearLayout linearLayout;
+    public String status,userId;
+    boolean doubleBackToExitPressedOnce = false;
 
-     List<SelectLanguageBean>language_arrayBeanList = new ArrayList<>();
-     SelectLanguageBean selectLanguageBean;
-     SelectLanguageAdapter2 mAdapter;
+    List<SelectLanguageBean>language_arrayBeanList = new ArrayList<>();
+    SelectLanguageBean selectLanguageBean;
+    SelectLanguageAdapter2 mAdapter;
 
-     public static TextInputLayout text_mobile,text_pass;
+    public static TextInputLayout text_mobile,text_pass;
 
 
-     LinearLayout back_xlogin;
-     LinearLayout coordinatorLayout;
-     public static CheckBox remember_me;
-     DatabaseHelper myDb;
-     TextInputLayout textInputLayout,textInputLayout_pass;
-     public static  String password,mob_toast,mobile_string,pass_toast,toast_invalid,toast_click_back;
-     EditText spn_localize;
-     public static   JSONObject lngObject;
-     JSONArray lng_array;
-     Snackbar snackbar;
+    LinearLayout back_xlogin;
+    LinearLayout coordinatorLayout;
+    public static CheckBox remember_me;
+    DatabaseHelper myDb;
+    TextInputLayout textInputLayout,textInputLayout_pass;
+    public static  String password,mob_toast,mobile_string,pass_toast,toast_invalid,toast_click_back,toast_internet,toast_nointernet;
+    EditText spn_localize;
+    public static   JSONObject lngObject;
+    JSONArray lng_array;
+    Snackbar snackbar;
     String mob_no;
+    public static boolean connectivity_check;
     SessionManager sessionManager;
     public static  Dialog dialog;
     public static TextView welcome_back, createaccount, change_lang,farmPe_title ,enterPassword, forgotPassword;
+    public static TextView popup_heading;
+    ConnectivityReceiver connectivityReceiver;
+    @Override
+    protected void onStop()
+
+    {
+        unregisterReceiver(connectivityReceiver);
+        super.onStop();
+    }
+
+
+
+
+
+    private void checkConnection() {
+        boolean isConnected = ConnectivityReceiver.isConnected();
+        showSnack(isConnected);
+    }
+
+
+    private void showSnack(boolean isConnected) {
+        String message = null;
+        int color=0;
+        if (isConnected) {
+            if(connectivity_check) {
+                message = "Good! Connected to Internet";
+                color = Color.WHITE;
+                Snackbar snackbar = Snackbar.make(coordinatorLayout,toast_internet, Snackbar.LENGTH_LONG);
+                View sbView2 = snackbar.getView();
+                TextView textView = (TextView) sbView2.findViewById(android.support.design.R.id.snackbar_text);
+                textView.setBackgroundColor(ContextCompat.getColor(LoginActivity.this,R.color.orange));
+                textView.setTextColor(Color.WHITE);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+                    textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                } else {
+                    textView.setGravity(Gravity.CENTER_HORIZONTAL);
+                }
+                snackbar.show();
+
+
+                //setting connectivity to false only on executing "Good! Connected to Internet"
+                connectivity_check=false;
+            }
+
+        }  else {
+            message = "No Internet Connection";
+            color = Color.RED;
+            connectivity_check=true;
+
+            Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), toast_nointernet, Snackbar.LENGTH_LONG);
+            View sb = snackbar.getView();
+            TextView textView = (TextView) sb.findViewById(android.support.design.R.id.snackbar_text);
+            textView.setBackgroundColor(ContextCompat.getColor(LoginActivity.this, R.color.orange));
+            textView.setTextColor(Color.WHITE);
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+                textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+            } else {
+                textView.setGravity(Gravity.CENTER_HORIZONTAL);
+            }
+
+            snackbar.show();
+            //setting connectivity to true only on executing "Sorry! Not connected to internet"
+
+            // Snackbar snackbar = Snackbar.make(coordinatorLayout,message, Snackbar.LENGTH_LONG);
+            // Snackbar.make(findViewById(android.R.id.content), toast_nointernet, Snackbar.LENGTH_LONG).show();
+
+          /*  View sbView = snackbar.getView();
+            TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+            textView.setTextColor(color);
+            snackbar.show();*/
+        }
+    }
+
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        final IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
+        connectivityReceiver = new ConnectivityReceiver();
+        registerReceiver(connectivityReceiver, intentFilter);
+        // register connection status listener
+        MyApplication.getInstance().setConnectivityListener(this);
+
+    }
 
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -87,13 +181,14 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sign_in);
-
-        linearLayout=findViewById(R.id.main_layout);
+        checkConnection();
+        linearLayout=findViewById(R.id.main_layou1);
         welcome_back = findViewById(R.id.welcome_back);
         createaccount = findViewById(R.id.create_acc);
         change_lang = findViewById(R.id.change_lang);
         text_mobile = findViewById(R.id.text_name);
         text_pass = findViewById(R.id.text_pass);
+        new_to_fp = findViewById(R.id.new_to_fp);
 
         sessionManager = new SessionManager(this);
         sessionManager.checkLogin();
@@ -111,17 +206,40 @@ public class LoginActivity extends AppCompatActivity {
         myDb = new DatabaseHelper(this);
         edittext_move(mobile_no, pass);
 
+       // pass.setLongClickable(false);
 
+        pass.setCustomSelectionActionModeCallback(new ActionMode.Callback() {
+
+            public boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
+                return false;
+            }
+
+            public boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
+                return false;
+            }
+
+            public boolean onActionItemClicked(ActionMode actionMode, MenuItem item) {
+                return false;
+            }
+
+            public void onDestroyActionMode(ActionMode actionMode) {
+            }
+        });
+
+        pass.setLongClickable(false);
+        pass.setTextIsSelectable(false);
+
+        remember_me.setChecked(true);
 
         if( sessionManager.getRegId("language_name").equals("")){
 
             change_lang.setText("English");
 
         }else{
-
+System.out.println("hhhhhhhhhhhhhhhhhhhh"+sessionManager.getRegId("language_name"));
             change_lang.setText(sessionManager.getRegId("language_name"));
         }
-       // if(sessionManager.getLanguage())
+        // if(sessionManager.getLanguage())
 
 
 
@@ -180,20 +298,22 @@ public class LoginActivity extends AppCompatActivity {
                 log_in.setText(lngObject.getString("Login"));
                 welcome_back.setText(lngObject.getString("Login"));
                 createaccount.setText(lngObject.getString("Register"));
-              //  farmPe_title.setText(lngObject.getString("FarmPe"));
+                // popup_heading.setText(lngObject.getString("ChangeLanguage"));
+                //  farmPe_title.setText(lngObject.getString("FarmPe"));
 
 
                 pass_toast = lngObject.getString("EnterPassword");
                 mob_toast = lngObject.getString("EnterPhoneNo");
                 toast_invalid = lngObject.getString("InvalidCredentials");
                 toast_click_back = lngObject.getString("PleaseclickBACKagaintoexit");
+                toast_internet = lngObject.getString("GoodConnectedtoInternet");
+                toast_nointernet = lngObject.getString("NoInternetConnection");
 
 
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
         createaccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -216,20 +336,38 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
 
 
+
+
                 System.out.println("jhfdyug");
 
                 RecyclerView recyclerView;
-                final TextView yes1,no1;
+
                 final LinearLayout close_layout;
 
                 System.out.println("aaaaaaaaaaaa");
-                 dialog = new Dialog(LoginActivity.this);
+                dialog = new Dialog(LoginActivity.this);
                 dialog.setContentView(R.layout.change_lang_login);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.setCancelable(false);
 
                 close_layout =  dialog.findViewById(R.id.close_layout);
                 recyclerView =  dialog.findViewById(R.id.recycler_change_lang);
+                popup_heading = dialog.findViewById(R.id.popup_heading);
+
+
+                try {
+                    lngObject = new JSONObject(sessionManager.getRegId("language"));
+
+                    popup_heading.setText(lngObject.getString("ChangeLanguage"));
+
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+
 
                 RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(LoginActivity.this);
                 recyclerView.setLayoutManager(mLayoutManager);
@@ -242,42 +380,42 @@ public class LoginActivity extends AppCompatActivity {
                 try{
 
 
-                        JSONObject jsonObject = new JSONObject();
+                    JSONObject jsonObject = new JSONObject();
 
-                        Crop_Post.crop_posting(LoginActivity.this, Urls.Languages, jsonObject, new VoleyJsonObjectCallback() {
-                              @Override
-                              public void onSuccessResponse(JSONObject result) {
-                                  System.out.print("111111ang" + result);
-                                  try{
+                    Crop_Post.crop_posting(LoginActivity.this, Urls.Languages, jsonObject, new VoleyJsonObjectCallback() {
+                        @Override
+                        public void onSuccessResponse(JSONObject result) {
+                            System.out.print("111111ang" + result);
+                            try{
 
-                                       language_arrayBeanList.clear();
-                                          lng_array = result.getJSONArray("LanguagesList");
-                                          for(int i=0;i<lng_array.length();i++){
-                                              JSONObject  jsonObject1 = lng_array.getJSONObject(i);
+                                language_arrayBeanList.clear();
+                                lng_array = result.getJSONArray("LanguagesList");
+                                for(int i=0;i<lng_array.length();i++){
+                                    JSONObject  jsonObject1 = lng_array.getJSONObject(i);
 
-                                              selectLanguageBean = new SelectLanguageBean(jsonObject1.getString("Language"),jsonObject1.getInt("Id"),"");
-                                              language_arrayBeanList.add(selectLanguageBean);
-
-
-
-                                      }
-
-                                      mAdapter.notifyDataSetChanged();
+                                    selectLanguageBean = new SelectLanguageBean(jsonObject1.getString("Language"),jsonObject1.getInt("Id"),"");
+                                    language_arrayBeanList.add(selectLanguageBean);
 
 
 
+                                }
 
-                                  }catch (Exception e){
-                                      e.printStackTrace();
-                                  }
-
-                              }
-                          });
+                                mAdapter.notifyDataSetChanged();
 
 
-                      }catch (Exception e){
-                          e.printStackTrace();
-                      }
+
+
+                            }catch (Exception e){
+                                e.printStackTrace();
+                            }
+
+                        }
+                    });
+
+
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
 
 
 //                SelectLanguageBean bean = new SelectLanguageBean("English", 1, "");
@@ -302,8 +440,6 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         });
-
-
         log_in.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -322,6 +458,11 @@ public class LoginActivity extends AppCompatActivity {
                     TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
                     tv.setBackgroundColor(ContextCompat.getColor(LoginActivity.this,R.color.orange));
                     tv.setTextColor(Color.WHITE);
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+                        tv.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                    } else {
+                        tv.setGravity(Gravity.CENTER_HORIZONTAL);
+                    }
                     snackbar.show();
 //                    snackbar = Snackbar
 //                            .make(coordinatorLayout,toast_mob, Snackbar.LENGTH_LONG);
@@ -354,6 +495,11 @@ public class LoginActivity extends AppCompatActivity {
                     TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
                     tv.setBackgroundColor(ContextCompat.getColor(LoginActivity.this,R.color.orange));
                     tv.setTextColor(Color.WHITE);
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+                        tv.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                    } else {
+                        tv.setGravity(Gravity.CENTER_HORIZONTAL);
+                    }
                     snackbar.show();
 
                 } else if (password.contains(" ")) {
@@ -365,6 +511,11 @@ public class LoginActivity extends AppCompatActivity {
                     TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
                     tv.setBackgroundColor(ContextCompat.getColor(LoginActivity.this,R.color.orange));
                     tv.setTextColor(Color.WHITE);
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+                        tv.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                    } else {
+                        tv.setGravity(Gravity.CENTER_HORIZONTAL);
+                    }
                     snackbar.show();
 
 
@@ -406,7 +557,7 @@ public class LoginActivity extends AppCompatActivity {
                                             startActivity(intent);
                                             sessionManager.createLoginSession(password,mob_no);
 
-                                            sessionManager.save_name(userObject.getString("FullName"),userObject.getString("PhoneNo"));
+                                            sessionManager.save_name(userObject.getString("FullName"),userObject.getString("PhoneNo"),userObject.getString("ProfilePic"));
                                             sessionManager.saveUserId(userObject.getString("Id"));
 
 
@@ -425,13 +576,17 @@ public class LoginActivity extends AppCompatActivity {
                                         }
 
                                     } else{
-
                                         Snackbar snackbar = Snackbar
-                                                .make(coordinatorLayout, toast_invalid, Snackbar.LENGTH_LONG);
+                                                .make(linearLayout, toast_invalid, Snackbar.LENGTH_LONG);
                                         View snackbarView = snackbar.getView();
                                         TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
                                         tv.setBackgroundColor(ContextCompat.getColor(LoginActivity.this,R.color.orange));
                                         tv.setTextColor(Color.WHITE);
+                                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+                                            tv.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                                        } else {
+                                            tv.setGravity(Gravity.CENTER_HORIZONTAL);
+                                        }
                                         snackbar.show();
 
 
@@ -458,37 +613,44 @@ public class LoginActivity extends AppCompatActivity {
 
         try{
 
-
+System.out.println("uytfffdxszfcgj");
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("Id",id);
 
 
-            System.out.print("iiidddddd"+ id);
+            System.out.print("id_loginnn"+ id);
 
             Crop_Post.crop_posting(LoginActivity.this, Urls.CHANGE_LANGUAGE, jsonObject, new VoleyJsonObjectCallback() {
                 @Override
                 public void onSuccessResponse(JSONObject result) {
 
-                    System.out.println("qqqqqqvv" + result);
+                    System.out.println("qqqqqqvvresult" + result);
 
                     try{
 
                         sessionManager.saveLanguage(result.toString());
+                        String lang_title1 = result.getString("ChangeLanguage");
+
+                        System.out.println("clangggggg"+lang_title1);
 
                         String log_login = result.getString("Login");
-                        String log_mobile = result.getString("DigitMobileNumber");
+                        String log_mobile = result.getString("PhoneNo");
                         String log_password = result.getString("Password");
                         String log_remember_me = result.getString("RememberMe");
                         String log_forgot_passwrd = result.getString("ForgotPassword");
                         String log_register = result.getString("Register");
-                      //  String log_title = result.getString("FarmPe");
+                        //  String log_title = result.getString("FarmPe");
 
                         mob_toast = result.getString("EnterPhoneNo");
                         pass_toast = result.getString("EnterPassword");
                         toast_invalid = result.getString("InvalidCredentials");
                         toast_click_back = result.getString("PleaseclickBACKagaintoexit");
+                        toast_internet = result.getString("GoodConnectedtoInternet");
+                        toast_nointernet = result.getString("NoInternetConnection");
 
 
+
+                        popup_heading.setText(lang_title1);
 
 
                         remember_me.setText(log_remember_me);
@@ -520,7 +682,7 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
 
-      //  finish();
+        //  finish();
 
         if (doubleBackToExitPressedOnce) {
 
@@ -528,7 +690,7 @@ public class LoginActivity extends AppCompatActivity {
             intent1.addCategory(Intent.CATEGORY_HOME);
             intent1.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);//***Change Here***
             startActivity(intent1);
-              finish();                   }
+            finish();                   }
 
 
         doubleBackToExitPressedOnce = true;
@@ -539,8 +701,13 @@ public class LoginActivity extends AppCompatActivity {
         TextView tv = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);
         tv.setBackgroundColor(ContextCompat.getColor(LoginActivity.this,R.color.orange));
         tv.setTextColor(Color.WHITE);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+            tv.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+        } else {
+            tv.setGravity(Gravity.CENTER_HORIZONTAL);
+        }
         snackbar.show();
-     //   Toast.makeText(getApplicationContext(), toast_click_back, Toast.LENGTH_SHORT).show();
+        //   Toast.makeText(getApplicationContext(), toast_click_back, Toast.LENGTH_SHORT).show();
 
         new Handler().postDelayed(new Runnable() {
 
@@ -672,4 +839,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onNetworkConnectionChanged(boolean isConnected) {
+        showSnack(isConnected);
+    }
 }

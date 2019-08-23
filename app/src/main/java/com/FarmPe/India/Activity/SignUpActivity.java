@@ -5,22 +5,32 @@ import android.app.Dialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.ConnectivityManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.text.InputFilter;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.TextUtils;
+import android.view.ActionMode;
+import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,6 +42,8 @@ import android.widget.Toast;
 
 import com.FarmPe.India.Adapter.SelectLanguageAdapter_SignUP;
 import com.FarmPe.India.Bean.SelectLanguageBean;
+import com.FarmPe.India.Fragment.NotificationList;
+import com.FarmPe.India.Fragment.PrivacyPolicyFragment;
 import com.FarmPe.India.R;
 import com.FarmPe.India.SessionManager;
 import com.FarmPe.India.Urls;
@@ -46,9 +58,9 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SignUpActivity extends AppCompatActivity {
+public class SignUpActivity extends AppCompatActivity implements ConnectivityReceiver.ConnectivityReceiverListener{
 
-   public static TextView create_acc, continue_sign_up, change_lang, backtologin, referal_text;
+    public static TextView create_acc, continue_sign_up, change_lang, backtologin, referal_text;
     LinearLayout back_feed;
     SessionManager sessionManager;
     public static EditText name, mobile_no, password, referal_code;
@@ -56,8 +68,9 @@ public class SignUpActivity extends AppCompatActivity {
     JSONArray lng_array;
     Activity activity;
     JSONObject lngObject;
+    public static TextView popup_heading;
     public static TextInputLayout sign_name,sign_mobile,sign_pass;
-    public static String mob_toast,passwrd_toast,minimum_character_toast,enter_all_toast,name_toast,mobile_registered_toast;
+    public static String mob_toast,passwrd_toast,minimum_character_toast,enter_all_toast,name_toast,mobile_registered_toast,privacy_policy,toast_internet,toast_nointernet;
 
     List<SelectLanguageBean>language_arrayBeanList = new ArrayList<>();
     SelectLanguageBean selectLanguageBean;
@@ -67,11 +80,99 @@ public class SignUpActivity extends AppCompatActivity {
     BroadcastReceiver receiver;
     EditText spn_localize;
     String localize_text;
-    TextInputLayout textInputLayout_name, textInputLayout_pass;
+    TextView privacy_terms;
     public static String contact, mob_contact;
     String refer;
-     public static   Dialog dialog;
+    public static   Dialog dialog;
 
+
+
+    public static boolean connectivity_check;
+    ConnectivityReceiver connectivityReceiver;
+    @Override
+    protected void onStop()
+    {
+        unregisterReceiver(connectivityReceiver);
+        super.onStop();
+    }
+
+
+
+
+    private void checkConnection() {
+        boolean isConnected = ConnectivityReceiver.isConnected();
+        showSnack(isConnected);
+    }
+
+
+    private void showSnack(boolean isConnected) {
+        String message = null;
+        int color=0;
+        if (isConnected) {
+            if(connectivity_check) {
+                message = "Good! Connected to Internet";
+                color = Color.WHITE;
+                Snackbar snackbar = Snackbar.make(linearLayout,toast_internet, Snackbar.LENGTH_LONG);
+                View sbView = snackbar.getView();
+                TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+                textView.setBackgroundColor(ContextCompat.getColor(SignUpActivity.this,R.color.orange));
+                textView.setTextColor(Color.WHITE);
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+                    textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                } else {
+                    textView.setGravity(Gravity.CENTER_HORIZONTAL);
+                }
+
+                snackbar.show();
+
+                //setting connectivity to false only on executing "Good! Connected to Internet"
+                connectivity_check=false;
+            }
+
+
+        } else {
+            message = "No Internet Connection";
+            color = Color.RED;
+            //setting connectivity to true only on executing "Sorry! Not connected to internet"
+            connectivity_check=true;
+            // Snackbar snackbar = Snackbar.make(coordinatorLayout,message, Snackbar.LENGTH_LONG);
+            Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), toast_nointernet, Snackbar.LENGTH_LONG);
+            View sb = snackbar.getView();
+            TextView textView = (TextView) sb.findViewById(android.support.design.R.id.snackbar_text);
+            textView.setBackgroundColor(ContextCompat.getColor(SignUpActivity.this, R.color.orange));
+            textView.setTextColor(Color.WHITE);
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+                textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+            } else {
+                textView.setGravity(Gravity.CENTER_HORIZONTAL);
+            }
+
+
+            snackbar.show();
+          /*  View sbView = snackbar.getView();
+            TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+            textView.setTextColor(color);
+            snackbar.show();*/
+        }
+    }
+
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        final IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
+        connectivityReceiver = new ConnectivityReceiver();
+        registerReceiver(connectivityReceiver, intentFilter);
+        // register connection status listener
+        MyApplication.getInstance().setConnectivityListener(this);
+
+
+
+    }
 
     @Nullable
     @Override
@@ -83,6 +184,7 @@ public class SignUpActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sign_up_new);
+        checkConnection();
 
 
         linearLayout = findViewById(R.id.linear_login);
@@ -99,11 +201,12 @@ public class SignUpActivity extends AppCompatActivity {
         mobile_no = findViewById(R.id.mobilesignup);
         password = findViewById(R.id.passsignup);
         change_lang = findViewById(R.id.change_lang);
+        privacy_terms = findViewById(R.id.privacy_terms);
         // referal_text=findViewById(R.id.referal_text);
         // referal_code=findViewById(R.id.referal_code);
         // textInputLayout_pass=findViewById(R.id.text_pass);
 
-
+        privacy_terms.setText(Html.fromHtml("By registering, you accept our <u><b> Privacy Policy</b> and <b>Terms of use.</b></u>"));
 
         sessionManager = new SessionManager(SignUpActivity.this);
 
@@ -122,10 +225,33 @@ public class SignUpActivity extends AppCompatActivity {
         setupUI(linearLayout);
         String[] localize = {"+91"};
 
+        password.setLongClickable(false);
+
+        password.setCustomSelectionActionModeCallback(new ActionMode.Callback() {
+
+            public boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
+                return false;
+            }
+
+            public boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
+                return false;
+            }
+
+            public boolean onActionItemClicked(ActionMode actionMode, MenuItem item) {
+                return false;
+            }
+
+            public void onDestroyActionMode(ActionMode actionMode) {
+            }
+        });
+
+        password.setLongClickable(false);
+        password.setTextIsSelectable(false);
+
        /* backtologin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent mIntent = new Intent(SignUpActivity.this, LoginActivity.class);
+                Intent mIntent = new Intent(SignUpActivity.this, LoginActivity_new_new.class);
                 startActivity(mIntent);
             }
         });*/
@@ -141,11 +267,12 @@ public class SignUpActivity extends AppCompatActivity {
 
                 create_acc.setText(lngObject.getString("Register"));
                 sign_name.setHint(lngObject.getString("FullName"));
-                sign_mobile.setHint(lngObject.getString("DigitMobileNumber"));
+                sign_mobile.setHint(lngObject.getString("PhoneNo"));
                 sign_pass.setHint(lngObject.getString("Password"));
                // textInputLayout_name.setHint(lngObject.getString("FullName"));
               //  textInputLayout_pass.setHint(lngObject.getString("EnterPassword"));
                 continue_sign_up.setText(lngObject.getString("Register"));
+               // privacy_terms.setText(lngObject.getString("ByRegisteringyouacceptourPrivacyPolicyandTermsofuse"));
 
 
 
@@ -155,6 +282,9 @@ public class SignUpActivity extends AppCompatActivity {
                 enter_all_toast = lngObject.getString("EnterAllTextFields");
                 name_toast = lngObject.getString("Enteryourname");
                 mobile_registered_toast = lngObject.getString("Thismobilehasalreadyregistered");
+                toast_internet = lngObject.getString("GoodConnectedtoInternet");
+                toast_nointernet = lngObject.getString("NoInternetConnection");
+
 
 
 
@@ -167,12 +297,19 @@ public class SignUpActivity extends AppCompatActivity {
 
 
 
-
+        privacy_terms.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                privacy_policy="privacy";
+                Intent intent = new Intent(SignUpActivity.this, LandingPageActivity.class);
+                startActivity(intent);
+            }
+        });
 
         back_feed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
+                Intent intent = new Intent(SignUpActivity.this, LoginActivity_new.class);
                 startActivity(intent);
                 finish();
             }
@@ -242,6 +379,24 @@ public class SignUpActivity extends AppCompatActivity {
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.setCancelable(false);
                 close_layout = dialog.findViewById(R.id.close_layout);
+
+
+
+                popup_heading = dialog.findViewById(R.id.popup_heading);
+
+
+                try {
+                    lngObject = new JSONObject(sessionManager.getRegId("language"));
+
+                    popup_heading.setText(lngObject.getString("ChangeLanguage"));
+
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
 
                 recyclerView = dialog.findViewById(R.id.recycler_change_lang);
                 RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(SignUpActivity.this);
@@ -351,7 +506,7 @@ public class SignUpActivity extends AppCompatActivity {
 //
 //        name.setFilters(new InputFilter[] {filter1,new InputFilter.LengthFilter(30) });
 
-      name.setFilters(new InputFilter[]{EMOJI_FILTER});
+
 
 
        //without space
@@ -369,8 +524,9 @@ public class SignUpActivity extends AppCompatActivity {
 
         };
 
+        name.setFilters(new InputFilter[] {EMOJI_FILTER,new InputFilter.LengthFilter(30)});
+        password.setFilters(new InputFilter[] {EMOJI_FILTER1,new InputFilter.LengthFilter(12) });
 
-        password.setFilters(new InputFilter[]{filter, new InputFilter.LengthFilter(12)});
 
         continue_sign_up.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -612,7 +768,7 @@ public class SignUpActivity extends AppCompatActivity {
 
                         String log_regi = result.getString("Register");
                         String log_name = result.getString("FullName");
-                        String log_mobile = result.getString("DigitMobileNumber");
+                        String log_mobile = result.getString("PhoneNo");
                         String log_password = result.getString("Password");
                         String log_register = result.getString("Register");
 
@@ -620,6 +776,9 @@ public class SignUpActivity extends AppCompatActivity {
                         mob_toast = result.getString("Entervalidmobilenumber");
                         name_toast = result.getString("Enteryourname");
                        mobile_registered_toast = result.getString("Thismobilehasalreadyregistered");
+                        toast_internet = lngObject.getString("GoodConnectedtoInternet");
+                        toast_nointernet = lngObject.getString("NoInternetConnection");
+
 
 
 
@@ -647,27 +806,32 @@ public class SignUpActivity extends AppCompatActivity {
         }
     }
 
-
     public static InputFilter EMOJI_FILTER = new InputFilter() {
         @Override
         public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
             boolean keepOriginal = true;
+            String specialChars = ".1/*!@#$%^&*()\"{}_[]|\\?/<>,.:-'';§£¥₹...%&+=€π|";
             StringBuilder sb = new StringBuilder(end - start);
             for (int index = start; index < end; index++) {
                 int type = Character.getType(source.charAt(index));
-                if (type == Character.SURROGATE || type == Character.OTHER_SYMBOL) {
+                if (type == Character.SURROGATE || type == Character.OTHER_SYMBOL||type==Character.MATH_SYMBOL||specialChars.contains("" + source)) {
                     return "";
                 }
                 for (int i = start; i < end; i++) {
                     if (Character.isWhitespace(source.charAt(i))) {
-                   if (dstart == 0)
+                        if (dstart == 0)
                             return "";
+                    }else if(Character.isDigit(source.charAt(i))) {
+                        return "";
                     }
                 }
                 return null;
-
+      /*  char c = source.charAt(index);
+        if (isCharAllowed(c))
+            sb.append(c);
+        else
+            keepOriginal = false;*/
             }
-
             if (keepOriginal)
                 return null;
             else {
@@ -682,10 +846,60 @@ public class SignUpActivity extends AppCompatActivity {
         }
     };
 
+/////////////////////////////////////////////////
+
+    public static InputFilter EMOJI_FILTER1 = new InputFilter() {
+        @Override
+        public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
+            boolean keepOriginal = true;
+            StringBuilder sb = new StringBuilder(end - start);
+
+            for (int index = start; index < end; index++) {
+                int type = Character.getType(source.charAt(index));
+                if (type == Character.SURROGATE || type == Character.OTHER_SYMBOL) {
+                    return "";
+                }
+
+                String filtered = "";
+                for (int i = start; i < end; i++) {
+                    char character = source.charAt(i);
+                    if (!Character.isWhitespace(character)) {
+                        filtered += character;
+                    }
+                }
+                return filtered;
+//                for (int i = start; i < end; i++) {
+//                    if (Character.isWhitespace(source.charAt(i))) {
+//                        if (dstart == 0)
+//                            return "";
+//                    }
+//                }
+                // return null;
+      /*  char c = source.charAt(index);
+        if (isCharAllowed(c))
+            sb.append(c);
+        else
+            keepOriginal = false;*/
+            }
+            if (keepOriginal)
+                return null;
+            else {
+                if (source instanceof Spanned) {
+                    SpannableString sp = new SpannableString(sb);
+                    TextUtils.copySpansFrom((Spanned) source, start, sb.length(), null, sp, 0);
+                    return sp;
+                } else {
+                    return sb;
+                }
+            }
+        }
+    };
+
+
     @Override
     public void onBackPressed() {
 
-        Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
+        Intent intent = new Intent(SignUpActivity.this, LoginActivity_new.class);
         startActivity(intent);
         finish();
     }
@@ -828,7 +1042,7 @@ public class SignUpActivity extends AppCompatActivity {
 
             userRequestjsonObject.put("PhoneNo", contact);
             userRequestjsonObject.put("Password", password.getText().toString());
-            userRequestjsonObject.put("DeviceId", "123456789");
+            userRequestjsonObject.put("DeviceId", "123");
             userRequestjsonObject.put("DeviceType", "Android");
             userRequestjsonObject.put("FullName", name.getText().toString());
 
@@ -865,7 +1079,7 @@ public class SignUpActivity extends AppCompatActivity {
                             String userid = jsonObject.getString("Id");
                             System.out.println("useerrrriidd" + userid);
                             sessionManager.saveUserId(userid);
-                            sessionManager.save_name(jsonObject.getString("FullName"), jsonObject.getString("PhoneNo"));
+                            sessionManager.save_name(jsonObject.getString("FullName"), jsonObject.getString("PhoneNo"),jsonObject.getString("ProfilePic"));
                             Intent intent = new Intent(SignUpActivity.this, EnterOTP.class);
                             intent.putExtra("otpnumber", status);
                             startActivity(intent);
@@ -883,5 +1097,10 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onNetworkConnectionChanged(boolean isConnected) {
+        showSnack(isConnected);
+
+    }
 }
 

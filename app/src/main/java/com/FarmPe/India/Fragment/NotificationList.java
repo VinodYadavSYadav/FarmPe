@@ -14,6 +14,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.FarmPe.India.Adapter.NotificationListAdapter;
+import com.FarmPe.India.Bean.CropListBean;
+import com.FarmPe.India.Bean.FarmsImageBean;
 import com.FarmPe.India.Bean.NotificationBean;
 import com.FarmPe.India.R;
 import com.FarmPe.India.SessionManager;
@@ -49,24 +51,24 @@ public class NotificationList extends Fragment {
         View view = inflater.inflate(R.layout.notification_recy, container, false);
         recyclerView=view.findViewById(R.id.recycler_noti);
         toolbar_title=view.findViewById(R.id.toolbar_title);
-        back_feed=view.findViewById(R.id.back_feed);
+       // back_feed=view.findViewById(R.id.back_feed);
 
         sessionManager = new SessionManager(getActivity());
-        back_feed.setOnClickListener(new View.OnClickListener() {
+       /* back_feed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                     FragmentManager fm = getActivity().getSupportFragmentManager();
                     fm.popBackStack ("home", FragmentManager.POP_BACK_STACK_INCLUSIVE);
 
-              /*else if(getArguments().getString("navigation_from").equals("setting")){
+              *//*else if(getArguments().getString("navigation_from").equals("setting")){
                     FragmentManager fm = getActivity().getSupportFragmentManager();
                     fm.popBackStack("setting", FragmentManager.POP_BACK_STACK_INCLUSIVE);
 
-                }*/
+                }*//*
             }
         });
-
+*/
         view.setFocusableInTouchMode(true);
         view.requestFocus();
         view.setOnKeyListener(new View.OnKeyListener() {
@@ -104,8 +106,17 @@ public class NotificationList extends Fragment {
 
        /* newOrderBeansList.add(img6);
         newOrderBeansList.add(img6);*/
-
-
+         NotificationBean bean=new NotificationBean("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do..");
+         newOrderBeansList.add(bean);
+         newOrderBeansList.add(bean);
+         newOrderBeansList.add(bean);
+         newOrderBeansList.add(bean);
+         newOrderBeansList.add(bean);
+         newOrderBeansList.add(bean);
+         newOrderBeansList.add(bean);
+         newOrderBeansList.add(bean);
+         newOrderBeansList.add(bean);
+         newOrderBeansList.add(bean);
         farmadapter=new NotificationListAdapter(getActivity(),newOrderBeansList);
         recyclerView.setAdapter(farmadapter);
 
@@ -118,15 +129,15 @@ public class NotificationList extends Fragment {
 
 
 
-        try {
+      /*  try {
             lngObject = new JSONObject(sessionManager.getRegId("language"));
             //  toolbar_title.setText(lngObject.getString("Notifications"));
         } catch (JSONException e) {
             e.printStackTrace();
         }
+*/
 
-
-        try{
+        /*try{
             final JSONObject jsonObject = new JSONObject();
             jsonObject.put("ToUserId",sessionManager.getRegId("userId"));
             System.out.println("aaaaaaaaaaaaadddd" + sessionManager.getRegId("userId"));
@@ -147,12 +158,12 @@ public class NotificationList extends Fragment {
                             String model=jsonObject1.getString("NotificationText");
 
 
-                         /*   if (city.equals("")){
+                         *//*   if (city.equals("")){
                                 location="Bangalore"+", "+state;
                             }else{
                                 location=city+", "+state;
                             }
-*/
+*//*
 
 
                             System.out.println("madelslistt"+newOrderBeansList.size());
@@ -160,18 +171,18 @@ public class NotificationList extends Fragment {
                             newOrderBeansList.add(img1);
 
 
-                            //FarmsImageBean crops = new FarmsImageBean(image,"Tractor Price",model,hp_range,purchaseTimeline,name,location,id);
-                          //  newOrderBeansList.add(crops);
+                           *//* FarmsImageBean crops = new FarmsImageBean(image,"Tractor Price",model,hp_range,purchaseTimeline,name,location,id);
+                            newOrderBeansList.add(crops);*//*
 
 
 
-                          /*  if(!latts.equals("") | !langgs.equals("")) {
+                           *//* if(!latts.equals("") | !langgs.equals("")) {
 
                                 CropListBean crops = new CropListBean(cropName, crop_variety, location, crop_grade,
                                         crop_quantity, crop_uom, crop_price, id, farmerId,
                                         UserName,latts,langgs,CropImg,category);
                                 newOrderBeansList.add(crops);
-                            }*/
+                            }*//*
                         }
                        // farmadapter=new NotificationAdapter(getActivity(),newOrderBeansList);
                        // recyclerView.setAdapter(farmadapter);
@@ -188,7 +199,7 @@ public class NotificationList extends Fragment {
 
         }catch (Exception e){
             e.printStackTrace();
-        }
+        }*/
 
 
 

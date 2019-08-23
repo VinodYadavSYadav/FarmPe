@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:weightSum="100"
+    android:id="@+id/main_layout"
+    android:orientation="vertical"
+
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
+        android:background="#fff"
+        android:paddingVertical="5dp"
+        android:orientation="vertical">
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none"
+            >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="100"
+            android:paddingVertical="10dp"
+            android:paddingHorizontal="5dp"
+            android:background="#fff"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            >
+
+            <LinearLayout
+                android:id="@+id/request"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                >
+
+                <TextView
+                    android:id="@+id/request1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="8dp"
+                    android:background="@drawable/border_empty_curve"
+                    android:text="Farmer requests (6)"
+                    android:textColor="#333333"
+                    />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/farms"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="6dp"
+                >
+
+                <TextView
+                    android:id="@+id/farms1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="12dp"
+                    android:paddingVertical="8dp"                        android:background="@drawable/border_empty_curve"
+                    android:text="Farms (6)"
+                    android:textColor="#333333"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/farmer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="6dp"
+                >
+
+                <TextView
+                    android:id="@+id/farmer1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="12dp"
+                    android:paddingVertical="8dp"                        android:background="@drawable/border_empty_curve"
+                    android:text="Farmers (6)"
+                    android:textColor="#333333"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/people"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="6dp" >
+
+                <TextView
+                    android:id="@+id/people1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="12dp"
+                    android:paddingVertical="8dp"                        android:background="@drawable/border_empty_curve"
+                    android:text="People (6)"
+                    android:textColor="#333333"
+                    />
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+        </HorizontalScrollView>
+
+
+
+
+        <!--
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <android.support.v7.widget.Toolbar
+                        android:id="@+id/toolbar"
+                        android:minHeight="?attr/actionBarSize"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:titleTextColor="@android:color/white"
+                        android:background="#000"
+                        android:gravity="left"
+                        android:layout_gravity="left"
+                        android:contentInsetLeft="0dp"
+                        android:contentInsetStart="0dp"
+                        app:contentInsetLeft="0dp"
+                        app:contentInsetStart="10dp"
+                        android:contentInsetRight="0dp"
+                        android:contentInsetEnd="0dp"
+                        app:contentInsetRight="0dp"
+                        app:contentInsetEnd="0dp">
+                        <LinearLayout
+                            android:id="@+id/back_feed"
+                            android:layout_width="35dp"
+                            android:layout_height="50dp"
+                            >
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_gravity="center_vertical"
+                                android:src="@drawable/ic_close"
+                                style="@style/SelectableItemBackground"
+                                android:background="?attr/selectableItemBackgroundBorderless"
+                                />
+                        </LinearLayout>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Invitations"
+                            android:textSize="20dp"
+                            android:layout_gravity="center"
+                            android:textColor="#fff"
+                            android:textStyle="bold"
+                            android:id="@+id/toolbar_title" />
+
+                    </android.support.v7.widget.Toolbar>
+
+                </LinearLayout>
+        -->
+
+
+        <!--<TextView-->
+            <!--android:id="@+id/selling_item_name"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:background="#fff"-->
+            <!--android:fontFamily="@font/segoeui"-->
+            <!--android:text="Select Your Address"-->
+            <!--android:textSize="18dp"-->
+            <!--android:padding="10dp"-->
+            <!--android:gravity="start"-->
+            <!--android:textColor="#181818 "-->
+            <!--/>-->
+
+
+    </LinearLayout>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#dcdcdc"
+        />
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/invi_frame1"
+        />
+
+
+
+
+   <!-- <android.support.v7.widget.RecyclerView
+        android:id="@+id/recy_connection_invi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        >
+
+    </android.support.v7.widget.RecyclerView>
+-->
+
+</LinearLayout>

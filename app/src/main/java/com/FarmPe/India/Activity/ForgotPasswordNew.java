@@ -3,13 +3,17 @@ package com.FarmPe.India.Activity;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,7 +33,7 @@ import org.json.JSONObject;
 
 
 
-public class ForgotPasswordNew extends AppCompatActivity {
+public class ForgotPasswordNew extends AppCompatActivity implements ConnectivityReceiver.ConnectivityReceiverListener{
     TextView forgot_submit, forgot_pass_text, forgt_pass_detail, mob_text_forgot,tocnt;
     LinearLayout forgot_back;
     public static EditText mobileno;
@@ -42,12 +46,97 @@ public class ForgotPasswordNew extends AppCompatActivity {
     JSONObject lngObject;
     TextInputLayout emter_pasword;
     EditText spn_localize;
-    String localize_text,toast_mobile,toast_valid_number,toast_mob_digits,toast_number_not_registered,toast_number_exceeded;
+    String localize_text,toast_mobile,toast_valid_number,toast_mob_digits,toast_number_not_registered,toast_number_exceeded,toast_internet,toast_nointernet;
+
+
+
+    public static boolean connectivity_check;
+    ConnectivityReceiver connectivityReceiver;
+    @Override
+    protected void onStop()
+    {
+        unregisterReceiver(connectivityReceiver);
+        super.onStop();
+    }
+
+
+    private void checkConnection() {
+        boolean isConnected = ConnectivityReceiver.isConnected();
+        showSnack(isConnected);
+    }
+
+
+    private void showSnack(boolean isConnected) {
+        String message = null;
+        int color=0;
+        if (isConnected) {
+            if(connectivity_check) {
+                message = "Good! Connected to Internet";
+                color = Color.WHITE;
+                Snackbar snackbar = Snackbar.make(coordinatorLayout,toast_internet, Snackbar.LENGTH_LONG);
+                View sbView = snackbar.getView();
+                TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+                textView.setBackgroundColor(ContextCompat.getColor(ForgotPasswordNew.this,R.color.orange));
+                textView.setTextColor(Color.WHITE);
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+                    textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                } else {
+                    textView.setGravity(Gravity.CENTER_HORIZONTAL);
+                }
+                snackbar.show();
+
+                //setting connectivity to false only on executing "Good! Connected to Internet"
+                connectivity_check=false;
+            }
+
+        } else {
+            message = "No Internet Connection";
+            color = Color.RED;
+            //setting connectivity to true only on executing "Sorry! Not connected to internet"
+            connectivity_check=true;
+            // Snackbar snackbar = Snackbar.make(coordinatorLayout,message, Snackbar.LENGTH_LONG);
+            Snackbar snackbar = Snackbar.make(findViewById(android.R.id.content), toast_nointernet, Snackbar.LENGTH_LONG);
+            View sb = snackbar.getView();
+            TextView textView = (TextView) sb.findViewById(android.support.design.R.id.snackbar_text);
+            textView.setBackgroundColor(ContextCompat.getColor(ForgotPasswordNew.this, R.color.orange));
+            textView.setTextColor(Color.WHITE);
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+                textView.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+            } else {
+                textView.setGravity(Gravity.CENTER_HORIZONTAL);
+            }
+
+
+            snackbar.show();
+
+          /*  View sbView = snackbar.getView();
+            TextView textView = (TextView) sbView.findViewById(android.support.design.R.id.snackbar_text);
+            textView.setTextColor(color);
+            snackbar.show();*/
+        }
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        final IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
+        connectivityReceiver = new ConnectivityReceiver();
+        registerReceiver(connectivityReceiver, intentFilter);
+        // register connection status listener
+        MyApplication.getInstance().setConnectivityListener(this);
+
+    }
+
 
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.forgot_password);
+        checkConnection();
 
 
         forgot_back = findViewById(R.id.back_feed);
@@ -83,6 +172,9 @@ public class ForgotPasswordNew extends AppCompatActivity {
             toast_mob_digits = lngObject.getString("Pleaseenter10digitsmobilenumber");
             toast_number_not_registered = lngObject.getString("Yournumberisnotregistered");
             toast_number_exceeded = lngObject.getString("Youhaveexceededthelimitofresendingotp");
+            toast_internet = lngObject.getString("GoodConnectedtoInternet");
+            toast_nointernet = lngObject.getString("NoInternetConnection");
+
 
 
         } catch (JSONException e) {
@@ -105,7 +197,7 @@ public class ForgotPasswordNew extends AppCompatActivity {
         forgot_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ForgotPasswordNew.this, LoginActivity.class);
+                Intent intent = new Intent(ForgotPasswordNew.this, LoginActivity_new.class);
                 startActivity(intent);
                 finish();
 
@@ -230,7 +322,7 @@ public class ForgotPasswordNew extends AppCompatActivity {
         //System.exit(0);
         finish();
 
-        Intent intent=new Intent(ForgotPasswordNew.this,LoginActivity.class);
+        Intent intent=new Intent(ForgotPasswordNew.this,LoginActivity_new.class);
         startActivity(intent);
         finish();
     }
@@ -282,6 +374,11 @@ inputMethodManager.hideSoftInputFromWindow(activity.getCurrentFocus().getWindowT
                 e.printStackTrace();
             }
         }
+    }
+
+    @Override
+    public void onNetworkConnectionChanged(boolean isConnected) {
+        showSnack(isConnected);
     }
 
 }

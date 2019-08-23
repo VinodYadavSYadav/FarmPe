@@ -6,10 +6,7 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:paddingVertical="25dp"
     android:background="#fff"
-    android:layout_marginLeft="10dp"
-    android:layout_marginTop="10dp"
     android:tag="cards main container">
 
 
@@ -29,21 +26,39 @@
         android:layout_height="match_parent"
         android:weightSum="100"
         android:background="#fff"
-        android:gravity="center"
-        android:padding="5dp"
         android:orientation="vertical">
+
+
+        <android.support.v7.widget.CardView
+            xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/card_view"
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="5dp"
+            card_view:cardElevation="4dp"
+            android:layout_marginBottom="10dp"
+            card_view:cardCornerRadius="4dp">
+
 
 
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:gravity="center"
            >
 
 
-            <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            <ImageView
+                android:id="@+id/prod_img"
+                android:layout_width="match_parent"
+                android:layout_height="170dp"
+                android:src="@drawable/jk"
+                android:scaleType="fitXY"
+                />
+
+           <!-- <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/prod_img"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
@@ -51,12 +66,13 @@
                 android:src="@drawable/avatarmale"
                 android:layout_centerInParent="true"
                 app:civ_border_color="#ffffff"
-                app:civ_border_width="0.5dp" />
+                app:civ_border_width="0.5dp" />-->
               <LinearLayout
                   android:layout_width="match_parent"
                   android:layout_height="wrap_content"
-                  android:layout_marginTop="10dp"
+                  android:layout_marginTop="25dp"
                   android:gravity="center"
+                  android:layout_marginBottom="25dp"
                   android:orientation="vertical">
 
                   <TextView
@@ -123,22 +139,22 @@
                       android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
                       android:fontFamily="@font/segoeui"
-                      android:layout_gravity="center"
-                      android:text="Connect"
-                      android:background="@drawable/border_2_empty"
-                      android:paddingVertical="8dp"
-                      android:paddingHorizontal="30dp"
-                      android:gravity="center"
-                      android:layout_marginTop="35dp"
-                      android:textColor="#000"
-                      android:textSize="14dp"
+                      android:text="CONNECT"
+                      android:background="@drawable/border_red"
+                      android:paddingVertical="6dp"
+                      android:paddingHorizontal="16dp"
+                      android:drawablePadding="10dp"
+                      android:layout_marginTop="20dp"
+                      android:drawableLeft="@drawable/ic_snowflakes_red"
+                      android:textColor="#E50914"
+                      android:textSize="16dp"
                       android:textStyle="bold" />
 
               </LinearLayout>
 
         </LinearLayout>
 
-
+        </android.support.v7.widget.CardView>
 
 
 
