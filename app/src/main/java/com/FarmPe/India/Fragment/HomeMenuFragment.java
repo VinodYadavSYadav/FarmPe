@@ -261,8 +261,8 @@ Fragment selectedFragment;
 
                 selectedFragment = NotificationList.newInstance();
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.first_full_frame, selectedFragment);
-                transaction.addToBackStack("home");
+                transaction.replace(R.id.frame_layout, selectedFragment);
+                transaction.addToBackStack("home_page");
                 transaction.commit();
 //
 //  Bundle bundle = new Bundle();
@@ -290,10 +290,10 @@ Fragment selectedFragment;
         settings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                selectedFragment = SettingFragment.newInstance();
+                selectedFragment = AaSettingFragment.newInstance();
                 FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
                 transaction.replace(R.id.frame_layout, selectedFragment);
-                transaction.addToBackStack("home_page");
+               // transaction.addToBackStack("home_page");
                 transaction.commit();
                 drawer.closeDrawers();
 

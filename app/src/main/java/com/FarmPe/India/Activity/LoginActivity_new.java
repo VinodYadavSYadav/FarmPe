@@ -172,12 +172,12 @@ public class LoginActivity_new extends AppCompatActivity implements Connectivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.sign_in);
+        setContentView(R.layout.sign_in_1);
         checkConnection();
 
         welcome_back = findViewById(R.id.welcome_back);
         createaccount = findViewById(R.id.create_acc);
-        change_lang = findViewById(R.id.change_lang);
+       // change_lang = findViewById(R.id.change_lang);
         text_mobile = findViewById(R.id.text_name);
         text_pass = findViewById(R.id.text_pass);
 
@@ -194,25 +194,25 @@ public class LoginActivity_new extends AppCompatActivity implements Connectivity
         pass = findViewById(R.id.pass);
 
         coordinatorLayout =findViewById(R.id.main_layou1);
-        remember_me = findViewById(R.id.remember_me);
+       // remember_me = findViewById(R.id.remember_me);
         loc_text="+91";
         setupUI(coordinatorLayout);
         myDb = new DatabaseHelper(this);
         edittext_move(mobile_no, pass);
-        remember_me.setChecked(true);
+       // remember_me.setChecked(true);
 
 
 
         forgot_pass.setTypeface(ResourcesCompat.getFont(getApplicationContext(), R.font.segoeui));
-        remember_me.setTypeface(ResourcesCompat.getFont(getApplicationContext(), R.font.segoeui));
+       // remember_me.setTypeface(ResourcesCompat.getFont(getApplicationContext(), R.font.segoeui));
 
 
         forgot_pass.setTypeface(null, Typeface.BOLD);
-        remember_me.setTypeface(null, Typeface.BOLD);
+       // remember_me.setTypeface(null, Typeface.BOLD);
 
 
 
-        if( sessionManager.getRegId("language_name").equals("")){
+       /* if( sessionManager.getRegId("language_name").equals("")){
 
             change_lang.setText("English");
 
@@ -220,14 +220,14 @@ public class LoginActivity_new extends AppCompatActivity implements Connectivity
 
             change_lang.setText(sessionManager.getRegId("language_name"));
 
-        }
+        }*/
 
 
         pass.setFilters(new InputFilter[] {EMOJI_FILTER1,new InputFilter.LengthFilter(12) });
 
         System.out.println("llllllllllll" + sessionManager.getRegId("language"));
 
-        try {
+       /* try {
             if ((sessionManager.getRegId("language")).equals("")){
                 getLang(1);
 
@@ -266,7 +266,7 @@ public class LoginActivity_new extends AppCompatActivity implements Connectivity
             e.printStackTrace();
         }
 
-
+*/
 
         createaccount.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -286,7 +286,7 @@ public class LoginActivity_new extends AppCompatActivity implements Connectivity
 
 
 
-        change_lang.setOnClickListener(new View.OnClickListener() {
+       /* change_lang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -384,7 +384,7 @@ public class LoginActivity_new extends AppCompatActivity implements Connectivity
         });
 
 
-
+*/
 
 
 
@@ -392,14 +392,14 @@ public class LoginActivity_new extends AppCompatActivity implements Connectivity
             @Override
             public void onClick(View v) {
 
-                if (change_lang.getText().toString().equals("English")){
+               /* if (change_lang.getText().toString().equals("English")){
                     isEng = true;
                     Log.d("GGGGGGGG", "Here: "+LoginActivity_new.isEng);
                 }
                 else{
                     isEng = false;
                     Log.d("GGGGGGGG", "Here: "+LoginActivity_new.isEng);
-                }
+                }*/
                 mobile_string=mobile_no.getText().toString();
                 mob_no =loc_text+ mobile_no.getText().toString();
                 password = pass.getText().toString();
@@ -507,7 +507,7 @@ public class LoginActivity_new extends AppCompatActivity implements Connectivity
 
                                             FirebaseMessaging.getInstance().subscribeToTopic("FARMERNEWS");// to register in topic(subcribe)
                                             FirebaseMessaging.getInstance().subscribeToTopic("NEWS");// to register in topic(subcribe)
-                                            if(remember_me.isChecked()){
+                                           /* if(remember_me.isChecked()){
 
                                                 if(!myDb.isEmailExists(mobile_no.getText().toString())){
 
@@ -518,7 +518,7 @@ public class LoginActivity_new extends AppCompatActivity implements Connectivity
 
                                                     DeleteData(mobile_no.getText().toString(),password);
                                                 }
-                                            }
+                                            }*/
                                         }
 
                                     } else{
@@ -698,7 +698,7 @@ public class LoginActivity_new extends AppCompatActivity implements Connectivity
                     }
                     System.out.println("gggggggggggggggggggggjjjjjjjjjjj"+buffer.toString().trim());
                     et2.setText(buffer.toString().trim());
-                    remember_me.setChecked(true);
+                   // remember_me.setChecked(true);
                     System.out.println("wwwwwwwwwwwwwwwww"+et2);
 
 

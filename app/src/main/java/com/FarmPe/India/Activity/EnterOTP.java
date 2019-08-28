@@ -159,19 +159,19 @@ public class EnterOTP extends AppCompatActivity implements ConnectivityReceiver.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.otp_layout);
+        setContentView(R.layout.thank_you_otp1);
 
         checkConnection();
 
         vibe = (Vibrator) getApplication().getSystemService(Context.VIBRATOR_SERVICE);
         // name_back=findViewById(R.id.name_back);
-        submit=findViewById(R.id.otp_submit);
+        submit=findViewById(R.id.thanktu_submit);
         otp_title=findViewById(R.id.thank);
-        otpedittext=findViewById(R.id.otp);
-        otp_text=findViewById(R.id.thanktu);
+        otpedittext=findViewById(R.id.otp_forgot_pass);
+       // otp_text=findViewById(R.id.thanktu);
         linearLayout=findViewById(R.id.main_layout);
        // close=findViewById(R.id.arrow_thank_u);
-        left_arrow=findViewById(R.id.left_arow);
+        left_arrow=findViewById(R.id.back_feed);
 
 
 
@@ -179,7 +179,7 @@ public class EnterOTP extends AppCompatActivity implements ConnectivityReceiver.
 
 
         resendotp=findViewById(R.id.resend);
-
+        resendotp.setVisibility(View.VISIBLE);
        /* resendotp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -296,7 +296,7 @@ public class EnterOTP extends AppCompatActivity implements ConnectivityReceiver.
         // sessionManager.getRegId("lng_object");
         // System.out.println("llllllllllll" + sessionManager.getRegId("lng_object"));
 
-        try {
+       /* try {
             lngObject = new JSONObject(sessionManager.getRegId("language"));
 
             submit.setText(lngObject.getString("Submit"));
@@ -313,7 +313,7 @@ public class EnterOTP extends AppCompatActivity implements ConnectivityReceiver.
 
         } catch (JSONException e) {
             e.printStackTrace();
-        }
+        }*/
 //
 //        if (checkAndRequestPermissions()) {
 //            // carry on the normal flow, as the case of  permissions  granted.

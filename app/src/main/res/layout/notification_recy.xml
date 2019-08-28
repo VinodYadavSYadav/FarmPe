@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="#E5E9EC"
+        android:background="#000"
         tools:ignore="MissingConstraints">
 
         <android.support.v7.widget.Toolbar
@@ -24,7 +24,6 @@
             app:titleTextColor="@android:color/white"
             >
 
-<!--
 
             <LinearLayout
                 android:id="@+id/back_feed"
@@ -42,7 +41,6 @@
                     />
 
             </LinearLayout>
--->
 
 
             <TextView
@@ -50,7 +48,7 @@
                 android:layout_height="wrap_content"
                 android:text="Notifications"
                 android:textSize="20dp"
-                android:textColor="#000"
+                android:textColor="#fff"
                 android:layout_marginHorizontal="10dp"
                 android:id="@+id/toolbar_title" />
 

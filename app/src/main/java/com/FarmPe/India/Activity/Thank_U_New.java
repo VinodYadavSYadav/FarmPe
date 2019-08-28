@@ -142,14 +142,14 @@ public class Thank_U_New extends AppCompatActivity implements ConnectivityReceiv
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.thank_you_otp);
+        setContentView(R.layout.thank_you_otp1);
 
         checkConnection();
         linearLayout=findViewById(R.id.main_layout);
-        back_thank_u=findViewById(R.id.arrow_thank_u);
+        back_thank_u=findViewById(R.id.back_feed);
         thanktu_submit=findViewById(R.id.thanktu_submit);
         enter_otp=findViewById(R.id.otp_forgot_pass);
-        otp_text=findViewById(R.id.thanktu);
+       // otp_text=findViewById(R.id.thanktu);
         thank_title=findViewById(R.id.thank);
 
 
@@ -162,7 +162,7 @@ public class Thank_U_New extends AppCompatActivity implements ConnectivityReceiv
 
 
 
-        try {
+       /* try {
             lngObject = new JSONObject(sessionManager.getRegId("language"));
 
 
@@ -180,7 +180,7 @@ public class Thank_U_New extends AppCompatActivity implements ConnectivityReceiv
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
+*/
 
 //
 //        if (checkAndRequestPermissions()) {

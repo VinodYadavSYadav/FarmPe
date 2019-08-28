@@ -26,8 +26,8 @@ public class Crop_Post {
     static int pStatus = 0;
 
     public static void crop_posting(Activity activity, String url, JSONObject postObject, final VoleyJsonObjectCallback callback) {
-        final ProgressDialog progressDialog = ProgressDialog.show(activity, "",
-                "Loading....Please wait.");
+       // final ProgressDialog progressDialog = ProgressDialog.show(activity, "",
+              //  "Loading....Please wait.");
 
 //        final ProgressDialog progressDialog = new ProgressDialog(activity ,R.style.MyAlertDialogStyle);
 //        progressDialog.setMessage(" Loading....Please wait");
@@ -45,7 +45,7 @@ public class Crop_Post {
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject jsonObject) {
-                        progressDialog.cancel();
+                       /// progressDialog.cancel();
 
 //{"Status":"1","Message":"New KYC Added Succesfully"}
                         try {
@@ -64,7 +64,7 @@ public class Crop_Post {
                     @Override
                     public void onErrorResponse(VolleyError volleyError) {
                         System.out.println("jsonobjectAppointments" + volleyError.getMessage());
-                        progressDialog.cancel();
+                       // progressDialog.cancel();
                         //  volleyError.printStackTrace();
 
                     }

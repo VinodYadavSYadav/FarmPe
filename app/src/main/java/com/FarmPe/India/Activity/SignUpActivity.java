@@ -183,7 +183,7 @@ public class SignUpActivity extends AppCompatActivity implements ConnectivityRec
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.sign_up_new);
+        setContentView(R.layout.sign_up_1);
         checkConnection();
 
 
@@ -200,24 +200,24 @@ public class SignUpActivity extends AppCompatActivity implements ConnectivityRec
         // backtologin=findViewById(R.id.create_acc);
         mobile_no = findViewById(R.id.mobilesignup);
         password = findViewById(R.id.passsignup);
-        change_lang = findViewById(R.id.change_lang);
+        //change_lang = findViewById(R.id.change_lang);
         privacy_terms = findViewById(R.id.privacy_terms);
         // referal_text=findViewById(R.id.referal_text);
         // referal_code=findViewById(R.id.referal_code);
         // textInputLayout_pass=findViewById(R.id.text_pass);
 
-        privacy_terms.setText(Html.fromHtml("By registering, you accept our <u><b> Privacy Policy</b> and <b>Terms of use.</b></u>"));
+        privacy_terms.setText(Html.fromHtml("By joining you accept the <b> <font color='#2680EB'>Privacy Policy</font></b> and <b><font color='#2680EB'>Terms of use.</font></b></u>"));
 
         sessionManager = new SessionManager(SignUpActivity.this);
 
-        if(sessionManager.getRegId("language_name").equals("")){
+       /* if(sessionManager.getRegId("language_name").equals("")){
 
             change_lang.setText("English");
 
         }else {
 
             change_lang.setText(sessionManager.getRegId("language_name"));
-        }
+        }*/
 
 
 
@@ -256,7 +256,7 @@ public class SignUpActivity extends AppCompatActivity implements ConnectivityRec
             }
         });*/
 
-        try {
+       /* try {
 
             if ((sessionManager.getRegId("language")).equals("")) {
                 getLang(1);
@@ -293,7 +293,7 @@ public class SignUpActivity extends AppCompatActivity implements ConnectivityRec
 
         }catch (Exception e){
             e.printStackTrace();
-        }
+        }*/
 
 
 
@@ -363,7 +363,7 @@ public class SignUpActivity extends AppCompatActivity implements ConnectivityRec
 //        }
 
 
-        change_lang.setOnClickListener(new View.OnClickListener() {
+       /* change_lang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -459,7 +459,7 @@ public class SignUpActivity extends AppCompatActivity implements ConnectivityRec
 
             }
         });
-
+*/
 
       //  sessionManager.getRegId("lng_object");
 //        System.out.println("signupresponse" + sessionManager.getRegId("langdetails"));

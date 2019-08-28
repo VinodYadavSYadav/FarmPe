@@ -139,10 +139,10 @@ public class ResetPasswordNew extends AppCompatActivity implements ConnectivityR
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.reset_password);
+        setContentView(R.layout.reset_pass_1);
 
         checkConnection();
-        back_reset_pass=findViewById(R.id.arrow_reset_pass);
+        back_reset_pass=findViewById(R.id.back_feed);
         pass_submit=findViewById(R.id.password_submit);
         passwd=findViewById(R.id.passwd1);
         conf_pass=findViewById(R.id.conf_pass1);
@@ -150,7 +150,7 @@ public class ResetPasswordNew extends AppCompatActivity implements ConnectivityR
         conf_pass_txt=findViewById(R.id.conf_pass_txt);
         linearLayout=findViewById(R.id.main_layout);
         reset_text=findViewById(R.id.reset);
-        to_continue_text=findViewById(R.id.tocnt);
+       // to_continue_text=findViewById(R.id.tocnt);
         myDb = new DatabaseHelper(this);
 
         edittext_move(ForgotPasswordNew.mobileno, passwd);
@@ -165,7 +165,7 @@ public class ResetPasswordNew extends AppCompatActivity implements ConnectivityR
         JSONObject lngObject;
 
 
-        try {
+       /* try {
             lngObject=new JSONObject(sessionManager.getRegId("language"));
 
 
@@ -185,7 +185,7 @@ public class ResetPasswordNew extends AppCompatActivity implements ConnectivityR
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
+*/
         forgot_username=ForgotPasswordNew.forgot_mob_no.substring(3);
 
         back_reset_pass.setOnClickListener(new View.OnClickListener() {

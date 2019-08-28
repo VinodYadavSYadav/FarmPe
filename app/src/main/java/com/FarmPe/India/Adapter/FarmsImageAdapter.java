@@ -300,7 +300,7 @@ public class FarmsImageAdapter extends RecyclerView.Adapter<FarmsImageAdapter.My
             userRequestjsonObject.put("RequestBy",sessionManager.getRegId("userId"));
             userRequestjsonObject.put("RequestTo", createdBy);
             userRequestjsonObject.put("ConnectionNetworkType", "1");
-            userRequestjsonObject.put("ConnectionType", DashboardFragment.looking_for_type);
+            userRequestjsonObject.put("ConnectionType", "LookingFor");
             userRequestjsonObject.put("ConnectionRelatedId", mainId);
             userRequestjsonObject.put("CreatedBy", sessionManager.getRegId("userId"));
 

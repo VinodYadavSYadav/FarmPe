@@ -20,8 +20,9 @@ public class NotificationListAdapter extends RecyclerView.Adapter<NotificationLi
     private List<NotificationBean> productList;
     Activity activity;
     Fragment selectedFragment;
-
     public LinearLayout linearLayout;
+
+
     public static LinearLayout next_arw;
     public static String first;
     public static CardView cardView;
@@ -39,15 +40,14 @@ public class NotificationListAdapter extends RecyclerView.Adapter<NotificationLi
         public LinearLayout noti_layout;
 
 
-
         public MyViewHolder(View view) {
             super(view);
             //agri_text=view.findViewById(R.id.store_agri);
             noti_layout=view.findViewById(R.id.noti_layout);
             notification=view.findViewById(R.id.noti_text);
-          //  view_text=view.findViewById(R.id.view_text);
+            view_text=view.findViewById(R.id.view_text);
 
-            //linearLayout=view.findViewById(R.id.dialog_list);
+            linearLayout=view.findViewById(R.id.noti_layout);
             //confirmbutton=view.findViewById(R.id.delivery2);
         }
 
@@ -58,7 +58,6 @@ public class NotificationListAdapter extends RecyclerView.Adapter<NotificationLi
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.not_lyt, parent, false);
         return new MyViewHolder(itemView);
-
     }
 
     @Override
@@ -67,6 +66,13 @@ public class NotificationListAdapter extends RecyclerView.Adapter<NotificationLi
         //holder.agri_text.setText(products.getAgri_text());
         holder.notification.setText(products.getNotification());
 
+        holder.view_text.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                holder.noti_layout.setBackgroundColor(Color.parseColor("#ffffff"));
+                holder.view_text.setVisibility(View.INVISIBLE);
+            }
+        });
 
     /*    Glide.with(activity).load(products.getImage())
 

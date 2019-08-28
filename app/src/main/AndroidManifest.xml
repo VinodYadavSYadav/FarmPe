@@ -18,7 +18,11 @@
         android:supportsRtl="true"
         android:usesCleartextTraffic="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.FarmPe.India.Activity.LoginActivity_new"
+
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false"/>
+        <activity android:name="com.FarmPe.India.Activity.ActivitySelectLang"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -37,10 +41,13 @@
         <activity android:name="com.FarmPe.India.Activity.Thank_U_New"
             android:screenOrientation="portrait"/>
 
+        <activity android:name="com.FarmPe.India.Activity.LoginActivity_new"
+            android:screenOrientation="portrait"/>
+
         <activity android:name="com.FarmPe.India.Activity.LandingPageActivity"
             android:screenOrientation="portrait"
             android:resizeableActivity="false"
-            />
+        />
 
         <activity android:name="com.FarmPe.India.Activity.ResetPasswordNew"
             android:screenOrientation="portrait"/>

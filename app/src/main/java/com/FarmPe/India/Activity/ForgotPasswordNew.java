@@ -135,18 +135,18 @@ public class ForgotPasswordNew extends AppCompatActivity implements Connectivity
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.forgot_password);
+        setContentView(R.layout.forgotpass_1);
         checkConnection();
 
 
         forgot_back = findViewById(R.id.back_feed);
         forgot_submit = findViewById(R.id.forgot_submit);
         mobileno = findViewById(R.id.mobile_no);
-        coordinatorLayout = findViewById(R.id.linear_login);
+        coordinatorLayout = findViewById(R.id.main_layou1);
         forgot_pass_text = findViewById(R.id.forgot);
     //    spn_localize = findViewById(R.id.spn_localize_forgot);
         //emter_pasword=findViewById(R.id.emter_pasword);
-        forgt_pass_detail = findViewById(R.id.tocnt);
+       // forgt_pass_detail = findViewById(R.id.tocnt);
      //   mob_text_forgot = findViewById(R.id.mob_text_forgot);
         setupUI(coordinatorLayout);
 
@@ -157,7 +157,7 @@ public class ForgotPasswordNew extends AppCompatActivity implements Connectivity
 
 
 
-        try {
+       /* try {
 
             lngObject = new JSONObject(sessionManager.getRegId("language"));
 
@@ -179,7 +179,7 @@ public class ForgotPasswordNew extends AppCompatActivity implements Connectivity
 
         } catch (JSONException e) {
             e.printStackTrace();
-        }
+        }*/
 
 
         coordinatorLayout.setOnClickListener(new View.OnClickListener() {

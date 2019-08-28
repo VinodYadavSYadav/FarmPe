@@ -73,13 +73,15 @@ public class SelectLanguageAdapter extends RecyclerView.Adapter<SelectLanguageAd
         final SelectLanguageBean products = productList.get(position);
 
         if (sessionManager.getRegId("language_name").equals(products.getVendor())){
-            holder.right_img.setImageResource(R.drawable.ic_verified_filled_grey_white);
+           // holder.right_img.setImageResource(R.drawable.ic_verified_filled_grey_white);
             //  holder.lng_rad_but.setBackgroundColor(Color.GREEN);
-
+            holder.right_img.setVisibility(View.VISIBLE);
 
         }else {
 
-            holder.right_img.setImageResource(R.drawable.filled_grey_circle);
+            holder.right_img.setVisibility(View.GONE);
+
+            //// holder.right_img.setImageResource(R.drawable.filled_grey_circle);
 
 //            holder.right_img.setImageResource(R.drawable.v);
 

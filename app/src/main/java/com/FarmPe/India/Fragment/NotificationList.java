@@ -51,24 +51,18 @@ public class NotificationList extends Fragment {
         View view = inflater.inflate(R.layout.notification_recy, container, false);
         recyclerView=view.findViewById(R.id.recycler_noti);
         toolbar_title=view.findViewById(R.id.toolbar_title);
-       // back_feed=view.findViewById(R.id.back_feed);
+        back_feed=view.findViewById(R.id.back_feed);
 
         sessionManager = new SessionManager(getActivity());
-       /* back_feed.setOnClickListener(new View.OnClickListener() {
+        back_feed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                     FragmentManager fm = getActivity().getSupportFragmentManager();
-                    fm.popBackStack ("home", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                    fm.popBackStack ("home_page", FragmentManager.POP_BACK_STACK_INCLUSIVE);
 
-              *//*else if(getArguments().getString("navigation_from").equals("setting")){
-                    FragmentManager fm = getActivity().getSupportFragmentManager();
-                    fm.popBackStack("setting", FragmentManager.POP_BACK_STACK_INCLUSIVE);
-
-                }*//*
             }
         });
-*/
         view.setFocusableInTouchMode(true);
         view.requestFocus();
         view.setOnKeyListener(new View.OnKeyListener() {
@@ -79,7 +73,7 @@ public class NotificationList extends Fragment {
                 if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP) {
 
                         FragmentManager fm = getActivity().getSupportFragmentManager();
-                        fm.popBackStack ("home", FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                        fm.popBackStack ("home_page", FragmentManager.POP_BACK_STACK_INCLUSIVE);
 
                     /* else if(getArguments().getString("navigation_from").equals("setting")){
                         FragmentManager fm = getActivity().getSupportFragmentManager();
